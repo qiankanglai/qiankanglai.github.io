@@ -1,0 +1,4459 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.2 -->
+    <script>
+        window.materialVersion = "1.5.2"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            时间轴 | 
+        
+        Loading &amp; Learning
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" itemprop="description" content="Kanglai&#39;s personal blog, mainly about coding :D">
+    <meta name="keywords" content="">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #EEEEEE !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #EEEEEE !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #EEEEEE !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","https://cdn.bootcss.com/jquery/2.2.0/jquery.min.js", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Loading &amp; Learning">
+    <meta name="msapplication-starturl" content="http://qiankanglai.me/timeline/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Loading &amp; Learning">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://qiankanglai.me/timeline/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="时间轴 | Loading &amp; Learning">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="Kanglai&#39;s personal blog, mainly about coding :D">
+    
+
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://qiankanglai.me/timeline/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+
+    
+
+    <!-- Analytics -->
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-30309954-1', 'auto');ga('send', 'pageview');
+</script>
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+
+<!-- Layouts -->
+
+    <!-- Single Timeline Page -->
+    <style>
+	.md-container {
+		width: 90%;
+		max-width: 1170px;
+		margin: 0 auto;
+	}
+	.md-container::after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+	#md-timeline {
+		position: relative;
+		padding: 2em 0;
+		margin-top: 2em;
+		margin-bottom: 2em;
+	}
+	@media screen and (max-device-width:480px){
+		#md-timeline {
+			margin-top: 6em;
+		}
+	}
+	#md-timeline::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 18px;
+		height: 100%;
+		width: 2px;
+		background: #d7e4ed;
+	}
+	.md-timeline-title {
+		font-size: 20px;
+		line-height: 24px;
+	}
+	.md-timeline-content a {
+		text-decoration: none;
+	}
+	.md-timeline-info {
+		height: 20px;
+		width: 100%;
+		margin: 10px 0px;
+	}
+	.md-timeline-info-span {
+		float: right;
+		margin-right: 10px;
+		text-align: right;
+	}
+	.md-timeline-excerpt {
+	    	clear: right; 
+	}
+	@media only screen and (min-width: 1170px) {
+		#md-timeline {
+			margin-top: 3em;
+			margin-bottom: 3em;
+		}
+		#md-timeline::before {
+			left: 50%;
+			margin-left: -2px;
+		}
+	}
+	.md-timeline-block {
+		position: relative;
+		margin: 2em 0;
+	}
+	.md-timeline-block:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+	.md-timeline-block:first-child {
+		margin-top: 0;
+	}
+	.md-timeline-block:last-child {
+		margin-bottom: 0;
+	}
+	@media only screen and (min-width: 1170px) {
+		.md-timeline-block {
+			margin: 4em 0;
+		}
+		.md-timeline-block:first-child {
+			margin-top: 0;
+		}
+		.md-timeline-block:last-child {
+			margin-bottom: 0;
+		}
+	}
+	.md-timeline-date {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 60px;
+		height: 40px;
+		border-radius: box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+	}
+	.md-timeline-date.blue {
+		background: #0D395F;
+		-webkit-box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.75);
+		-moz-box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.75);
+		box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.75);
+	}
+	@media only screen and (min-width: 1170px) {
+		.md-timeline-date {
+			width: 60px;
+			height: 60px;
+			left: 50%;
+			margin-left: -30px;
+			/* Force Hardware Acceleration in WebKit */
+			-webkit-transform: translateZ(0);
+			-webkit-backface-visibility: hidden;
+		}
+		.cssanimations .md-timeline-date.is-hidden {
+			visibility: hidden;
+		}
+		.cssanimations .md-timeline-date.bounce-in {
+			visibility: visible;
+			-webkit-animation: md-bounce-1 0.6s;
+			-moz-animation: md-bounce-1 0.6s;
+			animation: md-bounce-1 0.6s;
+		}
+	}
+	@-webkit-keyframes md-bounce-1 {
+		0% {
+			opacity: 0;
+			-webkit-transform: scale(0.5);
+		}
+		60% {
+			opacity: 1;
+			-webkit-transform: scale(1.2);
+		}
+		100% {
+			-webkit-transform: scale(1);
+		}
+	}
+	@-moz-keyframes md-bounce-1 {
+		0% {
+			opacity: 0;
+			-moz-transform: scale(0.5);
+		}
+		60% {
+			opacity: 1;
+			-moz-transform: scale(1.2);
+		}
+		100% {
+			-moz-transform: scale(1);
+		}
+	}
+	@keyframes md-bounce-1 {
+		0% {
+			opacity: 0;
+			-webkit-transform: scale(0.5);
+			-moz-transform: scale(0.5);
+			-ms-transform: scale(0.5);
+			-o-transform: scale(0.5);
+			transform: scale(0.5);
+		}
+		60% {
+			opacity: 1;
+			-webkit-transform: scale(1.2);
+			-moz-transform: scale(1.2);
+			-ms-transform: scale(1.2);
+			-o-transform: scale(1.2);
+			transform: scale(1.2);
+		}
+		100% {
+			-webkit-transform: scale(1);
+			-moz-transform: scale(1);
+			-ms-transform: scale(1);
+			-o-transform: scale(1);
+			transform: scale(1);
+		}
+	}
+	.md-timeline-content {
+		position: relative;
+		margin-left: 60px;
+		background: white;
+		padding: 1em;
+		-webkit-box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.75);
+		-moz-box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.75);
+		box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.75);
+	}
+	.md-timeline-content:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+	.md-timeline-content h2 {
+		color: #303e49;
+	}
+	.md-timeline-content p, .md-timeline-content .md-read-more, .md-timeline-content .md-date {
+		font-size: 13px;
+		font-size: 0.8125rem;
+	}
+	.md-timeline-content .md-read-more, .md-timeline-content .md-date {
+		display: inline-block;
+	}
+	.md-timeline-content p {
+		margin: 1em 0;
+		line-height: 1.6;
+	}
+	.md-timeline-content .md-read-more {
+		float: right;
+		padding: .8em 1em;
+		background: #acb7c0;
+		color: white;
+		border-radius: 0.25em;
+	}
+	.md-date {
+		color: white;
+		text-align: center;
+	}
+	.no-touch .md-timeline-content .md-read-more:hover {
+		background-color: #bac4cb;
+	}
+	.md-timeline-content::before {
+		content: '';
+		position: absolute;
+		top: 16px;
+		right: 100%;
+		height: 0;
+		width: 0;
+		border: 7px solid transparent;
+		border-right: 7px solid white;
+	}
+	@media only screen and (min-width: 768px) {
+		.md-timeline-content h2 {
+			font-size: 20px;
+			font-size: 1.25rem;
+		}
+		.md-timeline-content p {
+			font-size: 16px;
+			font-size: 1rem;
+		}
+		.md-timeline-content .md-read-more {
+			font-size: 14px;
+			font-size: 0.875rem;
+		}
+	}
+	@media only screen and (min-width: 1170px) {
+		.md-date {
+			text-align: center;
+			margin-top: 10px;
+			line-height: 20px;
+		}
+		.md-timeline-content {
+			margin-left: 0;
+			padding: 1.6em;
+			width: 45%;
+		}
+		.md-timeline-content::before {
+			top: 24px;
+			left: 100%;
+			border-color: transparent;
+			border-left-color: white;
+		}
+		.md-timeline-content .md-read-more {
+			float: left;
+		}
+		.md-timeline-block:nth-child(even) .md-timeline-content {
+			float: right;
+		}
+		.md-timeline-block:nth-child(even) .md-timeline-content::before {
+			top: 24px;
+			left: auto;
+			right: 100%;
+			border-color: transparent;
+			border-right-color: white;
+		}
+		.md-timeline-block:nth-child(even) .md-timeline-content .md-read-more {
+			float: right;
+		}
+		.cssanimations .md-timeline-content.is-hidden {
+			visibility: hidden;
+		}
+		.cssanimations .md-timeline-content.bounce-in {
+			visibility: visible;
+			-webkit-animation: md-bounce-2 0.6s;
+			-moz-animation: md-bounce-2 0.6s;
+			animation: md-bounce-2 0.6s;
+		}
+	}
+	@media only screen and (min-width: 1170px) {
+		/* inverse bounce effect on even content blocks */
+		.cssanimations .md-timeline-block:nth-child(even) .md-timeline-content.bounce-in {
+			-webkit-animation: md-bounce-2-inverse 0.6s;
+			-moz-animation: md-bounce-2-inverse 0.6s;
+			animation: md-bounce-2-inverse 0.6s;
+		}
+	}
+	@-webkit-keyframes md-bounce-2 {
+		0% {
+			opacity: 0;
+			-webkit-transform: translateX(-100px);
+		}
+		60% {
+			opacity: 1;
+			-webkit-transform: translateX(20px);
+		}
+		100% {
+			-webkit-transform: translateX(0);
+		}
+	}
+	@-moz-keyframes md-bounce-2 {
+		0% {
+			opacity: 0;
+			-moz-transform: translateX(-100px);
+		}
+		60% {
+			opacity: 1;
+			-moz-transform: translateX(20px);
+		}
+		100% {
+			-moz-transform: translateX(0);
+		}
+	}
+	@keyframes md-bounce-2 {
+		0% {
+			opacity: 0;
+			-webkit-transform: translateX(-100px);
+			-moz-transform: translateX(-100px);
+			-ms-transform: translateX(-100px);
+			-o-transform: translateX(-100px);
+			transform: translateX(-100px);
+		}
+		60% {
+			opacity: 1;
+			-webkit-transform: translateX(20px);
+			-moz-transform: translateX(20px);
+			-ms-transform: translateX(20px);
+			-o-transform: translateX(20px);
+			transform: translateX(20px);
+		}
+		100% {
+			-webkit-transform: translateX(0);
+			-moz-transform: translateX(0);
+			-ms-transform: translateX(0);
+			-o-transform: translateX(0);
+			transform: translateX(0);
+		}
+	}
+	@-webkit-keyframes md-bounce-2-inverse {
+		0% {
+			opacity: 0;
+			-webkit-transform: translateX(100px);
+		}
+		60% {
+			opacity: 1;
+			-webkit-transform: translateX(-20px);
+		}
+		100% {
+			-webkit-transform: translateX(0);
+		}
+	}
+	@-moz-keyframes md-bounce-2-inverse {
+		0% {
+			opacity: 0;
+			-moz-transform: translateX(100px);
+		}
+		60% {
+			opacity: 1;
+			-moz-transform: translateX(-20px);
+		}
+		100% {
+			-moz-transform: translateX(0);
+		}
+	}
+	@keyframes md-bounce-2-inverse {
+		0% {
+			opacity: 0;
+			-webkit-transform: translateX(100px);
+			-moz-transform: translateX(100px);
+			-ms-transform: translateX(100px);
+			-o-transform: translateX(100px);
+			transform: translateX(100px);
+		}
+		60% {
+			opacity: 1;
+			-webkit-transform: translateX(-20px);
+			-moz-transform: translateX(-20px);
+			-ms-transform: translateX(-20px);
+			-o-transform: translateX(-20px);
+			transform: translateX(-20px);
+		}
+		100% {
+			-webkit-transform: translateX(0);
+			-moz-transform: translateX(0);
+			-ms-transform: translateX(0);
+			-o-transform: translateX(0);
+			transform: translateX(0);
+		}
+	}
+</style>
+
+<section id="md-timeline" class="md-container">
+   	   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 12 2021</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2021/12/12/cocos2dx-textfield-cursor/">解决TextField光标乱飘</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>, <a class="tag-none-link" href="/tags/cocos2d-x/" rel="tag">cocos2d-x</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							周五的时候UX同学换了一批字体，然后无意间发现TextField的光标鬼畜定位了orz 今天终于有空跟进下这个问题 顺便弥补下太久没更博客
+
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 06 2021</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2021/03/06/ue4-auto-convex-bug/">UE4中Auto Convex的诡异结果</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/UE4/" rel="tag">UE4</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近尝试利用UE4自带的功能生成物理简模，参考Setting Up Collisions With Static Meshes有几种模式:
+
+直接生成简单的包围盒/球/胶囊体;
+利用DOP(discrete oriented polytopy)即若干对齐轴平面向内挤压;
+Auto Convex自动生成。
+
+此外可以将多个简模组合使用，这里不再赘述。我们一开始是批量Auto Convex，结果发现对于一些”规则”网格生成的结果非常诡异。例如题图中的一个长方形盒子，生成的Auto Convex似乎只有一个表面。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 06 2021</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2021/03/06/ndk-link-failed/">NDK遇到Link Failed</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							这次是有几个同事遇到的一个问题: release版本编译引擎没问题，但是debug下会在链接步骤挂掉:
+
+[arm64-v8a] SharedLibrary  : libGame.soD:\SDK\android-ndk-r21\toolchains\llvm\prebuilt\windows-x86_64\bin/../lib/gcc/aarch64-linux-android/4.9.x/../../../../aarch64-linux-android/bin\ld: final link failed: File truncatedclang++: error: linker command failed with exit code 1 (use -v to see invocation)
+
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 06 2021</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2021/03/06/ndk-with-incredibuild/">利用IncrediBuild加速NDK编译</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近一段时间突然发现打包机上编译引擎安卓版本极慢，正好有现成的IncrediBuild所以研究下能不能用来加速。IB本身是商业软件，对Visual Studio的支持已经非常好了: 既可以使用Extension形式直接调用，又可以使用命令行传参sln。但是网上关于结合NDK使用的资料就非常少，这周花了大半天终于跑通流程，就此记录一下。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 26 2020</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2020/12/26/renderdoc-compile-android-on-windows/">Windows上编译Renderdoc Android</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-none-link" href="/tags/RenderDoc/" rel="tag">RenderDoc</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近用RenderDoc调试的时候发现GLES的glCopySubImageData结果不太对，翻了下代码发现实现不是特别完整(只支持了整块拷贝的情况)。于是动手自己实现了一发，结果测试的时候居然卡在了一个编译安卓版本上。
+之前我都是在Mac下编译的安卓，这次手头没有合适设备不得不研究了下如何在Windows上编译。关于这块网上资料比较少，CONTRIBUTING/Compiling.md也语焉不详，因此就在这里记录下步骤。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">8月 23 2020</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2020/08/23/kodi-at-android-4/">低版本安卓电视解决Kodi</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							搬家之后重新折腾了下Kodi，结果第一步就卡死在小米电视上了……下载官方最新的Kodi 18之后发现“解析包错误”：搜了下发现从Kodi 17开始要...
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">2月 12 2020</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2020/02/12/renderdoc-android-q/">RenderDoc在Android Q上无效</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-none-link" href="/tags/RenderDoc/" rel="tag">RenderDoc</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							今天在查真机渲染问题的时候，突然发现神器RenderDoc无效了…Attach Process没问题但是始终抓不到有效Context。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">2月 01 2020</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2020/02/01/class-memory-layout/">Win/OSX下多继承内存布局区别</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近在家闲的快发霉了，无聊之下花了点功夫把部分代码在OSX上跑起来(之前都是在Win上开发)，遇到了一个很有意思的崩溃：目前定位出来是不同compiler下的memory layout区别。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 30 2019</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2019/11/30/alpha-bleeding/">Alpha Bleeding老生常谈之新瓶装旧酒</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							老生常谈但是坑了我一把的问题……昨天有人吐槽为毛现在的UI质量好差，一圈狗牙什么鬼
+
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 28 2019</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2019/11/28/shader-precision/">奇妙的Shader精度</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Shader/" rel="tag">Shader</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							前几天同事在PC(DX11)上遇到了一个很有意思的问题: 顶点属性经过插值之后从一个非常接近0的正值变成了负数…堪称有毒。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">9月 04 2019</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2019/09/04/ue4-new-modes/">Modes面板添加自定义Class</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							纯笔记。昨天尝试往Modes面板添加了自定义的AActor，直接参考[UE4] レベルエディタの配置ツールに独自の項目とアセットを追加する方法里的代码实现:
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">8月 24 2019</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2019/08/24/lightmap-seam/">光照贴图接缝</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							之前翻Unity的更新日志时候发现Progressive Lightmapper里自带上了Lightmap seam stitching。正好之前研究过这个问题，出于手痒也在Unity里实现了一发，在这里也整理下这个问题的原因、现象及解决办法。
+下图为Unity文档示例，红框为有Seam的错误效果，绿框为修复效果。
+
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 01 2019</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2019/03/01/metal-invariant/">Metal 2.1中的新关键字invariant</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/iOS-Metal/" rel="tag">iOS Metal</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近一段时间忙的天昏地暗，难得有空继续整理一发遇到的奇怪问题：iOS12设备上PreZ Pass出现了闪烁。这个问题也蛮有意思的，最后在同事的指导下找到了原因：Metal Shading Language Specification里面专门提到
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">2月 26 2019</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2019/02/26/unreal-instance-position/">Unreal中针对Instance物体获取位置</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unreal/" rel="tag">Unreal</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近帮忙解决了一个很奇怪的问题：在材质球里如何获得Instance模型(譬如Foliage)的坐标，其实也就是Foliage instance position in Material editor。TA需要的是模型原点的世界坐标。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">9月 26 2018</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2018/09/26/decrypt-mono/">反解常见Mono加密的一种通用探索</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							之前在Android下利用Hook实现mono dll加密里提到了Unity3D研究院之Android加密DLL与破解DLL .SO这篇文章。今天看某个PC上游戏的时候发现用了一样的思路，掏出IDA看了下确实是修改了mono_image_open_from_data_width_name 来实现的。比较好奇有没有简单的方法绕开它而不是去跟汇编较劲，于是找到了一个比较通用的思路。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">9月 24 2018</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2018/09/24/unity-ios-incremental-build/">Unity iOS增量编译</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>, <a class="tag-none-link" href="/tags/iOS/" rel="tag">iOS</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							之前提到过利用Jenkins自动化出包流程分享，后来发现一个问题是每次iOS编译的时候都是全量编译，很奇怪。根据Incremental builds for IL2CPP里的说法只要选择Append应该已经支持了才对，但是发现还是每次触发了全量编译。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">8月 06 2018</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2018/08/06/shadervariantcollection/">ShaderVariantCollection解决shader_feature丢失</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							之前在利用shader_feature打造最小版本Shader提到shader_feature配合AssetBundle使用的BUG。当时是通过multi_compile绕开，现在在Unity 2017里通过ShaderVariantCollection可以完美解决，记录一下遇到的坑。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">7月 25 2018</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2018/07/25/dnspy-debug/">dnSpy调试Unity Editor</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							记录一个小技巧：dnSpy直接调试Unity Editor部分代码。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">7月 22 2018</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2018/07/22/hdr-texture/">HDR纹理一二坑</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近在Unity里重新校正了下Diffuse SH9和Specular IBL，全套对着cmft校正了下…发现不少坑，仅此记录。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">7月 16 2018</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2018/07/16/bentnormal/">Unity试水Bent Normal</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近半年赶项目的事情一直很忙，好不容易上周末的时候有空做点渲染的东西玩，于是尝试了一下Bent Normal Maps。
+这是UE 4.17发布的功能之一，可以拿来解决间接光照漏光；工具部分Substaince Designer已经支持利用高模烘焙Bent Normal。效果图对比来自UE4文档：
+
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">7月 15 2018</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2018/07/15/unity-missing-none/">UUG分享 TextMesh Pro</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/UUG/" rel="tag">UUG</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							拖了很久，才发现只上传了ppt但是没放出下载链接(逃：Unity User Group 北京站（第十二期）
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">7月 15 2018</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2018/07/15/bugly-2017/">Unity 2017涉及Bugly的修改</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							在Bugly上恢复原生崩溃堆栈信息需要符号表文件，具体可以参考分析libunity.so Release崩溃。我们在升级2017之后发现引擎有些行为发生了变化，这里记录下。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 10 2018</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2018/03/10/sgmodelinspector/">扩展Unity模型编辑器</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							又忙的好久没打理博客了…最近来回使用Unity/UE两个引擎，发现有个可视化UV/Normal的小功能不错，花了一晚上在Unity 5.6里面山寨了下:
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">2月 07 2018</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2018/02/07/renderdoc/">使用RenderDoc调试</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>, <a class="tag-none-link" href="/tags/Unreal/" rel="tag">Unreal</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近在查一些渲染上的问题，发现RenderDoc这货非常好用，而且引擎原生支持用起来也很方便。
+ps. 这个工具是从DX层去抓取真实绘制信息，和引擎内置的工具会有一定的区别。而且像纹理状态、寄存器变量甚至调试Shader上会方便非常多。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 18 2017</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2017/11/18/memoryprofiler-plus/">让MemoryProfiler变得更强</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							之前其实在C#反射——掀起Unity Editor面纱里提到过Profiler的增强；后来官方提供了更加方便的MemoryProfiler，上周末的时候顺手用类似的思路增加了diff功能并进行了一定的优化。原来那个ProfilerDiff就直接废弃，毕竟当时懒了没做序列化
+ps. 本来我想直接用gulu大大的PA_ResourceTracker，不过仔细研究了下代码发现需要接入的东西比较多(很多数据信息是通过网络传输的)，嵌入我们自己的项目不是特别方便。最后自己动手弄个山寨版，也就半个多小时搞定…
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">10月 26 2017</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2017/10/26/unity-nested-prefab/">聊聊Unity里的嵌套Prefab</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							今天正好和朋友聊到嵌套Prefab这个话题，发现这个其实是一个很多项目都需要但是Unity并没有提供内置支持的功能。在过去的项目中我们也实践过不同的解决方案，也了解过其他团队的一些做法，在这里正好整理一下，供大家参考/吐槽。
+其实还有一个原因是又好久没更新博客了…
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">8月 30 2017</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2017/08/30/guess-into-ugui/">Guess Into UGUI</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							虽然说UGUI已经开源，但是最核心的几个文件是c++实现的因此依然不可知。这几天好好的研究了下，整理出了一些自己的理解。这部分说实话是连蒙带猜出来的，如有理解不当的地方欢迎沟通交流。
+ps. 后面的代码都以Unity 5.x为例分析。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">8月 04 2017</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2017/08/04/fft-ocean-part2/">FFT Ocean Part 2</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近读了利用GPU实现大规模动画角色的渲染有感，终于想起来把一个两年前的坑FFT Ocean Part 1给填啦(我又一次战胜了拖延症)。之前做的时候思路有点问题，只考虑了用Scale/Offset来序列帧的情况，搞的自己很繁琐；现在开阔脑洞直接用vertex ID就方便多了。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">7月 20 2017</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2017/07/20/unity-native-call/">P/Invoke调用优化</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>, <a class="tag-none-link" href="/tags/iOS/" rel="tag">iOS</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							这其实是一个常见的问题：Unity中使用P/Invoke调用原生代码的时候如何更高效的传参数和获取返回值的问题。一般来说简单的直接写在函数声明里，遇到复杂的情况譬如变长、数组等情况我基本都是直接上JSON的。但是最近性能测试的时候发现这么写也是一个非常可观的消耗：
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">7月 20 2017</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2017/07/20/unity-android-streaming/">Android下Streaming Assets特殊姿势</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							这两天在群里看到有人问过这个问题，也有朋友小窗问我：Unity中导出Gradle工程然后打包出来的apk会加载AssetBundle慢很多。
+于是联想到了之前遇到的一个有意思的现象：我们的出包流程是在打包出来apk之后，利用apktool解包再进行加密和资源处理再打回去。但我发现这个步骤导致apk大小变化很多(有时变大有时变小，毫无规律)，非常奇怪；但是解压出来的内容确实又是一样的。后来我仔细比对之后终于找到玄机：Streaming Assets下的东西默认是不压缩的。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">7月 07 2017</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2017/07/07/jekyll2hexo/">Bye Jekyll &amp; Hi hexo</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近抽了点业余时间从Jekyll转到了Hexo(没错，我就是这么爱折腾…之前我又回来啦就从Hyde转Jekyll)。其实最早的出发点是我想换掉Disqus，墙的有点麻烦。好不容易找到网易云更贴之后，最后发现是更大一坑，说实话我两周都没搞定历史数据导入。不过在折腾过程中发现大家最近用Hexo很多，吸引我的有两点: 生成网站速度贼快+网页模板异步加载。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">5月 29 2017</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2017/05/29/source-engine/">Source资源格式</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近闲来无事，研究了一下V社的资源格式，发现真是『开放』啊。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">5月 15 2017</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2017/05/15/unite-2017/">Unite 2017</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							感谢Daisy和蓓蓓提供机会，能和xiaoxiao一起在Unite上分享一些使用经验(slides)，希望有所帮助。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 26 2017</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2017/03/26/soulgame-pbr/">UWA分享 PBR介绍及经验分享</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							很高兴有机会和大家分享一些PBR使用过程遇到的问题和经验，其实我们团队试水这个也才半年左右，依然还在不断的磨合过程中，希望有机会与大家多多交流。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 20 2017</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2017/03/20/csharp-reflections/">C#反射——掀起Unity Editor面纱</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							之前在群里看到有人提到Profiler Memory Plus这个插件，相当不错～在原来Profiler功能上扩展出了diff功能 非常实用。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 02 2017</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2017/03/02/git-practice/">奇怪的Git实践</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近在做一些奇怪的事情…主要是老项目太大导致sourcetree卡，想了想用一个鸡贼的方法就是直接归档历史然后另起一个新项目。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 01 2017</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2017/03/01/unity-textmeshpro/">UUG分享 TextMesh Pro</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/UUG/" rel="tag">UUG</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							依然UUG活动Unity User Group 北京站图文报道：《Unity3D VR游戏开发以及插件》，这次代替雨松主持了下活动，有点紧张…
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">1月 29 2017</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2017/01/29/unity-shader-assetbundle/">Shader in AssetBundle</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							关于Resources和AssetBundle优劣之前已经提过很多次了(参考官方教程The Resources folder)，正好最近@张迪在做框架AssetBundle部分的优化，特此整理一下两个特常见的坑及对应解决办法。之前在关于Unity中的资源管理，你可能遇到这些问题里有有人提到过这个问题：
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">1月 08 2017</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2017/01/08/gpa-android/">Graphics Performance Analyzer 安卓</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-none-link" href="/tags/OpenGL/" rel="tag">OpenGL</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近倒腾了很久新的抓包工具：
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">1月 04 2017</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2017/01/04/unity-workflow/">UUG分享 workflow</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/UUG/" rel="tag">UUG</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							咳咳，去年圣诞参加的一个活动Unity User Group 北京站图文报道：《AssetBundle与工作流》，感谢雨松嘿嘿。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 29 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/12/29/skynet/">Skynet in Windows</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近的一个项目用了云风的skynet，之前是只有linux/osx版本，非官方版本有一个mingw。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 23 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/12/23/planar-shadow/">Planar Shadow</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							工作压力大，太久没写shader了要换换脑子解压…今天晚上整了下Planar Shadow玩
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 03 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/12/03/unity-compiler2/">优化Unity项目编译速度-后续</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							优化Unity项目编译速度后续篇...感谢@wxp提供的非常有用的反馈！之前在优化编译速度的时候，我试图dll化遇到的一个障碍是不同平台需要编译用宏区分的代码，但是guid/fileID不一致。结果发现我是完全**想当然**了，Unity竟然已经自动做好了映射(下面均为Unity 5.3.6测试结果，尚未找到相关文档...)！
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 02 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/12/02/HIT/">HIT图形分析</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unreal/" rel="tag">Unreal</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							填坑向…之前和群里一个朋友讨论HIT的影子是咋实现的，后来验证了下发现自己之前想错了(逃。后来还看了下它的Bloom做法，效果还是挺好的。这里大力感谢@Hinatia和@LeLe给予的帮助和点拨，嘿嘿
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 01 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/12/01/adreno-profiler-again/">Adreno Profiler再次修改</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							记录用…之前在Customized Adreno Profiler里修改过dll来修BUG…最近又捡起这个工具(我下的最新版本是4.0.5511.5192)，修了一个崩溃错误。
+更新：最近好几个朋友问我要，然后我发现我从Jekyll换到Hexo的时候有些文档归档掉了…这里放出我手头修改的最新版本的QXProfilerControlsCS.dll
+** 申明: 我不会回答任何关于资源导出方面的问题。博客内容我单纯作为技术分享，并不想以此盈利，也不想惹麻烦。如果读者有志于学习渲染方面内容，我很乐意与大家交流学习，但是就本话题就此打住。 **
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 28 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/11/28/gles-lod/">GLES2/3下LOD问题</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-none-link" href="/tags/OpenGL/" rel="tag">OpenGL</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							上周有半天在调整shader fallback，主要测试了下texCUBElod和tex2Dlod在GLES 2/3下是否能正常表现。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 27 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/11/27/unity-compiler/">优化Unity项目编译速度</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							这个是最近一段时间带着子川一起做的一个小东西：如何优化大项目C#编译速度。这个idea主要是因为使用了slua之后，每次修改C#部分编译实在是太慢了… 下面将介绍两个不同的思路，心急的朋友可以直接看第二个解决方案及实战，因为这个说穿了其实就一句话，写第一部分只不过是因为折腾了非常久的MonoImporter/PluginImporter/MonoScript结果发现没用上而不爽(逃
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 14 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/11/14/android-7/">Android 7升级须知</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近守护要上GP，G家要求最好支持Android 24的targetSDK。然后硬生生周末被坑了两天…主要有两个问题需要强烈注意！
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 14 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/11/14/unity-projector/">利用Projector实现动态阴影</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							很早之前想整理的一篇内容，之前守护的时候利用Projector实现了动态的阴影(见Teaser)，接下来的几个项目目前也会用这个思路继续做下去。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 12 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/11/12/android-hook/">Android下利用Hook实现mono dll加密</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							Unity的代码加密是一个有点麻烦的事情，相对iOS的IL2CPP，安卓里直接存放的dll很容易被ILSpy这种工具打开。网上有一些资料，如Unity3D研究院之Android加密DLL与破解DLL .SO，常见的思路都是修改mono源代码后重新编译；但是这样有一个麻烦的地方在于每次升级Unity版本之后都需要重新编译对应版本的libmono.so出来…
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">10月 21 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/10/21/fake-null/">UnityEngine.Object里的迷之null</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							今天大黄在群里提出了一个非常奇怪的问题:
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">10月 18 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/10/18/rectmask2d/">RectMask2D裁剪BUG</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							RectMask2D在Unity 5.1/5.2里有个BUG(现在已修复)，今天又有朋友在群里提到了：ScrollRect里的元素有时候不显示，需要拖动一下才好
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">9月 25 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/09/25/shader-feature/">利用shader_feature打造最小版本Shader</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							这个月终于腾出手为新项目做了一些Shader调整和优化工作，不知不觉就整出一个功能略多的”肥”Shader。所以我就在思考这么一个事情：如何维护这个Shader，以及如何在运行时尽可能减少无用的消耗。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">8月 25 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/08/25/jenkins/">Jenkins自动化出包流程分享</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							目前我司所有Unity项目已经全部部署在Jenkins服务器上，实现一键自动出包+自动上传Test Flight。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">8月 14 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/08/14/ubuntu-cmake/">Ubuntu下编译支持HTTPS的CMake</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/KlayGE/" rel="tag">KlayGE</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							仅用来记录一个小细节…这两天KlayGE升级了CMake版本要求3.4+，但是默认Ubuntu源或ppa上最多才到3.2，因此需要自己编译。下载源码之后直接编译安装没问题，但是遇到了如下错误
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">7月 31 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/07/31/unity-lua/">Unity常见lua解决方案性能比较</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							之前由于项目需要，我比较了下Unity常见的几个lua解决方案；最近应鑫哥约稿，整理了一下。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">6月 10 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/06/10/cel-shading/">卡通渲染</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/GameArtTricks/" rel="tag">GameArtTricks</a>, <a class="tag-none-link" href="/tags/Translation/" rel="tag">Translation</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							实现一个简单的漫画效果(在物体周围描边)是非常简单的事情。多年前在Games Academy上，制作漫画风格冒险游戏Tummy Trundle的开发人员研究如何实时的实现这个效果。Falk提出了一个解决方案：复制3D模型本身，扭转法线方向，将其设为黑色的材质球并沿着法线挤压其表面。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 13 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/04/13/unity-asset-store/">Unite 2016 精品Asset Store插件推荐</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							可以扫一眼，也许有用得上的
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 12 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/04/12/divine-divinity/">Divine Divinity 2D反射</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/GameArtTricks/" rel="tag">GameArtTricks</a>, <a class="tag-none-link" href="/tags/Translation/" rel="tag">Translation</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							讲真反射效果对我来说挺常见的，但是在我印象里Divine Divinity是唯一一个实现了反射的2D游戏…像兔子这种很小的物体都会产生镜像
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 12 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/04/12/warcraft3-billboards/">魔兽3 广告板</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/GameArtTricks/" rel="tag">GameArtTricks</a>, <a class="tag-none-link" href="/tags/Translation/" rel="tag">Translation</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							实际上这个效果并不是很特殊，但是我非常好奇暴雪是如何在这里使用广告板的。很多老游戏有时候会整个物体都使用广告板(Billboard)表现，所以比较容易被看穿。但这个魔兽3的建筑做的非常真，因此我很好奇暴雪是如何结合2D和3D的。最让我惊艳的地方在于，球形广告板会随着相机角度变化亮度。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 11 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/04/11/unity-optimization-for-mobile/">Unite 2016 针对移动设备端的Unity应用优化</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							今天参加Unite 2016听下来最有收货的一个talk，虽然一半以上都是老生常谈…我个人觉得比较有价值的在于资源审查这一部分，关于各类资源的常用方法都提出了一些很有实用价值的建议和规范
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 10 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/04/10/diablo3-tree/">暗黑3 2.5D树</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/GameArtTricks/" rel="tag">GameArtTricks</a>, <a class="tag-none-link" href="/tags/Translation/" rel="tag">Translation</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							某次我看到暗黑3一张截图里的树，我立刻注意到此处必有蹊跷(元芳你怎么看)。树的轮廓非常细腻，而且和场景中的其他物件相比，树甚至没有出现有锯齿的边。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 09 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/04/09/teleglitch-rgb/">Teleglitch RGB闪烁</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/GameArtTricks/" rel="tag">GameArtTricks</a>, <a class="tag-none-link" href="/tags/Translation/" rel="tag">Translation</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							如果你在Teleglitch中使用传送门，会出现一个很有意思的特效。我仔细看了下，感觉他们就是在RGB通道分别扭曲(distort)了下画面。我相当喜欢这个看上去有点硬件坏了的效果…
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 09 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/04/09/teleglitch-viewcones/">Teleglitch 动态视锥</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/GameArtTricks/" rel="tag">GameArtTricks</a>, <a class="tag-none-link" href="/tags/Translation/" rel="tag">Translation</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							Nox有一个很有意思的特性: 动态视锥(view cones)!当玩家移动的时候，可见区域会动态更新，很吸引眼球~
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 02 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/04/02/fallout3-edges/">辐射3 边缘处理</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/GameArtTricks/" rel="tag">GameArtTricks</a>, <a class="tag-none-link" href="/tags/Translation/" rel="tag">Translation</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							前言：Game Art Tricks是我在知乎上看到某个回答里提到的一个网站，里面分析了很多游戏用到的精彩技巧。原谅我见识少…反正很多美术技巧我是第一次学到，简直6的飞起~我与原作者Simon联系之后，得到了翻译授权，之后我慢慢会将这个系列翻译出来。为了避免出现潜在问题，第一次遇到术语时我会注上对应英文单词。对于原文中提到的一些其他文章，我也会挑选性的翻译一些，减少阅读难度。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 30 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/03/30/unity-localize-app/">Unity本地化应用名</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							做本地化的时候，一方面我们要完成游戏内的文本多语言，另一个不可忽略的细节是App名字的本地化。就前者而言，Unity的Asset Store里有一个很好用的插件I2 Localization；但后者在网上的相关资料不多。下面就分享一下具体在Android和iOS下分别如何本地化应用名。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 15 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/03/15/unity-lightmap2/">Unity中光照贴图一二坑续</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							之前写过一篇Unity中光照贴图一二坑及解决办法，最近帮朋友看了些与AssetBundle结合的时候发现了一个新的问题…依然坑的飞起
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 05 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/03/05/fill-rate/">填充率!填充率!填充率!</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近新项目快上线了，专门抽了一天做性能优化。不开锁帧情况下，在Nexus 5和Nexus 6上始终稳定在60fps(恩刚开始写的时候就比较注意细节，嗯嗯)。在红米测试的时候发现了一个奇怪的现象：战斗界面维持60fps没问题；进入UI界面之后瞬间掉到45fps，甚至有的复杂界面掉到30fps。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 05 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/03/05/polygon-sprites/">Polygon mode sprites</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							这也是最近在做的另一个优化：如何在有限的图中压缩更多的Sprites。最近的Unity和Texture Packer都导入了一个新的特性 Polygon Mode，也就是说将原来的矩形Sprite用更加紧致的Polygon来描述，从而能更有效的利用空白空间，如下图中的胜利标志(红线圈出部分)：
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 05 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/03/05/reflexil/">Reflexi简明教程</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C#</a>, <a class="tag-none-link" href="/tags/Translation/" rel="tag">Translation</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							本文是Assembly Manipulation and C# / VB.NET Code Injection的翻译，已得到作者授权。该教程作者(亦工具作者)现在在微软开发UnityVS…
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">2月 12 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/02/12/new-style/">Yet Another New Style</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							突然发现这个主题已经用了快两年了，又手痒了，所以换一个主题=w=
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">1月 23 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/01/23/compress-texture/">移动设备压缩纹理使用技巧</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							压缩纹理能够节约不少内存空间，因此目前项目中UI全都是用Texture Packer打包出大图之后压缩。Unity导入纹理的默认设置是compress，在符合条件的情况下会优先使用PVR或ETC、否则会降为RGBA4444。从程序的角度来说，当然是1/4大小的压缩纹理更好啦~但是，毕竟是有损压缩，会带来一定的损失，有时候还是挺郁闷的。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">1月 03 2016</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2016/01/03/unity-bake-cull/">Unity分层烘焙</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							Unity中的烘焙(不管是老的Beast还是新的Enlighten)有一个非常恼火的功能缺失：无法利用Culling Mask。不管是否设置了Baking为Realtime，还是修改了Culling Mask都没有作用，貌似只有整个设置光源物体的Active才有效。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 25 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/12/25/dump-libunity.so/">分析libunity.so Release崩溃</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近一直在和Crash做斗争，一开始用了Bugsnag相当不错，后来经朋友推荐转用腾讯的Bugly，后台查询简直6。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 05 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/12/05/sdf-fonts/">SDF字体</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/KlayGE/" rel="tag">KlayGE</a>, <a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							之前一段时间项目到了一个节点，忙于出包和应付渠道，没太多时间业余充电…最近空下来之后终于有空继续折腾KlayGE。这次是把字体部分kfont读了下，感受到了SDF(Signed Distance Field)的厉害之处。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 15 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/11/15/fft-ocean-part1/">FFT Ocean Part 1</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近在折腾Ocean Simulation，业余时间快搞了半个月了，数学功底太差TAT…
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 15 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/11/15/unity-uvs/">Unity UV/2UV相关的一系列坑</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							昨天和美术折腾了一天，好好的理解了一下Unity里UV/2UV的设置，主要是理解很多程序的概念在美术上的理解是怎么一回事儿…
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">10月 09 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/10/09/ggx-part1/">Guilty Gear Xrd</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							之前Trace翻译过西川善司「实验做出的游戏图形」「GUILTY GEAR Xrd -SIGN-」中实现的「纯卡通动画的实时3D图形」的秘密系列，后来问他要了份Rip，对照着在Unity里山寨了份。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">10月 09 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/10/09/xuporter-xcode7/">XUPorter配合XCode 7/iOS 9</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近升级XCode 7之后发现xuporter在Jenkins上跪了，对做的修改稍作记录。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">9月 04 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/09/04/dawn-of-titans/">泰坦黎明效果分析一二</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-none-link" href="/tags/OpenGL/" rel="tag">OpenGL</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							之前在Adreno Profiler分析任意安卓游戏特效+抓取资源中提过，对泰坦黎明的效果很感兴趣。现在终于等到安卓版本了，分析了一下它的几个效果，感觉有不少收获:
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">9月 02 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/09/02/customized-adreno-profiler/">Customized Adreno Profiler</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							Recently I found an interesting bug with Adreno Profiler: this cannot work correctly with glVertexAttribPointer(indx=2, size=4, type=GL_HALF_FLOAT_OES, normalized=False, stride=32, ptr=0xC). For example, texcoords in half type are presented as strange numbers:
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">8月 28 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/08/28/klayge-kfl/">KFL代码阅读笔记</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>, <a class="tag-none-link" href="/tags/KlayGE/" rel="tag">KlayGE</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							KlayGE的基础库，就挑看到觉得有意思的地方整理下，主要是有不少c++0x的花样很有趣。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">8月 25 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/08/25/Heartstone/">HeartStone特效分析一二例</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							周末的时候分析了一下炉石的特效Shader
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">8月 24 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/08/24/NormalMapGenerator/">从任意图片生成NormalMap</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							之前有人给我发了一个NormalMap-Online，在线从任意图片生成法线纹理。这个功能还是挺常见的，专业工具如CrazyBump，或者Unity之类的引擎都自带。不过既然有Javascript版本，就可以看看到底是怎么实现的，然后用C++实现了下。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">8月 15 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/08/15/LoopScrollRect/">优化UGUI的ScrollRect</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近忙于性能优化，深切体会到二八法则真是指导高(tou)效(lan)工作的有力武器。这个礼拜花了几天解决了一个实际问题：UGUI的ScrollRect加载太多物体的时候，第一次弹出界面会非常卡顿，而且不在界面里的内容依然会参与绘制(毫无意义的浪费…)。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">7月 27 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/07/27/unity-lightmap/">Unity中光照贴图一二坑及解决办法</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							Lightmap(光照贴图)是Unity里很常用的一个功能，毕竟移动设备上实时光照不靠谱，要出效果还是得烘焙。但是在使用中发现了几坑的地方，通过自己写了个两个脚本就轻松搞定，这里分享下。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">7月 25 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/07/25/vs2012-crypto-failure/">Cryptographic failure while signing assembly</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/KlayGE/" rel="tag">KlayGE</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近新装了Windows 10 preview，蛋疼的发现装不上Visual Studio 2013，只能先用Visual Studio 2012凑合…昨儿在编译KlayGE develop分支的时候发现挂在wpftoolkit上了，一开始还试图回滚+二分定位，但是发现毫无意义-。-
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">5月 16 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/05/16/Adreno-Profiler/">Adreno Profiler分析任意安卓游戏特效+抓取资源</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-none-link" href="/tags/OpenGL/" rel="tag">OpenGL</a>, <a class="tag-none-link" href="/tags/cocos2d-x/" rel="tag">cocos2d-x</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近发现了一个非常好用的工具Adreno Profiler，可以用来分析安卓手机上OpenGL ES绘制过程。这个东西牛的地方在于可以抓取任何可以运行的App，而且使用起来非常方便、没有额外限制。这个工具本质上是一个OpenGL ES Draw Call Replay；如果你用过PIX或者GPA，就会感到很非常熟悉了。下图是贵易的魔天记，挂起来毫无压力233
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 28 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/03/28/klayge-glloader/">glloader代码阅读笔记</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/KlayGE/" rel="tag">KlayGE</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							(准备慢慢把之前移植KlayGE过程中的笔记整理出来，估计先梳理完几个子项目，然后按照模块和例子写个系列吧…主要记录思路和一些学习体会~)
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 07 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/03/07/unity-posteffect-stencil/">Take advantage of Stencil buffer in Post Process</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							As I posted in 山寨SSSSS before, I cannot find a way to take advantage of stencil buffer in OnRenderImage. This makes the post effect full screen all the time. Other guys have come up with the same question in the formu or AnswerHub. After several days hard work, I finally find a way to use stencil.
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">2月 25 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/02/25/unity-temporal-aa/">Unity中Temporal AA</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							这个东西是trace在群里提到的，然后我看了一些相关资源Filtering Approaches forReal-Time Anti-Aliasing(很多sig course好棒好棒)、High Quality Temporal Supersampling、CryENGINE3 Graphics Gems。在这么多资料(其实是现成代码…)的帮助下，我主要参考CryEngine里的SMAA 1TX山寨了下，UE4的那个有点过于麻烦了。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">2月 21 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/02/21/unity-misc/">Unity中矩阵变换、深度纹理及杂项</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							在移植UE4的Temporal AA到Unity过程中，计算Camera Motion、Jitter等遇到了若干坑，记录一下。其实这些问题其实主要是……文档不全造成的
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">1月 19 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/01/19/unity-bump-map/">Unity下带法向的Bump Mapping</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							昨儿吹酱在群里发了一个WebGL 雪地的例子，里面雪地的交互挺有意思。还好它的源代码只是压缩了一下，没有加密；大概扒拉着看了一下，它其实就是不断利用createRadialGradient绘制Bump Map来实现的。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">1月 13 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/01/13/osx-vsync/">OSX下设置垂直同步</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/OpenGL/" rel="tag">OpenGL</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近发现一个逗比知识，osx下设置垂直同步貌似靠代码是无效的
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">1月 10 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/01/10/unity-sssss/">山寨SSSSS</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							主要参考了KlayGE里的SSSSS实现，在Unity里山寨了一下:
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">1月 07 2015</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2015/01/07/cocos2dx-video/">cocos2d-x安卓视频OpenGL错误</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/cocos2d-x/" rel="tag">cocos2d-x</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							这个其实是我很早之前遇到的一个问题，见Cannot resume from video play 然后今儿有人发邮件来问当时是怎么解决的-.-
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 28 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/12/28/klayge-ios/">KlayGE移植iOS进行中</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>, <a class="tag-none-link" href="/tags/KlayGE/" rel="tag">KlayGE</a>, <a class="tag-none-link" href="/tags/iOS/" rel="tag">iOS</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							这个帖子估计持续更新时间会很长…记录移植KlayGE到iOS中的坑ing~不少坑之前在KlayGE移植到OSX的尝试的时候已经踩过了，这里就不再赘述。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 27 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/12/27/unity-profiler/">Unity Profiler介绍</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							Profiler是3D引擎中一个非常重要的工具之前为了测试Unity在手机上的性能，做了一系列测试，然后发现了一个有点奇怪的现象：同样是若干旋转模型+一个光源，在Nexus 5运行到30fps时，有俩Test Case面片数相差的非常多(都故意没开Dynamic/Static Batch DrawCall)。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 26 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/12/26/PBR/">Unity山寨PBR</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>, <a class="tag-none-link" href="/tags/Unreal/" rel="tag">Unreal</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							这个和我之前在贵易实习的内容相关，当时是参考了SIGGRAPH 2013 Course里的材料，主要是UE4和COD9两节；以及KlayGE博客上的系列介绍游戏中基于物理的环境光渲染。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 24 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/12/24/gamma-correction/">Unreal/Unity中的Gamma校正</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>, <a class="tag-none-link" href="/tags/Unreal/" rel="tag">Unreal</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							之前桌子跟我讲了一个很冷的小知识：对于3D美术来说，做贴图的时候如果想要做50%灰，应该用186/255而不是127/255。这个很有意思，稍微想了下应该是和Gamma校正有关，然后算了下确实是这样的。后来我分别在Unreal里和Unity里试了下，谨以此文记录。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 21 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/12/21/lightprobe/">HDRShop和CubeManGen生成环境贴图</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>, <a class="tag-none-link" href="/tags/Unreal/" rel="tag">Unreal</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							上周业余时间除了搞了搞KlayGE之外，还尝试用Unity山寨UE4的PBR，在对比的时候发现两个引擎各种细节还是差距挺大的。同样是材质的预览窗口，UE4自带了HDR、Tone Mapping和环境贴图：下图左边是UE4材质编辑器的预览，可以看到有比较清晰的天空反射；右边是山寨货在Unity里的效果(参数还得再调，边缘fresnel有点过强了，可能是后处理带来的)。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 21 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/12/21/wine/">OSX平台上使用d3dcompile</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>, <a class="tag-none-link" href="/tags/KlayGE/" rel="tag">KlayGE</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							这个其实是源自KlayGE移植OSX上的一个需求：在OSX上希望使用d3dcompile，配合DXBC2GLSL来生成OpenGL Shader。之前移植的时候是使用的NVidia Cg凑合，但是Cg Profile在OpenGL 3.x开始不支持Multi-vendor，而且也发现对于tex2DLOD之类的函数支持的有问题。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 20 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/12/20/port-klayge/">KlayGE移植到OSX的尝试</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>, <a class="tag-none-link" href="/tags/KlayGE/" rel="tag">KlayGE</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							之前一直有准备在研三的业余时间深入学习一套引擎:
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 02 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/12/02/cocos2dx-assetsmanager/">cocos2d-x Assets Manager断点续传</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/cocos2d-x/" rel="tag">cocos2d-x</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							基于cocos2d-x 3.x版本修改的Assets Manager，加几行代码就能实现断线续传功能…so easy
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 15 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/11/15/extract-blend4web/">拆解blend4web资源</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							昨儿有人给我发了一个神秘网址，表示希望能获得资源施法
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 15 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/11/15/fakewater/">Unity山寨水波荡漾</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							前段时间体验了下Zen Garden之后，觉得两个效果很有意思：漫天飞舞的花瓣和可以点点点的水波，于是准备在Unity里面山寨一下。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 15 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/11/15/fur-shader/">Fur Shader</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							花时间看了下毛发效果，苦于囊中羞涩没能买QuickFur、furFX等插件，最后找到了Fur Shader学习了一下。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 08 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/11/08/cubemap/">unity中cubemap使用的一些想法</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							一般在渲染中，是使用cubemap来预计算环境反射，但是怎么玩好这个东西，我之前并没有考虑太多。最近和桌子讨论了挺多环境贴图的使用方式，在这里记录一下想法(偷懒起见，示意代码都是surface shader)。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 08 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/11/08/cubemap-capturer/">unity的环境捕捉器</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							一下午随手写了一个环境捕捉器，山寨了一下unreal的scene capture cube。结果后来发现unity3d pro自带了一个Camera.RenderToCubemap函数真是哈哈哈哈啊……
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 07 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/11/07/unreal-resources/">拆解Unreal资源</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unreal/" rel="tag">Unreal</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							出于学习的目的(认真脸)，想拆解下别人家的作品的包，看下他们的美术资源是怎么布局、整理的，所以花了一晚上尝试了下，并记录如下。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">10月 29 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/10/29/pomelo-php-client/">pomelo php client</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>, <a class="tag-none-link" href="/tags/PHP/" rel="tag">PHP</a>, <a class="tag-none-link" href="/tags/pomelo/" rel="tag">pomelo</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							** This is depecrated since pomelo is only supporting libpomelo2 with various bindings. I’ve removed the github repo and you may find the archive here(Download).**
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">9月 15 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/09/15/node-debug/">pomelo调试心得</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>, <a class="tag-none-link" href="/tags/pomelo/" rel="tag">pomelo</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近被pomelo的一个bug搞的心力憔悴，之前本地开发和阿里云环境上都是好好的，但是在另一套环境下时不时就挂。为了这个问题加起来折腾了好几天，今天终于算处理掉了(虽然还没从根子上解决)。写篇文章记录一下思路和解决方案。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">8月 31 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/08/31/android-libcurl/">Compile libcurl 7.37.0 with Android 4.4 or other versions</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>, <a class="tag-none-link" href="/tags/cocos2d-x/" rel="tag">cocos2d-x</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							Recently I need compile libcurl for different platforms, since cocos-2dx 3.0 ships with libcurl 7.26.0 and there are several fixes in newer versions according to changelog. There are several blogs describing how to build libcurl with android source, such as porting-of-libcurl-to-android-os-using, How_to_compile_libcurl and Android ndk下编译libcurl. However, they are all out dated, especially android source has changed a lot!
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">8月 29 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/08/29/android-GFW/">如何在国内下载android源代码</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							为了编译libcurl，必须下载android系统源代码，结果发现被某墙弄的基本不能下。我手头只有一个性能很弱的vps，最后没办法走上了双重代理不归路~最后使用了ssh端口转发，然后socks5代理转http代理(其实也可以拿来干别的事情，如上上网什么的)
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">8月 29 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/08/29/renren-albumn/">人人相册下载器(针对人人v7)</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近升级了人人v7，发现人人网改造器挂了，想下个相册都没办法。后来找到一个专门下载人人相册的工具，试了下也不灵，应该是HTML结构变化所致，就稍微改了改代码，使得在新版人人上也能用了。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 14 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/04/14/cocos2dx-ImagePicker/">ImagePicker for cocos2d-x v3</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>, <a class="tag-none-link" href="/tags/cocos2d-x/" rel="tag">cocos2d-x</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							This extension plugin is able to load images from system photo library. Native calls for Android, iOS(iPhone+iPad) &amp; Win32. More details can be found here ImagePicker.
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 29 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/03/29/unreal-4-visual-studio-2012/">Visual Studio 2012编译Unreal 4</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>, <a class="tag-none-link" href="/tags/Unreal/" rel="tag">Unreal</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近尝试了一下在Visual Studio 2012中编译Unreal 4，记录一下其中踩的坑 (其实这个纯粹是我蛋疼才这么干的，讲真还是升级VS比较方便…)
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 05 2013</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2013/11/05/word-ladder-ii/">word ladder 2</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>, <a class="tag-none-link" href="/tags/Java/" rel="tag">Java</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							I was blocked by word ladder II in last two days. 
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">10月 24 2013</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2013/10/24/glew/">glew32 link error</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>, <a class="tag-none-link" href="/tags/OpenGL/" rel="tag">OpenGL</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							I encountered a very strange problem these days: can’t link glew in C++ code. I’ve tried this code but failed, my post in SO:
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">8月 15 2013</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2013/08/15/wso2/">WSO2套件三连发</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Java/" rel="tag">Java</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							这其实是我大四时一门课配套大作业，当时配环境折腾很久~后来发人人网共享，结果昨天学长给我留言有人不带名字抄袭。虽然很冷这个都有人搞，但总归还不如给自己骗流量呢哈哈哈哈……
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">7月 31 2013</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2013/07/31/windjs/">Pomelo中利用Wind.js封装异步</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>, <a class="tag-none-link" href="/tags/pomelo/" rel="tag">pomelo</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							这是@老赵写的一个js库本质是用eval函数实现的~我们写看起来是同步的顺序流程代码，但是实质异步执行
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">6月 15 2013</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2013/06/15/threejs_mannual/">Javascript三维布尔模型运算用户手册</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							DEMO链接。手册主要为程老师撰写~具体内容见三维模型布尔运算网页版
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">6月 14 2013</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2013/06/14/boolean_operation/">三维模型布尔运算网页版</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>, <a class="tag-none-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							本学期计算几何课程，选了三维模型布尔运算作为大作业选题。主要考虑到邓公的演示一向比较绚丽多彩，各种PDF和网页中的applet作为demo；我就想把我们最后的东西也搬到网页上来。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">6月 07 2013</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2013/06/07/software-engineering/">乱七八糟的软件工程助教总结</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							其实本来研究生阶段我是不准备做任何社工活动⊙﹏⊙b 上学期的时候忘了具体啥事，好像是在微博上和刘老师聊了几次，她表示“嗯下学期来做助教吧”，嗯然后我就成为了软工课的助教，负责整个大作业部分，嗯嗯坑帮助学弟义不容辞^_^
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">5月 01 2013</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2013/05/01/avast/">Avast 8 a setiface error has occurred 2</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							Windows 7, avast shields cannot be started. When uninstalling, it said:
+
+a setiface error has occurred: 2
+
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 27 2013</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2013/04/27/tomcat/">Tomcat的java.net.BindException错误</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Java/" rel="tag">Java</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							我一直是用Eclipse+WTP，配合tomcat7以及mysql来写struts2网站的。今天开电脑以后遇到了一个很奇怪的问题：tomcat7始终在eclipse中启动不起来
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 08 2013</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2013/04/08/jmeter/">使用JMeter进行压力测试</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Java/" rel="tag">Java</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							JMeter是Apache开发的一款开源Java压力测试工具。一开始是针对Web应用开发的测试工具，后来扩展到了诸如数据库、LDAP、Mail等多个方面，总之就是很强大了。我曾经用过其分布式测试的功能，虽然因为网速问题比较蛋疼，但总的来说还是很不错的（这个主要是为了避免压力测试的瓶颈出现在客户端导致结果的误差）。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 05 2013</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2013/04/05/applescipte_iphoto_enhance/">使用AppleScipte进行iPhoto批量enhance</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							嗯，这是拖了很久的一篇日志了上个暑假实习的时候做的事情是照片的自动增强，与iPhoto的enhance进行了比较。但是需要生成几千张照片的批量enhance比较麻烦
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 05 2013</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2013/04/05/jawbone_up/">JawBone UP 使用感想</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							一直想搞个腕带，一个月前盯着Fitbit Wireless, Nike FuelBand和JawBone UP，挑来挑去：
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 04 2013</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2013/04/04/im_back/">我又回来啦</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							2012年更新过一段时间之后，忙的一直没有空管这个，直到GoDaddy发邮件通知域名要过期了才想起来⊙﹏⊙b汗
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 07 2012</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2012/04/07/BlazeDS_Java/">使用BlazeDS进行Java和纯actionscript项目通信</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Java/" rel="tag">Java</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							前段时间在帮着做一个网络模块，背景是一个actionscript的项目和后台服务器进行数据交换。最后选择了BlazeDS的解决方案，使用HTTP封装的AMF协议进行通信。交换的数据中有各种数组和自定义类，blazeDS基本上都能自动序列化和反序列化，因此用的比较舒服。但一开始配置环境的时候遇到了各种奇怪的问题，特别有一个问题网上搜索只有在一个post里提到，因此很值得记录。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 07 2012</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2012/04/07/homelight/">HomeLight-安卓空壳版</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-none-link" href="/tags/Java/" rel="tag">Java</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							清明的时候Gus找我做的一个安卓的UI，要拿去参赛-。-本质上是一个用手机控制家里的各种灯的开关、明暗、颜色等，需要一个过得去的界面。反正我只管搭空壳子。昨天晚上+今天早上突击搞了一下，发现android的各种view还是博大精深的，外加xml自定义各种强大。最后也算自我感觉不错，嗯~
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 29 2012</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2012/03/29/JS_Cross_Domain/">使用GAE完成JS跨域中转</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Java/" rel="tag">Java</a>, <a class="tag-none-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							Javascript跨域访问(Cross-Domain，主要可以看这个same origin policy)，一直是个很纠结加蛋疼的问题(擦话说我又想到当时做flex时也遇到了跨域问题)
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 29 2012</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2012/03/29/JS_OAuth/">使用纯JS进行金山快盘OAuth验证</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							去年做软工课的时候，实现了完整的OAuth验证和javascript/Android两种客户端，既然有人已经发过安卓的SDK了，那就做个pure JS的DEMO版本吧(话说万恶的调休害的我没啥空都=。=)
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 28 2012</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2012/03/28/After_Effects/">几个简单After Effects特效</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							Adobe After Effects是个很强大的工具！之前一直想学了拿来做MAD玩的，可惜貌似一直没空。这次正好毕业DV可以做点特效，一方面是正好不用露脸-。-还可以做点贡献嗯嗯。主要做了几个特效，一个是烟雾化切场，一个是老电视的开头效果，还有一个是山寨基友夏洛克YY时候的场景。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 26 2012</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2012/03/26/homography/">Homography</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>, <a class="tag-none-link" href="/tags/OpenCV/" rel="tag">OpenCV</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							Homography单应，说的是投影的时候可以逆过来找，具体的可以戳wiki。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 25 2012</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2012/03/25/posters/">2012年做的一些海报</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							零零散散也做过一些海报，但说实话很业余……有个空间挂自己的东西，想想还是把有些不那么纠结的扔这里，想想十年以后看到这些是咋样一个心情( ﹁ ﹁ ) ~→ 
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 20 2012</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2012/03/20/opencv/">OpenCV Related Projects</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>, <a class="tag-none-link" href="/tags/OpenCV/" rel="tag">OpenCV</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近在做的一些工作都是基于opencv的，准备有空将部分代码拆分、整理好之后挂上来。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 19 2012</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2012/03/19/hello_world/">Hello World</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							Hi, this is the very first blog for test!
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">3月 19 2012</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2012/03/19/meanshift/">Mean Shift with OpenCV</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>, <a class="tag-none-link" href="/tags/OpenCV/" rel="tag">OpenCV</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							主要是讲述关于图片分割的内容，使用了Mean shift: A robust approach toward feature space analysis提出的方法，应该是目前效果最好的几个方法之一了。整个算法分为两步：Filter和Segmentation。这里简单说下实现，具体原理请自行阅读论文(¬_¬)
+						...
+					</p>
+                    		</div>
+			</div>	
+   			   	  		
+   	</section>
+
+<script type="text/ls-javascript" id="page-timeline-script">
+    var adjustFooter = function() {
+        if( ($('#bottom').offset().top + $('#bottom').outerHeight() )<$(window).height() ) {
+            var footerBottom = $(window).height() - $('#bottom').outerHeight() - $('#bottom').offset().top;
+            $('#bottom').css('bottom', '-' + footerBottom + 'px');
+        }
+    };
+    $(document).ready(function() {
+        adjustFooter();
+    });
+</script>
+
+
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Kanglai Qian's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        qiankanglai@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签云">
+                
+                    <i class="material-icons sidebar-material-icons">label</i>
+                
+                标签云
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/timeline" title="时间轴">
+                
+                    <i class="material-icons sidebar-material-icons">timeline</i>
+                
+                时间轴
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about" title="关于我">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于我
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友情链接">
+                
+                    <i class="material-icons sidebar-material-icons">links</i>
+                
+                友情链接
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/qiankanglai" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+        <a href="https://www.zhihu.com/people/qian-kang-lai" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-zhihu">
+                <span class="visuallyhidden">Zhihu</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+    
+    <!-- V2EX -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2012&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Loading & Learning
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Hosted by <a href="https://pages.coding.me" target="_blank" class="footer-develop-a">Coding Pages</a>&<a href="https://pages.github.com/" target="_blank" class="footer-develop-a">Github Pages</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?wgjW/HuQG9JDgvPDPoRAng==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('
+<link rel="stylesheet" href="/css/uc.css">
+');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.2 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

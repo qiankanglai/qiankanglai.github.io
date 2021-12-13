@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.2 -->
+    <script>
+        window.materialVersion = "1.5.2"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            Unite 2016 针对移动设备端的Unity应用优化 | 
+        
+        Loading &amp; Learning
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" itemprop="description" content="今天参加Unite 2016听下来最有收货的一个talk，虽然一半以上都是老生常谈…我个人觉得比较有价值的在于资源审查这一部分，关于各类资源的常用方法都提出了一些很有实用价值的建议和规范">
+    <meta name="keywords" content=",Unity">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/atelier-estuary-light.min.css?ZQObwZXHH6Mt8MNbyQJYfQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #EEEEEE !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #EEEEEE !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #EEEEEE !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","https://cdn.bootcss.com/jquery/2.2.0/jquery.min.js", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Loading &amp; Learning">
+    <meta name="msapplication-starturl" content="http://qiankanglai.me/2016/04/11/unity-optimization-for-mobile/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Loading &amp; Learning">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://qiankanglai.me/2016/04/11/unity-optimization-for-mobile/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Unite 2016 针对移动设备端的Unity应用优化 | Loading &amp; Learning">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="今天参加Unite 2016听下来最有收货的一个talk，虽然一半以上都是老生常谈…我个人觉得比较有价值的在于资源审查这一部分，关于各类资源的常用方法都提出了一些很有实用价值的建议和规范">
+    <meta property="og:article:tag" content="Unity"> 
+
+    
+        <meta property="article:published_time" content="Mon Apr 11 2016 00:00:00 GMT+0800">
+        <meta property="article:modified_time" content="Tue Feb 12 2019 20:08:44 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://qiankanglai.me/2016/04/11/unity-optimization-for-mobile/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://qiankanglai.me/2016/04/11/unity-optimization-for-mobile/index.html",
+    "headline": "Unite 2016 针对移动设备端的Unity应用优化",
+    "datePublished": "Mon Apr 11 2016 00:00:00 GMT+0800",
+    "dateModified": "Tue Feb 12 2019 20:08:44 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Kanglai Qian",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "A game developer interested in rendering, with focus on Unity now."
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Loading &amp; Learning",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",Unity",
+    "description": "今天参加Unite 2016听下来最有收货的一个talk，虽然一半以上都是老生常谈…我个人觉得比较有价值的在于资源审查这一部分，关于各类资源的常用方法都提出了一些很有实用价值的建议和规范",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-30309954-1', 'auto');ga('send', 'pageview');
+</script>
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%BE%97%E8%B6%B3%E5%A4%9F%E5%A5%BD%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="post-toc-text">如何获得足够好的数据</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#iOS-Instruments"><span class="post-toc-text">iOS: Instruments</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Android"><span class="post-toc-text">Android</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Unity-Editor-Timeline"><span class="post-toc-text">Unity Editor: Timeline</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Unity-5-3-Memory-Profiler"><span class="post-toc-text">Unity 5.3: Memory Profiler</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="post-toc-text">常见的最佳实践</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E8%B5%84%E6%BA%90%E5%AE%A1%E6%9F%A5"><span class="post-toc-text">资源审查</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E7%90%86%E7%94%B1-%E9%81%BF%E5%85%8D%E9%94%99%E8%AF%AF"><span class="post-toc-text">理由: 避免错误</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF"><span class="post-toc-text">常见错误</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HOWTO-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0"><span class="post-toc-text">HOWTO(如何实现)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%B8%B8%E8%A7%81%E8%A7%84%E5%88%99"><span class="post-toc-text">常见规则</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="post-toc-text">常见的问题及解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3"><span class="post-toc-text">内存相关</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%BC%98%E5%8C%96%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8"><span class="post-toc-text">优化内存使用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E8%A3%85%E7%AE%B1%E9%97%AE%E9%A2%98-Boxing"><span class="post-toc-text">装箱问题(Boxing)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Foreach"><span class="post-toc-text">Foreach</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Unity-API"><span class="post-toc-text">Unity API</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CPU%E6%80%A7%E8%83%BD"><span class="post-toc-text">CPU性能</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#XML-JSON%E5%92%8C%E5%85%B6%E4%BB%96%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="post-toc-text">XML, JSON和其他文本格式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Resources%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="post-toc-text">Resources文件夹</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Material-Animator-Shader%E5%B1%9E%E6%80%A7%E8%AE%BF%E9%97%AE"><span class="post-toc-text">Material&#x2F;Animator&#x2F;Shader属性访问</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E8%A3%85%E7%AE%B1-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C"><span class="post-toc-text">装箱 字符串操作</span></a></li></ol></li></ol></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/images/teaser/unite2016-optimize.jpg)">
+    
+            <p class="article-headline-p">
+                Unite 2016 针对移动设备端的Unity应用优化
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Kanglai Qian</strong>
+        <span>4月 11, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Unite 2016 针对移动设备端的Unity应用优化&url=http://qiankanglai.me/2016/04/11/unity-optimization-for-mobile/index.html&pic=http://qiankanglai.me/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Unite 2016 针对移动设备端的Unity应用优化&url=http://qiankanglai.me/2016/04/11/unity-optimization-for-mobile/index.html&via=Kanglai Qian" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://qiankanglai.me/2016/04/11/unity-optimization-for-mobile/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://qiankanglai.me/2016/04/11/unity-optimization-for-mobile/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>今天参加Unite 2016听下来最有收货的一个talk，虽然一半以上都是老生常谈…我个人觉得比较有价值的在于<strong>资源审查</strong>这一部分，关于各类资源的常用方法都提出了一些很有实用价值的建议和规范</p>
+<a id="more"></a>
+
+<h1 id="如何获得足够好的数据"><a href="#如何获得足够好的数据" class="headerlink" title="如何获得足够好的数据"></a>如何获得足够好的数据</h1><h2 id="iOS-Instruments"><a href="#iOS-Instruments" class="headerlink" title="iOS: Instruments"></a>iOS: <a target="_blank" rel="noopener" href="https://developer.apple.com/library/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/">Instruments</a></h2><ul>
+<li>XCode自带的免费工具</li>
+<li>对Unity IL2CPP编译出的代码使用起来完全没问题</li>
+<li>移动CPU性能优化的最佳工具</li>
+<li>优化启动时间的最佳工具</li>
+</ul>
+<p>理解Instruments结果(游戏循环中的重要函数):</p>
+<ul>
+<li><code>BaseBehaviourManager::CommonUpdate</code><ul>
+<li><code>Update</code>, <code>FixedUpdate</code>和<code>LateUpdate</code>的回调</li>
+</ul>
+</li>
+<li><code>PhysicsManager::FixedUpdate</code><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.nvidia.com/gameworks-physx-overview">PhysX</a>模拟，<code>OnCollision*</code>和<code>OnTrigger*</code>的回调</li>
+<li>如果使用了2D物理，还会有<code>Physics2DManager::FixedUpdate</code></li>
+</ul>
+</li>
+<li><code>DelayedCallManager::Update</code><ul>
+<li>恢复运行的协程</li>
+</ul>
+</li>
+<li><code>PlayerRender</code><ul>
+<li>绘制命令</li>
+<li>批次</li>
+<li><code>MonoBehaviour::OnWillRender</code></li>
+<li>图像后处理效果回调(我猜<code>Camera.OnRenderImage</code>)</li>
+</ul>
+</li>
+<li><code>UI::CanvasManager::WillRenderCanvases</code><ul>
+<li>重新批次UI canvas</li>
+<li>生成字体纹理等</li>
+</ul>
+</li>
+<li><code>EnlightenRuntimeManager::Update</code><ul>
+<li>Enlighten, 预计算实时GI，反射探针</li>
+</ul>
+</li>
+</ul>
+<p>当某些函数不是一次执行完，而是分散多次的时候(譬如协程)，尝试直接搜索方法名，例如:</p>
+<ul>
+<li><code>::Box</code>, <code>Box(</code>和<code>_Box</code></li>
+<li><code>String_</code></li>
+</ul>
+<h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://software.intel.com/en-us/intel-vtune-amplifier-xe">VTune</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.qualcomm.com/software/snapdragon-profiler">Snapdragon Profiler</a></li>
+</ul>
+<h2 id="Unity-Editor-Timeline"><a href="#Unity-Editor-Timeline" class="headerlink" title="Unity Editor: Timeline"></a>Unity Editor: Timeline</h2><h2 id="Unity-5-3-Memory-Profiler"><a href="#Unity-5-3-Memory-Profiler" class="headerlink" title="Unity 5.3: Memory Profiler"></a>Unity 5.3: Memory Profiler</h2><ul>
+<li>代码在<a target="_blank" rel="noopener" href="https://bitbucket.org/Unity-Technologies/memoryprofiler">Bitbucket</a></li>
+<li>拖到<em>Assets</em>里任一<em>Editor</em>文件夹下</li>
+<li>在编辑器Window-MemoryProfilerWindow打开</li>
+<li>通过Profiler窗口连上Unity Profiler</li>
+<li>点击<strong>Take snapshot</strong></li>
+</ul>
+<p>如果发现两个纹理名字相同，但是InstanceID不同，基本上就是纹理在内存里重复出现了…</p>
+<h1 id="常见的最佳实践"><a href="#常见的最佳实践" class="headerlink" title="常见的最佳实践"></a>常见的最佳实践</h1><h2 id="资源审查"><a href="#资源审查" class="headerlink" title="资源审查"></a>资源审查</h2><h3 id="理由-避免错误"><a href="#理由-避免错误" class="headerlink" title="理由: 避免错误"></a>理由: 避免错误</h3><ul>
+<li>开发者都是人类(大概)</li>
+<li>是人就会犯错</li>
+<li>错误就会增加开发时间</li>
+</ul>
+<p><strong>用工具来规避常见但是代价大的错误</strong>显然非常划算…</p>
+<h3 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h3><ul>
+<li>疯狂的纹理尺寸</li>
+<li>资源压缩</li>
+<li>错误的Avatar/Rig设置</li>
+</ul>
+<p>当然，就算在同一个项目里，不同部分的资源的标准要求是不一样的~</p>
+<h3 id="HOWTO-如何实现"><a href="#HOWTO-如何实现" class="headerlink" title="HOWTO(如何实现)"></a>HOWTO(如何实现)</h3><p>参考<a target="_blank" rel="noopener" href="http://docs.unity3d.com/ScriptReference/AssetPostprocessor.html">AssetPostprocessor</a>，根据项目需要修改<code>assetImporter</code>实例</p>
+<h3 id="常见规则"><a href="#常见规则" class="headerlink" title="常见规则"></a>常见规则</h3><ul>
+<li>纹理<ul>
+<li>确认关闭Read/Write</li>
+<li>尽可能禁用mipmap</li>
+<li>尽可能使用压缩纹理</li>
+<li>确保纹理不要过大：UI来说用2048或者1024；模型纹理不超过512</li>
+</ul>
+</li>
+<li>模型<ul>
+<li>确认关闭Read/Write</li>
+<li>非玩家模型就关掉rig</li>
+<li>共用rig的模型就直接复制avatar</li>
+<li>打开模型压缩</li>
+</ul>
+</li>
+<li>音频<ul>
+<li>iOS使用mp3压缩</li>
+<li>Android使用Vorbis压缩</li>
+<li>移动设备上Force Mono</li>
+<li>尽可能降低比特率</li>
+</ul>
+</li>
+</ul>
+<h1 id="常见的问题及解决方案"><a href="#常见的问题及解决方案" class="headerlink" title="常见的问题及解决方案"></a>常见的问题及解决方案</h1><h2 id="内存相关"><a href="#内存相关" class="headerlink" title="内存相关"></a>内存相关</h2><p>Managed Memory: 堆(Heap)里包含了资源(Assets)和脚本(Scripts)里的东西(objects)。</p>
+<p>当通过代码申请的时候，会分配更多的内存，如<code>int[] someNumbers = new int[2048]</code></p>
+<p>垃圾回收会周期性的运行，删除没用的东西 <code>GC.Collect()</code></p>
+<p>需要注意：删除掉后释放的内存不一定能被再次使用，也就是所谓的内存碎片化。</p>
+<p>现在问题来了:</p>
+<ul>
+<li><p>Unity中的heap<strong>只会增长，不会缩小</strong></p>
+</li>
+<li><p>iOS和Android中依然有保留页(reserved pages)</p>
+</li>
+<li><p>以上两点带来的结果就是，堆里无用的区域(已经被回收器干掉了)依然会被保留，但是又被清除出当前的保留页~</p>
+</li>
+<li><p>临时的内存申请<strong>非常不好</strong></p>
+</li>
+<li><p>如果一个游戏是60FPS，每帧申请1kb内存</p>
+<ul>
+<li>也就是一秒60kb</li>
+</ul>
+</li>
+<li><p>如果每分钟才运行一次垃圾回收(因为这事很影响帧率)</p>
+</li>
+<li><p>那么总的需要3600kb内存…</p>
+</li>
+</ul>
+<h3 id="优化内存使用"><a href="#优化内存使用" class="headerlink" title="优化内存使用"></a>优化内存使用</h3><p>通过Unity Profiler里的<em>GC Alloc</em>一列，可以看到具体的内存申请。在用户操作应用的时候，尽可能让其接近0。(当然了，如果是载入资源就没事)</p>
+<ul>
+<li>尽可能重用集合(例如<code>Lists</code>, <code>HashSets</code>)</li>
+<li>避免字符串拼接，可以考虑重用<code>StringBuilder</code>来完成</li>
+<li>避免匿名函数和闭包</li>
+</ul>
+<h3 id="装箱问题-Boxing"><a href="#装箱问题-Boxing" class="headerlink" title="装箱问题(Boxing)"></a>装箱问题(Boxing)</h3><p>当将值类型当做引用类型传入时，会在堆顶临时分配一个值来用</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">object</span> y = <span class="keyword">new</span> <span class="built_in">object</span>();</span><br><span class="line">y.Equals(x);	<span class="comment">// Boxes &quot;x&quot; onto the heap</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Foreach"><a href="#Foreach" class="headerlink" title="Foreach"></a>Foreach</h3><p>当循环开始时会申请一个<code>Enumerator</code>，这也是广为人知的Mono的锅了…别这么写就行。</p>
+<h3 id="Unity-API"><a href="#Unity-API" class="headerlink" title="Unity API"></a>Unity API</h3><ul>
+<li>如果引擎返回的是一个数组的话，它每次都会生成拷贝</li>
+<li><strong>每次被访问</strong>的时都这样，就算不修改里面的值！</li>
+</ul>
+<p>这个错误代码药丸，每次都申请非常多的<code>Touch[]</code>数组</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; Input.touches.Length; i++)</span><br><span class="line">&#123;</span><br><span class="line">	Touch touch = input.touches[i];</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>正确的代码就只有一份</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Touch[] touches = Input.touches;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; touches.Length; i++)</span><br><span class="line">&#123;</span><br><span class="line">	Touch touch = touches[i];</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="CPU性能"><a href="#CPU性能" class="headerlink" title="CPU性能"></a>CPU性能</h2><h3 id="XML-JSON和其他文本格式"><a href="#XML-JSON和其他文本格式" class="headerlink" title="XML, JSON和其他文本格式"></a>XML, JSON和其他文本格式</h3><ul>
+<li>解析文本非常慢</li>
+<li>避免基于反射的解析器——因为太TM慢了！<ul>
+<li>5.3开始可以用自带的<code>JsonUtility</code>类</li>
+</ul>
+</li>
+</ul>
+<p>解决本问题有三个策略：</p>
+<ol>
+<li>压根不要解析文本格式，利用<code>ScriptableObject</code>二进制保存数据，可以保存一些很少变化的数据；</li>
+<li>做更少的活，譬如将数据分成小块，每次只解析需要的部分，解析完了之后保存到缓存中；</li>
+<li><del>线程</del>: 只能用于处理纯C#逻辑，任何涉及Unity资源的都没法做，而且写的时候要非常非常小心…</li>
+</ol>
+<h3 id="Resources文件夹"><a href="#Resources文件夹" class="headerlink" title="Resources文件夹"></a>Resources文件夹</h3><p>在游戏启动的时候会载入Resources文件夹的目录结构，这个是无法避免或者延后的~</p>
+<p>解决方案：将Resources下的资源打包到Asset Bundle</p>
+<h3 id="Material-Animator-Shader属性访问"><a href="#Material-Animator-Shader属性访问" class="headerlink" title="Material/Animator/Shader属性访问"></a>Material/Animator/Shader属性访问</h3><p>永远不要直接通过名字去访问，因为在引擎内部需要对字符串名字计算哈希得到一个整数id~</p>
+<p>错误做法</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">material.SetColor(<span class="string">&quot;_Color&quot;</span>, Color.white);</span><br><span class="line">animator.SetTrigger(<span class="string">&quot;attack&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>正确做法是一开始启动的时候计算一次哈希，然后缓存下来…</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">readonly</span> <span class="built_in">int</span> material_Color = Shader.PropertyToID(<span class="string">&quot;_Color&quot;</span>);</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">readonly</span> <span class="built_in">int</span> anim_Attack = Animator.StringToHash(<span class="string">&quot;attack&quot;</span>);</span><br><span class="line"></span><br><span class="line">material.SetColor(material_Color, Color.white);</span><br><span class="line">animator.SetTrigger(anim_Attack);</span><br></pre></td></tr></table></figure>
+
+<h3 id="装箱-字符串操作"><a href="#装箱-字符串操作" class="headerlink" title="装箱 字符串操作"></a>装箱 字符串操作</h3><p>因为这些操作太慢了…所以不得不再强调下！</p>
+<p><code>RegExps</code>, <code>String.StartsWith</code>和<code>String.EndsWith</code> 都是非常非常慢的~ 在Instruments你可以搜索<code>::Box</code> <code>_Box</code> <code>String_</code>看下~</p>
+<p><del>不过官方的人也说了，对于Boxing这个问题，开发者没啥办法能解决这个问题…所以还是天灭Mono，快抱微软.Net大腿吧！</del></p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0;
+            display: none
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://qiankanglai.me/2016/04/11/unity-optimization-for-mobile/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://qiankanglai.me/2016/04/11/unity-optimization-for-mobile/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $.ajax({
+        url: 'https://disqus.com/next/config.json',
+        timeout: 4000,
+        type: 'GET',
+        success: (function() {
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+            $('.disqus_click_btn').css('display','none');
+        })(),
+        error: function() {
+          $('.disqus_click_btn').css('display','block');
+        }
+    });
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.disqus_click_btn').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2016/04/12/warcraft3-billboards/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/04/10/diablo3-tree/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Kanglai Qian's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        qiankanglai@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签云">
+                
+                    <i class="material-icons sidebar-material-icons">label</i>
+                
+                标签云
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/timeline" title="时间轴">
+                
+                    <i class="material-icons sidebar-material-icons">timeline</i>
+                
+                时间轴
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about" title="关于我">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于我
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友情链接">
+                
+                    <i class="material-icons sidebar-material-icons">links</i>
+                
+                友情链接
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/qiankanglai" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+        <a href="https://www.zhihu.com/people/qian-kang-lai" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-zhihu">
+                <span class="visuallyhidden">Zhihu</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+    
+    <!-- V2EX -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2012&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Loading & Learning
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Hosted by <a href="https://pages.coding.me" target="_blank" class="footer-develop-a">Coding Pages</a>&<a href="https://pages.github.com/" target="_blank" class="footer-develop-a">Github Pages</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?wgjW/HuQG9JDgvPDPoRAng==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('
+<link rel="stylesheet" href="/css/uc.css">
+');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","https://cdn.bootcss.com/prettify/r298/prettify.min.js", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.2 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

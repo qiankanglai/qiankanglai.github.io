@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.2 -->
+    <script>
+        window.materialVersion = "1.5.2"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            Reflexi简明教程 | 
+        
+        Loading &amp; Learning
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" itemprop="description" content="本文是Assembly Manipulation and C# / VB.NET Code Injection的翻译，已得到作者授权。该教程作者(亦工具作者)现在在微软开发UnityVS…">
+    <meta name="keywords" content=",Unity,Translation,C#">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/atelier-estuary-light.min.css?ZQObwZXHH6Mt8MNbyQJYfQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #EEEEEE !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #EEEEEE !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #EEEEEE !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","https://cdn.bootcss.com/jquery/2.2.0/jquery.min.js", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Loading &amp; Learning">
+    <meta name="msapplication-starturl" content="http://qiankanglai.me/2016/03/05/reflexil/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Loading &amp; Learning">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://qiankanglai.me/2016/03/05/reflexil/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Reflexi简明教程 | Loading &amp; Learning">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="本文是Assembly Manipulation and C# / VB.NET Code Injection的翻译，已得到作者授权。该教程作者(亦工具作者)现在在微软开发UnityVS…">
+    <meta property="og:article:tag" content="Unity"> <meta property="og:article:tag" content="Translation"> <meta property="og:article:tag" content="C#"> 
+
+    
+        <meta property="article:published_time" content="Sat Mar 05 2016 00:00:00 GMT+0800">
+        <meta property="article:modified_time" content="Mon Mar 07 2016 00:00:00 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://qiankanglai.me/2016/03/05/reflexil/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://qiankanglai.me/2016/03/05/reflexil/index.html",
+    "headline": "Reflexi简明教程",
+    "datePublished": "Sat Mar 05 2016 00:00:00 GMT+0800",
+    "dateModified": "Mon Mar 07 2016 00:00:00 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Kanglai Qian",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "A game developer interested in rendering, with focus on Unity now."
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Loading &amp; Learning",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",Unity,Translation,C#",
+    "description": "本文是Assembly Manipulation and C# / VB.NET Code Injection的翻译，已得到作者授权。该教程作者(亦工具作者)现在在微软开发UnityVS…",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-30309954-1', 'auto');ga('send', 'pageview');
+</script>
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD"><span class="post-toc-text">最新版本下载</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Demo%E5%BA%94%E7%94%A8"><span class="post-toc-text">Demo应用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E7%BC%96%E8%BE%91%E5%99%A8"><span class="post-toc-text">使用指令编辑器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%8C%87%E4%BB%A4%E7%BC%96%E8%BE%91%E5%99%A8%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7"><span class="post-toc-text">指令编辑器功能特性</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E4%BD%BF%E7%94%A8C-VB-NET%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5"><span class="post-toc-text">使用C#&#x2F;VB.NET代码注入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#C-VB-NET%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7"><span class="post-toc-text">C#&#x2F;VB.NET代码注入功能特性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%96%B9%E6%B3%95%E5%B1%9E%E6%80%A7%E7%BC%96%E8%BE%91%E5%99%A8"><span class="post-toc-text">方法属性编辑器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="post-toc-text">异常处理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%B1%BB%E5%9E%8B%E6%A0%87%E7%AD%BE%E7%BC%96%E8%BE%91%E5%99%A8"><span class="post-toc-text">类型标签编辑器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%93%8D%E4%BD%9C%E6%88%90%E5%91%98"><span class="post-toc-text">操作成员</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E8%B5%84%E6%BA%90%E7%BC%96%E8%BE%91%E5%99%A8"><span class="post-toc-text">资源编辑器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E7%AD%BE%E7%BC%96%E8%BE%91%E5%99%A8"><span class="post-toc-text">自定义标签编辑器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%A8%8B%E5%BA%8F%E9%9B%86%E5%8F%8A%E5%BC%95%E7%94%A8%E7%BC%96%E8%BE%91%E5%99%A8"><span class="post-toc-text">程序集及引用编辑器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%A8%A1%E5%9D%97%E7%BC%96%E8%BE%91%E5%99%A8"><span class="post-toc-text">模块编辑器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%A8%8B%E5%BA%8F%E9%9B%86%E7%AD%BE%E5%90%8D%E6%94%AF%E6%8C%81"><span class="post-toc-text">程序集签名支持</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%8F%8D%E6%B7%B7%E6%B7%86%E6%94%AF%E6%8C%81"><span class="post-toc-text">反混淆支持</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%A8%8B%E5%BA%8F%E9%9B%86%E9%AA%8C%E8%AF%81"><span class="post-toc-text">程序集验证</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E6%80%BB%E7%BB%93"><span class="post-toc-text">总结</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E7%BF%BB%E8%AF%91%E5%90%8E%E8%AE%B0"><span class="post-toc-text">翻译后记</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 15 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.jpg');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                Reflexi简明教程
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Kanglai Qian</strong>
+        <span>3月 05, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-none-link" href="/tags/C/" rel="tag">C#</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/Translation/" rel="tag">Translation</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Reflexi简明教程&url=http://qiankanglai.me/2016/03/05/reflexil/index.html&pic=http://qiankanglai.me/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Reflexi简明教程&url=http://qiankanglai.me/2016/03/05/reflexil/index.html&via=Kanglai Qian" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://qiankanglai.me/2016/03/05/reflexil/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://qiankanglai.me/2016/03/05/reflexil/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>本文是<a target="_blank" rel="noopener" href="http://www.codeproject.com/Articles/20565/Assembly-Manipulation-and-C-VB-NET-Code-Injection">Assembly Manipulation and C# / VB.NET Code Injection</a>的翻译，已得到作者授权。该教程作者(亦工具作者)现在在微软开发UnityVS…</p>
+<a id="more"></a>
+
+<p>本文使用的老版本界面与最新版本有所不同，而且内容覆盖的功能比较全，但介绍的比较笼统；之后我会结合Unity写一些具体的例子。<br>就我的使用经验来说，直接操作IL code还是比较丧心病狂的，利用后面的C#/VB.NET注入功能会方便很多，而且修改作用域、属性等功能其实用的不多。</p>
+<p>ps. 图片来自codeproject，可能载入速度较慢，见谅</p>
+<h1 id="最新版本下载"><a href="#最新版本下载" class="headerlink" title="最新版本下载"></a>最新版本下载</h1><p>最新版本的Reflexi可以在<a target="_blank" rel="noopener" href="http://reflexil.net/">官网</a>下载。</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a target="_blank" rel="noopener" href="http://reflector.net/">Reflector</a>和<a target="_blank" rel="noopener" href="http://www.telerik.com/products/decompiler">JustDecompile</a>都是能用来对各类程序集进行深度检查的工具，他们同时也都能对.NET的IL code进行反汇编。但是这两个工具都无法修改对应程序集的结构或IL code。在<a target="_blank" rel="noopener" href="http://evain.net/blog/">Jb EVAIN</a>实现的强大**<a target="_blank" rel="noopener" href="http://www.mono-project.com/Cecil">Mono.Cecil</a>**帮助下，Reflexil达到了这个目标。作为一个专门用来处理IL code的插件，Reflexil实现了一个完整的指令编辑器，并允许直接注入C#/VB.NET代码。下面将用两个例子具体说明。</p>
+<h1 id="Demo应用"><a href="#Demo应用" class="headerlink" title="Demo应用"></a>Demo应用</h1><p>让我们先实现一个简单的求和应用。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Windows.Forms;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">ReflexilDemo</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">DemoForm</span> : <span class="title">Form</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">DemoForm</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ComputeAndDisplay</span>(<span class="params"><span class="built_in">decimal</span> x, <span class="built_in">decimal</span> y</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            MessageBox.Show(String.Format(<span class="string">&quot;&#123;0&#125;+&#123;1&#125;=&#123;2&#125;&quot;</span>, x, y, x + y));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">DisplayResultButton_Click</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            ComputeAndDisplay(LeftOperand.Value, RightOperand.Value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/demoapp.jpg"><br><img src="https://www.codeproject.com/KB/msil/reflexil/demores.jpg"></p>
+<h2 id="使用指令编辑器"><a href="#使用指令编辑器" class="headerlink" title="使用指令编辑器"></a>使用指令编辑器</h2><p>通过指令编辑器，我们可以在<code>ComputeAndDisplay</code>方法内修改对<code>MessageBox.Show</code>方法的调用，增加一个调用参数title(因为这个函数有多个重载形式)，从而在显示结果的窗口上添加标题。</p>
+<p>为了达成这个目标，首先需要在栈里增加一个<code>ldstr</code>操作码，来存放一个string参数。</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/methedt-create.jpg"><br><img src="https://www.codeproject.com/KB/msil/reflexil/inscreate.jpg"></p>
+<p>接下来，通过修改函数里调用<code>MessageBox.Show</code>方法的指令，将刚才创建的string作为参数传进去。</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/methedt-edit.jpg"><br><img src="https://www.codeproject.com/KB/msil/reflexil/insedit.jpg"><br><img src="https://www.codeproject.com/KB/msil/reflexil/methsel.jpg"></p>
+<p>最后保存我们刚才的修改，然后测试一下新的程序集。</p>
+<p>![](<a target="_blank" rel="noopener" href="https://www.codeproject.com/KB/msil/reflexil/modsave.jpg%7D">https://www.codeproject.com/KB/msil/reflexil/modsave.jpg}</a></p>
+<p>可以看到保存过的程序能正常显示标题，说明它使用了新的重载函数，并将正确的参数传进去了。</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/demoresult.jpg"></p>
+<h2 id="指令编辑器功能特性"><a href="#指令编辑器功能特性" class="headerlink" title="指令编辑器功能特性"></a>指令编辑器功能特性</h2><p>指令编辑器支持<strong>Mono.Cecil</strong>中定义的所有操作码，如下所示：</p>
+<ul>
+<li>基本数据类型: byte, sbyte, int32, int64, single, double</li>
+<li>字符串</li>
+<li>指令引用</li>
+<li>多指令引用(switch)</li>
+<li>参数或类型引用</li>
+<li>内部泛型引用</li>
+<li>类型、属性或方法引用(Reflector实现了一个浏览器，从中选择合适的即可)</li>
+</ul>
+<p>需要注意的是，<strong>Reflector</strong>和<strong>Reflexil</strong>的对象更新不是同步的：对IL code进行的修改并不会影响<strong>Reflector</strong>的反汇编窗口，同时<strong>Mono.Cecil</strong>不会对生成的代码进行检查。在两者之间唯一的保证是对于程序集中同一个操作码(opcode)，其对应的操作符(operand type)是一致的。如果你觉得直接修改IL比较麻烦的话，下面将展示如何直接更新一个函数本身的方法。</p>
+<h1 id="使用C-VB-NET代码注入"><a href="#使用C-VB-NET代码注入" class="headerlink" title="使用C#/VB.NET代码注入"></a>使用C#/VB.NET代码注入</h1><p>通过下图所示配置表，你可以选择适合的诸如语言以及输入、显示的进制设置：</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/configuration.jpg"></p>
+<p>下面使用”替换所有代码”来修改<code>ComputeAndDisplay</code>函数主体：</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/methedt-inject.jpg"></p>
+<p>在弹出的编译窗口中，我们能直接查看到结果IL code；在这个窗口中提供了基本的智能感知：</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/inject-cs.jpg"></p>
+<p>当然，我们也能通过VB.NET语言进行修改。注意在这个简单例子中，我们在两种语言下得到了完全相同的IL code(但这个并不一定始终成立)：</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/inject-vb.jpg"></p>
+<p>最后我们保存、测试一下修改结果：</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/demoresult-inject.jpg"></p>
+<h2 id="C-VB-NET代码注入功能特性"><a href="#C-VB-NET代码注入功能特性" class="headerlink" title="C#/VB.NET代码注入功能特性"></a>C#/VB.NET代码注入功能特性</h2><p>修改的代码是使用<code>System.CodeDom</code>在一个单独的<code>AppDomain</code>下编译。一旦编译成功，生成的指令被剥离出来，然后塞入原来的函数体中。参数、变量、方法、作用域等被调整适应于原作用方法中。当然代码注入也有一定的限制：无法引用到其定义在父类中的属性或方法。此外可以指定编译进程中的目标框架。</p>
+<h2 id="方法属性编辑器"><a href="#方法属性编辑器" class="headerlink" title="方法属性编辑器"></a>方法属性编辑器</h2><p>通过这个编辑器能够很轻松的修改方法签名或可见范围，也可以修改返回类型：</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/methattr.jpg"></p>
+<p>方法参数及变量也是可编辑的。Reflexil能够载入(MDB、PDB等文件提供的)符号信息，来显示原始变量名：</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/paramattr.jpg"></p>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><p><strong>Reflexil</strong>能够在方法体内增加、修改、删除异常处理，包括以下类型：</p>
+<ul>
+<li><code>Catch</code></li>
+<li><code>Filter</code></li>
+<li><code>Finally</code></li>
+<li><code>Fault</code></li>
+</ul>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/exception.jpg"></p>
+<h2 id="类型标签编辑器"><a href="#类型标签编辑器" class="headerlink" title="类型标签编辑器"></a>类型标签编辑器</h2><p>类似方法，变量的可见域也是可以修改的，譬如说将一个<code>private</code>变量暴露出来：</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/typeedt.jpg"></p>
+<h2 id="操作成员"><a href="#操作成员" class="headerlink" title="操作成员"></a>操作成员</h2><p><strong>Reflexil</strong>能够对类、接口、结构体、枚举、事件、方法、构造函数、属性或引用进行重命名、删除或插入操作。</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/injmenu.jpg"></p>
+<p>智能插入：插入一个属性(property)会生成一个字段(field)及对应的getter/setter方法。</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/injprop.jpg"></p>
+<h2 id="资源编辑器"><a href="#资源编辑器" class="headerlink" title="资源编辑器"></a>资源编辑器</h2><p>可以修改或插入内嵌资源、链接资源和程序集链接资源，并提供了一个完整的十六进制编辑器来更新、导入或导出文件。</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/resources.jpg"></p>
+<h2 id="自定义标签编辑器"><a href="#自定义标签编辑器" class="headerlink" title="自定义标签编辑器"></a>自定义标签编辑器</h2><p>完全支持自定义标签</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/custattr.jpg"></p>
+<h2 id="程序集及引用编辑器"><a href="#程序集及引用编辑器" class="headerlink" title="程序集及引用编辑器"></a>程序集及引用编辑器</h2><p>可修改程序入口</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/asmdef.jpg"></p>
+<p>也可以更新关于认证的所有信息：版本号，公钥，名字和区域信息。当然你也可以修改引用的资源从而使用不同版本内容：</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/asmnamedef.jpg"></p>
+<h2 id="模块编辑器"><a href="#模块编辑器" class="headerlink" title="模块编辑器"></a>模块编辑器</h2><p>可用来修改应用类型，譬如从可执行程序变成DLL库：</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/moddef.jpg"></p>
+<h2 id="程序集签名支持"><a href="#程序集签名支持" class="headerlink" title="程序集签名支持"></a>程序集签名支持</h2><p>当原程序集自带签名时，保存出来的修改后程序集是”延迟签名”状态。<strong>Reflexil</strong>能调用SDK工具来修复这个问题。</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/signed.jpg"></p>
+<p><strong>Reflexil</strong>能自动移除程序集强命名或更新其引用资源。当然你也可以手动完成：移除公钥后将<code>HasPublicKey</code>设为<code>false</code>即可：</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/snremover.jpg"></p>
+<p><del>由于这块实在没用过，所以这段翻译的可信度较低…逃</del></p>
+<h2 id="反混淆支持"><a href="#反混淆支持" class="headerlink" title="反混淆支持"></a>反混淆支持</h2><p><strong>Reflexil</strong>使用了<strong>de4dot</strong>进行反混淆：</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/obfsearch.jpg"></p>
+<p>支持Babel NET, CliSecure, CodeFort, CodeVeil, CodeWall, CryptoObfuscator, DeepSea, Dotfuscator, dotNET Reactor, Eazfuscator NET, Goliath NET, ILProtector, MaxtoCode, MPRESS, Rummage, Skater NET, SmartAssembly, Spices Net和Xenocode。</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/obffound.jpg"><br><img src="https://www.codeproject.com/KB/msil/reflexil/obfclean.jpg"></p>
+<h2 id="程序集验证"><a href="#程序集验证" class="headerlink" title="程序集验证"></a>程序集验证</h2><p>通过使用.NET SDK自带的<code>peverify.exe</code>，可以检查生成的IL code和对应原信息是否满足类型安全的需要。</p>
+<p><img src="https://www.codeproject.com/KB/msil/reflexil/asmcheck.jpg"><br><img src="https://www.codeproject.com/KB/msil/reflexil/asmcheckok.jpg"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><strong>Reflexil</strong>完全基于<strong>Mono.Cecil</strong>。核心在于<strong>Mono.Cecil</strong>能够脱离运行时环境载入程序集，所以操作起来不需要对应的资源限制、能在孤立的<code>AppDOmain</code>里完成。另外<code>System.Type</code>和<code>Mono.Cecil.TypeDefinition</code>分别独立实现了.NET类型概念，两者之间并没有联系。因此如果我们希望通过写程序(而不是直接修改IL code)的方式完成第一个例子(重载<code>Show</code>来修改窗口标题栏)，在<strong>Mono.Cecil</strong>帮助下也能很方便的完成。</p>
+<h1 id="翻译后记"><a href="#翻译后记" class="headerlink" title="翻译后记"></a>翻译后记</h1><p>这是我第一次翻译一些内容，因为除了汉语之外只看得懂一些英文，所以每次想动手但又觉得没啥必要…最近受Trace激励，觉得还是得动手整点，不管有没有人看~</p>
+<p>一遍下来还是挺耗费精力的，而且有些细节也不是拿捏的非常清楚：譬如opcodes和operand区别，我参考了<a target="_blank" rel="noopener" href="http://www.teach-ict.com/as_as_computing/ocr/H447/F453/3_3_8/features/miniweb/pg4.htm">Opcodes and Operands</a>但不知道翻译成操作符和操作码是否精确；C#相关的一些术语我也不确认翻译的是否精确，也许有些地方直接写英文反而更好。</p>
+<p>总之，如果有什么意见和勘误请在下方留言:D</p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0;
+            display: none
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://qiankanglai.me/2016/03/05/reflexil/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://qiankanglai.me/2016/03/05/reflexil/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $.ajax({
+        url: 'https://disqus.com/next/config.json',
+        timeout: 4000,
+        type: 'GET',
+        success: (function() {
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+            $('.disqus_click_btn').css('display','none');
+        })(),
+        error: function() {
+          $('.disqus_click_btn').css('display','block');
+        }
+    });
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.disqus_click_btn').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2016/03/05/polygon-sprites/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/02/12/new-style/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Kanglai Qian's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        qiankanglai@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签云">
+                
+                    <i class="material-icons sidebar-material-icons">label</i>
+                
+                标签云
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/timeline" title="时间轴">
+                
+                    <i class="material-icons sidebar-material-icons">timeline</i>
+                
+                时间轴
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about" title="关于我">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于我
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友情链接">
+                
+                    <i class="material-icons sidebar-material-icons">links</i>
+                
+                友情链接
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/qiankanglai" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+        <a href="https://www.zhihu.com/people/qian-kang-lai" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-zhihu">
+                <span class="visuallyhidden">Zhihu</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+    
+    <!-- V2EX -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2012&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Loading & Learning
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Hosted by <a href="https://pages.coding.me" target="_blank" class="footer-develop-a">Coding Pages</a>&<a href="https://pages.github.com/" target="_blank" class="footer-develop-a">Github Pages</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?wgjW/HuQG9JDgvPDPoRAng==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('
+<link rel="stylesheet" href="/css/uc.css">
+');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","https://cdn.bootcss.com/prettify/r298/prettify.min.js", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.2 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

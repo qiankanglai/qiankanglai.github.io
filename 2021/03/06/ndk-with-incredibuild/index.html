@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.2 -->
+    <script>
+        window.materialVersion = "1.5.2"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            利用IncrediBuild加速NDK编译 | 
+        
+        Loading &amp; Learning
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" itemprop="description" content="最近一段时间突然发现打包机上编译引擎安卓版本极慢，正好有现成的IncrediBuild所以研究下能不能用来加速。IB本身是商业软件，对Visual Studio的支持已经非常好了: 既可以使用Extension形式直接调用，又可以使用命令行传参sln。但是网上关于结合NDK使用的资料就非常少，这周花了大半天终于跑通流程，就此记录一下。">
+    <meta name="keywords" content=",Android,C++">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/atelier-estuary-light.min.css?ZQObwZXHH6Mt8MNbyQJYfQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #EEEEEE !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #EEEEEE !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #EEEEEE !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","https://cdn.bootcss.com/jquery/2.2.0/jquery.min.js", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Loading &amp; Learning">
+    <meta name="msapplication-starturl" content="http://qiankanglai.me/2021/03/06/ndk-with-incredibuild/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Loading &amp; Learning">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://qiankanglai.me/2021/03/06/ndk-with-incredibuild/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="利用IncrediBuild加速NDK编译 | Loading &amp; Learning">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="最近一段时间突然发现打包机上编译引擎安卓版本极慢，正好有现成的IncrediBuild所以研究下能不能用来加速。IB本身是商业软件，对Visual Studio的支持已经非常好了: 既可以使用Extension形式直接调用，又可以使用命令行传参sln。但是网上关于结合NDK使用的资料就非常少，这周花了大半天终于跑通流程，就此记录一下。">
+    <meta property="og:article:tag" content="Android"> <meta property="og:article:tag" content="C++"> 
+
+    
+        <meta property="article:published_time" content="Sat Mar 06 2021 19:02:44 GMT+0800">
+        <meta property="article:modified_time" content="Mon Dec 13 2021 20:59:24 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://qiankanglai.me/2021/03/06/ndk-with-incredibuild/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://qiankanglai.me/2021/03/06/ndk-with-incredibuild/index.html",
+    "headline": "利用IncrediBuild加速NDK编译",
+    "datePublished": "Sat Mar 06 2021 19:02:44 GMT+0800",
+    "dateModified": "Mon Dec 13 2021 20:59:24 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Kanglai Qian",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "A game developer interested in rendering, with focus on Unity now."
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Loading &amp; Learning",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",Android,C++",
+    "description": "最近一段时间突然发现打包机上编译引擎安卓版本极慢，正好有现成的IncrediBuild所以研究下能不能用来加速。IB本身是商业软件，对Visual Studio的支持已经非常好了: 既可以使用Extension形式直接调用，又可以使用命令行传参sln。但是网上关于结合NDK使用的资料就非常少，这周花了大半天终于跑通流程，就此记录一下。",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-30309954-1', 'auto');ga('send', 'pageview');
+</script>
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#IB%E5%8E%9F%E7%90%86%E5%8F%8A%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="post-toc-text">IB原理及基础使用方式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#UE4%E8%B0%83%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="post-toc-text">UE4调用方式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%8E%B0%E6%9C%89%E8%B5%84%E6%96%99%E5%8F%82%E8%80%83"><span class="post-toc-text">现有资料参考</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E8%B8%A9%E5%9D%91%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB"><span class="post-toc-text">踩坑经验分享</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CompareStringA"><span class="post-toc-text">CompareStringA</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#job-server"><span class="post-toc-text">job server</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%BC%BA%E5%88%B6%E8%AE%BE%E7%BD%AESHELL"><span class="post-toc-text">强制设置SHELL</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%BF%AE%E5%A4%8D%E6%9E%81%E7%AB%AF%E6%83%85%E5%86%B5"><span class="post-toc-text">修复极端情况</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%BB%95%E5%BC%80NDK-DEBUG-1%E4%BC%A0%E5%8F%82"><span class="post-toc-text">绕开NDK-DEBUG&#x3D;1传参</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="post-toc-text">小结</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 15 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.jpg');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                利用IncrediBuild加速NDK编译
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Kanglai Qian</strong>
+        <span>3月 06, 2021</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-none-link" href="/tags/Android/" rel="tag">Android</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/C/" rel="tag">C++</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=利用IncrediBuild加速NDK编译&url=http://qiankanglai.me/2021/03/06/ndk-with-incredibuild/index.html&pic=http://qiankanglai.me/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=利用IncrediBuild加速NDK编译&url=http://qiankanglai.me/2021/03/06/ndk-with-incredibuild/index.html&via=Kanglai Qian" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://qiankanglai.me/2021/03/06/ndk-with-incredibuild/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://qiankanglai.me/2021/03/06/ndk-with-incredibuild/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>最近一段时间突然发现打包机上编译引擎安卓版本极慢，正好有现成的<a target="_blank" rel="noopener" href="https://www.incredibuild.com/">IncrediBuild</a>所以研究下能不能用来加速。IB本身是商业软件，对Visual Studio的支持已经非常好了: 既可以使用Extension形式直接调用，又可以使用命令行传参sln。但是网上关于结合NDK使用的资料就非常少，这周花了大半天终于跑通流程，就此记录一下。</p>
+<span id="more"></span>
+
+<h1 id="IB原理及基础使用方式"><a href="#IB原理及基础使用方式" class="headerlink" title="IB原理及基础使用方式"></a>IB原理及基础使用方式</h1><p><a target="_blank" rel="noopener" href="https://incredibuild.atlassian.net/wiki/spaces/IUM/overview">IncrediBuild User Manual</a>里写的还是比较清楚，我主要看了下<a target="_blank" rel="noopener" href="https://incredibuild.atlassian.net/wiki/spaces/IUM/pages/14024981/BuildConsole+Command+Line+Interface">BuildConsole Command Line Interface</a>这个部分:</p>
+<ul>
+<li>支持直接处理VS工程，如<code>BuildConsole.exe MySln.sln /build</code>；</li>
+<li>支持将任务以XML形式的信息声明然后调用处理；</li>
+<li>直接调用某个Command，然后以劫持的形式将任务分布式，如<a target="_blank" rel="noopener" href="https://incredibuild.atlassian.net/wiki/spaces/IUM/pages/13336643/List+of+Supported+Build+Tools">List of Supported Build Tools</a>里列出的<code>make</code>，这个稍后详细解释。</li>
+</ul>
+<p>ps. 这里面第二个路子最清晰，第三个路子其实是依靠IB自动劫持make中调用clang++的行为；此外IB能够自动复制所需工具及源代码到Agent上执行编译行为。这个行为让我非常眼熟，想起之前研究UE4 Swarm分布式烘焙的时候还好奇过它是怎么跨Agent控制版本的，最后发现就是大力出奇迹的复制exe搞定…</p>
+<h2 id="UE4调用方式"><a href="#UE4调用方式" class="headerlink" title="UE4调用方式"></a>UE4调用方式</h2><p>出于好奇，就先研究了下UE4是如何调用IB的:在UBT里找到了<code>XGE.cs</code>包装了相关功能</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">ProcessStartInfo XGEStartInfo = <span class="keyword">new</span> ProcessStartInfo(</span><br><span class="line">	XgConsolePath,</span><br><span class="line">	<span class="built_in">string</span>.Format(<span class="string">&quot;\&quot;&#123;0&#125;\&quot; /Rebuild /NoWait &#123;1&#125; /NoLogo &#123;2&#125; /ShowAgent /ShowTime &#123;3&#125;&quot;</span>,</span><br><span class="line">		TaskFilePath,</span><br><span class="line">		bStopXGECompilationAfterErrors ? <span class="string">&quot;/StopOnErrors&quot;</span> : <span class="string">&quot;&quot;</span>,</span><br><span class="line">		SilentOption,</span><br><span class="line">		bXGENoWatchdogThread ? <span class="string">&quot;/no_watchdog_thread&quot;</span> : <span class="string">&quot;&quot;</span>)</span><br><span class="line">	);</span><br></pre></td></tr></table></figure>
+
+<p>这么看来是用的前面说的方法2——以XML形式声明任务并调用。随手建了个空的工程然后编译，查看了下生成的xml内容: </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">BuildSet</span> <span class="attr">FormatVersion</span>=<span class="string">&quot;1&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Environments</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Environment</span> <span class="attr">Name</span>=<span class="string">&quot;Env_0&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Tools</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Tool</span> <span class="attr">Name</span>=<span class="string">&quot;Tool0_0&quot;</span> <span class="attr">AllowRemote</span>=<span class="string">&quot;False&quot;</span> <span class="attr">OutputPrefix</span>=<span class="string">&quot;SharedPCH.Engine.ShadowErrors.h [armv7-es2]&quot;</span> <span class="attr">GroupPrefix</span>=<span class="string">&quot;** For MyProject-Android-Development&quot;</span> <span class="attr">Params</span>=<span class="string">&quot;@<span class="symbol">&amp;quot;</span>D:\Documents\Unreal Projects\MyProject\Intermediate\Build\Android\MyProject\Development\Engine\SharedPCH.Engine.ShadowErrors-armv7-es2.h.gch.rsp<span class="symbol">&amp;quot;</span>&quot;</span> <span class="attr">Path</span>=<span class="string">&quot;F:\Android\android-ndk-r14b\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe&quot;</span> <span class="attr">SkipIfProjectFailed</span>=<span class="string">&quot;true&quot;</span> <span class="attr">AutoReserveMemory</span>=<span class="string">&quot;*.pch&quot;</span> <span class="attr">OutputFileMasks</span>=<span class="string">&quot;SharedPCH.Engine.ShadowErrors-armv7-es2.h.gch,SharedPCH.Engine.ShadowErrors.ha7.d&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- other tools --&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">Tools</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Variables</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Environment</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Environments</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Project</span> <span class="attr">Name</span>=<span class="string">&quot;Env_0&quot;</span> <span class="attr">Env</span>=<span class="string">&quot;Env_0&quot;</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">Task</span> <span class="attr">SourceFile</span>=<span class="string">&quot;&quot;</span> <span class="attr">Name</span>=<span class="string">&quot;Action0_0&quot;</span> <span class="attr">Tool</span>=<span class="string">&quot;Tool0_0&quot;</span> <span class="attr">WorkingDir</span>=<span class="string">&quot;E:\Epic Games\UE_4.24\Engine\Source&quot;</span> <span class="attr">SkipIfProjectFailed</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">  	<span class="comment">&lt;!-- other tasks --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Project</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">BuildSet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到其实所有的编译任务都被单独组织成<code>clang++</code>等调用，非常清晰。</p>
+<h2 id="现有资料参考"><a href="#现有资料参考" class="headerlink" title="现有资料参考"></a>现有资料参考</h2><p>网上搜了下只找到非常少的资料，而且点进去看了下都是复制粘贴的样子。以<a target="_blank" rel="noopener" href="https://www.freeaihub.com/post/62019.html">Incredibuild 加速编译 NDK</a>为例，譬如我本地的NDK目录是在<code>D:\SDK\android-ndk-r21b</code>下:</p>
+<ol>
+<li>新建<code>D:\SDK\android-ndk-r21b\Profile.xml</code>，内容为</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">  </span><br><span class="line"><span class="tag">&lt;<span class="name">Profile</span> <span class="attr">FormatVersion</span>=<span class="string">&quot;1&quot;</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">Tools</span>&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">Tool</span> <span class="attr">Filename</span>=<span class="string">&quot;make&quot;</span> <span class="attr">AllowIntercept</span>=<span class="string">&quot;true&quot;</span> /&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">Tool</span> <span class="attr">Filename</span>=<span class="string">&quot;cl&quot;</span> <span class="attr">AllowRemote</span>=<span class="string">&quot;true&quot;</span> /&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">Tool</span> <span class="attr">Filename</span>=<span class="string">&quot;link&quot;</span> <span class="attr">AllowRemote</span>=<span class="string">&quot;true&quot;</span> /&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">Tool</span> <span class="attr">Filename</span>=<span class="string">&quot;gcc&quot;</span> <span class="attr">AllowRemote</span>=<span class="string">&quot;true&quot;</span> /&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">Tool</span> <span class="attr">Filename</span>=<span class="string">&quot;clang++&quot;</span> <span class="attr">AllowRemote</span>=<span class="string">&quot;true&quot;</span> /&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">Tool</span> <span class="attr">Filename</span>=<span class="string">&quot;clang&quot;</span> <span class="attr">AllowRemote</span>=<span class="string">&quot;true&quot;</span> /&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">Tool</span> <span class="attr">Filename</span>=<span class="string">&quot;gcc-3&quot;</span> <span class="attr">AllowRemote</span>=<span class="string">&quot;true&quot;</span> /&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">Tool</span> <span class="attr">Filename</span>=<span class="string">&quot;arm-linux-androideabi-c++&quot;</span> <span class="attr">AllowRemote</span>=<span class="string">&quot;true&quot;</span> /&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">Tool</span> <span class="attr">Filename</span>=<span class="string">&quot;arm-linux-androideabi-cpp&quot;</span> <span class="attr">AllowRemote</span>=<span class="string">&quot;true&quot;</span> /&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">Tool</span> <span class="attr">Filename</span>=<span class="string">&quot;arm-linux-androideabi-g++&quot;</span> <span class="attr">AllowRemote</span>=<span class="string">&quot;true&quot;</span> /&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">Tool</span> <span class="attr">Filename</span>=<span class="string">&quot;arm-linux-androideabi-gcc&quot;</span> <span class="attr">AllowRemote</span>=<span class="string">&quot;true&quot;</span> /&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;/<span class="name">Tools</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">Profile</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>修改<code>D:\SDK\android-ndk-r21b\build\ndk-build.cmd</code></li>
+</ol>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="comment">rem Unset PYTHONPATH and PYTHONHOME to prevent the user&#x27;s environment from</span></span><br><span class="line"><span class="comment">rem affecting the Python that we invoke.</span></span><br><span class="line"><span class="comment">rem See https://github.com/googlesamples/vulkan-basic-samples/issues/25</span></span><br><span class="line"><span class="built_in">set</span> PYTHONHOME=</span><br><span class="line"><span class="built_in">set</span> PYTHONPATH=</span><br><span class="line"><span class="built_in">set</span> NDK_ROOT=%~dp0\..</span><br><span class="line"><span class="built_in">set</span> PREBUILT_PATH=<span class="variable">%NDK_ROOT%</span>\prebuilt\windows-x86_64</span><br><span class="line">::&quot;<span class="variable">%PREBUILT_PATH%</span>\bin\make.exe&quot; -O -f &quot;<span class="variable">%NDK_ROOT%</span>\build\core\build-local.mk&quot; SHELL=<span class="built_in">cmd</span> %*</span><br><span class="line">XGConsole /COMMAND=&quot;<span class="variable">%PREBUILT_PATH%</span>\bin\make.exe -f <span class="variable">%NDK_ROOT%</span>\build\core\build-local.mk SHELL=<span class="built_in">cmd</span> %*&quot; /PROFILE=<span class="variable">%NDK_ROOT%</span>\Profile.xml</span><br></pre></td></tr></table></figure>
+
+<h1 id="踩坑经验分享"><a href="#踩坑经验分享" class="headerlink" title="踩坑经验分享"></a>踩坑经验分享</h1><h2 id="CompareStringA"><a href="#CompareStringA" class="headerlink" title="CompareStringA"></a><code>CompareStringA</code></h2><p>参考网上现有资料改完之后，直接调用<code>ndk-build.cmd -j200</code>然而出师不利:</p>
+<blockquote>
+<p>IncrediBuild : Error: Attempt to call unsupported import function <code>CompareStringA</code></p>
+</blockquote>
+<p>网上搜了下压根没有可靠信息。暂时没有思路的情况下进行二分定位: 绕过<code>ndk-build.cmd</code>直接带参调用<code>XGConsole</code>命令有同样的错; 去掉<code>-j200</code>之后保持现状; 去掉<code>SHELL=cmd</code>之后居然就没这个错了。</p>
+<p>后来问了下佳神，怀疑这个是IB自己的BUG…<strong>传入的<code>/COMMAND</code>参数里如果带<code>=</code>就会出这个问题</strong>，令人智熄。后来验证了下确实是这样，因为传入<code>NDK-DEBUG=1</code>也是一模一样的下场。</p>
+<h2 id="job-server"><a href="#job-server" class="headerlink" title="job server"></a>job server</h2><p>尝试去掉<code>SHELL=cmd</code>之后确实IB启动成功，结果还没高兴满半分钟又炸了:</p>
+<blockquote>
+<p>make: INTERNAL: Exiting with 64 jobserver tokens available; should be 1024!</p>
+</blockquote>
+<p>这又是闹啥幺蛾子？搜了下有人遇到过一样的问题 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1533425/make-parallel-jobs-on-windows">Make (Parallel Jobs) on Windows</a></p>
+<blockquote>
+<p>I found <a target="_blank" rel="noopener" href="http://dannythorpe.com/2008/03/06/parallel-make-in-win32/">this Danny Thorpe’s blog</a> entry that explains the problems with parallel make build on Windows. Basically what it suggests is to set the following environment variable first:</p>
+<blockquote>
+<p>set SHELL=cmd.exe</p>
+</blockquote>
+</blockquote>
+<p>一路跟进去看了下大致的解释，这就很难搞了…如果不设置<code>SHELL=cmd</code>就无法并行编译，如果设置了就报上一个错。</p>
+<p>我一开始试图找除了命令行传参之外有没有其他方法，但是官方文档<a target="_blank" rel="noopener" href="https://www.gnu.org/software/make/manual/make.html#Choosing-the-Shell">Choosing the Shell</a>讲的很绝情:</p>
+<blockquote>
+<p>Unlike most variables, the variable <code>SHELL</code> is never set from the environment.</p>
+</blockquote>
+<p>既然改不了IB本身，那就只能对make下手了——首先看下自带的make版本信息</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="function">D:\<span class="title">SDK</span>\<span class="title">android</span>-<span class="title">ndk</span>-<span class="title">r21b</span>\<span class="title">prebuilt</span>\<span class="title">windows</span>-<span class="title">x86_64</span>\<span class="title">bin</span>&gt;<span class="title">make</span> --<span class="title">version</span></span></span><br><span class="line"><span class="function"><span class="title">GNU</span> <span class="title">Make</span> 4.2.1</span></span><br><span class="line"><span class="function"><span class="title">Built</span> <span class="title">for</span> <span class="title">x86_64</span>-<span class="title">w64</span>-<span class="title">mingw32</span></span></span><br><span class="line"><span class="function"><span class="title">Copyright</span> (<span class="title">C</span>) 1988-2016 <span class="title">Free</span> <span class="title">Software</span> <span class="title">Foundation</span>, <span class="title">Inc</span>.</span></span><br><span class="line"><span class="function"><span class="title">License</span> <span class="title">GPLv3</span>+: <span class="title">GNU</span> <span class="title">GPL</span> <span class="title">version</span> 3 <span class="title">or</span> <span class="title">later</span> &lt;<span class="title">http</span>://<span class="title">gnu.org</span>/<span class="title">licenses</span>/<span class="title">gpl.html</span>&gt;</span></span><br><span class="line"><span class="function"><span class="title">This</span> <span class="title">is</span> <span class="title">free</span> <span class="title">software</span>: <span class="title">you</span> <span class="title">are</span> <span class="title">free</span> <span class="title">to</span> <span class="title">change</span> <span class="title">and</span> <span class="title">redistribute</span> <span class="title">it</span>.</span></span><br><span class="line"><span class="function"><span class="title">There</span> <span class="title">is</span> <span class="title">NO</span> <span class="title">WARRANTY</span>, <span class="title">to</span> <span class="title">the</span> <span class="title">extent</span> <span class="title">permitted</span> <span class="title">by</span> <span class="title">law</span>.</span></span><br></pre></td></tr></table></figure>
+
+<p>OK, 去官网下载对应<a target="_blank" rel="noopener" href="https://ftp.gnu.org/gnu/make/make-4.2.1.tar.gz">make 4.2.1</a>，解压之后在Developer Command Prompt for VS 2019里运行build_w32.bat。替换进去发现没啥问题: </p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="function">D:\<span class="title">SDK</span>\<span class="title">android</span>-<span class="title">ndk</span>-<span class="title">r21b</span>\<span class="title">prebuilt</span>\<span class="title">windows</span>-<span class="title">x86_64</span>\<span class="title">bin</span>&gt;<span class="title">make</span> --<span class="title">version</span></span></span><br><span class="line"><span class="function"><span class="title">GNU</span> <span class="title">Make</span> 4.2.1</span></span><br><span class="line"><span class="function"><span class="title">Built</span> <span class="title">for</span> <span class="title">Windows32</span></span></span><br><span class="line"><span class="function"><span class="title">Copyright</span> (<span class="title">C</span>) 1988-2016 <span class="title">Free</span> <span class="title">Software</span> <span class="title">Foundation</span>, <span class="title">Inc</span>.</span></span><br><span class="line"><span class="function"><span class="title">License</span> <span class="title">GPLv3</span>+: <span class="title">GNU</span> <span class="title">GPL</span> <span class="title">version</span> 3 <span class="title">or</span> <span class="title">later</span> &lt;<span class="title">http</span>://<span class="title">gnu.org</span>/<span class="title">licenses</span>/<span class="title">gpl.html</span>&gt;</span></span><br><span class="line"><span class="function"><span class="title">This</span> <span class="title">is</span> <span class="title">free</span> <span class="title">software</span>: <span class="title">you</span> <span class="title">are</span> <span class="title">free</span> <span class="title">to</span> <span class="title">change</span> <span class="title">and</span> <span class="title">redistribute</span> <span class="title">it</span>.</span></span><br><span class="line"><span class="function"><span class="title">There</span> <span class="title">is</span> <span class="title">NO</span> <span class="title">WARRANTY</span>, <span class="title">to</span> <span class="title">the</span> <span class="title">extent</span> <span class="title">permitted</span> <span class="title">by</span> <span class="title">law</span>.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="强制设置SHELL"><a href="#强制设置SHELL" class="headerlink" title="强制设置SHELL"></a>强制设置<code>SHELL</code></h3><p>翻了下代码发现默认的<code>shell</code>使用的是<code>sh.exe</code>，这里直接改成<code>cmd.exe</code>即可。</p>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="comment">--- job.c	Sun May 22 04:22:32 2016</span></span><br><span class="line"><span class="comment">+++ job.c	Tue Mar  2 18:46:55 2021</span></span><br><span class="line"><span class="meta">@@ -31,7 +31,7 @@</span></span><br><span class="line"> #ifdef WINDOWS32</span><br><span class="line"> #include &lt;windows.h&gt;</span><br><span class="line"> </span><br><span class="line"><span class="deletion">-const char *default_shell = &quot;sh.exe&quot;;</span></span><br><span class="line"><span class="addition">+const char *default_shell = &quot;cmd.exe&quot;;</span></span><br><span class="line"> int no_default_sh_exe = 1;</span><br><span class="line"> int batch_mode_shell = 1;</span><br><span class="line"> HANDLE main_thread;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修复极端情况"><a href="#修复极端情况" class="headerlink" title="修复极端情况"></a>修复极端情况</h3><p>替换进去之后结果发现还是一样的问题，简直是白高兴.jpg…这次具体看了下<code>make</code>里关于job server的实现，本质就是用一个信号量来处理，理应不会出问题才对。多加了几行log看看:</p>
+<p><img src="/images/make_job_slots.jpg"></p>
+<p>这里就发现违和之处了: IB传入参数应该是<code>-j1024</code>，但是windows版本使用的是信号量所以不能超过<code>MAXIMUM_WAIT_OBJECTS</code>即64，所以导致了问题的发生。找到根源之后就好办了: </p>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="comment">--- main.c	Tue May 31 15:17:26 2016</span></span><br><span class="line"><span class="comment">+++ main.c	Tue Mar  2 18:57:39 2021</span></span><br><span class="line"><span class="meta">@@ -2058,6 +2058,7 @@</span></span><br><span class="line">      submakes it&#x27;s the token they were given by their parent.  For the top</span><br><span class="line">      make, we just subtract one from the number the user wants.  */</span><br><span class="line"> </span><br><span class="line"><span class="addition">+  if (job_slots &gt;= MAXIMUM_WAIT_OBJECTS) job_slots = MAXIMUM_WAIT_OBJECTS - 1;</span></span><br><span class="line">   if (job_slots &gt; 1 &amp;&amp; jobserver_setup (job_slots - 1))</span><br><span class="line">     &#123;</span><br><span class="line">       /* Fill in the jobserver_auth for our children.  */</span><br></pre></td></tr></table></figure>
+
+<h2 id="绕开NDK-DEBUG-1传参"><a href="#绕开NDK-DEBUG-1传参" class="headerlink" title="绕开NDK-DEBUG=1传参"></a>绕开<code>NDK-DEBUG=1</code>传参</h2><p>前面提到IB有<code>=</code>的问题，所以gradle里不能直接在<code>commandLine</code>那步将这个参数传入。这个问题会比上一个简单很多，使用环境变量的方式传入即可:</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">environment <span class="string">&quot;NDK_DEBUG&quot;</span>, <span class="string">&quot;$&#123;NDK_DEBUG&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>使用修改过的<code>make</code>终于把IB结合NDK成功跑起来了，不过目前其实还有遗憾——其实目前的修改方法是强行将<code>-j</code>传入的并行数降到64，更好的做法其实是换一个job server实现从而让IB能够跑的更带感~</p>
+<p>顺便IB的调用方式也很有意思: 基于XML的Task形式可读性非常高，一眼就能看明白具体的任务；自动劫持make的方法则是特别方便，虽然出了问题也是绕的我要吐了…</p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0;
+            display: none
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://qiankanglai.me/2021/03/06/ndk-with-incredibuild/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://qiankanglai.me/2021/03/06/ndk-with-incredibuild/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $.ajax({
+        url: 'https://disqus.com/next/config.json',
+        timeout: 4000,
+        type: 'GET',
+        success: (function() {
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+            $('.disqus_click_btn').css('display','none');
+        })(),
+        error: function() {
+          $('.disqus_click_btn').css('display','block');
+        }
+    });
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.disqus_click_btn').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2021/03/06/ndk-link-failed/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2020/12/26/renderdoc-compile-android-on-windows/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Kanglai Qian's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        qiankanglai@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签云">
+                
+                    <i class="material-icons sidebar-material-icons">label</i>
+                
+                标签云
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/timeline" title="时间轴">
+                
+                    <i class="material-icons sidebar-material-icons">timeline</i>
+                
+                时间轴
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about" title="关于我">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于我
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友情链接">
+                
+                    <i class="material-icons sidebar-material-icons">links</i>
+                
+                友情链接
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/qiankanglai" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+        <a href="https://www.zhihu.com/people/qian-kang-lai" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-zhihu">
+                <span class="visuallyhidden">Zhihu</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+    
+    <!-- V2EX -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2012&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Loading & Learning
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Hosted by <a href="https://pages.coding.me" target="_blank" class="footer-develop-a">Coding Pages</a>&<a href="https://pages.github.com/" target="_blank" class="footer-develop-a">Github Pages</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?wgjW/HuQG9JDgvPDPoRAng==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('
+<link rel="stylesheet" href="/css/uc.css">
+');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","https://cdn.bootcss.com/prettify/r298/prettify.min.js", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.2 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

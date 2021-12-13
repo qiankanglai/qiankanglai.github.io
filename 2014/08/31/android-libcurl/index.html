@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.2 -->
+    <script>
+        window.materialVersion = "1.5.2"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            Compile libcurl 7.37.0 with Android 4.4 or other versions | 
+        
+        Loading &amp; Learning
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" itemprop="description" content="Recently I need compile libcurl for different platforms, since cocos-2dx 3.0 ships with libcurl 7.26.0 and there are several fixes in newer versions according to changelog. There are several blogs describing how to build libcurl with android source, such as porting-of-libcurl-to-android-os-using, How_to_compile_libcurl and Android ndk下编译libcurl. However, they are all out dated, especially android source has changed a lot!">
+    <meta name="keywords" content=",Android,cocos2d-x,C++">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/atelier-estuary-light.min.css?ZQObwZXHH6Mt8MNbyQJYfQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #EEEEEE !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #EEEEEE !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #EEEEEE !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","https://cdn.bootcss.com/jquery/2.2.0/jquery.min.js", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Loading &amp; Learning">
+    <meta name="msapplication-starturl" content="http://qiankanglai.me/2014/08/31/android-libcurl/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Loading &amp; Learning">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://qiankanglai.me/2014/08/31/android-libcurl/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Compile libcurl 7.37.0 with Android 4.4 or other versions | Loading &amp; Learning">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="Recently I need compile libcurl for different platforms, since cocos-2dx 3.0 ships with libcurl 7.26.0 and there are several fixes in newer versions according to changelog. There are several blogs describing how to build libcurl with android source, such as porting-of-libcurl-to-android-os-using, How_to_compile_libcurl and Android ndk下编译libcurl. However, they are all out dated, especially android source has changed a lot!">
+    <meta property="og:article:tag" content="Android"> <meta property="og:article:tag" content="cocos2d-x"> <meta property="og:article:tag" content="C++"> 
+
+    
+        <meta property="article:published_time" content="Sun Aug 31 2014 00:00:00 GMT+0800">
+        <meta property="article:modified_time" content="Fri Mar 01 2019 23:33:52 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://qiankanglai.me/2014/08/31/android-libcurl/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://qiankanglai.me/2014/08/31/android-libcurl/index.html",
+    "headline": "Compile libcurl 7.37.0 with Android 4.4 or other versions",
+    "datePublished": "Sun Aug 31 2014 00:00:00 GMT+0800",
+    "dateModified": "Fri Mar 01 2019 23:33:52 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Kanglai Qian",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "A game developer interested in rendering, with focus on Unity now."
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Loading &amp; Learning",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",Android,cocos2d-x,C++",
+    "description": "Recently I need compile libcurl for different platforms, since cocos-2dx 3.0 ships with libcurl 7.26.0 and there are several fixes in newer versions according to changelog. There are several blogs describing how to build libcurl with android source, such as porting-of-libcurl-to-android-os-using, How_to_compile_libcurl and Android ndk下编译libcurl. However, they are all out dated, especially android source has changed a lot!",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-30309954-1', 'auto');ga('send', 'pageview');
+</script>
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Build-Environment-Android-4-4"><span class="post-toc-text">Build Environment (Android 4.4)</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Generate-LIBS"><span class="post-toc-text">Generate LIBS</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Put-libcurl-into-android-source"><span class="post-toc-text">Put libcurl into android source</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Generate-CPPFLAGS-and-CFLAGS"><span class="post-toc-text">Generate CPPFLAGS and CFLAGS</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Build-sh"><span class="post-toc-text">Build.sh</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Configure-and-Make"><span class="post-toc-text">Configure and Make</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Downgrade-to-lower-Android-version"><span class="post-toc-text">Downgrade to lower Android version</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Android-4-3"><span class="post-toc-text">Android 4.3</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Android-2-3-3"><span class="post-toc-text">Android 2.3.3</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#bionic-ERROR"><span class="post-toc-text">bionic ERROR</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 15 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.jpg');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                Compile libcurl 7.37.0 with Android 4.4 or other versions
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Kanglai Qian</strong>
+        <span>8月 31, 2014</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-none-link" href="/tags/Android/" rel="tag">Android</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/C/" rel="tag">C++</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/cocos2d-x/" rel="tag">cocos2d-x</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Compile libcurl 7.37.0 with Android 4.4 or other versions&url=http://qiankanglai.me/2014/08/31/android-libcurl/index.html&pic=http://qiankanglai.me/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Compile libcurl 7.37.0 with Android 4.4 or other versions&url=http://qiankanglai.me/2014/08/31/android-libcurl/index.html&via=Kanglai Qian" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://qiankanglai.me/2014/08/31/android-libcurl/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://qiankanglai.me/2014/08/31/android-libcurl/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>Recently I need compile libcurl for different platforms, since cocos-2dx 3.0 ships with libcurl 7.26.0 and there are several fixes in newer versions according to <a target="_blank" rel="noopener" href="http://curl.haxx.se/changes.html">changelog</a>. There are several blogs describing how to build libcurl with android source, such as <a target="_blank" rel="noopener" href="http://thesoftwarerogue.blogspot.com/2010/05/porting-of-libcurl-to-android-os-using.html">porting-of-libcurl-to-android-os-using</a>, <a target="_blank" rel="noopener" href="http://www.cocos2d-x.org/wiki/How_to_compile_libcurl">How_to_compile_libcurl</a> and <a target="_blank" rel="noopener" href="http://blog.csdn.net/ly131420/article/details/9177063">Android ndk下编译libcurl</a>. However, they are all out dated, especially android source has changed a lot!</p>
+<a id="more"></a>
+
+<p>After struggling a whole weekend, I finally compiled libcurl 7.37.0 with android 4.4 source. The steps described in <code>packages/Android/Android.mk</code> skip many details. I’ll explain every steps and hope you can make it. If you use the similar version, you could just copy &amp; paste mine.</p>
+<h1 id="Build-Environment-Android-4-4"><a href="#Build-Environment-Android-4-4" class="headerlink" title="Build Environment (Android 4.4)"></a>Build Environment (Android 4.4)</h1><p>Follow instructions in <a target="_blank" rel="noopener" href="https://source.android.com/source/building.html">Download and Building</a> and build android first. If you encounter connecting problems in China, you may refer to <a href="/2014/08/29/android-GFW/" title="如何在国内下载android源代码">如何在国内下载android源代码</a>. My android source folder is put at <code>/home/anthony/android</code>.</p>
+<p><img src="/images/android.jpg"></p>
+<h1 id="Generate-LIBS"><a href="#Generate-LIBS" class="headerlink" title="Generate LIBS"></a>Generate LIBS</h1><p>In order to determine which libs are needed, we first make an execuable library to see arguments passed in. Run <code>make dhcpcd showcommands</code> at <code>/home/anthony/android</code>, and we will get this in terminal output:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8/bin/arm-linux-androideabi-g++ -nostdlib -Bdynamic -pie -Wl,-dynamic-linker,/system/bin/linker -Wl,--gc-sections -Wl,-z,nocopyreloc  -Lout/target/product/generic/obj/lib -Wl,-rpath-link=out/target/product/generic/obj/lib out/target/product/generic/obj/lib/crtbegin_dynamic.o         out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/arp.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/bind.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/common.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/control.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/dhcp.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/dhcpcd.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/duid.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/eloop.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/if-options.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/if-pref.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/ipv4ll.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/net.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/signals.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/configure.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/if-linux.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/if-linux-wireless.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/lpf.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/platform-linux.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/compat/closefrom.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/ifaddrs.o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/ipv6rs.o        -Wl,--whole-archive   -Wl,--no-whole-archive   out/target/product/generic/obj/STATIC_LIBRARIES/libcompiler_rt-extras_intermediates/libcompiler_rt-extras.a    -lc -lcutils -lm -lnetutils -lstdc++  -o out/target/product/generic/obj/EXECUTABLES/dhcpcd_intermediates/LINKED/dhcpcd  -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--icf=safe -Wl,--fix-cortex-a8    -Wl,--no-undefined prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8/bin/../lib/gcc/arm-linux-androideabi/4.8/../../../../arm-linux-androideabi/lib/armv7-a/libatomic.a prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8/bin/../lib/gcc/arm-linux-androideabi/4.8/armv7-a/libgcc.a out/target/product/generic/obj/lib/crtend_android.o </span><br></pre></td></tr></table></figure>
+
+<p>This indicates the link step and we can find libraries like <code>-lc -lcutils -lm -lnetutils -lstdc++</code> and <code>libatomic.a libgcc.a crtbegin_dynamic.o crtend_android.o</code>. </p>
+<h1 id="Put-libcurl-into-android-source"><a href="#Put-libcurl-into-android-source" class="headerlink" title="Put libcurl into android source"></a>Put libcurl into android source</h1><p>Extract libcurl into <code>android/external</code> and rename it from curl-7.37.0 to curl. Now we need to fix two places in <code>packages/Android/Android.mk</code>:</p>
+<ul>
+<li>Add in line 73: <code>LOCAL_C_INCLUDES += $(LOCAL_PATH)/include/ $(LOCAL_PATH)/lib/</code></li>
+<li>Comment line 86: <code>#ALL_PREBUILT += $(LOCAL_PATH)/NOTICE</code></li>
+</ul>
+<h1 id="Generate-CPPFLAGS-and-CFLAGS"><a href="#Generate-CPPFLAGS-and-CFLAGS" class="headerlink" title="Generate CPPFLAGS and CFLAGS"></a>Generate CPPFLAGS and CFLAGS</h1><p>Similar to the previous step, run <code>make libcurl showcommands</code> at <code>/home/anthony/android</code> and we will fail with the following output (Remember we haven’t <code>./configure</code> yet):</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8/bin/arm-linux-androideabi-gcc </span><br><span class="line">-I external/curl/packages/Android/../../include/ -I external/curl/packages/Android/../.. -I out/target/product/generic/obj/STATIC_LIBRARIES/libcurl_intermediates -I out/target/product/generic/gen/STATIC_LIBRARIES/libcurl_intermediates -I libnativehelper/include/nativehelper  -isystem system/core/include -isystem hardware/libhardware/include -isystem hardware/libhardware_legacy/include -isystem hardware/ril/include -isystem libnativehelper/include -isystem frameworks/native/include -isystem frameworks/native/opengl/include -isystem frameworks/av/include -isystem frameworks/base/include -isystem external/skia/include -isystem out/target/product/generic/obj/include -isystem bionic/libc/arch-arm/include -isystem bionic/libc/include -isystem bionic/libstdc++/include -isystem bionic/libc/kernel/uapi -isystem bionic/libc/kernel/uapi/asm-arm -isystem bionic/libm/include -isystem bionic/libm/include/arm -c -fno-exceptions -Wno-multichar -msoft-float -ffunction-sections -fdata-sections -funwind-tables -fstack-protector -Wa,--noexecstack -Werror=format-security -D_FORTIFY_SOURCE=2 -fno-short-enums -no-canonical-prefixes -fno-canonical-system-headers -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -include build/core/combo/include/arch/linux-arm/AndroidConfig.h -I build/core/combo/include/arch/linux-arm/ -Wno-unused-but-set-variable -fno-builtin-sin -fno-strict-volatile-bitfields -Wno-psabi -mthumb-interwork -DANDROID -fmessage-length=0 -W -Wall -Wno-unused -Winit-self -Wpointer-arith -Werror=return-type -Werror=non-virtual-dtor -Werror=address -Werror=sequence-point -DNDEBUG -g -Wstrict-aliasing=2 -fgcse-after-reload -frerun-cse-after-loop -frename-registers -DNDEBUG -UDEBUG -mthumb -Os -fomit-frame-pointer -fno-strict-aliasing   -Wpointer-arith -Wwrite-strings -Wunused -Winline -Wnested-externs -Wmissing-declarations -Wmissing-prototypes -Wno-long-long -Wfloat-equal -Wno-multichar -Wsign-compare -Wno-format-nonliteral -Wendif-labels -Wstrict-prototypes -Wdeclaration-after-statement -Wno-system-headers -DHAVE_CONFIG_H -fPIC -MD -MF out/target/product/generic/obj/STATIC_LIBRARIES/libcurl_intermediates/lib/file.d -o out/target/product/generic/obj/STATIC_LIBRARIES/libcurl_intermediates/lib/file.o external/curl/packages/Android/../../lib/file.c</span><br></pre></td></tr></table></figure>
+
+<p>We should copy <code>-I -isystem</code> and flags like <code>-W -D -M</code> into the following step.</p>
+<h1 id="Build-sh"><a href="#Build-sh" class="headerlink" title="Build.sh"></a>Build.sh</h1><p>Now we have enough parameters needed to pass in, so we can write a script called <code>build.sh</code>. Follow Dan Fandrich’s instructions: putting the -I, -isystem and -D options into CPPFLAGS, putting the -W, -m, -f, -O and -nostdlib options into CFLAGS, and putting the -Wl, -L and -l options into LIBS, along with the path to the files libgcc.a, crtbegin_dynamic.o, and ccrtend_android.o. Remember that the paths must be absolute since you will not be running configure from the same directory as the Android make.  The normal cross-compiler options must also be set. Note that the -c, -o, -MD and similar flags must not be set.</p>
+<p>Here is my script, with parameters from the above steps.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">ANDROID_ROOT=<span class="string">&quot;<span class="variable">$HOME</span>/android&quot;</span> &amp;&amp; \</span><br><span class="line">PATH=<span class="variable">$ANDROID_ROOT</span>/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8/bin:<span class="variable">$PATH</span> \</span><br><span class="line">CPPFLAGS=<span class="string">&quot;-I <span class="variable">$ANDROID_ROOT</span>/external/curl/packages/Android/../../include/ -I <span class="variable">$ANDROID_ROOT</span>/external/curl/packages/Android/../.. -I <span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/obj/STATIC_LIBRARIES/libcurl_intermediates -I <span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/gen/STATIC_LIBRARIES/libcurl_intermediates -I <span class="variable">$ANDROID_ROOT</span>/libnativehelper/include/nativehelper  -isystem <span class="variable">$ANDROID_ROOT</span>/system/core/include -isystem <span class="variable">$ANDROID_ROOT</span>/hardware/libhardware/include -isystem <span class="variable">$ANDROID_ROOT</span>/hardware/libhardware_legacy/include -isystem <span class="variable">$ANDROID_ROOT</span>/hardware/ril/include -isystem <span class="variable">$ANDROID_ROOT</span>/libnativehelper/include -isystem <span class="variable">$ANDROID_ROOT</span>/frameworks/native/include -isystem <span class="variable">$ANDROID_ROOT</span>/frameworks/native/opengl/include -isystem <span class="variable">$ANDROID_ROOT</span>/frameworks/av/include -isystem <span class="variable">$ANDROID_ROOT</span>/frameworks/base/include -isystem <span class="variable">$ANDROID_ROOT</span>/external/skia/include -isystem <span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/obj/include -isystem <span class="variable">$ANDROID_ROOT</span>/bionic/libc/arch-arm/include -isystem <span class="variable">$ANDROID_ROOT</span>/bionic/libc/include -isystem <span class="variable">$ANDROID_ROOT</span>/bionic/libstdc++/include -isystem <span class="variable">$ANDROID_ROOT</span>/bionic/libc/kernel/uapi -isystem <span class="variable">$ANDROID_ROOT</span>/bionic/libc/kernel/uapi/asm-arm -isystem <span class="variable">$ANDROID_ROOT</span>/bionic/libm/include -isystem <span class="variable">$ANDROID_ROOT</span>/bionic/libm/include/arm -include  <span class="variable">$ANDROID_ROOT</span>/build/core/combo/include/arch/linux-arm/AndroidConfig.h -I  <span class="variable">$ANDROID_ROOT</span>/build/core/combo/include/arch/linux-arm/ -D_FORTIFY_SOURCE=0 -DANDROID -DNDEBUG -DNDEBUG -UDEBUG -DHAVE_CONFIG_H &quot;</span> \</span><br><span class="line">CFLAGS=<span class="string">&quot;-nostdlib -fno-exceptions -Wno-multichar -msoft-float -ffunction-sections -fdata-sections  -funwind-tables -fstack-protector -Wa,--noexecstack -Werror=format-security -fno-short-enums -no-canonical-prefixes -fno-canonical-system-headers -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -Wno-unused-but-set-variable -fno-builtin-sin -fno-strict-volatile-bitfields -Wno-psabi -mthumb-interwork -fmessage-length=0 -W -Wall -Wno-unused -Winit-self -Wpointer-arith -Werror=return-type -Werror=non-virtual-dtor -Werror=address -Werror=sequence-point -g -Wstrict-aliasing=2 -fgcse-after-reload -frerun-cse-after-loop -frename-registers -mthumb -Os -fomit-frame-pointer -fno-strict-aliasing   -Wpointer-arith -Wwrite-strings -Wunused -Winline -Wnested-externs -Wmissing-declarations -Wmissing-prototypes -Wno-long-long -Wfloat-equal -Wno-multichar -Wsign-compare -Wno-format-nonliteral -Wendif-labels -Wstrict-prototypes -Wdeclaration-after-statement -Wno-system-headers -fPIC &quot;</span> \</span><br><span class="line">LDFLAGS=<span class="string">&quot;-L<span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/obj/lib &quot;</span> \</span><br><span class="line">LIBS=<span class="string">&quot;<span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/obj/lib/crtbegin_dynamic.o <span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/obj/lib/crtend_android.o <span class="variable">$ANDROID_ROOT</span>/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8/lib/gcc/arm-linux-androideabi/4.8/armv7-a/libgcc.a -lc -lcutils -lm -lnetutils -lstdc++ &quot;</span> \</span><br><span class="line">./configure CC=arm-linux-androideabi-gcc --host=arm-linux-androideabi --host=arm-eabi --disable-shared --disable-tftp --disable-sspi --disable-ipv6 --disable-ldaps --disable-ldap --disable-telnet --disable-pop3 --disable-ftp --without-ssl --disable-imap --disable-smtp --disable-pop3 --disable-rtsp --disable-ares --without-ca-bundle --disable-warnings --disable-manual --without-nss --enable-shared --without-zlib --without-random</span><br></pre></td></tr></table></figure>
+
+<h1 id="Configure-and-Make"><a href="#Configure-and-Make" class="headerlink" title="Configure and Make"></a>Configure and Make</h1><p>Run the script to configure by <code>./build.sh</code> and <code>make libcurl</code> from android source root. You will find what you want in <code>out/target/product/generic/obj</code>:</p>
+<p><img src="/images/libcurl_android.jpg"></p>
+<h1 id="Downgrade-to-lower-Android-version"><a href="#Downgrade-to-lower-Android-version" class="headerlink" title="Downgrade to lower Android version"></a>Downgrade to lower Android version</h1><p>If you wish to compile with lower version, the first thing you need is <code>repo init -b xxx</code> and <code>repo sync</code> to get a different android source.</p>
+<p><strong>Attention: you should use the corresponding APP_PLATFORM in NDK when building apps, and don’t forget android:minSdkVersion!</strong></p>
+<h2 id="Android-4-3"><a href="#Android-4-3" class="headerlink" title="Android 4.3"></a>Android 4.3</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">ANDROID_ROOT=<span class="string">&quot;<span class="variable">$HOME</span>/android&quot;</span> &amp;&amp; \</span><br><span class="line">PATH=<span class="variable">$ANDROID_ROOT</span>/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.7/bin:<span class="variable">$PATH</span> \</span><br><span class="line">CPPFLAGS=<span class="string">&quot;-I <span class="variable">$ANDROID_ROOT</span>/external/curl-7.37.0/packages/Android/../../include/ -I <span class="variable">$ANDROID_ROOT</span>/external/curl-7.37.0/packages/Android/../../lib/ -I <span class="variable">$ANDROID_ROOT</span>/external/curl-7.37.0/packages/Android/../.. -I <span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/obj/STATIC_LIBRARIES/libcurl_intermediates -I <span class="variable">$ANDROID_ROOT</span>/libnativehelper/include/nativehelper  -isystem <span class="variable">$ANDROID_ROOT</span>/system/core/include -isystem <span class="variable">$ANDROID_ROOT</span>/hardware/libhardware/include -isystem <span class="variable">$ANDROID_ROOT</span>/hardware/libhardware_legacy/include -isystem <span class="variable">$ANDROID_ROOT</span>/hardware/ril/include -isystem <span class="variable">$ANDROID_ROOT</span>/libnativehelper/include -isystem <span class="variable">$ANDROID_ROOT</span>/frameworks/native/include -isystem <span class="variable">$ANDROID_ROOT</span>/frameworks/native/opengl/include -isystem <span class="variable">$ANDROID_ROOT</span>/frameworks/av/include -isystem <span class="variable">$ANDROID_ROOT</span>/frameworks/base/include -isystem <span class="variable">$ANDROID_ROOT</span>/external/skia/include -isystem <span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/obj/include -isystem <span class="variable">$ANDROID_ROOT</span>/bionic/libc/arch-arm/include -isystem <span class="variable">$ANDROID_ROOT</span>/bionic/libc/include -isystem <span class="variable">$ANDROID_ROOT</span>/bionic/libstdc++/include -isystem <span class="variable">$ANDROID_ROOT</span>/bionic/libc/kernel/common -isystem <span class="variable">$ANDROID_ROOT</span>/bionic/libc/kernel/arch-arm -isystem <span class="variable">$ANDROID_ROOT</span>/bionic/libm/include -isystem <span class="variable">$ANDROID_ROOT</span>/bionic/libm/include/arm -isystem <span class="variable">$ANDROID_ROOT</span>/bionic/libthread_db/include -I <span class="variable">$ANDROID_ROOT</span>/build/core/combo/include/arch/linux-arm/ -include <span class="variable">$ANDROID_ROOT</span>/build/core/combo/include/arch/linux-arm/AndroidConfig.h -D_FORTIFY_SOURCE=0 -DANDROID -DNDEBUG -DNDEBUG -UDEBUG -DHAVE_CONFIG_H&quot;</span> \</span><br><span class="line">CFLAGS=<span class="string">&quot;-nostdlib -fno-exceptions -Wno-multichar -msoft-float -fpic -fPIE -ffunction-sections -fdata-sections -funwind-tables -fstack-protector -Wa,--noexecstack -Werror=format-security -fno-short-enums -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -Wno-unused-but-set-variable -fno-builtin-sin -fno-strict-volatile-bitfields -Wno-psabi -mthumb-interwork -fmessage-length=0 -W -Wall -Wno-unused -Winit-self -Wpointer-arith -Werror=return-type -Werror=non-virtual-dtor -Werror=address -Werror=sequence-point -g -Wstrict-aliasing=2 -fgcse-after-reload -frerun-cse-after-loop -frename-registers -mthumb -Os -fomit-frame-pointer -fno-strict-aliasing    -Wpointer-arith -Wwrite-strings -Wunused -Winline -Wnested-externs -Wmissing-declarations -Wmissing-prototypes -Wno-long-long -Wfloat-equal -Wno-multichar -Wsign-compare -Wno-format-nonliteral -Wendif-labels -Wstrict-prototypes -Wdeclaration-after-statement -Wno-system-headers   -MD -MF&quot;</span> \</span><br><span class="line">LDFLAGS=<span class="string">&quot;-L<span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/obj/lib &quot;</span> \</span><br><span class="line">LIBS=<span class="string">&quot;<span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/obj/lib/crtbegin_dynamic.o <span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/obj/lib/crtend_android.o <span class="variable">$ANDROID_ROOT</span>/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.7/lib/gcc/arm-linux-androideabi/4.7/armv7-a/libgcc.a -lc -lcutils -lnetutils -lc -lstdc++ -lm &quot;</span> \</span><br><span class="line">./configure CC=arm-linux-androideabi-gcc --host=arm-linux-androideabi --host=arm-eabi --disable-shared --disable-tftp --disable-sspi --disable-ipv6 --disable-ldaps --disable-ldap --disable-telnet --disable-pop3 --disable-ftp --without-ssl --disable-imap --disable-smtp --disable-pop3 --disable-rtsp --disable-ares --without-ca-bundle --disable-warnings --disable-manual --without-nss --enable-shared --without-zlib --without-random</span><br></pre></td></tr></table></figure>
+
+<h2 id="Android-2-3-3"><a href="#Android-2-3-3" class="headerlink" title="Android 2.3.3"></a>Android 2.3.3</h2><p>You may need <a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/13365348/is-it-possible-to-build-aosp-project-gingerbread-in-kubuntu12-04-xubuntu">downgrade your gcc</a> and do as the above. </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">ANDROID_ROOT=<span class="string">&quot;<span class="variable">$HOME</span>/android&quot;</span> &amp;&amp; \</span><br><span class="line">PATH=<span class="variable">$ANDROID_ROOT</span>/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin:<span class="variable">$PATH</span> \</span><br><span class="line">CPPFLAGS=<span class="string">&quot;-I <span class="variable">$ANDROID_ROOT</span>/external/curl/packages/Android/../../include   -I <span class="variable">$ANDROID_ROOT</span>/external/curl/packages/Android/../../lib   -I <span class="variable">$ANDROID_ROOT</span>/external/curl/packages/Android/../..   -I <span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/obj/EXECUTABLES/curl_intermediates   -I <span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/obj/STATIC_LIBRARIES/libwebcore_intermediates   -I <span class="variable">$ANDROID_ROOT</span>/dalvik/libnativehelper/include/nativehelper   -I <span class="variable">$ANDROID_ROOT</span>/system/core/include   -I <span class="variable">$ANDROID_ROOT</span>/hardware/libhardware/include   -I <span class="variable">$ANDROID_ROOT</span>/hardware/libhardware_legacy/include   -I <span class="variable">$ANDROID_ROOT</span>/hardware/ril/include   -I <span class="variable">$ANDROID_ROOT</span>/dalvik/libnativehelper/include   -I <span class="variable">$ANDROID_ROOT</span>/frameworks/base/include   -I <span class="variable">$ANDROID_ROOT</span>/frameworks/base/opengl/include   -I <span class="variable">$ANDROID_ROOT</span>/frameworks/base/native/include   -I <span class="variable">$ANDROID_ROOT</span>/external/skia/include   -I <span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/obj/include   -I <span class="variable">$ANDROID_ROOT</span>/bionic/libc/arch-arm/include   -I <span class="variable">$ANDROID_ROOT</span>/bionic/libc/include   -I <span class="variable">$ANDROID_ROOT</span>/bionic/libstdc++/include   -I <span class="variable">$ANDROID_ROOT</span>/bionic/libc/kernel/common   -I <span class="variable">$ANDROID_ROOT</span>/bionic/libc/kernel/arch-arm   -I <span class="variable">$ANDROID_ROOT</span>/bionic/libm/include   -I <span class="variable">$ANDROID_ROOT</span>/bionic/libm/include/arch/arm   -I <span class="variable">$ANDROID_ROOT</span>/bionic/libthread_db/include -D__ARM_ARCH_5__ -D__ARM_ARCH_5T__ -D__ARM_ARCH_5E__ -D__ARM_ARCH_5TE__ -include <span class="variable">$ANDROID_ROOT</span>/system/core/include/arch/linux-arm/AndroidConfig.h -I <span class="variable">$ANDROID_ROOT</span>/system/core/include/arch/linux-arm/ -DANDROID -DNDEBUG -UDEBUG -DHAVE_CONFIG_H &quot;</span> \</span><br><span class="line">CFLAGS=<span class="string">&quot;-nostdlib -fno-exceptions -Wno-multichar -msoft-float -fpic -ffunction-sections -funwind-tables -fstack-protector -Wa,--noexecstack -Werror=format-security -fno-short-enums -march=armv5te -mtune=xscale -Wno-psabi -mthumb-interwork -fmessage-length=0 -W -Wall -Wno-unused -Winit-self -Wpointer-arith -Werror=return-type -Werror=non-virtual-dtor -Werror=address -Werror=sequence-point -g -Wstrict-aliasing=2 -finline-functions -fno-inline-functions-called-once -fgcse-after-reload -frerun-cse-after-loop -frename-registers -mthumb -Os -fomit-frame-pointer -fno-strict-aliasing -finline-limit=64   -Wpointer-arith -Wwrite-strings -Wunused -Winline -Wnested-externs -Wmissing-declarations -Wmissing-prototypes -Wno-long-long -Wfloat-equal -Wno-multichar -Wsign-compare -Wno-format-nonliteral -Wendif-labels -Wstrict-prototypes -Wdeclaration-after-statement -Wno-system-headers -MD&quot;</span> \</span><br><span class="line">LDFLAGS=<span class="string">&quot;-L<span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/obj/lib &quot;</span> \</span><br><span class="line">LIBS=<span class="string">&quot;<span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/obj/lib/crtbegin_dynamic.o <span class="variable">$ANDROID_ROOT</span>/out/target/product/generic/obj/lib/crtend_android.o <span class="variable">$ANDROID_ROOT</span>/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/lib/gcc/arm-eabi/4.4.3/libgcc.a -lc -llog -lcutils -lstdc++ -lm&quot;</span> \</span><br><span class="line">./configure CC=arm-eabi-g++ --host=arm-eabi --disable-shared --disable-tftp --disable-sspi --disable-ipv6 --disable-ldaps --disable-ldap --disable-telnet --disable-pop3 --disable-ftp --without-ssl --disable-imap --disable-smtp --disable-pop3 --disable-rtsp --disable-ares --without-ca-bundle --disable-warnings --disable-manual --without-nss --enable-shared --without-zlib --without-random</span><br></pre></td></tr></table></figure>
+
+<h1 id="bionic-ERROR"><a href="#bionic-ERROR" class="headerlink" title="bionic ERROR"></a>bionic ERROR</h1><p>This is not specified to libcurl itself. This happens for builds with higher version Android like the following errors:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bionic/libc/include/string.h:109: error: undefined reference to <span class="string">&#x27;__memcpy_chk&#x27;</span></span><br><span class="line">bionic/libc/include/stdio.h:496: error: undefined reference to <span class="string">&#x27;__sprintf_chk&#x27;</span></span><br><span class="line">bionic/libc/include/string.h:109: error: undefined reference to <span class="string">&#x27;__memcpy_chk&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>You should disable <strong>_FORTIFY_SOURCE</strong> in the build.sh! These checks are implemented in Android source rather than NDK so you will get these errors.</p>
+<p><strong>Solution</strong> First of all, check your build.sh(or other scrips) and ensure <code>D_FORTIFY_SOURCE=0</code>. Second, add <code>-D_FORTIFY_SOURCE=0</code> into <code>LOCAL_CFLAGS</code> in Android.mk.</p>
+<p>You could check your libraries with <code>nm</code>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">anthony@anthony-VirtualBox:~$ nm Downloads/libcurl_4.3.a |grep __memcpy_chk</span><br><span class="line">         U __memcpy_chk</span><br><span class="line">         U __memcpy_chk</span><br><span class="line">anthony@anthony-VirtualBox:~$ nm android/out/target/product/generic/obj/STATIC_LIBRARIES/libcurl_intermediates/libcurl.a |grep __memcpy_chk</span><br><span class="line">anthony@anthony-VirtualBox:~$ </span><br></pre></td></tr></table></figure>
+
+<p>The new library with the macro does not have these <em>chk</em> any more!</p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0;
+            display: none
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://qiankanglai.me/2014/08/31/android-libcurl/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://qiankanglai.me/2014/08/31/android-libcurl/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $.ajax({
+        url: 'https://disqus.com/next/config.json',
+        timeout: 4000,
+        type: 'GET',
+        success: (function() {
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+            $('.disqus_click_btn').css('display','none');
+        })(),
+        error: function() {
+          $('.disqus_click_btn').css('display','block');
+        }
+    });
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.disqus_click_btn').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2014/09/15/node-debug/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2014/08/29/android-GFW/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Kanglai Qian's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        qiankanglai@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签云">
+                
+                    <i class="material-icons sidebar-material-icons">label</i>
+                
+                标签云
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/timeline" title="时间轴">
+                
+                    <i class="material-icons sidebar-material-icons">timeline</i>
+                
+                时间轴
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about" title="关于我">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于我
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友情链接">
+                
+                    <i class="material-icons sidebar-material-icons">links</i>
+                
+                友情链接
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/qiankanglai" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+        <a href="https://www.zhihu.com/people/qian-kang-lai" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-zhihu">
+                <span class="visuallyhidden">Zhihu</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+    
+    <!-- V2EX -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2012&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Loading & Learning
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Hosted by <a href="https://pages.coding.me" target="_blank" class="footer-develop-a">Coding Pages</a>&<a href="https://pages.github.com/" target="_blank" class="footer-develop-a">Github Pages</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?wgjW/HuQG9JDgvPDPoRAng==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('
+<link rel="stylesheet" href="/css/uc.css">
+');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","https://cdn.bootcss.com/prettify/r298/prettify.min.js", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.2 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

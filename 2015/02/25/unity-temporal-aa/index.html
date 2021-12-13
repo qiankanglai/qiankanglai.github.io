@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.2 -->
+    <script>
+        window.materialVersion = "1.5.2"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            Unity中Temporal AA | 
+        
+        Loading &amp; Learning
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" itemprop="description" content="这个东西是trace在群里提到的，然后我看了一些相关资源Filtering Approaches forReal-Time Anti-Aliasing(很多sig course好棒好棒)、High Quality Temporal Supersampling、CryENGINE3 Graphics Gems。在这么多资料(其实是现成代码…)的帮助下，我主要参考CryEngine里的SMAA 1TX山寨了下，UE4的那个有点过于麻烦了。">
+    <meta name="keywords" content=",Unity">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/atelier-estuary-light.min.css?ZQObwZXHH6Mt8MNbyQJYfQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #EEEEEE !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #EEEEEE !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #EEEEEE !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","https://cdn.bootcss.com/jquery/2.2.0/jquery.min.js", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Loading &amp; Learning">
+    <meta name="msapplication-starturl" content="http://qiankanglai.me/2015/02/25/unity-temporal-aa/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Loading &amp; Learning">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://qiankanglai.me/2015/02/25/unity-temporal-aa/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Unity中Temporal AA | Loading &amp; Learning">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="这个东西是trace在群里提到的，然后我看了一些相关资源Filtering Approaches forReal-Time Anti-Aliasing(很多sig course好棒好棒)、High Quality Temporal Supersampling、CryENGINE3 Graphics Gems。在这么多资料(其实是现成代码…)的帮助下，我主要参考CryEngine里的SMAA 1TX山寨了下，UE4的那个有点过于麻烦了。">
+    <meta property="og:article:tag" content="Unity"> 
+
+    
+        <meta property="article:published_time" content="Wed Feb 25 2015 00:00:00 GMT+0800">
+        <meta property="article:modified_time" content="Fri Mar 01 2019 23:33:53 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://qiankanglai.me/2015/02/25/unity-temporal-aa/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://qiankanglai.me/2015/02/25/unity-temporal-aa/index.html",
+    "headline": "Unity中Temporal AA",
+    "datePublished": "Wed Feb 25 2015 00:00:00 GMT+0800",
+    "dateModified": "Fri Mar 01 2019 23:33:53 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Kanglai Qian",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "A game developer interested in rendering, with focus on Unity now."
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Loading &amp; Learning",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",Unity",
+    "description": "这个东西是trace在群里提到的，然后我看了一些相关资源Filtering Approaches forReal-Time Anti-Aliasing(很多sig course好棒好棒)、High Quality Temporal Supersampling、CryENGINE3 Graphics Gems。在这么多资料(其实是现成代码…)的帮助下，我主要参考CryEngine里的SMAA 1TX山寨了下，UE4的那个有点过于麻烦了。",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-30309954-1', 'auto');ga('send', 'pageview');
+</script>
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%A4%87%E5%BF%98"><span class="post-toc-text">备忘</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E6%95%88%E6%9E%9C"><span class="post-toc-text">效果</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E6%80%A7%E8%83%BD"><span class="post-toc-text">性能</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 15 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.jpg');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                Unity中Temporal AA
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Kanglai Qian</strong>
+        <span>2月 25, 2015</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Unity中Temporal AA&url=http://qiankanglai.me/2015/02/25/unity-temporal-aa/index.html&pic=http://qiankanglai.me/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Unity中Temporal AA&url=http://qiankanglai.me/2015/02/25/unity-temporal-aa/index.html&via=Kanglai Qian" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://qiankanglai.me/2015/02/25/unity-temporal-aa/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://qiankanglai.me/2015/02/25/unity-temporal-aa/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>这个东西是trace在群里提到的，然后我看了一些相关资源<a target="_blank" rel="noopener" href="http://iryoku.com/aacourse/">Filtering Approaches for<br>Real-Time Anti-Aliasing</a>(很多sig course好棒好棒)、<a target="_blank" rel="noopener" href="https://de45xmedrsdbp.cloudfront.net/Resources/files/TemporalAA_small-59732822.pdf">High Quality Temporal Supersampling</a>、<a target="_blank" rel="noopener" href="http://www.crytek.com/download/Sousa_Graphics_Gems_CryENGINE3.pdf">CryENGINE3 Graphics Gems</a>。在这么多资料(其实是现成代码…)的帮助下，我主要参考CryEngine里的SMAA 1TX山寨了下，UE4的那个有点过于麻烦了。</p>
+<a id="more"></a>
+
+<h1 id="备忘"><a href="#备忘" class="headerlink" title="备忘"></a>备忘</h1><ul>
+<li>Unity中矩阵是左乘的，和UE4里相反，所以在对projectionMatrix做jitter的时候要反下</li>
+<li><code>UNITY_MATRIX_MVP</code>在之前的post里已提过，这个是卡我最久的地方(╯‵□′)╯︵┻━┻</li>
+<li>Depth Buffer也在同一个post里提了，这是卡我第二久的地方……</li>
+<li><code>OnRenderImage</code>里如果不手动设置<code>RenderTexture.active</code>的话，最好要保证最后对dest调用下<code>Graphics.Blit</code>，不然之后画的就乱七八糟了</li>
+</ul>
+<p>其实都是一些API上的东西，搞的我连蒙带猜的…</p>
+<h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>自我感觉效果还行吧…一开始边缘一直有闪动，慢慢改对代码之后降低了不少，最后就调参数了只能…</p>
+<p>Temporal AA: </p>
+<p><img src="/images/unity_temporal_aa_on.jpg"></p>
+<p>W/O AA: </p>
+<p><img src="/images/unity_temporal_aa_off.jpg"></p>
+<p>Nexus5真机</p>
+<table>
+<thead>
+<tr>
+<th>Temporal AA</th>
+<th>W/O AA</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/images/unity_android_temporal_aa_on.jpg"></td>
+<td><img src="/images/unity_android_temporal_aa_off.jpg"></td>
+</tr>
+</tbody></table>
+<p>放大出来还是能看出来的</p>
+<p><img src="/images/unity_android_temporal_aa_compare.jpg"></p>
+<h1 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h1><p>在Nexus 5上跑了下Shadow Gun Sample Level这个场景，每帧消耗时间大概增加了7ms；从profiler上来看主要是因为用到了Depth Texture，而且看起来不是直接用的ZBuffer导致的(见<a href="/2015/02/21/unity-misc/" title="Unity中矩阵变换、深度纹理及杂项">Unity中矩阵变换、深度纹理及杂项</a>)，话说还是Defer大法好-_,-</p>
+<p><img src="/images/unity_profiler_temporal_aa.jpg"></p>
+<p>NVidia在<a target="_blank" rel="noopener" href="http://www.geforce.com/whats-new/guides/far-cry-4-graphics-performance-and-tweaking-guide#far-cry-4-nvidia-txaa-anti-aliasing">Far Cry 4 Graphics, Performance &amp; Tweaking Guide</a>中有不同AA效果对比；TweakGuides的<a target="_blank" rel="noopener" href="http://www.tweakguides.com/Crysis3_6.html">Crysis 3 Tweak Guide</a>中有一节专门讲Antialiasing，里面有性能图标。后来问了下老大，她意思就是AA还是比较费的，等有性能余地的话才加；而且比较尴尬的是手机屏幕上其实看不太出区别，看来还是要配合动态分辨率+upscale~</p>
+<figure class="highlight glsl"><figcaption><span>TemporalAA1Tx.shader</span><a href="/downloads/code/TemporalAA1Tx.shader">view raw</a></figcaption><table><tr><td class="code"><pre><span class="line">Shader &quot;Hidden/TemporalAA1Tx&quot; {</span><br><span class="line">    Properties {</span><br><span class="line">        _MainTex (&quot;Base (RGB)&quot;, 2D) = &quot;white&quot; {}</span><br><span class="line">    }</span><br><span class="line">    SubShader {</span><br><span class="line">        ZTest Off Cull Off ZWrite Off Blend Off</span><br><span class="line">        Fog { Mode off }</span><br><span class="line">        </span><br><span class="line">        Pass {</span><br><span class="line">            CGPROGRAM</span><br><span class="line">            <span class="meta">#include &quot;UnityCG.cginc&quot;</span></span><br><span class="line">            <span class="meta">#pragma vertex vert</span></span><br><span class="line">            <span class="meta">#pragma fragment frag  </span></span><br><span class="line">            <span class="meta">#pragma fragmentoption ARB_precision_hint_fastest </span></span><br><span class="line">            </span><br><span class="line">            struct v2f {</span><br><span class="line">                float4 pos : SV_POSITION;</span><br><span class="line">                float2 uv  : TEXCOORD0;</span><br><span class="line">                float2 projPos : TEXCOORD1;</span><br><span class="line">            };</span><br><span class="line">            </span><br><span class="line">            v2f vert( appdata_img v ) </span><br><span class="line">            {</span><br><span class="line">                v2f o;</span><br><span class="line">                o.pos = mul(UNITY_MATRIX_MVP, v.vertex);</span><br><span class="line">                o.projPos = o.pos.xy / o.pos.w;</span><br><span class="line">                o.uv =  v.texcoord.xy;    </span><br><span class="line">                <span class="keyword">return</span> o;</span><br><span class="line">            } </span><br><span class="line">            </span><br><span class="line">            <span class="type">sampler2D</span> _MainTex, _MainTex1;</span><br><span class="line">            <span class="type">sampler2D</span> _CameraDepthTexture;</span><br><span class="line">            float4x4 combinedVP;</span><br><span class="line">            float2 texel;</span><br><span class="line">            float4 vParams;</span><br><span class="line"></span><br><span class="line">            float4 frag(v2f i) : SV_Target </span><br><span class="line">            {</span><br><span class="line">                float3 PosN = float3(i.projPos.xy, <span class="number">0.0</span>f);</span><br><span class="line">                PosN.z = tex2D(_CameraDepthTexture, i.uv.xy).r;</span><br><span class="line">                float4 temp = mul(combinedVP, float4(PosN, <span class="number">1</span>));</span><br><span class="line">                </span><br><span class="line">                float2 BackN = temp.xy / temp.w;</span><br><span class="line">                </span><br><span class="line">                float2 v = BackN.xy - PosN.xy;</span><br><span class="line">                <span class="comment">// Kanglai: Proj Space -&gt; Screen Space</span></span><br><span class="line">                v *= <span class="number">0.5</span>f;</span><br><span class="line">                v.y *= _ProjectionParams.x;</span><br><span class="line">                </span><br><span class="line">                <span class="type">float</span> fMaxFramesL = vParams.z;        <span class="comment">// Frames to keep in history (low freq). Higher = less aliasing, but blurier result. Lower = sharper result, but more aliasing.</span></span><br><span class="line">                <span class="type">float</span> fMaxFramesH = vParams.w;        <span class="comment">// Frames to keep in history (high freq). Higher = less aliasing, but blurier result. Lower = sharper result, but more aliasing.</span></span><br><span class="line">                </span><br><span class="line">                 <span class="comment">// Curr frame and neighboor texels</span></span><br><span class="line">                half3 cM  = tex2D(_MainTex, i.uv.xy);</span><br><span class="line">                half3 cTL = tex2D(_MainTex, i.uv.xy + texel * float2(<span class="number">-0.5</span>f, <span class="number">-0.5</span>f));</span><br><span class="line">                half3 cTR = tex2D(_MainTex, i.uv.xy + texel * float2( <span class="number">0.5</span>f, <span class="number">-0.5</span>f));</span><br><span class="line">                half3 cBL = tex2D(_MainTex, i.uv.xy + texel * float2(<span class="number">-0.5</span>f,  <span class="number">0.5</span>f));</span><br><span class="line">                half3 cBR = tex2D(_MainTex, i.uv.xy + texel * float2( <span class="number">0.5</span>f,  <span class="number">0.5</span>f));</span><br><span class="line">                </span><br><span class="line">                half3 cBlur = (cTL + cTR + cBL + cBR) * <span class="number">0.25</span>f;</span><br><span class="line">                cM.rgb = lerp(cBlur, cM, vParams.x);</span><br><span class="line">                    </span><br><span class="line">                half3 cMin = <span class="built_in">min</span>(<span class="built_in">min</span>(<span class="built_in">min</span>(<span class="built_in">min</span>(cTL, cTR), cBL), cBR), cM);</span><br><span class="line">                half3 cMax = <span class="built_in">max</span>(<span class="built_in">max</span>(<span class="built_in">max</span>(<span class="built_in">max</span>(cTL, cTR), cBL), cBR), cM);    </span><br><span class="line">                </span><br><span class="line">                float3 cAcc = tex2D(_MainTex1, i.uv.xy + v);    </span><br><span class="line">                cAcc.rgb = <span class="built_in">clamp</span>(cAcc, cMin, cMax); <span class="comment">// Limit acc buffer color range to current frame</span></span><br><span class="line">                </span><br><span class="line">                half3 cHiFreq = <span class="built_in">sqrt</span>(<span class="built_in">abs</span>( cBlur.rgb - cM.rgb));</span><br><span class="line">                </span><br><span class="line">                float4 c = <span class="number">0</span>;</span><br><span class="line">                c.rgb = lerp(cAcc, cM, saturate(lerp(fMaxFramesL, fMaxFramesH, cHiFreq)) );</span><br><span class="line">                <span class="keyword">return</span> c;</span><br><span class="line">            }</span><br><span class="line">            </span><br><span class="line">            ENDCG</span><br><span class="line">        }</span><br><span class="line">    } </span><br><span class="line">    FallBack Off</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><figcaption><span>TemporalAA.cs</span><a href="/downloads/code/TemporalAA.cs">view raw</a></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"></span><br><span class="line">[<span class="meta">RequireComponent (typeof (Camera))</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TemporalAA</span> : <span class="title">MonoBehaviour</span> {</span><br><span class="line">    <span class="keyword">public</span> Shader shader = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">private</span> Material mat = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">bool</span> initialized = <span class="literal">false</span>, usingRT1 = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">private</span> RenderTexture rt1 = <span class="literal">null</span>, rt2 = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Matrix4x4 prevViewProj;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">int</span> JitterIdx = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Matrix4x4 <span class="title">getViewProjMatrix</span>(<span class="params"></span>)</span> {</span><br><span class="line">        <span class="keyword">return</span> GL.GetGPUProjectionMatrix(camera.projectionMatrix, <span class="literal">false</span>) * camera.worldToCameraMatrix;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>)</span> {</span><br><span class="line">        mat = <span class="keyword">new</span> Material(shader);</span><br><span class="line">        mat.hideFlags = HideFlags.HideAndDontSave;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnEnable</span>(<span class="params"></span>)</span> {</span><br><span class="line">        prevViewProj = getViewProjMatrix();</span><br><span class="line">        </span><br><span class="line">        camera.depthTextureMode |= DepthTextureMode.Depth;</span><br><span class="line"></span><br><span class="line">        initialized = <span class="literal">false</span>;</span><br><span class="line">        usingRT1 = <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnDisable</span>(<span class="params"></span>)</span> {</span><br><span class="line">        RenderTexture.Destroy(rt1);</span><br><span class="line">        rt1 = <span class="literal">null</span>;</span><br><span class="line">        RenderTexture.Destroy(rt2);</span><br><span class="line">        rt2 = <span class="literal">null</span>;</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">float</span> []JitterOffsetX = { <span class="number">-8.0f</span>/<span class="number">16.0f</span>, <span class="number">0.0f</span>/<span class="number">16.0f</span> };</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">float</span> []JitterOffsetY = { <span class="number">0.0f</span>/<span class="number">16.0f</span>, <span class="number">8.0f</span>/<span class="number">16.0f</span> };</span><br><span class="line">    <span class="function"><span class="built_in">float</span> <span class="title">Halton</span>(<span class="params"> <span class="built_in">int</span> Index, <span class="built_in">int</span> Base </span>)</span></span><br><span class="line"><span class="function"></span>    {</span><br><span class="line">        <span class="built_in">float</span> Result = <span class="number">0.0f</span>;</span><br><span class="line">        <span class="built_in">float</span> InvBase = <span class="number">1.0f</span> / Base;</span><br><span class="line">        <span class="built_in">float</span> Fraction = InvBase;</span><br><span class="line">        <span class="keyword">while</span>( Index &gt; <span class="number">0</span> )</span><br><span class="line">        {</span><br><span class="line">            Result += ( Index % Base ) * Fraction;</span><br><span class="line">            Index /= Base;</span><br><span class="line">            Fraction *= InvBase;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> Result;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>)</span> {</span><br><span class="line">        JitterIdx = (JitterIdx + <span class="number">1</span>) % <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">        Matrix4x4 matrix = camera.projectionMatrix;</span><br><span class="line">        matrix[<span class="number">0</span>,<span class="number">2</span>] += (Halton(JitterIdx+<span class="number">1</span>, <span class="number">2</span>)<span class="number">-0.5f</span>)/Screen.width;<span class="comment">//JitterOffsetX[JitterIdx]/Screen.width;</span></span><br><span class="line">        matrix[<span class="number">1</span>,<span class="number">2</span>] += (Halton(JitterIdx+<span class="number">1</span>, <span class="number">3</span>)<span class="number">-0.5f</span>)/Screen.height;<span class="comment">//JitterOffsetY[JitterIdx]/Screen.height;</span></span><br><span class="line">        camera.projectionMatrix = matrix;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Vector4 vParams = <span class="keyword">new</span> Vector4(<span class="number">0.8f</span>, <span class="number">0</span>, <span class="number">24.0f</span>, <span class="number">32.0f</span>);</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnRenderImage</span>(<span class="params">RenderTexture src, RenderTexture dest</span>)</span> {</span><br><span class="line">        <span class="keyword">if</span>(rt1 == <span class="literal">null</span>) {</span><br><span class="line">            rt1 = <span class="keyword">new</span> RenderTexture(Screen.width, Screen.height, <span class="number">0</span>, RenderTextureFormat.ARGBHalf);</span><br><span class="line">            rt1.Create();</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span>(rt2 == <span class="literal">null</span>) {</span><br><span class="line">            rt2 = <span class="keyword">new</span> RenderTexture(Screen.width, Screen.height, <span class="number">0</span>, RenderTextureFormat.ARGBHalf);</span><br><span class="line">            rt2.Create();</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">        camera.ResetProjectionMatrix();</span><br><span class="line">        Matrix4x4 ViewProj = getViewProjMatrix();</span><br><span class="line">        mat.SetMatrix(<span class="string">&quot;combinedVP&quot;</span>, prevViewProj * Matrix4x4.Inverse(ViewProj));</span><br><span class="line">        prevViewProj = ViewProj;</span><br><span class="line"></span><br><span class="line">        RenderTexture prev = <span class="literal">null</span>, current = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span>(usingRT1) {</span><br><span class="line">            current = rt1;</span><br><span class="line">            prev = rt2;</span><br><span class="line">            usingRT1 = <span class="literal">false</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">else</span> {</span><br><span class="line">            current = rt2;</span><br><span class="line">            prev = rt1;</span><br><span class="line">            usingRT1 = <span class="literal">true</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(!initialized){</span><br><span class="line">            prev = src;</span><br><span class="line">            initialized = <span class="literal">true</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        mat.SetVector(<span class="string">&quot;texel&quot;</span>, <span class="keyword">new</span> Vector4(<span class="number">1.0f</span>/src.width, <span class="number">1.0f</span>/src.height, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">        mat.SetVector(<span class="string">&quot;vParams&quot;</span>, <span class="keyword">new</span> Vector4(vParams.x , <span class="number">0</span>, <span class="number">1.0f</span> / vParams.z, <span class="number">1.0f</span> / vParams.w));</span><br><span class="line">        mat.SetTexture(<span class="string">&quot;_MainTex1&quot;</span>, prev);</span><br><span class="line">        current.DiscardContents();</span><br><span class="line">        Graphics.Blit(src, current, mat);</span><br><span class="line"></span><br><span class="line">        Graphics.Blit(current, dest);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0;
+            display: none
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://qiankanglai.me/2015/02/25/unity-temporal-aa/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://qiankanglai.me/2015/02/25/unity-temporal-aa/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $.ajax({
+        url: 'https://disqus.com/next/config.json',
+        timeout: 4000,
+        type: 'GET',
+        success: (function() {
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+            $('.disqus_click_btn').css('display','none');
+        })(),
+        error: function() {
+          $('.disqus_click_btn').css('display','block');
+        }
+    });
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.disqus_click_btn').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2015/03/07/unity-posteffect-stencil/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2015/02/21/unity-misc/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Kanglai Qian's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        qiankanglai@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签云">
+                
+                    <i class="material-icons sidebar-material-icons">label</i>
+                
+                标签云
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/timeline" title="时间轴">
+                
+                    <i class="material-icons sidebar-material-icons">timeline</i>
+                
+                时间轴
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about" title="关于我">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于我
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友情链接">
+                
+                    <i class="material-icons sidebar-material-icons">links</i>
+                
+                友情链接
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/qiankanglai" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+        <a href="https://www.zhihu.com/people/qian-kang-lai" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-zhihu">
+                <span class="visuallyhidden">Zhihu</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+    
+    <!-- V2EX -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2012&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Loading & Learning
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Hosted by <a href="https://pages.coding.me" target="_blank" class="footer-develop-a">Coding Pages</a>&<a href="https://pages.github.com/" target="_blank" class="footer-develop-a">Github Pages</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?wgjW/HuQG9JDgvPDPoRAng==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('
+<link rel="stylesheet" href="/css/uc.css">
+');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","https://cdn.bootcss.com/prettify/r298/prettify.min.js", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.2 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
