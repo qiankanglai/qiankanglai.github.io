@@ -43,6 +43,8 @@
     
     <title>
         
+            喷涂中遇到的光栅化问题 | 
+        
         Loading &amp; Learning
     </title>
 
@@ -51,8 +53,13 @@
     <link rel="icon" href="/img/favicon.png">
 
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="Kanglai&#39;s personal blog, mainly about coding :D">
-    <meta name="keywords" content="">
+    <meta name="description" itemprop="description" content="最近看的一个问题，最后想通很简单但一开始自己狠坑了自己一把，简单记录一下。
+为了实现运行时喷涂，直接动态RT解决问题:
+
+喷涂时利用2uv直接绘制到一张RenderTexture
+模型正常渲染的时候采样这张RenderTexture。
+">
+    <meta name="keywords" content=",Unity">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -79,6 +86,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/atelier-estuary-light.min.css?ZQObwZXHH6Mt8MNbyQJYfQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -215,7 +225,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Loading &amp; Learning">
-    <meta name="msapplication-starturl" content="http://qiankanglai.me/page/13/">
+    <meta name="msapplication-starturl" content="http://qiankanglai.me/2022/04/22/rasterization-issue-in-painting/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Loading &amp; Learning">
@@ -230,13 +240,21 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://qiankanglai.me/page/13/">
+    <meta property="og:url" content="http://qiankanglai.me/2022/04/22/rasterization-issue-in-painting/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Loading &amp; Learning">
+    <meta property="og:title" content="喷涂中遇到的光栅化问题 | Loading &amp; Learning">
     <meta property="og:image" content="/img/favicon.png">
-    <meta property="og:description" content="Kanglai&#39;s personal blog, mainly about coding :D">
-    
+    <meta property="og:description" content="最近看的一个问题，最后想通很简单但一开始自己狠坑了自己一把，简单记录一下。
+为了实现运行时喷涂，直接动态RT解决问题:
 
+喷涂时利用2uv直接绘制到一张RenderTexture
+模型正常渲染的时候采样这张RenderTexture。
+">
+    <meta property="og:article:tag" content="Unity"> 
+
+    
+        <meta property="article:published_time" content="Fri Apr 22 2022 00:00:00 GMT+0800">
+        <meta property="article:modified_time" content="Fri Apr 22 2022 09:58:35 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -244,13 +262,48 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://qiankanglai.me/page/13/index.html" />
+        <link rel="canonical" href="http://qiankanglai.me/2022/04/22/rasterization-issue-in-painting/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://qiankanglai.me/2022/04/22/rasterization-issue-in-painting/index.html",
+    "headline": "喷涂中遇到的光栅化问题",
+    "datePublished": "Fri Apr 22 2022 00:00:00 GMT+0800",
+    "dateModified": "Fri Apr 22 2022 09:58:35 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Kanglai Qian",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "A game developer interested in rendering, with focus on Unity now."
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Loading &amp; Learning",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",Unity",
+    "description": "最近看的一个问题，最后想通很简单但一开始自己狠坑了自己一把，简单记录一下。
+为了实现运行时喷涂，直接动态RT解决问题:
+
+喷涂时利用2uv直接绘制到一张RenderTexture
+模型正常渲染的时候采样这张RenderTexture。
+",
+}
+</script>
 
 
     
@@ -292,605 +345,329 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Round-1-Filter"><span class="post-toc-text">Round 1 Filter</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Round-2-1-Texture-Coordinate-Precision"><span class="post-toc-text">Round 2.1 Texture Coordinate Precision?</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Round-2-2-Conservative-Rasterzation"><span class="post-toc-text">Round 2.2 Conservative Rasterzation!</span></a></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 15 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2013/10/24/glew/">glew32 link error</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            I encountered a very strange problem these days: can’t link glew in C++ code. I’ve tried this code but failed, my post in SO:
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2013/10/24/glew/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>10月 24, 2013</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2013/08/15/wso2/">WSO2套件三连发</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            这其实是我大四时一门课配套大作业，当时配环境折腾很久~后来发人人网共享，结果昨天学长给我留言有人不带名字抄袭。虽然很冷这个都有人搞，但总归还不如给自己骗流量呢哈哈哈哈……
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2013/08/15/wso2/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>8月 15, 2013</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2013/07/31/windjs/">Pomelo中利用Wind.js封装异步</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            这是@老赵写的一个js库本质是用eval函数实现的~我们写看起来是同步的顺序流程代码，但是实质异步执行
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2013/07/31/windjs/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>7月 31, 2013</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2013/06/15/threejs_mannual/">Javascript三维布尔模型运算用户手册</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            DEMO链接。手册主要为程老师撰写~具体内容见三维模型布尔运算网页版
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2013/06/15/threejs_mannual/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>6月 15, 2013</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2013/06/14/boolean_operation/">三维模型布尔运算网页版</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            本学期计算几何课程，选了三维模型布尔运算作为大作业选题。主要考虑到邓公的演示一向比较绚丽多彩，各种PDF和网页中的applet作为demo；我就想把我们最后的东西也搬到网页上来。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2013/06/14/boolean_operation/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>6月 14, 2013</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2013/06/07/software-engineering/">乱七八糟的软件工程助教总结</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            其实本来研究生阶段我是不准备做任何社工活动⊙﹏⊙b 上学期的时候忘了具体啥事，好像是在微博上和刘老师聊了几次，她表示“嗯下学期来做助教吧”，嗯然后我就成为了软工课的助教，负责整个大作业部分，嗯嗯坑帮助学弟义不容辞^_^
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2013/06/07/software-engineering/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>6月 07, 2013</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2013/05/01/avast/">Avast 8 a setiface error has occurred 2</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            Windows 7, avast shields cannot be started. When uninstalling, it said:
-
-a setiface error has occurred: 2
-
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2013/05/01/avast/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>5月 01, 2013</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2013/04/27/tomcat/">Tomcat的java.net.BindException错误</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            我一直是用Eclipse+WTP，配合tomcat7以及mysql来写struts2网站的。今天开电脑以后遇到了一个很奇怪的问题：tomcat7始终在eclipse中启动不起来
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2013/04/27/tomcat/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>4月 27, 2013</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2013/04/08/jmeter/">使用JMeter进行压力测试</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            JMeter是Apache开发的一款开源Java压力测试工具。一开始是针对Web应用开发的测试工具，后来扩展到了诸如数据库、LDAP、Mail等多个方面，总之就是很强大了。我曾经用过其分布式测试的功能，虽然因为网速问题比较蛋疼，但总的来说还是很不错的（这个主要是为了避免压力测试的瓶颈出现在客户端导致结果的误差）。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2013/04/08/jmeter/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>4月 08, 2013</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2013/04/05/applescipte_iphoto_enhance/">使用AppleScipte进行iPhoto批量enhance</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            嗯，这是拖了很久的一篇日志了上个暑假实习的时候做的事情是照片的自动增强，与iPhoto的enhance进行了比较。但是需要生成几千张照片的批量enhance比较麻烦
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2013/04/05/applescipte_iphoto_enhance/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>4月 05, 2013</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-    <!-- Index nav -->
-        <nav class="material-nav mdl-cell mdl-cell--12-col">
-            <a class="extend prev" rel="prev" href="/page/12/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_back</i></button></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/14/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_forward</i></button></a>
-        </nav>
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 15 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.jpg');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.jpg');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                喷涂中遇到的光栅化问题
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Kanglai Qian</strong>
+        <span>4月 22, 2022</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=喷涂中遇到的光栅化问题&url=http://qiankanglai.me/2022/04/22/rasterization-issue-in-painting/index.html&pic=http://qiankanglai.me/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=喷涂中遇到的光栅化问题&url=http://qiankanglai.me/2022/04/22/rasterization-issue-in-painting/index.html&via=Kanglai Qian" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://qiankanglai.me/2022/04/22/rasterization-issue-in-painting/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://qiankanglai.me/2022/04/22/rasterization-issue-in-painting/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>最近看的一个问题，最后想通很简单但一开始自己狠坑了自己一把，简单记录一下。</p>
+<p>为了实现运行时喷涂，直接动态RT解决问题:</p>
+<ol>
+<li>喷涂时利用2uv直接绘制到一张RenderTexture</li>
+<li>模型正常渲染的时候采样这张RenderTexture。</li>
+</ol>
+<span id="more"></span>
+
+<p>但是第二步模型采样的时候始终边缘处有黑色像素，就算提高RenderTexture精度到4096也只能说是缓解。下图中相当于第一次利用2uv绘制的像素全是红色，那么理论上采样的时候就应该全红。</p>
+<p><img src="/images/painting_rasterization_point.jpg"></p>
+<p>当然其实很常见的一个思路是直接对这张RenderTexture做一次膨胀，相当于红色区域往外扩张几像素肯定能解决问题(之前试验BentNormal确实也是这么干的)；但是这回想找到这些黑色来源的根本原因并处理掉。</p>
+<h2 id="Round-1-Filter"><a href="#Round-1-Filter" class="headerlink" title="Round 1 Filter"></a>Round 1 Filter</h2><p>第一个问题其实一眼就看出来了: 采样的时候默认走了bilinear，导致边缘像素采样的时候混入了外侧的顶点。直接在脚本里把生成的RenderTexture设置下就行:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">RenderTexture MaskTex = <span class="keyword">new</span> RenderTexture(sizeX, sizeY, <span class="number">0</span>, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear);</span><br><span class="line">MaskTex.anisoLevel = <span class="number">0</span>;</span><br><span class="line">MaskTex.filterMode = FilterMode.Point;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/painting_rasterization.jpg"></p>
+<p>可以看到原来只是很淡黑色区域变得清晰起来(ps. 这里其实出现黑色的地方都是2uv突变的地方)，然后让我们进入下一个环节。</p>
+<h2 id="Round-2-1-Texture-Coordinate-Precision"><a href="#Round-2-1-Texture-Coordinate-Precision" class="headerlink" title="Round 2.1 Texture Coordinate Precision?"></a>Round 2.1 Texture Coordinate Precision?</h2><p>这里我的思路拐入坑中，第一反应是类似<a target="_blank" rel="noopener" href="https://www.reedbeta.com/blog/texture-gathers-and-coordinate-precision/">Texture Gathers and Coordinate Precision</a>中提到的问题: 光栅化的规则和Sample的规则可能有所不同(脑海中飘过<strong>A Pixel Is Not a Little Square, a Pixel Is Not a Little Square, a Pixel Is Not a Little Square!</strong>)。手动试了下如果采样的地方全部偏移一下效果如何:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fixed4 mask &#x3D; tex2D(_MaskTex, i.uv.zw + float2(1&#x2F;1024.0, 1&#x2F;1024.0));</span><br></pre></td></tr></table></figure>
+
+<p>发现有点意思蛤~效果确实提升了不少!</p>
+<p><img src="/images/painting_rasterization_offset.jpg"></p>
+<p>然而后来就陷入了僵局——沿着这个路子继续依然无法根治问题，而且我翻了下DX Spec也没有对应说明(我试了下博客里使用的<code>1/512.0</code>，黑块反而会扩大)。</p>
+<h2 id="Round-2-2-Conservative-Rasterzation"><a href="#Round-2-2-Conservative-Rasterzation" class="headerlink" title="Round 2.2 Conservative Rasterzation!"></a>Round 2.2 Conservative Rasterzation!</h2><p>后来被曹哥哥一语点醒梦中人——也许是光栅化策略导致的? 火速试了下保守光栅化，反正Unity上已经有现成的<a target="_blank" rel="noopener" href="https://docs.unity3d.com/2020.3/Documentation/Manual/SL-Conservative.html">ShaderLab command: Conservative</a>，直接打开发现完美:</p>
+<p><img src="/images/painting_rasterization_fix.jpg"></p>
+<p>这么一想雀实…其实问题不是出在第二步使用2uv采样RenderTexture上，而是第一步绘制到RenderTexture上就有问题。我下意识觉得不应该无脑膨胀解决问题，但是问题恰好处于我思维盲区。</p>
+<p>之后为了兼容性(Conservative需要DX11.3或者扩展来支持)，参考<a target="_blank" rel="noopener" href="https://developer.nvidia.com/gpugems/gpugems2/part-v-image-oriented-computing/chapter-42-conservative-rasterization">GPU Gems Conservative Rasterization</a>和<a target="_blank" rel="noopener" href="https://action-io.com/article/2022/04/09/conservative-rasterization.html">Extension free, non-manufacturer dependent Conservative Rasterization</a>重新用GS实现了一下，结果依然稳定。</p>
+<p>最后总结下保守光栅化其实做的就是类似膨胀操作，但是好处是它是“精准”的——在喷涂这个使用场景下如果直接使用膨胀，会直接导致喷涂区域变大(因为膨胀的时候其实要识别是2uv边缘还是喷涂本身的边缘有点麻烦)。当然后来梁老师也提了一个釜底抽薪的思路——直接笔刷做成周围一圈带点渐变，也能换个姿势解决问题orz。</p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0;
+            display: none
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://qiankanglai.me/2022/04/22/rasterization-issue-in-painting/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://qiankanglai.me/2022/04/22/rasterization-issue-in-painting/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $.ajax({
+        url: 'https://disqus.com/next/config.json',
+        timeout: 4000,
+        type: 'GET',
+        success: (function() {
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+            $('.disqus_click_btn').css('display','none');
+        })(),
+        error: function() {
+          $('.disqus_click_btn').css('display','block');
+        }
+    });
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.disqus_click_btn').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2022/01/15/shader-precision2/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -1199,6 +976,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","https://cdn.bootcss.com/prettify/r298/prettify.min.js", true)</script>
+        
+    
 
 
 
@@ -1211,6 +992,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     
