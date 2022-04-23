@@ -5,16 +5,18 @@
     <!--
         © Material Theme
         https://github.com/viosey/hexo-theme-material
-        Version: 1.5.2 -->
+        Version: 1.5.6 -->
     <script>
-        window.materialVersion = "1.5.2"
+        window.materialVersion = "1.5.6"
         // Delete localstorage with these tags
         window.oldVersion = [
             'codestartv1',
             '1.3.4',
             '1.4.0',
             '1.4.0b1',
-            '1.5.0'
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
         ]
     </script>
 
@@ -25,10 +27,15 @@
 
 
 
+    <link rel="dns-prefetch" href="https://qiankanglai.disqus.com"/>
 
 
 
+    <link rel="dns-prefetch" href="https://www.google-analytics.com"/>
 
+
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
 
 
 
@@ -78,7 +85,7 @@
     <!-- Import CSS -->
     
         <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
             
@@ -259,12 +266,12 @@
 
     <!-- Analytics -->
     
-        <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-30309954-1', 'auto');ga('send', 'pageview');
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VF30YBX9Q5"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VF30YBX9Q5');
 </script>
     
     
@@ -290,7 +297,7 @@
                     
                         <!-- Hamburger Button -->
                         <button class="MD-burger-icon sidebar-toggle">
-                            <span class="MD-burger-layer"></span>
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
                         </button>
                     
 
@@ -695,6 +702,30 @@
 
 <section id="md-timeline" class="md-container">
    	   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 23 2022</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2022/04/23/il2cppdumper-notes/">IL2CppDumper笔记</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近研究了一段时间的IL2Cpp编译出来的dll，整理下笔记记录下中间遇到的一些问题和解决方法。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
 			<div class="md-timeline-block">
                 		<div class="md-timeline-date blue">
                    			<div class="md-date">4月 22 2022</div>
@@ -4354,15 +4385,18 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Telegram -->
     
-    
+
     <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
     
 </div>
 
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;2012&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Loading & Learning
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;Loading & Learning
             
         </div>
 
@@ -4379,7 +4413,6 @@ It will not impact the appearance and can give developers a lot of support :)
         <div class="mdl-mini-footer--right-section">
             <div>
                 <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
-                <div class="footer-develop-div">Hosted by <a href="https://pages.coding.me" target="_blank" class="footer-develop-a">Coding Pages</a>&<a href="https://pages.github.com/" target="_blank" class="footer-develop-a">Github Pages</a></div>
                 <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
             </div>
         </div>
@@ -4389,11 +4422,11 @@ It will not impact the appearance and can give developers a lot of support :)
 
                     <!-- Import JS File -->
 
-    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?wgjW/HuQG9JDgvPDPoRAng==", true)</script>
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
 
 
 
-    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
 
 
 
@@ -4437,7 +4470,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <!-- UC Browser Compatible -->
-<script>
+<!-- <script>
 	var agent = navigator.userAgent.toLowerCase();
 	if(agent.indexOf('ucbrowser')>0) {
 		document.write('
@@ -4445,7 +4478,7 @@ It will not impact the appearance and can give developers a lot of support :)
 ');
 	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
 	}
-</script>
+</script> -->
 
 <!-- Import prettify js  -->
 
@@ -4494,6 +4527,16 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 2012;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
     (function(){
         var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
 
@@ -4502,7 +4545,7 @@ It will not impact the appearance and can give developers a lot of support :)
             lsloader.runInlineScript(item.id,item.id);
         }
     })()
-console.log('\n %c © Material Theme | Version: 1.5.2 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
 </script>
 
                 </main>
