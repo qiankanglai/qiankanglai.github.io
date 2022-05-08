@@ -62,7 +62,7 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="时隔多年重新编译angle，主要是为了PC上能模拟ES3.1，特别是最好能支持VT相关操作。本来不抱希望，毕竟angle文档上写的很清楚，目前GL/GLES/Vulkan Backend都只支持到ES 3.1，ES 3.2还处于in progress。
 但是突然发现EXT_copy_image这个扩展在Vulkan Backend上已经被支持Vulkan: Add support for EXT_copy_image，瞬间觉得有戏就折腾了下。">
-    <meta name="keywords" content=",C++ GLES">
+    <meta name="keywords" content=",C++,GLES">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -249,11 +249,11 @@
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="时隔多年重新编译angle，主要是为了PC上能模拟ES3.1，特别是最好能支持VT相关操作。本来不抱希望，毕竟angle文档上写的很清楚，目前GL/GLES/Vulkan Backend都只支持到ES 3.1，ES 3.2还处于in progress。
 但是突然发现EXT_copy_image这个扩展在Vulkan Backend上已经被支持Vulkan: Add support for EXT_copy_image，瞬间觉得有戏就折腾了下。">
-    <meta property="og:article:tag" content="C++ GLES"> 
+    <meta property="og:article:tag" content="C++"> <meta property="og:article:tag" content="GLES"> 
 
     
         <meta property="article:published_time" content="Sat May 07 2022 00:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Sat May 07 2022 22:15:35 GMT+0800">
+        <meta property="article:modified_time" content="Sun May 08 2022 10:09:12 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -276,7 +276,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2022/05/07/notes-on-angle/index.html",
     "headline": "angle折腾笔记",
     "datePublished": "Sat May 07 2022 00:00:00 GMT+0800",
-    "dateModified": "Sat May 07 2022 22:15:35 GMT+0800",
+    "dateModified": "Sun May 08 2022 10:09:12 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -294,7 +294,7 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",C++ GLES",
+    "keywords": ",C++,GLES",
     "description": "时隔多年重新编译angle，主要是为了PC上能模拟ES3.1，特别是最好能支持VT相关操作。本来不抱希望，毕竟angle文档上写的很清楚，目前GL/GLES/Vulkan Backend都只支持到ES 3.1，ES 3.2还处于in progress。
 但是突然发现EXT_copy_image这个扩展在Vulkan Backend上已经被支持Vulkan: Add support for EXT_copy_image，瞬间觉得有戏就折腾了下。",
 }
@@ -369,7 +369,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Compile-Angle"><span class="post-toc-text">Compile Angle</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Proxy"><span class="post-toc-text">Proxy</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Error-Code-9009"><span class="post-toc-text">Error Code 9009</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Windows-SDK"><span class="post-toc-text">Windows SDK</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Compile-Option"><span class="post-toc-text">Compile Option</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#GLES-Runtime"><span class="post-toc-text">GLES Runtime</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PVR%E5%AF%B9%E6%AF%94"><span class="post-toc-text">PVR对比</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Compile-Angle"><span class="post-toc-text">Compile Angle</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Proxy"><span class="post-toc-text">Proxy</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Error-Code-9009"><span class="post-toc-text">Error Code 9009</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Windows-SDK"><span class="post-toc-text">Windows SDK</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Compile-Option"><span class="post-toc-text">Compile Option</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#GLES-Runtime"><span class="post-toc-text">GLES Runtime</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Conclusion"><span class="post-toc-text">Conclusion</span></a></li></ol>
     </ul>
     
 
@@ -444,7 +444,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-none-link" href="/tags/C-GLES/" rel="tag">C++ GLES</a>
+        <a class="post_tag-none-link" href="/tags/C/" rel="tag">C++</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/GLES/" rel="tag">GLES</a>
     </ul>
     
 
@@ -554,8 +554,9 @@
 <p>别的没啥要改的了，一把梭使用<code>glCopyImageSubDataEXT</code>就都没问题了。比较遗憾的是PC上依然只支持BC系列，不能使用ETC(完美模拟手机计划失败)。看了下代码，其实是这个条件还没实现完整导致的orz</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">angle::Result <span class="title">ImageHelper::CopyImageSubData</span><span class="params">(<span class="keyword">const</span> gl::Context *context,</span></span></span><br><span class="line"><span class="function"><span class="params">                                            ImageHelper *srcImage,</span></span></span><br><span class="line"><span class="function"><span class="params">                                            GLint srcLevel,</span></span></span><br><span class="line"><span class="function"><span class="params">                                            GLint srcX,</span></span></span><br><span class="line"><span class="function"><span class="params">                                            GLint srcY,</span></span></span><br><span class="line"><span class="function"><span class="params">                                            GLint srcZ,</span></span></span><br><span class="line"><span class="function"><span class="params">                                            ImageHelper *dstImage,</span></span></span><br><span class="line"><span class="function"><span class="params">                                            GLint dstLevel,</span></span></span><br><span class="line"><span class="function"><span class="params">                                            GLint dstX,</span></span></span><br><span class="line"><span class="function"><span class="params">                                            GLint dstY,</span></span></span><br><span class="line"><span class="function"><span class="params">                                            GLint dstZ,</span></span></span><br><span class="line"><span class="function"><span class="params">                                            GLsizei srcWidth,</span></span></span><br><span class="line"><span class="function"><span class="params">                                            GLsizei srcHeight,</span></span></span><br><span class="line"><span class="function"><span class="params">                                            GLsizei srcDepth)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">if</span> (CanCopyWithTransferForCopyImage(contextVk-&gt;getRenderer(), srcImage, srcTilingMode, dstImage,</span><br><span class="line">                                        destTilingMode))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!srcImage-&gt;getIntendedFormat().isBlock &amp;&amp; !dstImage-&gt;getIntendedFormat().isBlock)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// The source and destination image formats may be using a fallback in the case of RGB</span></span><br><span class="line">        <span class="comment">// images.  A compute shader is used in such a case to perform the copy.</span></span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// No support for emulated compressed formats.</span></span><br><span class="line">        UNIMPLEMENTED();</span><br><span class="line">        ANGLE_VK_CHECK(contextVk, <span class="literal">false</span>, VK_ERROR_FEATURE_NOT_PRESENT);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> angle::Result::Continue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="PVR对比"><a href="#PVR对比" class="headerlink" title="PVR对比"></a>PVR对比</h2><p>后来测试了下PVR版本的<code>libGLESv2.dll</code>，里面其实也是有这个扩展的；但是使用起来的体验天差地别，angle能稳定跑到60fps，而pvr只有可怜的8fps左右。</p>
-<p>当然用angle还有一个好处是有对应PDB和源代码，可以自己本地attach上去调试GLES调用内部的逻辑，特别是遇到各种<code>GL_ERROR</code>时方便定位原因嘿嘿~</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>后来顺手测试了下PVR版本的<code>libGLESv2.dll</code>，才发现其实也有<code>EXT_copy_image</code>支持，所以VT的效果也是对的。</p>
+<p>但是折腾了这么一大圈还是有价值的: 一方面使用起来的体验天差地别，angle vulkan backend能稳定跑到60fps，而pvr和angle dx11版只有可怜的10fps不到。另一个非常大的收益在于<strong>方便调试</strong>，毕竟有对应PDB和源代码之后，可以一路F11进去看各种<code>GL_ERROR</code>的原因，特别关注<code>ValidateXXX</code>函数里面的检查:</p>
+<p><img src="/images/angle_debug.jpg"></p>
 
         
     
