@@ -61,7 +61,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="之前桌子跟我讲了一个很冷的小知识：对于3D美术来说，做贴图的时候如果想要做50%灰，应该用186/255而不是127/255。这个很有意思，稍微想了下应该是和Gamma校正有关，然后算了下确实是这样的。后来我分别在Unreal里和Unity里试了下，谨以此文记录。">
-    <meta name="keywords" content=",Unity,Unreal">
+    <meta name="keywords" content=",Unreal,Unity">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -247,11 +247,11 @@
     <meta property="og:title" content="Unreal/Unity中的Gamma校正 | Loading &amp; Learning">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="之前桌子跟我讲了一个很冷的小知识：对于3D美术来说，做贴图的时候如果想要做50%灰，应该用186/255而不是127/255。这个很有意思，稍微想了下应该是和Gamma校正有关，然后算了下确实是这样的。后来我分别在Unreal里和Unity里试了下，谨以此文记录。">
-    <meta property="og:article:tag" content="Unity"> <meta property="og:article:tag" content="Unreal"> 
+    <meta property="og:article:tag" content="Unreal"> <meta property="og:article:tag" content="Unity"> 
 
     
         <meta property="article:published_time" content="Wed Dec 24 2014 00:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Fri Mar 01 2019 23:33:52 GMT+0800">
+        <meta property="article:modified_time" content="Mon Dec 13 2021 20:59:23 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,7 +274,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2014/12/24/gamma-correction/index.html",
     "headline": "Unreal/Unity中的Gamma校正",
     "datePublished": "Wed Dec 24 2014 00:00:00 GMT+0800",
-    "dateModified": "Fri Mar 01 2019 23:33:52 GMT+0800",
+    "dateModified": "Mon Dec 13 2021 20:59:23 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -292,7 +292,7 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",Unity,Unreal",
+    "keywords": ",Unreal,Unity",
     "description": "之前桌子跟我讲了一个很冷的小知识：对于3D美术来说，做贴图的时候如果想要做50%灰，应该用186/255而不是127/255。这个很有意思，稍微想了下应该是和Gamma校正有关，然后算了下确实是这样的。后来我分别在Unreal里和Unity里试了下，谨以此文记录。",
 }
 </script>
@@ -511,7 +511,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>之前桌子跟我讲了一个很冷的小知识：对于3D美术来说，做贴图的时候如果想要做50%灰，应该用186/255而不是127/255。这个很有意思，稍微想了下应该是和Gamma校正有关，然后算了下确实是这样的。后来我分别在Unreal里和Unity里试了下，谨以此文记录。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h1><p>具体Gamma Correction(伽马校正/Gamma校正)相关内容可以参看klayge上的<a target="_blank" rel="noopener" href="http://www.klayge.org/2011/02/26/gamma%E7%9A%84%E4%BC%A0%E8%AF%B4/">gamma的传说</a>一文。如果把颜色亮度理解为能量的话，输入和输出中是非线性的对应关系，对应下图中的红线；但是计算的时候必须使用线性对应才对，对应绿线：</p>
 <p><img src="/images/gamma_lines.jpg"></p>

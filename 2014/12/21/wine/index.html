@@ -511,7 +511,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>这个其实是源自KlayGE移植OSX上的一个需求：在OSX上希望使用d3dcompile，配合<a target="_blank" rel="noopener" href="http://www.klayge.org/category/klayge/dxbc2glsl/">DXBC2GLSL</a>来生成OpenGL Shader。之前移植的时候是使用的NVidia Cg凑合，但是<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cg-profiles">Cg Profile</a>在OpenGL 3.x开始不支持Multi-vendor，而且也发现对于<code>tex2DLOD</code>之类的函数支持的有问题。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>其实就跨平台的Shader之前也有讨论和资料：<a target="_blank" rel="noopener" href="http://www.opengpu.org/forum.php?mod=viewthread&tid=16513">HlslCrossCompiler支持OGL4.3</a>、<a target="_blank" rel="noopener" href="http://www.cnblogs.com/TracePlus/p/4036238.html">关于Shader的跨平台方案的考虑</a>、<a target="_blank" rel="noopener" href="https://docs.unrealengine.com/latest/INT/Programming/Rendering/ShaderDevelopment/HLSLCrossCompiler/index.html">Unreal 4 HLSL Cross Compiler</a>、<a target="_blank" rel="noopener" href="https://github.com/aras-p/hlsl2glslfork">Unity hlsl2glslfork</a>。KlayGE选择<a target="_blank" rel="noopener" href="http://www.klayge.org/2012/02/09/hlsl-bytecode-to-glsl%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AD%A5/">解析HLSL bytecode生成GLSL的方案</a>，因此需要解决在OSX上运行d3dcompile生成HLSL bytecode的问题。ps. 看这些大大讨论感觉要学的东西还有好多好多(╯‵□′)╯︵┻━┻</p>
 <p>回到正题，其实想要实现的功能就是在osx下调用d3dcompile_43.dll中的一个接口</p>

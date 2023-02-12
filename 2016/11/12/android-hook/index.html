@@ -469,7 +469,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>Unity的代码加密是一个有点麻烦的事情，相对iOS的IL2CPP，安卓里直接存放的dll很容易被ILSpy这种工具打开。网上有一些资料，如<a target="_blank" rel="noopener" href="http://www.xuanyusong.com/archives/3553">Unity3D研究院之Android加密DLL与破解DLL .SO</a>，常见的思路都是修改mono源代码后重新编译；但是这样有一个麻烦的地方在于每次升级Unity版本之后都需要重新编译对应版本的libmono.so出来…</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>后来Unite 2016的时候和朋友聊天，学到了一个新思路——直接用Hook的方式来解密，这样就可以直接使用Unity自带的libmono.so解决问题～具体一点，使用了<a target="_blank" rel="noopener" href="http://www.cydiasubstrate.com/">Cydia Substrate</a>的API来劫持mono API</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">MSImageRef image = MSGetImageByName(<span class="comment">/* libmono.so */</span>);</span><br><span class="line"><span class="keyword">if</span>(image == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">void</span> *ptr = MSFindSymbol(image, <span class="comment">/* mono function */</span>);</span><br><span class="line"><span class="keyword">if</span>(ptr == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">MSHookFunction(ptr, (<span class="keyword">void</span>*)&amp;oldPtr, (<span class="keyword">void</span>**)&amp;newPtr);</span><br></pre></td></tr></table></figure>

@@ -704,6 +704,31 @@
    	   		
 			<div class="md-timeline-block">
                 		<div class="md-timeline-date blue">
+                   			<div class="md-date">2月 12 2023</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2023/02/12/renderdoc-android-inject/">高版本安卓注入RenderDoc笔记</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-none-link" href="/tags/RenderDoc/" rel="tag">RenderDoc</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							几年前在公司内部KM分享过如何方便的将RenderDoc内嵌到内部版本中从而方便调试，以及如何向下兼容更低版本的Android系统(RenderDoc Android最低系统要求是6.0)。
+手法其实非常简单: 直接将libVkLayer_GLES_RenderDoc.so这个打包进apk中然后手动加载下即可; 这样做额外的好处是不需要依赖其hook系统的机制，所以不需要interceptor-lib，进而压低系统版本要求。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
                    			<div class="md-date">5月 07 2022</div>
                 		</div>
 
@@ -3425,30 +3450,6 @@ ps. 后面的代码都以Unity 5.x为例分析。
                 		</div>
 
                 		<div class="md-timeline-content">
-                    			<div class="md-timeline-title"><a href="/2014/11/08/cubemap/">unity中cubemap使用的一些想法</a></div>
-					<div class="md-timeline-info">
-						<span class="md-timeline-info-span">Categories:
-							
-						</span>
-						<span class="md-timeline-info-span">Tags:
-							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
-						</span>
-						
-					</div>
-					<p class="md-timeline-excerpt">
-						
-							一般在渲染中，是使用cubemap来预计算环境反射，但是怎么玩好这个东西，我之前并没有考虑太多。最近和桌子讨论了挺多环境贴图的使用方式，在这里记录一下想法(偷懒起见，示意代码都是surface shader)。
-						...
-					</p>
-                    		</div>
-			</div>	
-   		
-			<div class="md-timeline-block">
-                		<div class="md-timeline-date blue">
-                   			<div class="md-date">11月 08 2014</div>
-                		</div>
-
-                		<div class="md-timeline-content">
                     			<div class="md-timeline-title"><a href="/2014/11/08/cubemap-capturer/">unity的环境捕捉器</a></div>
 					<div class="md-timeline-info">
 						<span class="md-timeline-info-span">Categories:
@@ -3462,6 +3463,30 @@ ps. 后面的代码都以Unity 5.x为例分析。
 					<p class="md-timeline-excerpt">
 						
 							一下午随手写了一个环境捕捉器，山寨了一下unreal的scene capture cube。结果后来发现unity3d pro自带了一个Camera.RenderToCubemap函数真是哈哈哈哈啊……
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 08 2014</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2014/11/08/cubemap/">unity中cubemap使用的一些想法</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/Unity/" rel="tag">Unity</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							一般在渲染中，是使用cubemap来预计算环境反射，但是怎么玩好这个东西，我之前并没有考虑太多。最近和桌子讨论了挺多环境贴图的使用方式，在这里记录一下想法(偷懒起见，示意代码都是surface shader)。
 						...
 					</p>
                     		</div>

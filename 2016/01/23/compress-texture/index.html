@@ -478,7 +478,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>压缩纹理能够节约不少内存空间，因此目前项目中UI全都是用Texture Packer打包出大图之后压缩。Unity导入纹理的默认设置是compress，在符合条件的情况下会优先使用PVR或ETC、否则会降为RGBA4444。从程序的角度来说，当然是1/4大小的压缩纹理更好啦~但是，毕竟是有损压缩，会带来一定的损失，有时候还是挺郁闷的。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>第一个常见的问题是渐变颜色区域经过压缩之后会出现色阶，如下图所示。我参考了dither思路，用Photoshop加了一层0.3%的高斯分布杂音；可以看到ETC和PVR都有所改进，但是仔细盯着看依然能看到一些噪声。</p>
 <p><img src="/images/compress_texture_1.jpg"></p>

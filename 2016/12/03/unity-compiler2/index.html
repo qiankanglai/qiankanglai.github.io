@@ -251,7 +251,7 @@
 
     
         <meta property="article:published_time" content="Sat Dec 03 2016 00:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Tue Feb 26 2019 22:17:50 GMT+0800">
+        <meta property="article:modified_time" content="Mon Dec 13 2021 20:59:24 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,7 +274,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2016/12/03/unity-compiler2/index.html",
     "headline": "优化Unity项目编译速度-后续",
     "datePublished": "Sat Dec 03 2016 00:00:00 GMT+0800",
-    "dateModified": "Tue Feb 26 2019 22:17:50 GMT+0800",
+    "dateModified": "Mon Dec 13 2021 20:59:24 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -503,7 +503,7 @@
     
         <a href="/2016/11/27/unity-compiler/" title="优化Unity项目编译速度">优化Unity项目编译速度</a>后续篇...感谢@wxp提供的非常有用的反馈！之前在优化编译速度的时候，我试图dll化遇到的一个障碍是不同平台需要编译用宏区分的代码，但是guid/fileID不一致。结果发现我是完全**想当然**了，Unity竟然已经自动做好了映射(下面均为Unity 5.3.6测试结果，尚未找到相关文档...)！
 
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="测试脚本"><a href="#测试脚本" class="headerlink" title="测试脚本"></a>测试脚本</h1><p>很简单，就是在屏幕上写一个字符串，根据对应版本分别是editor/android/windows。编译出3个dll之后放到不同文件夹，设置对应Platform分别为Editor/Standalone/Android。</p>
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">NewBehaviourScript</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">    <span class="comment">//&quot;C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.5\mcs&quot; -sdk:2 /target:library /out:NewBehaviourScript.dll /r:&quot;C:\Program Files\Unity\Editor\Data\Managed\UnityEngine.dll&quot; NewBehaviourScript.txt</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnGUI</span> (<span class="params"></span>)</span> &#123;</span><br><span class="line">        GUI.Label(<span class="keyword">new</span> Rect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">200</span>, <span class="number">200</span>), <span class="string">&quot;android&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

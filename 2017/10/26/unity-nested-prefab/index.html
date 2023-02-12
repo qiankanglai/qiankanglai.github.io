@@ -253,7 +253,7 @@
 
     
         <meta property="article:published_time" content="Thu Oct 26 2017 20:57:07 GMT+0800">
-        <meta property="article:modified_time" content="Fri Mar 01 2019 23:33:53 GMT+0800">
+        <meta property="article:modified_time" content="Mon Dec 13 2021 20:59:24 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -276,7 +276,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2017/10/26/unity-nested-prefab/index.html",
     "headline": "聊聊Unity里的嵌套Prefab",
     "datePublished": "Thu Oct 26 2017 20:57:07 GMT+0800",
-    "dateModified": "Fri Mar 01 2019 23:33:53 GMT+0800",
+    "dateModified": "Mon Dec 13 2021 20:59:24 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -482,7 +482,7 @@
     
         <p>今天正好和朋友聊到嵌套Prefab这个话题，发现这个其实是一个很多项目都需要但是Unity并没有提供内置支持的功能。在过去的项目中我们也实践过不同的解决方案，也了解过其他团队的一些做法，在这里正好整理一下，供大家参考/吐槽。</p>
 <p><del>其实还有一个原因是又好久没更新博客了…</del></p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="Nested-Prefab"><a href="#Nested-Prefab" class="headerlink" title="Nested Prefab"></a>Nested Prefab</h1><p>嵌套其实一个很常见的需求：多个Prefab同时需要一个共同的子Prefab。但问题在于保存时，整个prefab会成为一个整体，子prefab和原来的就断开连接了。这时候如果需要统一修改子prefab就做不到，其实也就失去了prefab的意义所在。</p>
 <p>下面我将分享ABC三策来“解决”这个问题，之所以不说上中下是因为各有优劣。</p>

@@ -251,7 +251,7 @@
 
     
         <meta property="article:published_time" content="Sat Feb 21 2015 00:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Tue Feb 12 2019 20:08:44 GMT+0800">
+        <meta property="article:modified_time" content="Mon Dec 13 2021 20:59:24 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,7 +274,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2015/02/21/unity-misc/index.html",
     "headline": "Unity中矩阵变换、深度纹理及杂项",
     "datePublished": "Sat Feb 21 2015 00:00:00 GMT+0800",
-    "dateModified": "Tue Feb 12 2019 20:08:44 GMT+0800",
+    "dateModified": "Mon Dec 13 2021 20:59:24 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -511,7 +511,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>在移植UE4的Temporal AA到Unity过程中，计算Camera Motion、Jitter等遇到了若干坑，记录一下。其实这些问题其实主要是……文档不全造成的</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="矩阵变换"><a href="#矩阵变换" class="headerlink" title="矩阵变换"></a>矩阵变换</h1><p>在Unity里有Model/World/View/Projection Space，需要将模型的坐标一步步转化最终得到投影坐标；这个在DirectX/OpenGL里也大同小异，就不具体解释。对应Shader代码：</p>
 <figure class="highlight glsl"><table><tr><td class="code"><pre><span class="line">mul(UNITY_MATRIX_MVP, v.vertex);</span><br></pre></td></tr></table></figure>

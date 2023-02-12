@@ -496,6 +496,63 @@
     
 
         <!-- Post Title -->
+        <p class="article-headline-p"><a href="/2023/02/12/renderdoc-android-inject/">高版本安卓注入RenderDoc笔记</a></p>
+    </div>
+
+    <!-- Post Excerpt -->
+    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
+        
+            几年前在公司内部KM分享过如何方便的将RenderDoc内嵌到内部版本中从而方便调试，以及如何向下兼容更低版本的Android系统(RenderDoc Android最低系统要求是6.0)。
+手法其实非常简单: 直接将libVkLayer_GLES_RenderDoc.so这个打包进apk中然后手动加载下即可; 这样做额外的好处是不需要依赖其hook系统的机制，所以不需要interceptor-lib，进而压低系统版本要求。
+        
+        &nbsp;&nbsp;&nbsp;
+        <span>
+            <a href="/2023/02/12/renderdoc-android-inject/" target="_self">阅读全文</a>
+        </span>
+    </div>
+    <!-- Post_entry Info-->
+    <div id="post_entry-info">
+        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
+            <!-- Author Avatar -->
+            <div id="author-avatar">
+                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
+            </div>
+            <div>
+                <strong>Kanglai Qian</strong>
+                <span>2月 12, 2023</span>
+            </div>
+        </div>
+        <div id="post_entry-right-info">
+          
+
+            
+
+            
+
+            <!-- Post Views -->
+            <span class="post_entry-views">
+            </span>
+        </div>
+    </div>
+</div>
+
+            
+            
+        
+    
+        
+            
+                <!-- Paradox Thumbnail -->
+                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
+    <!-- Post Thumbnail -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+        
+    
+
+        <!-- Post Title -->
         <p class="article-headline-p"><a href="/2022/05/07/notes-on-angle/">angle折腾笔记</a></p>
     </div>
 
@@ -981,63 +1038,6 @@ Auto Convex自动生成。
             <div>
                 <strong>Kanglai Qian</strong>
                 <span>3月 06, 2021</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2020/12/26/renderdoc-compile-android-on-windows/">Windows上编译Renderdoc Android</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            最近用RenderDoc调试的时候发现GLES的glCopySubImageData结果不太对，翻了下代码发现实现不是特别完整(只支持了整块拷贝的情况)。于是动手自己实现了一发，结果测试的时候居然卡在了一个编译安卓版本上。
-之前我都是在Mac下编译的安卓，这次手头没有合适设备不得不研究了下如何在Windows上编译。关于这块网上资料比较少，CONTRIBUTING/Compiling.md也语焉不详，因此就在这里记录下步骤。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2020/12/26/renderdoc-compile-android-on-windows/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>12月 26, 2020</span>
             </div>
         </div>
         <div id="post_entry-right-info">

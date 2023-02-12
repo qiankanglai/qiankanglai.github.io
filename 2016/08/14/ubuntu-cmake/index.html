@@ -251,7 +251,7 @@
 
     
         <meta property="article:published_time" content="Sun Aug 14 2016 00:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Tue Feb 12 2019 20:08:44 GMT+0800">
+        <meta property="article:modified_time" content="Mon Dec 13 2021 20:59:24 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,7 +274,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2016/08/14/ubuntu-cmake/index.html",
     "headline": "Ubuntu下编译支持HTTPS的CMake",
     "datePublished": "Sun Aug 14 2016 00:00:00 GMT+0800",
-    "dateModified": "Tue Feb 12 2019 20:08:44 GMT+0800",
+    "dateModified": "Mon Dec 13 2021 20:59:24 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -478,7 +478,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>仅用来记录一个小细节…这两天KlayGE升级了CMake版本要求3.4+，但是默认Ubuntu源或ppa上最多才到3.2，因此需要自己编译。下载源码之后直接编译安装没问题，但是遇到了如下错误</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  KlayGE git:(develop) python build_external.py</span><br><span class="line">Building boost Debug...</span><br><span class="line">-- Downloading https://raw.githubusercontent.com/gongminmin/KlayGEDependencies/cbda47a1678ce70b6720856736100979d469e159/External/Downloads/linux_x64/7z...</span><br><span class="line">CMake Error at /home/anthony/KlayGE/cmake/Common.cmake:123 (FILE):</span><br><span class="line">  file DOWNLOAD HASH mismatch</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> file: [/home/anthony/KlayGE/External/boost/Build/cmake/../../../../External/Downloads/linux_x64/7z]</span><br><span class="line">      expected <span class="built_in">hash</span>: [277d58cae5405ec65c4d2eb3d49b28128158f008]</span><br><span class="line">        actual <span class="built_in">hash</span>: [da39a3ee5e6b4b0d3255bfef95601890afd80709]</span><br><span class="line">             status: [1;<span class="string">&quot;Unsupported protocol&quot;</span>]</span><br><span class="line"></span><br><span class="line">Call Stack (most recent call first):</span><br><span class="line">  /home/anthony/KlayGE/External/Build/CMake/ExternalCommon.cmake:21 (DOWNLOAD_FILE)</span><br><span class="line">  /home/anthony/KlayGE/External/Build/CMake/ExternalCommon.cmake:29 (DOWNLOAD_7Z)</span><br><span class="line">  CMakeLists.txt:35 (DOWNLOAD_PACKAGE)</span><br></pre></td></tr></table></figure>
 

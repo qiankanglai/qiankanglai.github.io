@@ -251,7 +251,7 @@
 
     
         <meta property="article:published_time" content="Sat Dec 05 2015 00:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Fri Mar 01 2019 23:33:53 GMT+0800">
+        <meta property="article:modified_time" content="Mon Dec 13 2021 20:59:24 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,7 +274,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2015/12/05/sdf-fonts/index.html",
     "headline": "SDF字体",
     "datePublished": "Sat Dec 05 2015 00:00:00 GMT+0800",
-    "dateModified": "Fri Mar 01 2019 23:33:53 GMT+0800",
+    "dateModified": "Mon Dec 13 2021 20:59:24 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -469,7 +469,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>之前一段时间项目到了一个节点，忙于出包和应付渠道，没太多时间业余充电…最近空下来之后终于有空继续折腾KlayGE。这次是把字体部分kfont读了下，感受到了SDF(Signed Distance Field)的厉害之处。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>在游戏引擎里，当需要渲染某个文字时，一般是用freetype或类似的工具，生成一张灰度纹理，然后用俩三角形绘制到屏幕上。这种bitmap贴图的问题就在于放大之后由于mipmap会导致边缘糊掉。SDF主要解决的是字体放大之后模糊的问题，因为它的贴图里保存的不再是灰度值，而是距离边缘的距离；这个值在mipmap模糊后依然能有效的重建出硬边。</p>
 <p>本来想参考KlayGE的kfont自己写一个Unity的实现，后来发现Text Mesh Pro已经很好的支持了这一点，我用其测试工程和原生Text Mesh比较了下确实是吊打的效果…</p>

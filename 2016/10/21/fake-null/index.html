@@ -511,7 +511,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>今天大黄在群里提出了一个非常奇怪的问题:</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> Transform Parent = <span class="literal">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//Transform Parent = null;</span></span><br><span class="line">    Transform SelfTransform = GetComponent&lt;Transform&gt;();</span><br><span class="line">    Transform a = Parent ?? SelfTransform;</span><br><span class="line">    Transform b = Parent != <span class="literal">null</span> ? Parent : SelfTransform;</span><br><span class="line">    Debug.Log(a == b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 

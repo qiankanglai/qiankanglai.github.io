@@ -251,7 +251,7 @@
 
     
         <meta property="article:published_time" content="Thu Jul 20 2017 00:31:14 GMT+0800">
-        <meta property="article:modified_time" content="Fri Mar 01 2019 23:33:53 GMT+0800">
+        <meta property="article:modified_time" content="Mon Dec 13 2021 20:59:24 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,7 +274,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2017/07/20/unity-native-call/index.html",
     "headline": "P/Invoke调用优化",
     "datePublished": "Thu Jul 20 2017 00:31:14 GMT+0800",
-    "dateModified": "Fri Mar 01 2019 23:33:53 GMT+0800",
+    "dateModified": "Mon Dec 13 2021 20:59:24 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -478,7 +478,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>这其实是一个常见的问题：Unity中使用P/Invoke调用原生代码的时候如何更高效的传参数和获取返回值的问题。一般来说简单的直接写在函数声明里，遇到复杂的情况譬如变长、数组等情况我基本都是直接上JSON的。但是最近性能测试的时候发现这么写也是一个非常可观的消耗：</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p><img src="/images/agoramanager_profiler.jpg"></p>
 <p>这个应用场景其实是在处理消息队列，每一帧可能从C++层返回不少消息体回来，不同类型的消息体格式有所区别。</p>

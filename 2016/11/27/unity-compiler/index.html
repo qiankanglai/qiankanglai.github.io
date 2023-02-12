@@ -251,7 +251,7 @@
 
     
         <meta property="article:published_time" content="Sun Nov 27 2016 00:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Fri Mar 01 2019 23:33:53 GMT+0800">
+        <meta property="article:modified_time" content="Mon Dec 13 2021 20:59:24 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,7 +274,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2016/11/27/unity-compiler/index.html",
     "headline": "优化Unity项目编译速度",
     "datePublished": "Sun Nov 27 2016 00:00:00 GMT+0800",
-    "dateModified": "Fri Mar 01 2019 23:33:53 GMT+0800",
+    "dateModified": "Mon Dec 13 2021 20:59:24 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -502,7 +502,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>这个是最近一段时间带着子川一起做的一个小东西：如何优化大项目C#编译速度。这个idea主要是因为使用了slua之后，每次修改C#部分编译实在是太慢了… 下面将介绍两个不同的思路，心急的朋友可以直接看第二个解决方案及实战，因为这个说穿了其实就一句话，<del>写第一部分只不过是因为折腾了非常久的<code>MonoImporter/PluginImporter/MonoScript</code>结果发现没用上而不爽(逃</del></p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h1><p>我使用的是之前比较lua解决方案里的slua工程，引擎版本Unity 5.3.6f1(其他设备信息跳过因为都是在同一台电脑上…)。在测试之前还需要写一个脚本来统计编译时间，这里简单粗暴的写了一个小脚本去不断刷新<code>EditorApplication.isCompiling</code>即可；顺便因为每次编译完成之后重新加载dll会导致<code>static bool compiling</code>丢失，因此保存一下。</p>
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">InitializeOnLoad</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FinishCompiling</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">string</span> compilingKey = <span class="string">&quot;Compiling&quot;</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">bool</span> compiling;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="title">FinishCompiling</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        compiling = EditorPrefs.GetBool(compilingKey, <span class="literal">false</span>);</span><br><span class="line">        EditorApplication.update += Update;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span>(compiling &amp;&amp; !EditorApplication.isCompiling)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="built_in">string</span>.Format(<span class="string">&quot;Compiling DONE &#123;0&#125;&quot;</span>, DateTime.Now));</span><br><span class="line">            compiling = <span class="literal">false</span>;</span><br><span class="line">            EditorPrefs.SetBool(compilingKey, <span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (!compiling &amp;&amp; EditorApplication.isCompiling)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="built_in">string</span>.Format(<span class="string">&quot;Compiling START &#123;0&#125;&quot;</span>, DateTime.Now));</span><br><span class="line">            compiling = <span class="literal">true</span>;</span><br><span class="line">            EditorPrefs.SetBool(compilingKey, <span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

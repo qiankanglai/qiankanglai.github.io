@@ -251,7 +251,7 @@
 
     
         <meta property="article:published_time" content="Mon Jul 27 2015 00:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Fri Mar 01 2019 23:33:53 GMT+0800">
+        <meta property="article:modified_time" content="Mon Dec 13 2021 20:59:24 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,7 +274,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2015/07/27/unity-lightmap/index.html",
     "headline": "Unity中光照贴图一二坑及解决办法",
     "datePublished": "Mon Jul 27 2015 00:00:00 GMT+0800",
-    "dateModified": "Fri Mar 01 2019 23:33:53 GMT+0800",
+    "dateModified": "Mon Dec 13 2021 20:59:24 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -511,7 +511,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>Lightmap(光照贴图)是Unity里很常用的一个功能，毕竟移动设备上实时光照不靠谱，要出效果还是得烘焙。但是在使用中发现了几坑的地方，通过自己写了个两个脚本就轻松搞定，这里分享下。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="异步加载场景"><a href="#异步加载场景" class="headerlink" title="异步加载场景"></a>异步加载场景</h1><p>这个其实还是挺常见的坑：在编辑器里烘焙+播放场景都没问题，但是当从别的场景利用<strong>异步加载</strong>方式切换之后，就发现场景里的效果一团糟。下图是我使用<code>Application.LoadLevelAdditiveAsync</code>切换后的效果：</p>
 <p><img src="/images/unity_lightmap_bug1.jpg"></p>

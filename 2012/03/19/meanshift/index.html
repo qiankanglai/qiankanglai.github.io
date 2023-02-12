@@ -251,7 +251,7 @@
 
     
         <meta property="article:published_time" content="Mon Mar 19 2012 00:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Fri Mar 01 2019 23:33:53 GMT+0800">
+        <meta property="article:modified_time" content="Mon Dec 13 2021 20:59:24 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,7 +274,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2012/03/19/meanshift/index.html",
     "headline": "Mean Shift with OpenCV",
     "datePublished": "Mon Mar 19 2012 00:00:00 GMT+0800",
-    "dateModified": "Fri Mar 01 2019 23:33:53 GMT+0800",
+    "dateModified": "Mon Dec 13 2021 20:59:24 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -511,7 +511,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>主要是讲述关于图片分割的内容，使用了<a target="_blank" rel="noopener" href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1000236">Mean shift: A robust approach toward feature space analysis</a>提出的方法，应该是目前效果最好的几个方法之一了。整个算法分为两步：Filter和Segmentation。这里简单说下实现，具体原理请自行阅读论文(¬_¬)</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>这个算法其实论文作者提供了源代码实现<a target="_blank" rel="noopener" href="http://coewww.rutgers.edu/riul/research/code/EDISON/">EDISON</a>，但主要是这段时间我的工作都在OpenCV上面，因此另外实现了一遍，顺便也是加深理解。</p>
 <h1 id="MeanShift-Filter"><a href="#MeanShift-Filter" class="headerlink" title="MeanShift Filter"></a>MeanShift Filter</h1><p>第一步主要是去掉一些细节，论文中使用的是通过kernel函数进行函数计算，让每个窗格都挪到局部极值处，这样就相当于“抹平”图像。稍微具体点说，就是将图片上每个点视为五维点Z=(X^s,X^y)：X^s表示空间变量(x,y)；X^r表示频域变量(r,g,b)，当然也可以是别的颜色空间。然后开始迭代这个五维点Z，直到稳定；最后将稳定的频域变量即颜色复制到初始点上。迭代的时候是考虑这个点周围的窗格内的点影响。</p>

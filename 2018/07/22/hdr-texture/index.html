@@ -251,7 +251,7 @@
 
     
         <meta property="article:published_time" content="Sun Jul 22 2018 12:21:14 GMT+0800">
-        <meta property="article:modified_time" content="Fri Mar 01 2019 23:33:52 GMT+0800">
+        <meta property="article:modified_time" content="Mon Dec 13 2021 20:59:24 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,7 +274,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2018/07/22/hdr-texture/index.html",
     "headline": "HDR纹理一二坑",
     "datePublished": "Sun Jul 22 2018 12:21:14 GMT+0800",
-    "dateModified": "Fri Mar 01 2019 23:33:52 GMT+0800",
+    "dateModified": "Mon Dec 13 2021 20:59:24 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -511,7 +511,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>最近在Unity里重新校正了下Diffuse SH9和Specular IBL，全套对着<a target="_blank" rel="noopener" href="https://github.com/dariomanesku/cmft">cmft</a>校正了下…发现不少坑，仅此记录。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="RGBM编码"><a href="#RGBM编码" class="headerlink" title="RGBM编码"></a>RGBM编码</h2><p>这个是遇到的最大的坑：Unity原生支持EXR/HDR贴图，可以<code>GetPixels()</code>获得颜色值，但是获取出来的是RGBM Encode过的，更扯淡的是获取到的颜色是<strong>Gamma过的</strong>。这就带来一个潜藏的坑：<strong>最大亮度只到5</strong>；所以之后为了更高的精度应该会用别的C#库直接读取exr。</p>
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Color <span class="title">DecodeRGBM</span>(<span class="params">Color color, <span class="built_in">float</span> multiplier = <span class="number">5</span>, <span class="built_in">float</span> gamma = <span class="number">2.2f</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">float</span> r = color.r * color.a * multiplier;</span><br><span class="line">    <span class="built_in">float</span> g = color.g * color.a * multiplier;</span><br><span class="line">    <span class="built_in">float</span> b = color.b * color.a * multiplier;</span><br><span class="line">    <span class="keyword">if</span> (gamma &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        r = Mathf.Pow(r, gamma);</span><br><span class="line">        g = Mathf.Pow(g, gamma);</span><br><span class="line">        b = Mathf.Pow(b, gamma);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Color(r, g, b, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

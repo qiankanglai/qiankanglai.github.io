@@ -251,7 +251,7 @@
 
     
         <meta property="article:published_time" content="Sun Aug 31 2014 00:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Fri Mar 01 2019 23:33:52 GMT+0800">
+        <meta property="article:modified_time" content="Sat May 07 2022 22:22:33 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,7 +274,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2014/08/31/android-libcurl/index.html",
     "headline": "Compile libcurl 7.37.0 with Android 4.4 or other versions",
     "datePublished": "Sun Aug 31 2014 00:00:00 GMT+0800",
-    "dateModified": "Fri Mar 01 2019 23:33:52 GMT+0800",
+    "dateModified": "Sat May 07 2022 22:22:33 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -511,7 +511,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>Recently I need compile libcurl for different platforms, since cocos-2dx 3.0 ships with libcurl 7.26.0 and there are several fixes in newer versions according to <a target="_blank" rel="noopener" href="http://curl.haxx.se/changes.html">changelog</a>. There are several blogs describing how to build libcurl with android source, such as <a target="_blank" rel="noopener" href="http://thesoftwarerogue.blogspot.com/2010/05/porting-of-libcurl-to-android-os-using.html">porting-of-libcurl-to-android-os-using</a>, <a target="_blank" rel="noopener" href="http://www.cocos2d-x.org/wiki/How_to_compile_libcurl">How_to_compile_libcurl</a> and <a target="_blank" rel="noopener" href="http://blog.csdn.net/ly131420/article/details/9177063">Android ndk下编译libcurl</a>. However, they are all out dated, especially android source has changed a lot!</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>After struggling a whole weekend, I finally compiled libcurl 7.37.0 with android 4.4 source. The steps described in <code>packages/Android/Android.mk</code> skip many details. I’ll explain every steps and hope you can make it. If you use the similar version, you could just copy &amp; paste mine.</p>
 <h1 id="Build-Environment-Android-4-4"><a href="#Build-Environment-Android-4-4" class="headerlink" title="Build Environment (Android 4.4)"></a>Build Environment (Android 4.4)</h1><p>Follow instructions in <a target="_blank" rel="noopener" href="https://source.android.com/source/building.html">Download and Building</a> and build android first. If you encounter connecting problems in China, you may refer to <a href="/2014/08/29/android-GFW/" title="如何在国内下载android源代码">如何在国内下载android源代码</a>. My android source folder is put at <code>/home/anthony/android</code>.</p>

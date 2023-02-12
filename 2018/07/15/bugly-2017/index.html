@@ -251,7 +251,7 @@
 
     
         <meta property="article:published_time" content="Sun Jul 15 2018 13:49:42 GMT+0800">
-        <meta property="article:modified_time" content="Fri Mar 01 2019 23:33:52 GMT+0800">
+        <meta property="article:modified_time" content="Mon Dec 13 2021 20:59:23 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,7 +274,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2018/07/15/bugly-2017/index.html",
     "headline": "Unity 2017涉及Bugly的修改",
     "datePublished": "Sun Jul 15 2018 13:49:42 GMT+0800",
-    "dateModified": "Fri Mar 01 2019 23:33:52 GMT+0800",
+    "dateModified": "Mon Dec 13 2021 20:59:23 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -478,7 +478,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>在Bugly上恢复原生崩溃堆栈信息需要符号表文件，具体可以参考<a href="/2015/12/25/dump-libunity.so/" title="分析libunity.so Release崩溃">分析libunity.so Release崩溃</a>。我们在升级2017之后发现引擎有些行为发生了变化，这里记录下。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h3 id="不再需要手动拷贝so"><a href="#不再需要手动拷贝so" class="headerlink" title="不再需要手动拷贝so"></a>不再需要手动拷贝so</h3><p>之前在5.6版本的时候，官方支持<a target="_blank" rel="noopener" href="https://support.unity3d.com/hc/zh-cn/articles/115000177543"></a>提到可以在出包之后从<code>ProjectFolder\Temp\StagingArea\libs\</code>下拷贝出来。</p>
 <p>升级引擎之后发现这里的文件已经不存在了，转而是默认在apk同样文件夹下有个版本号作为文件名的zip文件：譬如打包出来的是Android.apk，就会有对应的Android-1.13-v18071322.symbols.zip。把这个归档即可。</p>

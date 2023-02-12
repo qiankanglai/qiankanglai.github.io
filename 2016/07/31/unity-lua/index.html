@@ -511,7 +511,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>之前由于项目需要，我比较了下Unity常见的几个lua解决方案；最近应鑫哥约稿，整理了一下。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="测试说明"><a href="#测试说明" class="headerlink" title="测试说明"></a>测试说明</h1><p>Unity不支持热更新这事情一直是一个谜一样的痛点，特别是在我第一个项目上线之后，发现每次更新代价太大了…可惜官方Roadmap上迟迟没有出现这个功能。昨天在群里还看到琨少说天下直接热更新Python脚本，羡慕嫉妒ing。</p>
 <p>为了解决这个问题，uwa之前分享过<a target="_blank" rel="noopener" href="http://blog.uwa4d.com/archives/HotFix.html">Android平台热更新解决方案</a>：直接替换dll是一种解决方式(但iOS上因为使用IL2CPP所以没法这么干，而且这事儿是商业原因不是技术问题)；还有一个比较常见的解决方案就是用lua。考虑到我们有不少同事之前写的是Cocos2d-lua，而且也有对应后端框架如Skynet，因此在下一个项目我们考虑使用Unity+lua的方式来开发。</p>

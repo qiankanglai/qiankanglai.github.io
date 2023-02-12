@@ -478,7 +478,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>Recently I found an interesting bug with Adreno Profiler: this cannot work correctly with <code>glVertexAttribPointer(indx=2, size=4, type=GL_HALF_FLOAT_OES, normalized=False, stride=32, ptr=0xC)</code>. For example, texcoords in <strong>half</strong> type are presented as strange numbers:</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p><img src="/images/adreno_profiler_half_wrong.jpg"></p>
 <p>I tried to seek help from <a target="_blank" rel="noopener" href="https://developer.qualcomm.com/forum/qdn-forums/software/adreno-gpu-profiler/29349">developers’ forum</a> but got no response yet. After two days’ part time work, I solved this bug by myself.</p>

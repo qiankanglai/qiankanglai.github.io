@@ -511,7 +511,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>最近一直在和Crash做斗争，一开始用了Bugsnag相当不错，后来经朋友推荐转用腾讯的Bugly，后台查询简直6。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>偶尔发现会遇到libunity.so崩溃，如果是Development模式还好，<code>adb log</code>基本就能看的七七八八；如果是Release模式下就一堆地址，根本没法看。网上搜索了下相关信息，绝大多数都是自己编译的C++代码，利用<code>ndk-stack</code>去分析obj文件。但是对于Unity引擎本身来说，我们手头只有一个<code>libunity.so</code>，无法这么干。</p>
 <h1 id="直接上传符号表"><a href="#直接上传符号表" class="headerlink" title="直接上传符号表"></a>直接上传符号表</h1><p>ps. 要把libunity.sym.so压缩zip之后上传，直接的话Bugly不认…</p>

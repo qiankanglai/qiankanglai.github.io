@@ -253,7 +253,7 @@
 
     
         <meta property="article:published_time" content="Thu Jul 20 2017 00:10:20 GMT+0800">
-        <meta property="article:modified_time" content="Fri Mar 01 2019 23:33:53 GMT+0800">
+        <meta property="article:modified_time" content="Mon Dec 13 2021 20:59:24 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -276,7 +276,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2017/07/20/unity-android-streaming/index.html",
     "headline": "Android下Streaming Assets特殊姿势",
     "datePublished": "Thu Jul 20 2017 00:10:20 GMT+0800",
-    "dateModified": "Fri Mar 01 2019 23:33:53 GMT+0800",
+    "dateModified": "Mon Dec 13 2021 20:59:24 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -482,7 +482,7 @@
     
         <p>这两天在群里看到有人问过这个问题，也有朋友小窗问我：Unity中导出Gradle工程然后打包出来的apk会加载AssetBundle慢很多。</p>
 <p>于是联想到了之前遇到的一个有意思的现象：我们的出包流程是在打包出来apk之后，利用apktool解包再进行加密和资源处理再打回去。但我发现这个步骤导致apk大小变化很多(有时变大有时变小，毫无规律)，非常奇怪；但是解压出来的内容确实又是一样的。后来我仔细比对之后终于找到玄机：<strong>Streaming Assets下的东西默认是不压缩的</strong>。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p><img src="/images/apk_streaming.jpg"></p>
 <p>用Bandizip打开可以看到，Unity打出来的apk里StreamingAssets下东西是<strong>Store</strong>的。后来我搜到了论坛上的一个解释<a target="_blank" rel="noopener" href="https://forum.unity3d.com/threads/why-the-asset-bundle-slow-in-streamingassets-on-android-device.401234/">Why the asset bundle slow in StreamingAssets on android device?</a></p>
