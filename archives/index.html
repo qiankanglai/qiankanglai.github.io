@@ -324,6 +324,63 @@
     
 
         <!-- Post Title -->
+        <p class="article-headline-p"><a href="/2023/04/03/memory-issue-in-bss/">BSS段内存问题排查笔记</a></p>
+    </div>
+
+    <!-- Post Excerpt -->
+    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
+        
+            本周版本的时候QA同学跑过来说iPhone 13进游戏闪退，而且没有抓到闪退的堆栈信息; 盲猜是内存问题，当时手头在忙就直接找人试了下低端一些的设备，结果没有翻车orz 就一时间有点摸不到头脑。后来腾出手直接XCode连着看了下，雀实是内存冲到2G之后被系统干了，在- (void)applicationDidReceiveMemoryWarning:(UIApplication*)application里打了行LOG也触发到了。
+昨天在家终于有空仔细研究下这个问题，最后发现还是蛮少见的情况… 特意记录一下笔记。
+        
+        &nbsp;&nbsp;&nbsp;
+        <span>
+            <a href="/2023/04/03/memory-issue-in-bss/" target="_self">阅读全文</a>
+        </span>
+    </div>
+    <!-- Post_entry Info-->
+    <div id="post_entry-info">
+        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
+            <!-- Author Avatar -->
+            <div id="author-avatar">
+                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
+            </div>
+            <div>
+                <strong>Kanglai Qian</strong>
+                <span>4月 03, 2023</span>
+            </div>
+        </div>
+        <div id="post_entry-right-info">
+          
+
+            
+
+            
+
+            <!-- Post Views -->
+            <span class="post_entry-views">
+            </span>
+        </div>
+    </div>
+</div>
+
+            
+            
+        
+    
+        
+            
+                <!-- Paradox Thumbnail -->
+                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
+    <!-- Post Thumbnail -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+        
+    
+
+        <!-- Post Title -->
         <p class="article-headline-p"><a href="/2023/02/12/renderdoc-android-inject/">高版本安卓注入RenderDoc</a></p>
     </div>
 
@@ -798,62 +855,6 @@ Auto Convex自动生成。
         &nbsp;&nbsp;&nbsp;
         <span>
             <a href="/2021/03/06/ndk-link-failed/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>3月 06, 2021</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2021/03/06/ndk-with-incredibuild/">利用IncrediBuild加速NDK编译</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            最近一段时间突然发现打包机上编译引擎安卓版本极慢，正好有现成的IncrediBuild所以研究下能不能用来加速。IB本身是商业软件，对Visual Studio的支持已经非常好了: 既可以使用Extension形式直接调用，又可以使用命令行传参sln。但是网上关于结合NDK使用的资料就非常少，这周花了大半天终于跑通流程，就此记录一下。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2021/03/06/ndk-with-incredibuild/" target="_self">阅读全文</a>
         </span>
     </div>
     <!-- Post_entry Info-->

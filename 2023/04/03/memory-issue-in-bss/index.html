@@ -50,6 +50,8 @@
     
     <title>
         
+            BSS段内存问题排查笔记 | 
+        
         Loading &amp; Learning
     </title>
 
@@ -58,8 +60,9 @@
     <link rel="icon" href="/img/favicon.png">
 
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="Kanglai&#39;s personal blog, mainly about coding :D">
-    <meta name="keywords" content="">
+    <meta name="description" itemprop="description" content="本周版本的时候QA同学跑过来说iPhone 13进游戏闪退，而且没有抓到闪退的堆栈信息; 盲猜是内存问题，当时手头在忙就直接找人试了下低端一些的设备，结果没有翻车orz 就一时间有点摸不到头脑。后来腾出手直接XCode连着看了下，雀实是内存冲到2G之后被系统干了，在- (void)applicationDidReceiveMemoryWarning:(UIApplication*)application里打了行LOG也触发到了。
+昨天在家终于有空仔细研究下这个问题，最后发现还是蛮少见的情况… 特意记录一下笔记。">
+    <meta name="keywords" content=",C++">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -86,6 +89,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/atelier-estuary-light.min.css?ZQObwZXHH6Mt8MNbyQJYfQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -222,7 +228,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Loading &amp; Learning">
-    <meta name="msapplication-starturl" content="http://qiankanglai.me/page/7/">
+    <meta name="msapplication-starturl" content="http://qiankanglai.me/2023/04/03/memory-issue-in-bss/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Loading &amp; Learning">
@@ -237,13 +243,17 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://qiankanglai.me/page/7/">
+    <meta property="og:url" content="http://qiankanglai.me/2023/04/03/memory-issue-in-bss/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Loading &amp; Learning">
+    <meta property="og:title" content="BSS段内存问题排查笔记 | Loading &amp; Learning">
     <meta property="og:image" content="/img/favicon.png">
-    <meta property="og:description" content="Kanglai&#39;s personal blog, mainly about coding :D">
-    
+    <meta property="og:description" content="本周版本的时候QA同学跑过来说iPhone 13进游戏闪退，而且没有抓到闪退的堆栈信息; 盲猜是内存问题，当时手头在忙就直接找人试了下低端一些的设备，结果没有翻车orz 就一时间有点摸不到头脑。后来腾出手直接XCode连着看了下，雀实是内存冲到2G之后被系统干了，在- (void)applicationDidReceiveMemoryWarning:(UIApplication*)application里打了行LOG也触发到了。
+昨天在家终于有空仔细研究下这个问题，最后发现还是蛮少见的情况… 特意记录一下笔记。">
+    <meta property="og:article:tag" content="C++"> 
 
+    
+        <meta property="article:published_time" content="Mon Apr 03 2023 13:31:29 GMT+0800">
+        <meta property="article:modified_time" content="Sun Apr 02 2023 21:01:44 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -251,13 +261,44 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://qiankanglai.me/page/7/index.html" />
+        <link rel="canonical" href="http://qiankanglai.me/2023/04/03/memory-issue-in-bss/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://qiankanglai.me/2023/04/03/memory-issue-in-bss/index.html",
+    "headline": "BSS段内存问题排查笔记",
+    "datePublished": "Mon Apr 03 2023 13:31:29 GMT+0800",
+    "dateModified": "Sun Apr 02 2023 21:01:44 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Kanglai Qian",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "A game developer interested in rendering, with focus on Unity now."
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Loading &amp; Learning",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",C++",
+    "description": "本周版本的时候QA同学跑过来说iPhone 13进游戏闪退，而且没有抓到闪退的堆栈信息; 盲猜是内存问题，当时手头在忙就直接找人试了下低端一些的设备，结果没有翻车orz 就一时间有点摸不到头脑。后来腾出手直接XCode连着看了下，雀实是内存冲到2G之后被系统干了，在- (void)applicationDidReceiveMemoryWarning:(UIApplication*)application里打了行LOG也触发到了。
+昨天在家终于有空仔细研究下这个问题，最后发现还是蛮少见的情况… 特意记录一下笔记。",
+}
+</script>
 
 
     
@@ -299,596 +340,316 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
+                    <!-- Post TOC -->
+
     
-    <div class="locate-thumbnail-symbol"></div>
-
-    <!-- Pin on top -->
-    
-
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        <!-- Custom Thumbnail -->
-        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" data-original="/images/teaser/jenkins_list.jpg">
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2016/08/25/jenkins/">Jenkins自动化出包流程分享</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            目前我司所有Unity项目已经全部部署在Jenkins服务器上，实现一键自动出包+自动上传Test Flight。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/08/25/jenkins/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>8月 25, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
             </span>
-        </div>
+        </a>
     </div>
-</div>
+    -->
 
-            
-            
-        
+
+    <!-- Left aligned menu below button -->
     
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 15 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2016/08/14/ubuntu-cmake/">Ubuntu下编译支持HTTPS的CMake</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            仅用来记录一个小细节…这两天KlayGE升级了CMake版本要求3.4+，但是默认Ubuntu源或ppa上最多才到3.2，因此需要自己编译。下载源码之后直接编译安装没问题，但是遇到了如下错误
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/08/14/ubuntu-cmake/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>8月 14, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2016/07/31/unity-lua/">Unity常见lua解决方案性能比较</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            之前由于项目需要，我比较了下Unity常见的几个lua解决方案；最近应鑫哥约稿，整理了一下。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/07/31/unity-lua/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>7月 31, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2016/06/10/cel-shading/">卡通渲染</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            实现一个简单的漫画效果(在物体周围描边)是非常简单的事情。多年前在Games Academy上，制作漫画风格冒险游戏Tummy Trundle的开发人员研究如何实时的实现这个效果。Falk提出了一个解决方案：复制3D模型本身，扭转法线方向，将其设为黑色的材质球并沿着法线挤压其表面。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/06/10/cel-shading/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>6月 10, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        <!-- Custom Thumbnail -->
-        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" data-original="/images/teaser/unity_asset_store.jpg">
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2016/04/13/unity-asset-store/">Unite 2016 精品Asset Store插件推荐</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            可以扫一眼，也许有用得上的
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/04/13/unity-asset-store/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>4月 13, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2016/04/12/divine-divinity/">Divine Divinity 2D反射</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            讲真反射效果对我来说挺常见的，但是在我印象里Divine Divinity是唯一一个实现了反射的2D游戏…像兔子这种很小的物体都会产生镜像
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/04/12/divine-divinity/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>4月 12, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2016/04/12/warcraft3-billboards/">魔兽3 广告板</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            实际上这个效果并不是很特殊，但是我非常好奇暴雪是如何在这里使用广告板的。很多老游戏有时候会整个物体都使用广告板(Billboard)表现，所以比较容易被看穿。但这个魔兽3的建筑做的非常真，因此我很好奇暴雪是如何结合2D和3D的。最让我惊艳的地方在于，球形广告板会随着相机角度变化亮度。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/04/12/warcraft3-billboards/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>4月 12, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        <!-- Custom Thumbnail -->
-        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" data-original="/images/teaser/unite2016-optimize.jpg">
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2016/04/11/unity-optimization-for-mobile/">Unite 2016 针对移动设备端的Unity应用优化</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            今天参加Unite 2016听下来最有收货的一个talk，虽然一半以上都是老生常谈…我个人觉得比较有价值的在于资源审查这一部分，关于各类资源的常用方法都提出了一些很有实用价值的建议和规范
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/04/11/unity-optimization-for-mobile/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>4月 11, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2016/04/10/diablo3-tree/">暗黑3 2.5D树</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            某次我看到暗黑3一张截图里的树，我立刻注意到此处必有蹊跷(元芳你怎么看)。树的轮廓非常细腻，而且和场景中的其他物件相比，树甚至没有出现有锯齿的边。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/04/10/diablo3-tree/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>4月 10, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2016/04/09/teleglitch-rgb/">Teleglitch RGB闪烁</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            如果你在Teleglitch中使用传送门，会出现一个很有意思的特效。我仔细看了下，感觉他们就是在RGB通道分别扭曲(distort)了下画面。我相当喜欢这个看上去有点硬件坏了的效果…
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/04/09/teleglitch-rgb/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>4月 09, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-    <!-- Index nav -->
-        <nav class="material-nav mdl-cell mdl-cell--12-col">
-            <a class="extend prev" rel="prev" href="/page/6/">&lt;button aria-label&#x3D;&quot;Last page&quot; class&#x3D;&quot;mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon&quot;&gt;&lt;i class&#x3D;&quot;material-icons&quot; role&#x3D;&quot;presentation&quot;&gt;arrow_back&lt;&#x2F;i&gt;&lt;&#x2F;button&gt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/8/">&lt;button aria-label&#x3D;&quot;Next page&quot; class&#x3D;&quot;mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon&quot;&gt;&lt;i class&#x3D;&quot;material-icons&quot; role&#x3D;&quot;presentation&quot;&gt;arrow_forward&lt;&#x2F;i&gt;&lt;&#x2F;button&gt;</a>
-        </nav>
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 15 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.jpg');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.jpg');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                BSS段内存问题排查笔记
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Kanglai Qian</strong>
+        <span>4月 03, 2023</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-none-link" href="/tags/C/" rel="tag">C++</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=BSS段内存问题排查笔记&url=http://qiankanglai.me/2023/04/03/memory-issue-in-bss/index.html&pic=http://qiankanglai.me/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=BSS段内存问题排查笔记&url=http://qiankanglai.me/2023/04/03/memory-issue-in-bss/index.html&via=Kanglai Qian" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://qiankanglai.me/2023/04/03/memory-issue-in-bss/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://qiankanglai.me/2023/04/03/memory-issue-in-bss/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>本周版本的时候QA同学跑过来说iPhone 13进游戏闪退，而且没有抓到闪退的堆栈信息; 盲猜是内存问题，当时手头在忙就直接找人试了下低端一些的设备，结果没有翻车orz 就一时间有点摸不到头脑。<br>后来腾出手直接XCode连着看了下，雀实是内存冲到2G之后被系统干了，在<code>- (void)applicationDidReceiveMemoryWarning:(UIApplication*)application</code>里打了行LOG也触发到了。</p>
+<p>昨天在家终于有空仔细研究下这个问题，最后发现还是蛮少见的情况… 特意记录一下笔记。</p>
+<span id="more"></span>
+
+<p>首先重新描述下问题: ios真机上打开登录界面就内存占用达到1G，登录加载场景后会飙升到1.8G然后被系统干掉；翻了下QA同学的历史包数据，登录进游戏跑测之后也应该维持在1G上下。</p>
+<p>掏出祖传instruments，查了下进登录界面的allocation情况发现一切正常，而且也就100M不到的情况(这里反而是发现有个SDK在频繁申请、释放一块128M内存需要跟进下emmm)。<br>这时候楚东发现了一个诡异的地方，<code>_DATA</code>字段有个超大的分配需要关注。</p>
+<p>由于对XCode相关功能不太熟悉，我索性换到PC平台来查这个问题: 先掏出<a target="_blank" rel="noopener" href="http://technet.microsoft.com/en-us/sysinternals/dd535533">VMMap</a>看下登录界面的内存情况，发现Heap部分只有75M左右，大头反而是Image部分的.data段——说明被下毒的地方是.data里面!</p>
+<p><img src="/images/vmmap.jpg"></p>
+<p>接下来试图继续排查这个dll里的.data里有啥。一开始是熟练的启动了IDA，结果加载PDB的时候非常卡——处理debug symbols耗费差不多半小时，而且随便jump address就卡哭。 </p>
+<p>索性换个思路，研究下有没有别的方法可以导出.data段的内容: 毕竟是我本地编译的dll+pdb，所有信息其实都是全的。在等IDA的时候，从M$文档里翻到了<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/cpp/build/reference/map-generate-mapfile">/MAP (Generate Mapfile)</a>，试着生成了下果然定位到同样的问题：.bss字段的长度过于鹤立鸡群了…</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Timestamp is 64283074 (Sat Apr  1 21:24:04 2023)</span><br><span class="line"></span><br><span class="line">Preferred load address is 0000000180000000</span><br><span class="line"></span><br><span class="line">Start         Length     Name                   Class</span><br><span class="line">0003:00000000 001a9a90H .data                   DATA</span><br><span class="line">0003:001a9a90 000975c0H .data$r                 DATA</span><br><span class="line">0003:00241050 0017fcb0H .data$rs                DATA</span><br><span class="line">0003:003c0d00 39376098H .bss                    DATA</span><br><span class="line">0004:00000000 00278a6cH .pdata                  DATA</span><br></pre></td></tr></table></figure>
+
+<p>然后下面有具体的列表，索性在sublime里排序之后，肉眼跳着看找到了地址跳变的两条记录</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0003:006cf170       ?sHPFM@MMM@@3VHPFManager@HP@1@A 000000018556a170     AAA.obj</span><br><span class="line">0003:37ee4b78       ?thousand_separator_locale@MMM@@3Vlocale@std@@A 00000001bcd7fb78     AAA.obj</span><br></pre></td></tr></table></figure>
+
+<p>对着这条记录去翻对应的C++实现，然后暴力编译输出了一发大小:</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> HP::HPFManager sHPFM;</span><br><span class="line"><span class="keyword">char</span>(*test)[<span class="keyword">sizeof</span>(HP::HPFManager)] = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>结论就是这个manager占用了931M的内存…</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AAA.cpp(31,56): error C2440: &#39;initializing&#39;: cannot convert from &#39;int&#39; to &#39;char (*)[931224072]&#39;</span><br><span class="line">AAA.cpp(31,56): error C2440: 	char(*test)[sizeof(HP::HPFManager)] &#x3D; 1;</span><br><span class="line">AAA.cpp(31,56): error C2440: 	        </span><br></pre></td></tr></table></figure>
+
+<p>至此问题就比较清晰了，是因为这个Manager类实现的不合理导致的~ 回头准备再写个Python脚本分析下.data段其它变量占用情况，有没有不合理的。 </p>
+<p>说实话这个问题有趣之处在于内存占用出现在.bss而不是heap上，导致习惯性查new/malloc的手段就完全定位不到问题。奇怪的经验有增加了orz</p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0;
+            display: none
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://qiankanglai.me/2023/04/03/memory-issue-in-bss/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://qiankanglai.me/2023/04/03/memory-issue-in-bss/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $.ajax({
+        url: 'https://disqus.com/next/config.json',
+        timeout: 4000,
+        type: 'GET',
+        success: (function() {
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+            $('.disqus_click_btn').css('display','none');
+        })(),
+        error: function() {
+          $('.disqus_click_btn').css('display','block');
+        }
+    });
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.disqus_click_btn').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2023/02/12/renderdoc-android-inject/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -1199,6 +960,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","https://cdn.bootcss.com/prettify/r298/prettify.min.js", true)</script>
+        
+    
 
 
 
@@ -1211,6 +976,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     

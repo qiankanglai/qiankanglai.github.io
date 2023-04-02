@@ -704,6 +704,31 @@
    	   		
 			<div class="md-timeline-block">
                 		<div class="md-timeline-date blue">
+                   			<div class="md-date">4月 03 2023</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2023/04/03/memory-issue-in-bss/">BSS段内存问题排查笔记</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							本周版本的时候QA同学跑过来说iPhone 13进游戏闪退，而且没有抓到闪退的堆栈信息; 盲猜是内存问题，当时手头在忙就直接找人试了下低端一些的设备，结果没有翻车orz 就一时间有点摸不到头脑。后来腾出手直接XCode连着看了下，雀实是内存冲到2G之后被系统干了，在- (void)applicationDidReceiveMemoryWarning:(UIApplication*)application里打了行LOG也触发到了。
+昨天在家终于有空仔细研究下这个问题，最后发现还是蛮少见的情况… 特意记录一下笔记。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
                    			<div class="md-date">2月 12 2023</div>
                 		</div>
 
