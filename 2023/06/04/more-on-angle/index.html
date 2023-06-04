@@ -50,7 +50,7 @@
     
     <title>
         
-            Teleglitch RGB闪烁 | 
+            angle追加折腾笔记 | 
         
         Loading &amp; Learning
     </title>
@@ -60,8 +60,9 @@
     <link rel="icon" href="/img/favicon.png">
 
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="如果你在Teleglitch中使用传送门，会出现一个很有意思的特效。我仔细看了下，感觉他们就是在RGB通道分别扭曲(distort)了下画面。我相当喜欢这个看上去有点硬件坏了的效果…">
-    <meta name="keywords" content=",GameArtTricks,Translation">
+    <meta name="description" itemprop="description" content="之前在angle折腾笔记里提到恢复angle作为ES3模拟器，方便PC上查BUG。当时为了模拟EXT_copy_image使用了Vulkan Backend，别的用起来都挺好，但是很蛋疼的一点是RenderDoc抓帧的API其实都是vlk的… 这礼拜查别的BUG的时候，索性痛定思痛尝试使用GLES Backend。
+记录下人肉补全功能以及修复了两个自带闪退的笔记…">
+    <meta name="keywords" content=",C++,GLES">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -227,7 +228,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Loading &amp; Learning">
-    <meta name="msapplication-starturl" content="http://qiankanglai.me/2016/04/09/teleglitch-rgb/">
+    <meta name="msapplication-starturl" content="http://qiankanglai.me/2023/06/04/more-on-angle/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Loading &amp; Learning">
@@ -242,16 +243,17 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://qiankanglai.me/2016/04/09/teleglitch-rgb/">
+    <meta property="og:url" content="http://qiankanglai.me/2023/06/04/more-on-angle/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Teleglitch RGB闪烁 | Loading &amp; Learning">
+    <meta property="og:title" content="angle追加折腾笔记 | Loading &amp; Learning">
     <meta property="og:image" content="/img/favicon.png">
-    <meta property="og:description" content="如果你在Teleglitch中使用传送门，会出现一个很有意思的特效。我仔细看了下，感觉他们就是在RGB通道分别扭曲(distort)了下画面。我相当喜欢这个看上去有点硬件坏了的效果…">
-    <meta property="og:article:tag" content="GameArtTricks"> <meta property="og:article:tag" content="Translation"> 
+    <meta property="og:description" content="之前在angle折腾笔记里提到恢复angle作为ES3模拟器，方便PC上查BUG。当时为了模拟EXT_copy_image使用了Vulkan Backend，别的用起来都挺好，但是很蛋疼的一点是RenderDoc抓帧的API其实都是vlk的… 这礼拜查别的BUG的时候，索性痛定思痛尝试使用GLES Backend。
+记录下人肉补全功能以及修复了两个自带闪退的笔记…">
+    <meta property="og:article:tag" content="C++"> <meta property="og:article:tag" content="GLES"> 
 
     
-        <meta property="article:published_time" content="Sat Apr 09 2016 00:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Mon Dec 13 2021 20:59:24 GMT+0800">
+        <meta property="article:published_time" content="Sun Jun 04 2023 17:35:48 GMT+0800">
+        <meta property="article:modified_time" content="Sun Jun 04 2023 18:17:54 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -259,7 +261,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://qiankanglai.me/2016/04/09/teleglitch-rgb/index.html" />
+        <link rel="canonical" href="http://qiankanglai.me/2023/06/04/more-on-angle/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -271,10 +273,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "http://qiankanglai.me/2016/04/09/teleglitch-rgb/index.html",
-    "headline": "Teleglitch RGB闪烁",
-    "datePublished": "Sat Apr 09 2016 00:00:00 GMT+0800",
-    "dateModified": "Mon Dec 13 2021 20:59:24 GMT+0800",
+    "mainEntityOfPage": "http://qiankanglai.me/2023/06/04/more-on-angle/index.html",
+    "headline": "angle追加折腾笔记",
+    "datePublished": "Sun Jun 04 2023 17:35:48 GMT+0800",
+    "dateModified": "Sun Jun 04 2023 18:17:54 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -292,8 +294,9 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",GameArtTricks,Translation",
-    "description": "如果你在Teleglitch中使用传送门，会出现一个很有意思的特效。我仔细看了下，感觉他们就是在RGB通道分别扭曲(distort)了下画面。我相当喜欢这个看上去有点硬件坏了的效果…",
+    "keywords": ",C++,GLES",
+    "description": "之前在angle折腾笔记里提到恢复angle作为ES3模拟器，方便PC上查BUG。当时为了模拟EXT_copy_image使用了Vulkan Backend，别的用起来都挺好，但是很蛋疼的一点是RenderDoc抓帧的API其实都是vlk的… 这礼拜查别的BUG的时候，索性痛定思痛尝试使用GLES Backend。
+记录下人肉补全功能以及修复了两个自带闪退的笔记…",
 }
 </script>
 
@@ -339,6 +342,39 @@
 
                     <!-- Post TOC -->
 
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#depot-tools"><span class="post-toc-text">depot_tools</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#EXT-copy-image"><span class="post-toc-text">EXT_copy_image</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Extensions"><span class="post-toc-text">Extensions</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#EXT-or-not"><span class="post-toc-text">EXT or not?</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#glProgramBinary"><span class="post-toc-text">glProgramBinary</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RenderDoc-Replay"><span class="post-toc-text">RenderDoc Replay</span></a></li></ol>
+    </ul>
+    
+
+
+
 
 <!-- Layouts -->
 
@@ -365,7 +401,7 @@
         
     
             <p class="article-headline-p">
-                Teleglitch RGB闪烁
+                angle追加折腾笔记
             </p>
         </div>
 
@@ -384,7 +420,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Kanglai Qian</strong>
-        <span>4月 09, 2016</span>
+        <span>6月 04, 2023</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -408,7 +444,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-none-link" href="/tags/GameArtTricks/" rel="tag">GameArtTricks</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/Translation/" rel="tag">Translation</a>
+        <a class="post_tag-none-link" href="/tags/C/" rel="tag">C++</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/GLES/" rel="tag">GLES</a>
     </ul>
     
 
@@ -425,7 +461,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Teleglitch RGB闪烁&url=http://qiankanglai.me/2016/04/09/teleglitch-rgb/index.html&pic=http://qiankanglai.me/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=angle追加折腾笔记&url=http://qiankanglai.me/2023/06/04/more-on-angle/index.html&pic=http://qiankanglai.me/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -434,7 +470,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Teleglitch RGB闪烁&url=http://qiankanglai.me/2016/04/09/teleglitch-rgb/index.html&via=Kanglai Qian" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=angle追加折腾笔记&url=http://qiankanglai.me/2023/06/04/more-on-angle/index.html&via=Kanglai Qian" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -443,7 +479,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://qiankanglai.me/2016/04/09/teleglitch-rgb/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://qiankanglai.me/2023/06/04/more-on-angle/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -452,7 +488,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://qiankanglai.me/2016/04/09/teleglitch-rgb/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://qiankanglai.me/2023/06/04/more-on-angle/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -477,17 +513,35 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>如果你在<a target="_blank" rel="noopener" href="http://teleglitch.com/">Teleglitch</a>中使用传送门，会出现一个很有意思的特效。我仔细看了下，感觉他们就是在RGB通道分别扭曲(distort)了下画面。我相当喜欢这个看上去有点硬件坏了的效果…</p>
+        <p>之前在<a href="/2022/05/07/notes-on-angle/" title="angle折腾笔记">angle折腾笔记</a>里提到恢复angle作为ES3模拟器，方便PC上查BUG。当时为了模拟<code>EXT_copy_image</code>使用了Vulkan Backend，别的用起来都挺好，但是很蛋疼的一点是RenderDoc抓帧的API其实都是vlk的… 这礼拜查别的BUG的时候，索性痛定思痛尝试使用GLES Backend。</p>
+<p>记录下人肉补全功能以及修复了两个自带闪退的笔记…</p>
 <span id="more"></span>
 
-<p>译注:在下图中我截取了几帧放在Teaser，看起来比较好懂。本质上是三个通道分别扭曲，然后随着时间减小扭曲强度，最后返回原样…</p>
-<p><img src="https://data.simonschreibt.de/gat003/teleglitch_rgb.gif"></p>
-<p>讲真，这个让我想到了另一个游戏<a target="_blank" rel="noopener" href="http://www.deadlightgame.com/">Deadlight</a>。我觉得他们也是分别在RGB通道里加了点特技。从下图右上角那个水箱上，可以比较明显的看出这一点(译注: 作者指的是整张图片右上角那个黑又粗的柱子上，仔细看这个柱子的边缘会闪出蓝色)。不过由于游戏开发者在<a target="_blank" rel="noopener" href="http://www.youtube.com/watch?v=b0Huw18GsUY">The Art of Deadlight</a>里并没有提到这一点，所以我也不是非常肯定。</p>
-<p><img src="https://data.simonschreibt.de/gat003/deadlight_rgb.gif"></p>
-<h3 id="原文作者-更新"><a href="#原文作者-更新" class="headerlink" title="(原文作者)更新"></a>(原文作者)更新</h3><p>Deadlight的开发者<a target="_blank" rel="noopener" href="http://cmonteroart.blogspot.de/">David Miranda</a>表示这个效果被称为<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Chromatic_aberration">Chromatic Abberation</a>，能够用来模拟不干净镜头的老相机效果。CE里也用这个在水的shader里模拟不同波长光线分离效果。</p>
-<h3 id="译注"><a href="#译注" class="headerlink" title="译注"></a>译注</h3><p>我之前在图像处理课程当助教的时候，布置过类似效果~当时是做了个LOMO滤镜，日系画风(逃)，不过用Mask就解决问题了哈哈哈哈</p>
-<p>原文评论部分里的解决方案是:从屏幕中心到周围边界部分，增大扭曲效果强度~</p>
-<p><a target="_blank" rel="noopener" href="http://simonschreibt.de/gat/teleglitch-rgb-flickering">原文链接</a></p>
+<h2 id="depot-tools"><a href="#depot-tools" class="headerlink" title="depot_tools"></a>depot_tools</h2><p>无脑先拉了最新的Angle代码，结果开幕雷击orz…看了下log是因为新版本的depot_tools不在自带ninja二进制文件了。<br>这个很好处理，去<a target="_blank" rel="noopener" href="https://github.com/ninja-build/ninja/releases">ninja</a>拉一份最新的exe，然后设置下系统路径就行。</p>
+<h2 id="EXT-copy-image"><a href="#EXT-copy-image" class="headerlink" title="EXT_copy_image"></a><code>EXT_copy_image</code></h2><p>编译出来dll之后塞回去，打开GLES Backend之后可以直接跑起来。<br>ps. 顺便还发现了一个sampler state设置有误，导致Undefined Behaviour的行为。</p>
+<p>然而VT部分果不其然挂掉了… 跟了下这块调用堆栈(pdb在手真香) 确实是没有实现:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">angle::Result <span class="title">TextureImpl::copyTextureSubData</span><span class="params">(<span class="keyword">const</span> gl::Context *context,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              <span class="keyword">const</span> gl::Texture *srcTexture,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLint srcLevel,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLint srcX,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLint srcY,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLint srcZ,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLint dstLevel,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLint dstX,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLint dstY,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLint dstZ,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLsizei srcWidth,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLsizei srcHeight,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLsizei srcDepth)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    UNREACHABLE();</span><br><span class="line">    <span class="keyword">return</span> angle::Result::Stop;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时候先用<a target="_blank" rel="noopener" href="https://www.saschawillems.de/creations/opengl-hardware-capability-viewer/">OpenGL hardware capability viewer</a>确认了下这个扩展其实是存在的。 </p>
+<p><img src="/images/gl_ext_copy_image.jpg"></p>
+<p>这样就好办了——索性自己实现一发<code>TextureGL::copyTextureSubData</code>，对应调用的函数塞在<code>BlitGL::copyImageSubData</code>里面即可。加起来差不多也就十行。</p>
+<p>但是光实现了这两处地方补全功能还不够…直接运行会发现根本走不进对应调用堆栈</p>
+<h3 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h3><p>跟了下代码，发现没启用起来的问题很简单: GLES 3.1 Context下的Extension列表中压根没有<code>GL_EXT_copy_image</code>，所以引擎认为当前RHI下这个功能是不可用的。</p>
+<p>跟了下ANGLE这块逻辑，它其实本身是会检查当前Backend Device情况，来决定可以支持多少GLES Extensions的。所以需要在renderergl_utils.cpp里补一行:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">extensions-&gt;copyImageEXT = functions-&gt;hasGLESExtension(<span class="string">&quot;GL_EXT_copy_image&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>从而告诉ANGLE此时是可以支持<code>copyImageEXT</code>，引擎才能正常走对应逻辑。</p>
+<h3 id="EXT-or-not"><a href="#EXT-or-not" class="headerlink" title="EXT or not?"></a>EXT or not?</h3><p>这个其实是之前用Vulkan Backend就发现的问题: 打开RenderDoc后会优先使用非EXT版本的API，导致<code>glCopyImageSubDataEXT</code>调用被劫持成<code>glCopyImageSubData</code>。<br>我之前给RenderDoc提过<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/pull/2578">split code path for glCopyImageSubDataEXT&amp;glCopyImageSubData</a>，但是作者的回复还是比较有道理的——在GLES 3.1 Context的情况下，ANGLE其实就不应该返回<code>glCopyImageSubData</code>这个接口(虽然里面是空实现)。</p>
+<p>临时解决方案是ANGLE里<code>ValidateCopyImageSubData</code>里的ES 3.2限制降到3.1。</p>
+<h2 id="glProgramBinary"><a href="#glProgramBinary" class="headerlink" title="glProgramBinary"></a><code>glProgramBinary</code></h2><p>偶然间关掉RenderDoc之后发现启动时大概率会闪退的一个问题，看了下堆栈是崩在了<code>glProgramBinary</code>中</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">libGLESv2.dll!rx::ProgramGL::uniLoc(int glLocation) Line 148	C++</span><br><span class="line">libGLESv2.dll!rx::ProgramGL::setUniform1iv(int location, int count, const int * v) Line 555	C++</span><br><span class="line">libGLESv2.dll!gl::Program::setUniform1iv(gl::Context * context, gl::UniformLocation location, int count, const int * v) Line 2267	C++</span><br><span class="line">libGLESv2.dll!gl::Program::setUniformValuesFromBindingQualifiers() Line 3278	C++</span><br><span class="line">libGLESv2.dll!gl::Program::postResolveLink(const gl::Context * context) Line 3723	C++</span><br><span class="line">libGLESv2.dll!gl::Program::deserialize(const gl::Context * context, gl::BinaryInputStream &amp; stream, gl::InfoLog &amp; infoLog) Line 3691	C++</span><br><span class="line">libGLESv2.dll!gl::Program::loadBinary(const gl::Context * context, unsigned int binaryFormat, const void * binary, int length) Line 1474	C++</span><br><span class="line">libGLESv2.dll!gl::Context::programBinary(gl::ShaderProgramID program, unsigned int binaryFormat, const void * binary, int length) Line 8006	C++</span><br><span class="line">libGLESv2.dll!GL_ProgramBinary(unsigned int program, unsigned int binaryFormat, const void * binary, int length) Line 2135	C++</span><br></pre></td></tr></table></figure>
+
+<p>看了下这块代码，然后在ANGLE的test case里用现有的<code>ProgramBinaryUniformResetCase</code>改了改，发现能稳定复现了这个问题: 本质是es 3.1的uniform sampler binding point压根没考虑到…<br>给官方提了<a target="_blank" rel="noopener" href="https://bugs.chromium.org/p/angleproject/issues/detail?id=8183">glProgramBinary crash with unifor binding point</a>，回复的非常快但是吐槽无力…两年前就有人提过这个事情还没修(难怪我搜<code>glProgramBinary</code>没找到这个issue…)</p>
+<p>本来想直接禁用shader binary cache绕开，后来发现<code>glLinkProgram</code>的时候ANGLE内部也会尝试复用Program，导致一样的闪退。</p>
+<p>行吧，同样是非常临时的方案糊弄了下，目前跑起来没啥问题倒是…</p>
+<h2 id="RenderDoc-Replay"><a href="#RenderDoc-Replay" class="headerlink" title="RenderDoc Replay"></a>RenderDoc Replay</h2><p>这个其实不是ANGLE的问题了，而是RenderDoc的BUG…<br>在分帧分块调用<code>glCopyImageSubDataEXT</code>时，RenderDoc只能保存当前帧的数据，导致目标Texture其它部分的历史数据会直接丢失掉。</p>
+<p>这个问题我其实当年提<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/pull/2129">supporting full glCopyImageSubData</a>的时候也发现了，只不过后面一直没空去填坑…这次准备一起搞一下orz </p>
+<p>待后续更新…</p>
 
         
     
@@ -542,8 +596,8 @@
 
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://qiankanglai.me/2016/04/09/teleglitch-rgb/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://qiankanglai.me/2016/04/09/teleglitch-rgb/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://qiankanglai.me/2023/06/04/more-on-angle/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://qiankanglai.me/2023/06/04/more-on-angle/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
@@ -592,21 +646,13 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2016/04/09/teleglitch-viewcones/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2016/04/02/fallout3-edges/" id="post_nav-older" class="next-content">
+        <a href="/2023/04/03/memory-issue-in-bss/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
