@@ -61,7 +61,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="之前在angle折腾笔记里提到恢复angle作为ES3模拟器，方便PC上查BUG。当时为了模拟EXT_copy_image使用了Vulkan Backend，别的用起来都挺好，但是很蛋疼的一点是RenderDoc抓帧的API其实都是vlk的… 这礼拜查别的BUG的时候，索性痛定思痛尝试使用GLES Backend。
-记录下人肉补全功能以及修复了两个自带闪退的笔记…">
+这里记录下补全功能以及修复了若干Angle/RenderDoc相关问题的笔记…">
     <meta name="keywords" content=",C++,GLES">
     <meta name="theme-color" content="#0097A7">
 
@@ -248,12 +248,12 @@
     <meta property="og:title" content="angle追加折腾笔记 | Loading &amp; Learning">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="之前在angle折腾笔记里提到恢复angle作为ES3模拟器，方便PC上查BUG。当时为了模拟EXT_copy_image使用了Vulkan Backend，别的用起来都挺好，但是很蛋疼的一点是RenderDoc抓帧的API其实都是vlk的… 这礼拜查别的BUG的时候，索性痛定思痛尝试使用GLES Backend。
-记录下人肉补全功能以及修复了两个自带闪退的笔记…">
+这里记录下补全功能以及修复了若干Angle/RenderDoc相关问题的笔记…">
     <meta property="og:article:tag" content="C++"> <meta property="og:article:tag" content="GLES"> 
 
     
         <meta property="article:published_time" content="Sun Jun 04 2023 17:35:48 GMT+0800">
-        <meta property="article:modified_time" content="Sun Jun 04 2023 18:17:54 GMT+0800">
+        <meta property="article:modified_time" content="Wed Jun 07 2023 21:23:46 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -276,7 +276,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2023/06/04/more-on-angle/index.html",
     "headline": "angle追加折腾笔记",
     "datePublished": "Sun Jun 04 2023 17:35:48 GMT+0800",
-    "dateModified": "Sun Jun 04 2023 18:17:54 GMT+0800",
+    "dateModified": "Wed Jun 07 2023 21:23:46 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -296,7 +296,7 @@
     },
     "keywords": ",C++,GLES",
     "description": "之前在angle折腾笔记里提到恢复angle作为ES3模拟器，方便PC上查BUG。当时为了模拟EXT_copy_image使用了Vulkan Backend，别的用起来都挺好，但是很蛋疼的一点是RenderDoc抓帧的API其实都是vlk的… 这礼拜查别的BUG的时候，索性痛定思痛尝试使用GLES Backend。
-记录下人肉补全功能以及修复了两个自带闪退的笔记…",
+这里记录下补全功能以及修复了若干Angle/RenderDoc相关问题的笔记…",
 }
 </script>
 
@@ -369,7 +369,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#depot-tools"><span class="post-toc-text">depot_tools</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#EXT-copy-image"><span class="post-toc-text">EXT_copy_image</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Extensions"><span class="post-toc-text">Extensions</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#EXT-or-not"><span class="post-toc-text">EXT or not?</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#glProgramBinary"><span class="post-toc-text">glProgramBinary</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RenderDoc-Replay"><span class="post-toc-text">RenderDoc Replay</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#depot-tools%E6%9B%B4%E6%96%B0"><span class="post-toc-text">depot_tools更新</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Angle%E9%83%A8%E5%88%86%E4%BF%AE%E6%94%B9"><span class="post-toc-text">Angle部分修改</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#glCopySubImage%E8%A1%A5%E5%85%A8"><span class="post-toc-text">glCopySubImage补全</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Extensions"><span class="post-toc-text">Extensions</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#EXT-or-not"><span class="post-toc-text">EXT or not?</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#glProgramBinary%E9%97%AA%E9%80%80"><span class="post-toc-text">glProgramBinary闪退</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Fix-Attemp-1"><span class="post-toc-text">Fix Attemp 1</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Fix-Attemp-2"><span class="post-toc-text">Fix Attemp 2</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#RenderDoc-Replay"><span class="post-toc-text">RenderDoc Replay</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E8%B4%B4%E5%9B%BE%E9%94%99%E4%B9%B1"><span class="post-toc-text">贴图错乱</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Debug-Attemp-1"><span class="post-toc-text">Debug Attemp 1</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Debug-Attemp-2s"><span class="post-toc-text">Debug Attemp 2s</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Debug-Attemp-3"><span class="post-toc-text">Debug Attemp 3</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Fix"><span class="post-toc-text">Fix</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#glCopyImageSubData%E6%95%88%E6%9E%9C%E9%94%99%E8%AF%AF"><span class="post-toc-text">glCopyImageSubData效果错误</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -514,33 +514,74 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>之前在<a href="/2022/05/07/notes-on-angle/" title="angle折腾笔记">angle折腾笔记</a>里提到恢复angle作为ES3模拟器，方便PC上查BUG。当时为了模拟<code>EXT_copy_image</code>使用了Vulkan Backend，别的用起来都挺好，但是很蛋疼的一点是RenderDoc抓帧的API其实都是vlk的… 这礼拜查别的BUG的时候，索性痛定思痛尝试使用GLES Backend。</p>
-<p>记录下人肉补全功能以及修复了两个自带闪退的笔记…</p>
+<p>这里记录下补全功能以及修复了若干Angle/RenderDoc相关问题的笔记…</p>
 <span id="more"></span>
 
-<h2 id="depot-tools"><a href="#depot-tools" class="headerlink" title="depot_tools"></a>depot_tools</h2><p>无脑先拉了最新的Angle代码，结果开幕雷击orz…看了下log是因为新版本的depot_tools不在自带ninja二进制文件了。<br>这个很好处理，去<a target="_blank" rel="noopener" href="https://github.com/ninja-build/ninja/releases">ninja</a>拉一份最新的exe，然后设置下系统路径就行。</p>
-<h2 id="EXT-copy-image"><a href="#EXT-copy-image" class="headerlink" title="EXT_copy_image"></a><code>EXT_copy_image</code></h2><p>编译出来dll之后塞回去，打开GLES Backend之后可以直接跑起来。<br>ps. 顺便还发现了一个sampler state设置有误，导致Undefined Behaviour的行为。</p>
-<p>然而VT部分果不其然挂掉了… 跟了下这块调用堆栈(pdb在手真香) 确实是没有实现:</p>
+<h1 id="depot-tools更新"><a href="#depot-tools更新" class="headerlink" title="depot_tools更新"></a>depot_tools更新</h1><p>无脑先拉了最新的Angle代码，结果老方法遭遇开幕雷击orz…看了下log是因为新版本的depot_tools不在自带ninja二进制文件了，所以编译一堆失败。<br>这个很好处理，去<a target="_blank" rel="noopener" href="https://github.com/ninja-build/ninja/releases">ninja</a>拉一份最新的exe，然后设置进系统路径就行。</p>
+<h1 id="Angle部分修改"><a href="#Angle部分修改" class="headerlink" title="Angle部分修改"></a>Angle部分修改</h1><p>按照之前经验，编译出libEGL.dll和libGLESv2.dll两个文件，测了下打开GLES Backend可以直接运行起来，但也发现了效果错误+闪退问题。</p>
+<h2 id="glCopySubImage补全"><a href="#glCopySubImage补全" class="headerlink" title="glCopySubImage补全"></a><code>glCopySubImage</code>补全</h2><p>之前在<a href="/2022/05/07/notes-on-angle/" title="angle折腾笔记">angle折腾笔记</a>里也提到，暂时只有Vulkan这个Backend支持了跨格式拷贝贴图的功能(虽然这块其实也有点小瑕疵，见<a target="_blank" rel="noopener" href="https://bugs.chromium.org/p/angleproject/issues/detail?id=7289">CopyImageSubData in Vulkan Backend</a>，但本地改改、糊弄一个可以用的版本很快)。</p>
+<p>调试了下ES Backend下的调用堆栈(pdb在手真香)，确实是没有实现对应逻辑:</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">angle::Result <span class="title">TextureImpl::copyTextureSubData</span><span class="params">(<span class="keyword">const</span> gl::Context *context,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              <span class="keyword">const</span> gl::Texture *srcTexture,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLint srcLevel,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLint srcX,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLint srcY,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLint srcZ,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLint dstLevel,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLint dstX,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLint dstY,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLint dstZ,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLsizei srcWidth,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLsizei srcHeight,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              GLsizei srcDepth)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    UNREACHABLE();</span><br><span class="line">    <span class="keyword">return</span> angle::Result::Stop;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这时候先用<a target="_blank" rel="noopener" href="https://www.saschawillems.de/creations/opengl-hardware-capability-viewer/">OpenGL hardware capability viewer</a>确认了下这个扩展其实是存在的。 </p>
 <p><img src="/images/gl_ext_copy_image.jpg"></p>
-<p>这样就好办了——索性自己实现一发<code>TextureGL::copyTextureSubData</code>，对应调用的函数塞在<code>BlitGL::copyImageSubData</code>里面即可。加起来差不多也就十行。</p>
-<p>但是光实现了这两处地方补全功能还不够…直接运行会发现根本走不进对应调用堆栈</p>
-<h3 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h3><p>跟了下代码，发现没启用起来的问题很简单: GLES 3.1 Context下的Extension列表中压根没有<code>GL_EXT_copy_image</code>，所以引擎认为当前RHI下这个功能是不可用的。</p>
-<p>跟了下ANGLE这块逻辑，它其实本身是会检查当前Backend Device情况，来决定可以支持多少GLES Extensions的。所以需要在renderergl_utils.cpp里补一行:</p>
+<p>这样就好办了——索性自己实现一发<code>TextureGL::copyTextureSubData</code>，对应调用的函数塞在<code>BlitGL::copyImageSubData</code>里面即可，加起来差不多也就十多行。</p>
+<h3 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h3><p>补完逻辑之后发现游戏运行起来，还是自动禁用了这块功能。继续调试下，发现原因是GLES 3.1 Context下的Extension列表中压根没有<code>GL_EXT_copy_image</code>，所以引擎认为当前RHI下这个功能是不可用的。</p>
+<p>翻了翻ANGLE生成扩展列表相关逻辑，它其实是通过检查当前Backend Device情况，来决定可以支持多少GLES Extensions的。所以在renderergl_utils.cpp里补一行:</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">extensions-&gt;copyImageEXT = functions-&gt;hasGLESExtension(<span class="string">&quot;GL_EXT_copy_image&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<p>从而告诉ANGLE此时是可以支持<code>copyImageEXT</code>，引擎才能正常走对应逻辑。</p>
-<h3 id="EXT-or-not"><a href="#EXT-or-not" class="headerlink" title="EXT or not?"></a>EXT or not?</h3><p>这个其实是之前用Vulkan Backend就发现的问题: 打开RenderDoc后会优先使用非EXT版本的API，导致<code>glCopyImageSubDataEXT</code>调用被劫持成<code>glCopyImageSubData</code>。<br>我之前给RenderDoc提过<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/pull/2578">split code path for glCopyImageSubDataEXT&amp;glCopyImageSubData</a>，但是作者的回复还是比较有道理的——在GLES 3.1 Context的情况下，ANGLE其实就不应该返回<code>glCopyImageSubData</code>这个接口(虽然里面是空实现)。</p>
-<p>临时解决方案是ANGLE里<code>ValidateCopyImageSubData</code>里的ES 3.2限制降到3.1。</p>
-<h2 id="glProgramBinary"><a href="#glProgramBinary" class="headerlink" title="glProgramBinary"></a><code>glProgramBinary</code></h2><p>偶然间关掉RenderDoc之后发现启动时大概率会闪退的一个问题，看了下堆栈是崩在了<code>glProgramBinary</code>中</p>
+<p>从而告诉ANGLE此时是可以支持<code>copyImageEXT</code>，自此引擎对应功能就正常了。</p>
+<h3 id="EXT-or-not"><a href="#EXT-or-not" class="headerlink" title="EXT or not?"></a>EXT or not?</h3><p>这个也是之前用Vulkan Backend就发现的问题: 打开RenderDoc后会优先使用非EXT版本的API，导致<code>glCopyImageSubDataEXT</code>调用被劫持成<code>glCopyImageSubData</code>。</p>
+<p>我之前给RenderDoc提过<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/pull/2578">split code path for glCopyImageSubDataEXT&amp;glCopyImageSubData</a>，但是作者的回复还是比较有道理的——在GLES 3.1 Context的情况下，ANGLE其实就不应该返回<code>glCopyImageSubData</code>这个接口(虽然里面是空实现)。</p>
+<p><del>临时解决方案是ANGLE里<code>ValidateCopyImageSubData</code>里的ES 3.2限制降到3.1。</del>后面会提到更加釜底抽薪的解决方案。</p>
+<h2 id="glProgramBinary闪退"><a href="#glProgramBinary闪退" class="headerlink" title="glProgramBinary闪退"></a><code>glProgramBinary</code>闪退</h2><p>关掉RenderDoc之后发现启动时有一定概率闪退，看了下堆栈是崩在了<code>glProgramBinary</code>中(其实开了RenderDoc就没问题也很有意思，回头有机会展开)</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">libGLESv2.dll!rx::ProgramGL::uniLoc(int glLocation) Line 148	C++</span><br><span class="line">libGLESv2.dll!rx::ProgramGL::setUniform1iv(int location, int count, const int * v) Line 555	C++</span><br><span class="line">libGLESv2.dll!gl::Program::setUniform1iv(gl::Context * context, gl::UniformLocation location, int count, const int * v) Line 2267	C++</span><br><span class="line">libGLESv2.dll!gl::Program::setUniformValuesFromBindingQualifiers() Line 3278	C++</span><br><span class="line">libGLESv2.dll!gl::Program::postResolveLink(const gl::Context * context) Line 3723	C++</span><br><span class="line">libGLESv2.dll!gl::Program::deserialize(const gl::Context * context, gl::BinaryInputStream &amp; stream, gl::InfoLog &amp; infoLog) Line 3691	C++</span><br><span class="line">libGLESv2.dll!gl::Program::loadBinary(const gl::Context * context, unsigned int binaryFormat, const void * binary, int length) Line 1474	C++</span><br><span class="line">libGLESv2.dll!gl::Context::programBinary(gl::ShaderProgramID program, unsigned int binaryFormat, const void * binary, int length) Line 8006	C++</span><br><span class="line">libGLESv2.dll!GL_ProgramBinary(unsigned int program, unsigned int binaryFormat, const void * binary, int length) Line 2135	C++</span><br></pre></td></tr></table></figure>
 
-<p>看了下这块代码，然后在ANGLE的test case里用现有的<code>ProgramBinaryUniformResetCase</code>改了改，发现能稳定复现了这个问题: 本质是es 3.1的uniform sampler binding point压根没考虑到…<br>给官方提了<a target="_blank" rel="noopener" href="https://bugs.chromium.org/p/angleproject/issues/detail?id=8183">glProgramBinary crash with unifor binding point</a>，回复的非常快但是吐槽无力…两年前就有人提过这个事情还没修(难怪我搜<code>glProgramBinary</code>没找到这个issue…)</p>
+<p>看了下这块代码，然后在ANGLE的test case里用现有的<code>ProgramBinaryUniformResetCase</code>改了改，发现能稳定复现了这个问题: 加载shader binary cache时，压根没考虑es 3.1下的uniform sampler binding point…<br>给官方提了<a target="_blank" rel="noopener" href="https://bugs.chromium.org/p/angleproject/issues/detail?id=8183">glProgramBinary crash with unifor binding point</a>，回复的非常快但是吐槽无力…两年前就有人提过这个事情还没修(难怪我搜<code>glProgramBinary</code>没找到这个issue…)</p>
 <p>本来想直接禁用shader binary cache绕开，后来发现<code>glLinkProgram</code>的时候ANGLE内部也会尝试复用Program，导致一样的闪退。</p>
-<p>行吧，同样是非常临时的方案糊弄了下，目前跑起来没啥问题倒是…</p>
-<h2 id="RenderDoc-Replay"><a href="#RenderDoc-Replay" class="headerlink" title="RenderDoc Replay"></a>RenderDoc Replay</h2><p>这个其实不是ANGLE的问题了，而是RenderDoc的BUG…<br>在分帧分块调用<code>glCopyImageSubDataEXT</code>时，RenderDoc只能保存当前帧的数据，导致目标Texture其它部分的历史数据会直接丢失掉。</p>
-<p>这个问题我其实当年提<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/pull/2129">supporting full glCopyImageSubData</a>的时候也发现了，只不过后面一直没空去填坑…这次准备一起搞一下orz </p>
+<h3 id="Fix-Attemp-1"><a href="#Fix-Attemp-1" class="headerlink" title="Fix Attemp 1"></a>Fix Attemp 1</h3><p>一开始非常临时的方案糊弄了下:在<code>setUniformValuesFromBindingQualifiers</code>调用时候检查<code>mUniformRealLocationMap</code>为空就跳过，至少不会闪退了。</p>
+<p>但是跑测时候发现有概率导致加载的shader的uniform sampler信息丢失(毕竟被跳过了orz) ，渲染效果出错。</p>
+<h3 id="Fix-Attemp-2"><a href="#Fix-Attemp-2" class="headerlink" title="Fix Attemp 2"></a>Fix Attemp 2</h3><p>索性重新梳理了下这块逻辑，特别是对比了下正常创建Shader的行为: 本质问题其实是<code>postResolveLink</code>必须保证在<code>link</code>之后调用。<br>定位到这点之后就好改了，索性把<code>postResolveLink</code>从<code>deserialize</code>里挪出，放到后面合适的位置调用即可。</p>
+<p>更新: 官方repo上也有人处理掉了<a target="_blank" rel="noopener" href="https://github.com/google/angle/commit/6e40ce0071228c189506b986b6702b95ef0c2ac0">Do not call postResolveLink in Program::deserialize.</a>，倒是和我前面的方案一致。</p>
+<h1 id="RenderDoc-Replay"><a href="#RenderDoc-Replay" class="headerlink" title="RenderDoc Replay"></a>RenderDoc Replay</h1><p>Runtime部分到目前已经比较稳定了，接下来要处理的是配合RenderDoc使用时发现的两个问题。</p>
+<h2 id="贴图错乱"><a href="#贴图错乱" class="headerlink" title="贴图错乱"></a>贴图错乱</h2><p>使用RenderDoc Capture&amp;Replay会发现，有些贴图的数据完全错乱了，然而在运行时是完全正常的。临时用PVR对比了下(右)倒是一切正常的。</p>
+<p><img src="/images/pvr_vs_angle.jpg"></p>
+<p>具体分析了下，发现内容错误的贴图都是非压缩格式，而压缩贴图则全员良好，于是构造了一个极简例子来分析。</p>
+<h3 id="Debug-Attemp-1"><a href="#Debug-Attemp-1" class="headerlink" title="Debug Attemp 1"></a>Debug Attemp 1</h3><p>首先需要确认下是Capture过程中出的问题还是Replay的问题。</p>
+<p>一开始我想的突破口是找到Replay阶段是如何从rdc中读取数据并创建贴图的。翻了下<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/blob/v1.x/renderdoc/driver/gl/wrappers/gl_texture_funcs.cpp">gl_texture_funcs.cpp</a>里的<code>WrappedOpenGL::Serialise_glTextureImage2DEXT</code>实现，打断点确实能命中同时包括width/height/format等参数都对的上。<br>于是我尝试把这块数据直接dump下来看看内容</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (width == <span class="number">1024</span> &amp;&amp; height == <span class="number">128</span>)</span><br><span class="line">&#123;</span><br><span class="line">    FILE *fp = <span class="literal">NULL</span>;</span><br><span class="line">    fopen_s(&amp;fp, <span class="string">&quot;test.raw&quot;</span>, <span class="string">&quot;wb&quot;</span>);</span><br><span class="line">    fwrite(pixels, <span class="number">1</span>, subimageSize, fp);</span><br><span class="line">    fclose(fp);</span><br><span class="line">&#125;</span><br><span class="line">GL.glTextureImage2DEXT(texture.name, target, level, internalformat, width, height, border,</span><br><span class="line">                     format, type, pixels);</span><br></pre></td></tr></table></figure>
+
+<p>发现不管是pvr还是angle的rdc，对应的数据居然是分毫不差的…</p>
+<p>为了从别的角度证明或者证伪，我还掏出<a target="_blank" rel="noopener" href="https://github.com/apitrace/apitrace">apitrace</a>直接去抓RenderDoc的Replay过程中GL API，发现调用的参数和二进制数据确实分毫不差…</p>
+<p><img src="/images/renderdoc_apitrace.jpg"></p>
+<p>场面非常尴尬: 明明这里调用的参数和数据一模一样，为什么结果会不一样？</p>
+<p>ps. <strong>当时为了验证没找错地方</strong>(这里要加粗的原因是当时的我有多么自信，后来就有多么哭笑不得orz)</p>
+<ul>
+<li>断点确实命中且只命中一次，因为构造的test case里只有一张未压缩纹理</li>
+<li>如果注释掉这行、确实Replay里看不到对应这张纹理了。</li>
+</ul>
+<h3 id="Debug-Attemp-2s"><a href="#Debug-Attemp-2s" class="headerlink" title="Debug Attemp 2s"></a>Debug Attemp 2s</h3><p>陷入僵局之后，果断找朋友进行小黄鸭调试…在此感谢阿兰和群主的各种协助和讨论:</p>
+<ul>
+<li>确认<code>glBindTexture</code>和<code>glActiveTexture</code></li>
+<li>确认<code>GL_PIXEL_UNPACK_BUFFER=0</code>及<code>GL_UNPACK_ALIGNMENT=1</code></li>
+<li>确认slot是对的情况下进行的各种设置</li>
+</ul>
+<p>而且Replay过程已经和Angle/PVR无关了，是RenderDoc直接调用的Desktop OpenGL。</p>
+<p>这时候突然阿兰提到: 如果故意在前面的<code>GL.glTextureImage2DEXT</code>中传入空指针作为数据会怎么样? 试了下发现居然对应纹理的内容没变。<br>这就得到一个结论: <strong>我前面找到的那个接口不是真正起决定性的地方，肯定还有别的接口在填充数据orz</strong>。</p>
+<h3 id="Debug-Attemp-3"><a href="#Debug-Attemp-3" class="headerlink" title="Debug Attemp 3"></a>Debug Attemp 3</h3><p>确认自己前面走进误区之后反而好办，重新定位了下相关函数，找到了真·填充数据的口子在<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/blob/v1.x/renderdoc/driver/gl/gl_initstate.cpp">gl_initstate.cpp</a>的<code>GLResourceManager::Apply_InitialState</code>里。<br>老样子在<code>GL.glTextureSubImage2DEXT</code>调用前把<code>scratchBuf</code>保存到文件，对比确实数据不一致——而且用IrfanView直接打开RAW，确实就是那张错误贴图。</p>
+<p><strong>至此明确了Replay部分其实是没问题的，问题转化到Capture时是如何获取<code>scratchBuf</code>数据的。</strong></p>
+<p>在Capture过程挂断点跑进<code>GL.glGetTexImage(targets[trg], i, fmt, type, scratchBuf);</code>，立刻发现问题所在: <a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/blob/v1.x/renderdoc/driver/gl/wrappers/gl_emulated.cpp">gl_emulated.cpp</a>的<code>_glGetTexImage</code>实现需要获取贴图的大小</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">GLint width = <span class="number">0</span>, height = <span class="number">0</span>, depth = <span class="number">0</span>;</span><br><span class="line">GL.glGetTexLevelParameteriv(target, level, eGL_TEXTURE_WIDTH, &amp;width);</span><br><span class="line">GL.glGetTexLevelParameteriv(target, level, eGL_TEXTURE_HEIGHT, &amp;height);</span><br><span class="line">GL.glGetTexLevelParameteriv(target, level, eGL_TEXTURE_DEPTH, &amp;depth);</span><br></pre></td></tr></table></figure>
+
+<p>但是Angle认为这个调用是不合法的，所以导致后面RenderDoc压根没有真正去<code>glReadPixels</code>获取数据，<code>scratchBuf</code>就是纯纯脏数据。</p>
+<p><img src="/images/angle_getTexLevelParam.jpg"></p>
+<h3 id="Fix"><a href="#Fix" class="headerlink" title="Fix"></a>Fix</h3><p>定位到这里之后可以说是老眼熟了…不就和前面提到的<code>ValidateCopyImageSubData</code>一回事么…<br>这次想着全局禁用检查得了，看了下<a target="_blank" rel="noopener" href="https://github.com/google/angle/blob/main/src/libANGLE/Context.cpp">Context.cpp</a>实现，应该只需要创建的时候带上<code>EGL_CONTEXT_OPENGL_NO_ERROR_KHR</code>属性。</p>
+<p>然而试了下是无效的…怒而下断点，结果发现这次是<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/blob/v1.x/renderdoc/driver/gl/egl_hooks.cpp">egl_hooks.cpp</a>在使坏</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(name == EGL_CONTEXT_OPENGL_NO_ERROR_KHR)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// remove this attribute so that we can be more stable</span></span><br><span class="line">  <span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个注释好有道理导致我无言以对emmm<br>算了算了，那我就在Angle代码里<code>mSkipValidation(true)</code>写死，反正也没法直接用官方版本dll。</p>
+<h2 id="glCopyImageSubData效果错误"><a href="#glCopyImageSubData效果错误" class="headerlink" title="glCopyImageSubData效果错误"></a><code>glCopyImageSubData</code>效果错误</h2><p>这个问题我其实当年提交<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/pull/2129">supporting full glCopyImageSubData</a>这个PR的时候就已知，只不过后面一直没空去填坑…这次准备一起搞一下orz </p>
+<p>问题本质是分帧、分块调用<code>glCopyImageSubDataEXT</code>时，RenderDoc需要一个机制来获取对应的数据。如果数据来源是某张压缩纹理，那么RD本身就其保存在了<code>compressedData</code>里面，直接读取即可；对于非压缩的情况，就暂时没有机制解决(这个对应的就是RGBA32UI-&gt;ETC/BC3这种GPU Compress的情况)。</p>
 <p>待后续更新…</p>
 
         
