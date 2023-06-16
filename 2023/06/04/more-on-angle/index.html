@@ -253,7 +253,7 @@
 
     
         <meta property="article:published_time" content="Sun Jun 04 2023 17:35:48 GMT+0800">
-        <meta property="article:modified_time" content="Wed Jun 07 2023 21:23:46 GMT+0800">
+        <meta property="article:modified_time" content="Fri Jun 16 2023 23:44:28 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -276,7 +276,7 @@
     "mainEntityOfPage": "http://qiankanglai.me/2023/06/04/more-on-angle/index.html",
     "headline": "angle追加折腾笔记",
     "datePublished": "Sun Jun 04 2023 17:35:48 GMT+0800",
-    "dateModified": "Wed Jun 07 2023 21:23:46 GMT+0800",
+    "dateModified": "Fri Jun 16 2023 23:44:28 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -580,9 +580,10 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(name == EGL_CONTEXT_OPENGL_NO_ERROR_KHR)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// remove this attribute so that we can be more stable</span></span><br><span class="line">  <span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这个注释好有道理导致我无言以对emmm<br>算了算了，那我就在Angle代码里<code>mSkipValidation(true)</code>写死，反正也没法直接用官方版本dll。</p>
-<h2 id="glCopyImageSubData效果错误"><a href="#glCopyImageSubData效果错误" class="headerlink" title="glCopyImageSubData效果错误"></a><code>glCopyImageSubData</code>效果错误</h2><p>这个问题我其实当年提交<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/pull/2129">supporting full glCopyImageSubData</a>这个PR的时候就已知，只不过后面一直没空去填坑…这次准备一起搞一下orz </p>
+<h2 id="glCopyImageSubData效果错误"><a href="#glCopyImageSubData效果错误" class="headerlink" title="glCopyImageSubData效果错误"></a><code>glCopyImageSubData</code>效果错误</h2><p>这个问题我其实当年提交<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/pull/2129">supporting full glCopyImageSubData</a>的时候就已知，只不过后面一直没空去填坑…这次准备一起搞一下orz </p>
 <p>问题本质是分帧、分块调用<code>glCopyImageSubDataEXT</code>时，RenderDoc需要一个机制来获取对应的数据。如果数据来源是某张压缩纹理，那么RD本身就其保存在了<code>compressedData</code>里面，直接读取即可；对于非压缩的情况，就暂时没有机制解决(这个对应的就是RGBA32UI-&gt;ETC/BC3这种GPU Compress的情况)。</p>
-<p>待后续更新…</p>
+<p>后来抽空把这块补全了下，结果提交<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/pull/2955">complete <code>glCopyImageSubData</code></a>时候反而断断续续根据review修改花了一周，总算也填了一个两年前的坑orz</p>
+<p><img src="/images/renderdoc_glCopyImageSubData.jpg"></p>
 
         
     
