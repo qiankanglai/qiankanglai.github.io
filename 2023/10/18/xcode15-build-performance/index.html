@@ -50,7 +50,7 @@
     
     <title>
         
-            XCode 15打包性能问题 | 
+            XCode 15打包性能问题排查 | 
         
         Loading &amp; Learning
     </title>
@@ -60,7 +60,7 @@
     <link rel="icon" href="/img/favicon.png">
 
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="这两天升级了下XCode 15，一开始遇到了Xcode 15 linking error、unary_function、NWEndpoint.hostPort(host: , port: ) crash in Xcode15等几个小问题，轻松绕开。结果打了个包发现Build时间暴增: 本来单次编译需要1小时左右，现在直接涨到2.5小时还不太够。">
+    <meta name="description" itemprop="description" content="这两天升级了下XCode 15，一开始遇到了Xcode 15 linking error、unary_function、NWEndpoint.hostPort(host: , port: ) crash in Xcode15几个都是小问题。结果打了个包发现Build时间暴增: 本来单次编译需要1小时左右，现在直接涨到2.5小时还不太够。">
     <meta name="keywords" content=",iOS">
     <meta name="theme-color" content="#0097A7">
 
@@ -244,14 +244,14 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://qiankanglai.me/2023/10/18/xcode15-build-performance/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="XCode 15打包性能问题 | Loading &amp; Learning">
+    <meta property="og:title" content="XCode 15打包性能问题排查 | Loading &amp; Learning">
     <meta property="og:image" content="/img/favicon.png">
-    <meta property="og:description" content="这两天升级了下XCode 15，一开始遇到了Xcode 15 linking error、unary_function、NWEndpoint.hostPort(host: , port: ) crash in Xcode15等几个小问题，轻松绕开。结果打了个包发现Build时间暴增: 本来单次编译需要1小时左右，现在直接涨到2.5小时还不太够。">
+    <meta property="og:description" content="这两天升级了下XCode 15，一开始遇到了Xcode 15 linking error、unary_function、NWEndpoint.hostPort(host: , port: ) crash in Xcode15几个都是小问题。结果打了个包发现Build时间暴增: 本来单次编译需要1小时左右，现在直接涨到2.5小时还不太够。">
     <meta property="og:article:tag" content="iOS"> 
 
     
         <meta property="article:published_time" content="Wed Oct 18 2023 00:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Wed Oct 18 2023 08:58:13 GMT+0800">
+        <meta property="article:modified_time" content="Wed Oct 18 2023 21:10:53 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,9 +272,9 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "mainEntityOfPage": "http://qiankanglai.me/2023/10/18/xcode15-build-performance/index.html",
-    "headline": "XCode 15打包性能问题",
+    "headline": "XCode 15打包性能问题排查",
     "datePublished": "Wed Oct 18 2023 00:00:00 GMT+0800",
-    "dateModified": "Wed Oct 18 2023 08:58:13 GMT+0800",
+    "dateModified": "Wed Oct 18 2023 21:10:53 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Kanglai Qian",
@@ -293,7 +293,7 @@
         }
     },
     "keywords": ",iOS",
-    "description": "这两天升级了下XCode 15，一开始遇到了Xcode 15 linking error、unary_function、NWEndpoint.hostPort(host: , port: ) crash in Xcode15等几个小问题，轻松绕开。结果打了个包发现Build时间暴增: 本来单次编译需要1小时左右，现在直接涨到2.5小时还不太够。",
+    "description": "这两天升级了下XCode 15，一开始遇到了Xcode 15 linking error、unary_function、NWEndpoint.hostPort(host: , port: ) crash in Xcode15几个都是小问题。结果打了个包发现Build时间暴增: 本来单次编译需要1小时左右，现在直接涨到2.5小时还不太够。",
 }
 </script>
 
@@ -389,7 +389,7 @@
         
     
             <p class="article-headline-p">
-                XCode 15打包性能问题
+                XCode 15打包性能问题排查
             </p>
         </div>
 
@@ -449,7 +449,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=XCode 15打包性能问题&url=http://qiankanglai.me/2023/10/18/xcode15-build-performance/index.html&pic=http://qiankanglai.me/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=XCode 15打包性能问题排查&url=http://qiankanglai.me/2023/10/18/xcode15-build-performance/index.html&pic=http://qiankanglai.me/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -458,7 +458,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=XCode 15打包性能问题&url=http://qiankanglai.me/2023/10/18/xcode15-build-performance/index.html&via=Kanglai Qian" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=XCode 15打包性能问题排查&url=http://qiankanglai.me/2023/10/18/xcode15-build-performance/index.html&via=Kanglai Qian" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -501,16 +501,16 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>这两天升级了下XCode 15，一开始遇到了<a target="_blank" rel="noopener" href="https://developer.apple.com/forums/thread/731089">Xcode 15 linking error</a>、<a target="_blank" rel="noopener" href="https://github.com/facebook/react-native/issues/37748">unary_function</a>、<a target="_blank" rel="noopener" href="https://developer.apple.com/forums/thread/737672">NWEndpoint.hostPort(host: , port: ) crash in Xcode15</a>等几个小问题，轻松绕开。<br>结果打了个包发现Build时间暴增: 本来单次编译需要1小时左右，现在直接涨到2.5小时还不太够。</p>
+        <p>这两天升级了下XCode 15，一开始遇到了<a target="_blank" rel="noopener" href="https://developer.apple.com/forums/thread/731089">Xcode 15 linking error</a>、<a target="_blank" rel="noopener" href="https://github.com/facebook/react-native/issues/37748">unary_function</a>、<a target="_blank" rel="noopener" href="https://developer.apple.com/forums/thread/737672">NWEndpoint.hostPort(host: , port: ) crash in Xcode15</a>几个都是小问题。<br>结果打了个包发现Build时间暴增: <strong>本来单次编译需要1小时左右，现在直接涨到2.5小时还不太够</strong>。</p>
 <span id="more"></span>
 
-<p>网上搜了下发现难兄难弟还真不少 <a target="_blank" rel="noopener" href="https://discuss.circleci.com/t/severe-performance-problems-with-xcode-15/49205/">Severe performance problems with Xcode 15</a>，那就必须处理下这个问题了。参考<a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/xcode/improving-the-speed-of-incremental-builds">Improving the speed of incremental builds</a>使用<code>Build With Timing Summary</code>编译了一发，看了下Report没什么异常——不过引起我注意的是<strong>这次clean build压根半小时都不需要来着</strong>。</p>
+<p>网上搜了下发现难兄难弟还真不少 <a target="_blank" rel="noopener" href="https://discuss.circleci.com/t/severe-performance-problems-with-xcode-15/49205/">Severe performance problems with Xcode 15</a>，那就必须动手研究下这个了。参考<a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/xcode/improving-the-speed-of-incremental-builds">Improving the speed of incremental builds</a>使用<code>Build With Timing Summary</code>编译了一发，看了下Report没什么异常——不过引起我注意的是<strong>这次clean build压根半小时都不需要来着</strong>。</p>
 <p>暂时没有其它线索的情况下，就找可以对比的例子、看看有没有灵感——问了下楚东那边，升级XCode 15后编译时间从1693.7s降到1512.7s。进一步比较两边环境: 都是macOS Sonoma+XCode 15，我这边是M1 Mac mini(2020)，他那边是M2 Pro Mac mini(2023)。<br><del>难道氪金的力量真的这么强大嘛</del>一定还有别的蹊跷…</p>
 <p>一时间陷入僵局，直到我点开Activity Monitor的时候突然发现华点:</p>
 <p><img src="/images/clang_intel.jpg"></p>
 <p>赶紧找楚东对比了下，果然眼前一黑…</p>
 <p><img src="/images/clang_apple.jpg"></p>
-<p><strong>为啥这俩的clang一个是Apple一个是Intel</strong>…进一步用<code>ps aux|grep clang</code>对比了下发现这个clang的路径完全一致、编译参数也没啥区别。<br>这时候果断怀疑是不是父进程影响——检查<code>xcodebuild</code>，果然是不一样的架构。</p>
+<p><strong>为啥这俩的clang一个是Apple一个是Intel</strong>…用<code>ps aux|grep clang</code>对比了下发现这个clang的路径完全一致、编译参数也没啥区别。<br>这时候果断怀疑是不是父进程影响——检查<code>xcodebuild</code>，果然是不一样的架构。</p>
 <p>到这一步就可以开始盲猜验证: 试了下在<strong>控制台里直接手动调用<code>xcodebuild</code>是Apple架构，但是如果用Python脚本来触发调用就是Intel架构</strong>。</p>
 <p>进一步在网上搜到<a target="_blank" rel="noopener" href="https://apple.stackexchange.com/questions/426871/conditionally-run-program-using-rosetta-2-on-m1-mac">Conditionally run program using Rosetta 2 on M1 Mac</a>: 在Python脚本里使用<code>arch -arm64 xcodebuild</code>来触发编译，果然也变成Apple架构了orz</p>
 <p>最后用新的打包脚本试了下，全量编译的时间从2.5h怒砍到20min! (顺手还补了个<code>-quiet</code>避免日志刷屏)</p>
@@ -518,9 +518,10 @@
 <ul>
 <li>直接使用XCode 15界面进行编译的时候是使用的Apple Arch，这也是为什么我前面<code>Build With Timing Summary</code>测试的时候速度没问题的原因</li>
 <li>当使用Python脚本触发命令行打包的时候，可能会不小心用到Intel Arch，带来严重的性能问题，这时候可以使用<code>arch -arm64</code>强制指定成Apple Arch</li>
-<li>之前XCode 14.3的时候应该一直是错误使用Intel Arch的情况(虽然我懒得回滚验证了emmm)，所以当时的打包时长其实也是有问题的，但是性能问题没有XCode 15差别这么大</li>
+<li>之前XCode 14.3的时候应该一直是错误使用Intel Arch的情况(虽然我懒得回滚验证了emmm)，所以当时的打包时长1h左右 其实也是有问题的，但是性能问题没有XCode 15差别这么大</li>
 </ul>
 <p>macOS上像XCode这种本身是Universal Binary的应用, 具体用哪个Arch的机制有点神秘(其实是我懒得继续去翻资料了)。总之还是注意一手，避免性能血亏~</p>
+<p>update: 后来和曹哥哥聊了下，发现其实有问题的是Python环境…<a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/macos-release-notes/macos-12_3-release-notes">macOS从Monterey移除内置Python 2.7</a>之后，我应该是从Python官网下了份2.7使用，结果看来是Intel Arch的; 我试了下索性删掉这份Python2，重新从Python官网下一份3.11就已经是Apple Arch了~</p>
 
         
     
