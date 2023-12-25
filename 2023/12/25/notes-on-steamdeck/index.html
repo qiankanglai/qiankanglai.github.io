@@ -50,6 +50,8 @@
     
     <title>
         
+            Steam Deck接入笔记 | 
+        
         Loading &amp; Learning
     </title>
 
@@ -58,7 +60,7 @@
     <link rel="icon" href="/img/favicon.png">
 
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="Kanglai&#39;s personal blog, mainly about coding :D">
+    <meta name="description" itemprop="description" content="前段时间摸鱼的时候把自研在Steam Deck上跑起来了，发现网上相关资料比较少，记录下过程中一些好玩的坑。ps. 花时间搞这个一方面是接入手柄之后，实体操作感逼格瞬间上来了 还有一个原因是我有这个设备。">
     <meta name="keywords" content="">
     <meta name="theme-color" content="#0097A7">
 
@@ -86,6 +88,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/atelier-estuary-light.min.css?ZQObwZXHH6Mt8MNbyQJYfQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -222,7 +227,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Loading &amp; Learning">
-    <meta name="msapplication-starturl" content="http://qiankanglai.me/page/5/">
+    <meta name="msapplication-starturl" content="http://qiankanglai.me/2023/12/25/notes-on-steamdeck/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Loading &amp; Learning">
@@ -237,13 +242,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://qiankanglai.me/page/5/">
+    <meta property="og:url" content="http://qiankanglai.me/2023/12/25/notes-on-steamdeck/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Loading &amp; Learning">
+    <meta property="og:title" content="Steam Deck接入笔记 | Loading &amp; Learning">
     <meta property="og:image" content="/img/favicon.png">
-    <meta property="og:description" content="Kanglai&#39;s personal blog, mainly about coding :D">
+    <meta property="og:description" content="前段时间摸鱼的时候把自研在Steam Deck上跑起来了，发现网上相关资料比较少，记录下过程中一些好玩的坑。ps. 花时间搞这个一方面是接入手柄之后，实体操作感逼格瞬间上来了 还有一个原因是我有这个设备。">
     
 
+    
+        <meta property="article:published_time" content="Mon Dec 25 2023 22:43:25 GMT+0800">
+        <meta property="article:modified_time" content="Tue Dec 26 2023 00:27:48 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -251,13 +259,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://qiankanglai.me/page/5/index.html" />
+        <link rel="canonical" href="http://qiankanglai.me/2023/12/25/notes-on-steamdeck/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://qiankanglai.me/2023/12/25/notes-on-steamdeck/index.html",
+    "headline": "Steam Deck接入笔记",
+    "datePublished": "Mon Dec 25 2023 22:43:25 GMT+0800",
+    "dateModified": "Tue Dec 26 2023 00:27:48 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Kanglai Qian",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "A game developer interested in rendering, with focus on Unity now."
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Loading &amp; Learning",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": "",
+    "description": "前段时间摸鱼的时候把自研在Steam Deck上跑起来了，发现网上相关资料比较少，记录下过程中一些好玩的坑。ps. 花时间搞这个一方面是接入手柄之后，实体操作感逼格瞬间上来了 还有一个原因是我有这个设备。",
+}
+</script>
 
 
     
@@ -299,595 +337,324 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="post-toc-text">环境搭建</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Windows"><span class="post-toc-text">Windows</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Linux"><span class="post-toc-text">Linux</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E9%9A%8F%E8%AE%B0"><span class="post-toc-text">随记</span></a></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 15 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/07/20/unity-android-streaming/">Android下Streaming Assets特殊姿势</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            这两天在群里看到有人问过这个问题，也有朋友小窗问我：Unity中导出Gradle工程然后打包出来的apk会加载AssetBundle慢很多。
-于是联想到了之前遇到的一个有意思的现象：我们的出包流程是在打包出来apk之后，利用apktool解包再进行加密和资源处理再打回去。但我发现这个步骤导致apk大小变化很多(有时变大有时变小，毫无规律)，非常奇怪；但是解压出来的内容确实又是一样的。后来我仔细比对之后终于找到玄机：Streaming Assets下的东西默认是不压缩的。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/07/20/unity-android-streaming/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>7月 20, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/07/07/jekyll2hexo/">Bye Jekyll &amp; Hi hexo</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            最近抽了点业余时间从Jekyll转到了Hexo(没错，我就是这么爱折腾…之前我又回来啦就从Hyde转Jekyll)。其实最早的出发点是我想换掉Disqus，墙的有点麻烦。好不容易找到网易云更贴之后，最后发现是更大一坑，说实话我两周都没搞定历史数据导入。不过在折腾过程中发现大家最近用Hexo很多，吸引我的有两点: 生成网站速度贼快+网页模板异步加载。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/07/07/jekyll2hexo/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>7月 07, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        <!-- Custom Thumbnail -->
-        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" data-original="/images/teaser/tanker_op_by_slim_charles-dany4nk.jpg">
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/05/29/source-engine/">Source资源格式</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            最近闲来无事，研究了一下V社的资源格式，发现真是『开放』啊。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/05/29/source-engine/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>5月 29, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/05/15/unite-2017/">Unite 2017</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            感谢Daisy和蓓蓓提供机会，能和xiaoxiao一起在Unite上分享一些使用经验(slides)，希望有所帮助。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/05/15/unite-2017/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>5月 15, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/03/26/soulgame-pbr/">UWA分享 PBR介绍及经验分享</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            很高兴有机会和大家分享一些PBR使用过程遇到的问题和经验，其实我们团队试水这个也才半年左右，依然还在不断的磨合过程中，希望有机会与大家多多交流。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/03/26/soulgame-pbr/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>3月 26, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        <!-- Custom Thumbnail -->
-        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" data-original="/images/teaser/skirt.jpg">
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/03/20/csharp-reflections/">C#反射——掀起Unity Editor面纱</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            之前在群里看到有人提到Profiler Memory Plus这个插件，相当不错～在原来Profiler功能上扩展出了diff功能 非常实用。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/03/20/csharp-reflections/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>3月 20, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/03/02/git-practice/">奇怪的Git实践</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            最近在做一些奇怪的事情…主要是老项目太大导致sourcetree卡，想了想用一个鸡贼的方法就是直接归档历史然后另起一个新项目。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/03/02/git-practice/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>3月 02, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        <!-- Custom Thumbnail -->
-        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" data-original="/images/teaser/uug_textmeshpro.jpg">
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/03/01/unity-textmeshpro/">UUG分享 TextMesh Pro</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            依然UUG活动Unity User Group 北京站图文报道：《Unity3D VR游戏开发以及插件》，这次代替雨松主持了下活动，有点紧张…
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/03/01/unity-textmeshpro/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>3月 01, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        <!-- Custom Thumbnail -->
-        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" data-original="/images/teaser/ab_shader.jpg">
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/01/29/unity-shader-assetbundle/">Shader in AssetBundle</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            关于Resources和AssetBundle优劣之前已经提过很多次了(参考官方教程The Resources folder)，正好最近@张迪在做框架AssetBundle部分的优化，特此整理一下两个特常见的坑及对应解决办法。之前在关于Unity中的资源管理，你可能遇到这些问题里有有人提到过这个问题：
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/01/29/unity-shader-assetbundle/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>1月 29, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/01/08/gpa-android/">Graphics Performance Analyzer 安卓</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            最近倒腾了很久新的抓包工具：
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/01/08/gpa-android/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Kanglai Qian's avatar">
-            </div>
-            <div>
-                <strong>Kanglai Qian</strong>
-                <span>1月 08, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-    <!-- Index nav -->
-        <nav class="material-nav mdl-cell mdl-cell--12-col">
-            <a class="extend prev" rel="prev" href="/page/4/">&lt;button aria-label&#x3D;&quot;Last page&quot; class&#x3D;&quot;mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon&quot;&gt;&lt;i class&#x3D;&quot;material-icons&quot; role&#x3D;&quot;presentation&quot;&gt;arrow_back&lt;&#x2F;i&gt;&lt;&#x2F;button&gt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/6/">&lt;button aria-label&#x3D;&quot;Next page&quot; class&#x3D;&quot;mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon&quot;&gt;&lt;i class&#x3D;&quot;material-icons&quot; role&#x3D;&quot;presentation&quot;&gt;arrow_forward&lt;&#x2F;i&gt;&lt;&#x2F;button&gt;</a>
-        </nav>
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 15 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.jpg');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.jpg');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                Steam Deck接入笔记
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Kanglai Qian</strong>
+        <span>12月 25, 2023</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Steam Deck接入笔记&url=http://qiankanglai.me/2023/12/25/notes-on-steamdeck/index.html&pic=http://qiankanglai.me/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Steam Deck接入笔记&url=http://qiankanglai.me/2023/12/25/notes-on-steamdeck/index.html&via=Kanglai Qian" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://qiankanglai.me/2023/12/25/notes-on-steamdeck/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://qiankanglai.me/2023/12/25/notes-on-steamdeck/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>前段时间摸鱼的时候把自研在Steam Deck上跑起来了，发现网上相关资料比较少，记录下过程中一些好玩的坑。<br>ps. 花时间搞这个一方面是接入手柄之后，实体操作感逼格瞬间上来了 <del>还有一个原因是我有这个设备</del>。</p>
+<span id="more"></span>
+
+<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>首先强烈推荐过一遍<a target="_blank" rel="noopener" href="https://partner.steamgames.com/doc/steamdeck">官方文档</a>，还是挺全面的~而且直接使用手头设备就可以了，不需要像PS5/NS 还要搞专门开发机和环境。</p>
+<p>主要参考<a target="_blank" rel="noopener" href="https://partner.steamgames.com/doc/steamdeck/loadgames">How to load and run games on Steam Deck</a>打开Deck系统里的Developer Mode，然后PC上装一个Devkit配对好就行。</p>
+<p>简单介绍下SteamDeck的运行环境，其实有两个路子</p>
+<ul>
+<li>本身其实是一个定制的Linux系统，可以运行Vulkan(更多细节可以参考<a target="_blank" rel="noopener" href="https://partner.steamgames.com/doc/steamdeck/recommendations">Getting your game ready for Steam Deck</a>介绍)</li>
+<li>还提供了Wine+Proton这套机制，所以可以运行Windows可执行程序+DX11/12</li>
+</ul>
+<p>下面将依次展开</p>
+<h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><p>Windows其实是用下来这个是比较简单的…首先打一个Windows包(最简单的譬如说Unity里Build一个PC包)，然后按照<a target="_blank" rel="noopener" href="https://partner.steamgames.com/doc/steamdeck/debugging">How to debug Windows games on Steam Deck</a>，通过Devkit上传到真机即可，唯一需要注意的是<strong>确保勾上Steam Play</strong>(也就是启用Wine+Proton这套机制)——当然这点其实也可以在Deck上直接调出对应设置。</p>
+<p>需要补充的其实是关于调试部分: 上面文档给出的链接是老版本的插件，VS2022对应的<a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=vsdbgplat.MicrosoftChildProcessDebuggingPowerTool2022">Microsoft Child Process Debugging Power Tool 2022</a>其实是另一个…<br>此外关于端口号我一开始没在V社文档里找到，但是后来在<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/visualstudio/debugger/attach-to-running-processes-with-the-visual-studio-debugger?view=vs-2022">Attach to running processes with the Visual Studio debugger</a>文档里找到了默认端口号是4026，亲测可用。</p>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>相比Windows而言，Linux原生支持反而是废了我一番功夫…关于编译环境我偷懒直接使用WSL1跑通了(这块的坑其实也很多，有空的时候再分享一篇)，打包运行和上面一样直接利用Devkit上传即可，同样需要注意的是<strong>确保不要勾上Steam Play</strong>。</p>
+<p>调试反而麻烦了一些，我一开始是直接developer console里用GDB干活，结果发现这个操作怒坑了我自己两回——引擎底层使用SDL2去加载Vulkan和获取手柄信息的时候始终失败。</p>
+<p>我甚至一度怀疑是SteamDeck系统自带的SDL2库有问题，突然灵光闪现——<strong>developer console下本来就没有x-server环境，怎么可能加载到Vulkan</strong>。参考<a target="_blank" rel="noopener" href="https://one.vg/tw/blog/remote-control-your-steam-deck">透過 VNC 遠端管理 Steam Deck</a>在桌面下启动Konsole再启动GDB就一切正常了。</p>
+<p>手柄的问题也是类似，一开始在桌面上启动游戏之后发现所有消息都是keyboard、没有joystick，一度又想怀疑SDL2但是理智告诉我大可不必orz<br>再次灵光闪现(+1冒头顶)——是不是只有从Steam启动的游戏，摇杆才会使用Joystick配置，而正常桌面下确实被当成触摸屏和鼠标来映射了…</p>
+<h1 id="随记"><a href="#随记" class="headerlink" title="随记"></a>随记</h1><p>最开始双平台都跑起来(其实主要就Linux版本废了点劲)之后，最直白的发现——DX11经过Proton转移没遇到什么渲染问题，反而是原生使用Vulkan的版本各种鬼畜。</p>
+<p>还好Devkit里直接提供过了RenderDoc支持(这里提一嘴，需要去下一个1.27历史版本来使用)，抓帧复现了下是Depth全部挂掉了，Stencil反而各种没问题——问了下经验丰富老司机，原来是AMD不支持D24S8，改成D32S8绕开即可…</p>
+<p>还有一个比较有趣的发现是我对比下实时功耗</p>
+<ul>
+<li>Window(-O2)+DX12: CPU 2W, GPU 3.7W</li>
+<li>Linux(-O0)+Vulkan: CPU 9.3W, GPU 2.3W</li>
+<li>Linux(-O2)+Vulkan: CPU 0.7W, GPU 1.8W</li>
+</ul>
+<p><img src="/images/steamdeck_power.jpg"></p>
+<p>可以得到两个初步结论</p>
+<ul>
+<li>-O0/-O2居然对CPU功耗影响这么大其实是超出我的预料，回头有空可以继续分析下原因</li>
+<li>Wine+Proton还是挺猛的…真的牛皮</li>
+</ul>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0;
+            display: none
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://qiankanglai.me/2023/12/25/notes-on-steamdeck/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://qiankanglai.me/2023/12/25/notes-on-steamdeck/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $.ajax({
+        url: 'https://disqus.com/next/config.json',
+        timeout: 4000,
+        type: 'GET',
+        success: (function() {
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+            $('.disqus_click_btn').css('display','none');
+        })(),
+        error: function() {
+          $('.disqus_click_btn').css('display','block');
+        }
+    });
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.disqus_click_btn').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2023/10/18/xcode15-build-performance/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -1198,6 +965,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","https://cdn.bootcss.com/prettify/r298/prettify.min.js", true)</script>
+        
+    
 
 
 
@@ -1210,6 +981,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     
