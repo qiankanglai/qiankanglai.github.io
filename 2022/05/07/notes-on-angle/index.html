@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://qiankanglai.disqus.com"/>
+
+
+
+    <link rel="dns-prefetch" href="https://www.google-analytics.com"/>
+
+
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            angle折腾笔记 | 
+        
+        Loading &amp; Learning
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" itemprop="description" content="时隔多年重新编译angle，主要是为了PC上能模拟ES3.1，特别是最好能支持VT相关操作。本来不抱希望，毕竟angle文档上写的很清楚，目前GL&amp;#x2F;GLES&amp;#x2F;Vulkan Backend都只支持到ES 3.1，ES 3.2还处于in progress。
+但是突然发现EXT_copy_image这个扩展在Vulkan Backend上已经被支持Vulkan: Add support for EXT_copy_image，瞬间觉得有戏就折腾了下。">
+    <meta name="keywords" content=",C++,GLES">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?uVzgA6RLrOm13Ukw8Qgy+A==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/atelier-estuary-light.min.css?ZQObwZXHH6Mt8MNbyQJYfQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #EEEEEE !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #EEEEEE !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #EEEEEE !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","https://cdn.bootcss.com/jquery/2.2.0/jquery.min.js", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Loading &amp; Learning">
+    <meta name="msapplication-starturl" content="http://qiankanglai.me/2022/05/07/notes-on-angle/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Loading &amp; Learning">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://qiankanglai.me/2022/05/07/notes-on-angle/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="angle折腾笔记 | Loading &amp; Learning">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="时隔多年重新编译angle，主要是为了PC上能模拟ES3.1，特别是最好能支持VT相关操作。本来不抱希望，毕竟angle文档上写的很清楚，目前GL&amp;#x2F;GLES&amp;#x2F;Vulkan Backend都只支持到ES 3.1，ES 3.2还处于in progress。
+但是突然发现EXT_copy_image这个扩展在Vulkan Backend上已经被支持Vulkan: Add support for EXT_copy_image，瞬间觉得有戏就折腾了下。">
+    <meta property="og:article:tag" content="C++"> <meta property="og:article:tag" content="GLES"> 
+
+    
+        <meta property="article:published_time" content="Sat May 07 2022 00:00:00 GMT+0800">
+        <meta property="article:modified_time" content="Sat Nov 30 2024 00:07:22 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://qiankanglai.me/2022/05/07/notes-on-angle/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://qiankanglai.me/2022/05/07/notes-on-angle/index.html",
+    "headline": "angle折腾笔记",
+    "datePublished": "Sat May 07 2022 00:00:00 GMT+0800",
+    "dateModified": "Sat Nov 30 2024 00:07:22 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Kanglai Qian",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Game developer working with rendering/physics/animation/assets :D"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Loading &amp; Learning",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",C++,GLES",
+    "description": "时隔多年重新编译angle，主要是为了PC上能模拟ES3.1，特别是最好能支持VT相关操作。本来不抱希望，毕竟angle文档上写的很清楚，目前GL&amp;#x2F;GLES&amp;#x2F;Vulkan Backend都只支持到ES 3.1，ES 3.2还处于in progress。
+但是突然发现EXT_copy_image这个扩展在Vulkan Backend上已经被支持Vulkan: Add support for EXT_copy_image，瞬间觉得有戏就折腾了下。",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VF30YBX9Q5"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VF30YBX9Q5');
+</script>
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Compile-Angle"><span class="post-toc-text">Compile Angle</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Proxy"><span class="post-toc-text">Proxy</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Error-Code-9009"><span class="post-toc-text">Error Code 9009</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Windows-SDK"><span class="post-toc-text">Windows SDK</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Compile-Option"><span class="post-toc-text">Compile Option</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#GLES-Runtime"><span class="post-toc-text">GLES Runtime</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Conclusion"><span class="post-toc-text">Conclusion</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 15 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.jpg');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                angle折腾笔记
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Kanglai Qian</strong>
+        <span>5月 07, 2022</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-none-link" href="/tags/C/" rel="tag">C++</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/GLES/" rel="tag">GLES</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=angle折腾笔记&url=http://qiankanglai.me/2022/05/07/notes-on-angle/index.html&pic=http://qiankanglai.me/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=angle折腾笔记&url=http://qiankanglai.me/2022/05/07/notes-on-angle/index.html&via=Kanglai Qian" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://qiankanglai.me/2022/05/07/notes-on-angle/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://qiankanglai.me/2022/05/07/notes-on-angle/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>时隔多年重新编译angle，主要是为了PC上能模拟ES3.1，特别是最好能支持VT相关操作。本来不抱希望，毕竟<a target="_blank" rel="noopener" href="https://github.com/google/angle">angle</a>文档上写的很清楚，目前GL&#x2F;GLES&#x2F;Vulkan Backend都只支持到ES 3.1，ES 3.2还处于in progress。</p>
+<p>但是突然发现<code>EXT_copy_image</code>这个扩展在Vulkan Backend上已经被支持<a target="_blank" rel="noopener" href="https://github.com/google/angle/commit/1e494cae8d48e3e82600dd538280938a5baa13ea">Vulkan: Add support for EXT_copy_image</a>，瞬间觉得有戏就折腾了下。</p>
+<span id="more"></span>
+
+<h1 id="Compile-Angle"><a href="#Compile-Angle" class="headerlink" title="Compile Angle"></a>Compile Angle</h1><p><a target="_blank" rel="noopener" href="https://github.com/google/angle/blob/main/doc/DevSetup.md">DevSetup</a>里描述的还是比较清晰的，这里只记录下有坑的地方。</p>
+<h2 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h2><p>由于大家都知道的国情，记得给git和gclient都打开代理，避免烦恼</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy <span class="string">&quot;127.0.0.1:1087&quot;</span></span><br><span class="line">git config --global https.proxy <span class="string">&quot;127.0.0.1:1087&quot;</span></span><br><span class="line"><span class="built_in">set</span> HTTP_PROXY=http://127.0.0.1:1087</span><br><span class="line"><span class="built_in">set</span> HTTPS_PROXY=http://127.0.0.1:1087</span><br></pre></td></tr></table></figure>
+
+<h2 id="Error-Code-9009"><a href="#Error-Code-9009" class="headerlink" title="Error Code 9009"></a>Error Code 9009</h2><p>拉取仓库完成之后，gclient会自动调用脚本设置一些东西，然后我就遇到一个非常奇怪的错误</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python3 third_party\depot_tools\update_depot_tools_toggle.py --<span class="built_in">disable</span></span><br></pre></td></tr></table></figure>
+
+<p>看了下这个脚本非常简单，直接运行了下也没出错——搜了下9009这个错误编码是和VS有关，但是我还没到这一步呢orz</p>
+<p>最后突然发现我本地测试犯傻了，顺手就是调用的<code>python</code>…改成<code>python3</code>之后弹出了Microsoft Store，好吧又是老问题了，修改下环境变量里的PATH即可(具体可参考<a target="_blank" rel="noopener" href="https://learnku.com/articles/45959">解决 win10 命令行下运行 python 弹出 Windows 应用商店</a>)。</p>
+<h2 id="Windows-SDK"><a href="#Windows-SDK" class="headerlink" title="Windows SDK"></a>Windows SDK</h2><p>这个问题说实话是我一开始万万没想到这么坑的… angle编译需要Windows SDK 10.0.20348.0及对应的Debugger Tool</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> debug_file, is_optional <span class="keyword">in</span> debug_files:</span><br><span class="line">full_path = os.path.join(win_sdk_dir, <span class="string">&#x27;Debuggers&#x27;</span>, target_cpu, debug_file)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(full_path):</span><br><span class="line">  <span class="keyword">if</span> is_optional:</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">raise</span> Exception(<span class="string">&#x27;%s not found in &quot;%s&quot;\r\nYou must install &#x27;</span></span><br><span class="line">                    <span class="string">&#x27;Windows 10 SDK version 10.0.20348.0 including the &#x27;</span></span><br><span class="line">                    <span class="string">&#x27;&quot;Debugging Tools for Windows&quot; feature.&#x27;</span> %</span><br><span class="line">                    (debug_file, full_path))</span><br></pre></td></tr></table></figure>
+
+<p>咱就跟着版本来一个呗，万万没想到VS Installer提示安装成功但是实际安装失败…遇事不决就手动，运行<code>vcvarsall.bat amd64 10.0.20348.0</code>结果提示SDK incomplete。网上查了圈还真有类似问题，<a target="_blank" rel="noopener" href="https://developercommunity.visualstudio.com/t/visual-studio-installer-does-not-provide-sdk-10020/1445826">Visual Studio Installer does not provide SDK 10.0.20348.0</a>&#x2F;<a target="_blank" rel="noopener" href="https://developercommunity.visualstudio.com/t/Not-able-to-install-any-previous-version/1441795">Not able to install any previous version of VS. Download fails because on invalid signature</a>，简直了emmm</p>
+<p>然后我自作聪明了一发——那要不试试我本地已有的Windows SDK?<del>当然事后发现就是自己坑自己</del> 修改了下<code>setup_toolchain.py</code>强行指定老版本</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">args.append(<span class="string">&#x27;10.0.19041.0&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这样之后就可以成功生成工程<code>gn gen out/Debug --sln=angle-debug --ide=vs2019</code>。然而下一个暴击就是编译出错</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1&gt;..\..\third_party\llvm-build\Release+Asserts\bin\clang-cl.exe /c ../../src/libEGL/egl_loader_autogen.cpp /Foobj/libEGL_egl_loader/egl_loader_autogen.obj /nologo /showIncludes:user <span class="string">&quot;-imsvcC:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include&quot;</span> <span class="string">&quot;-imsvcC:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include&quot;</span> <span class="string">&quot;-imsvcC:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um&quot;</span> <span class="string">&quot;-imsvcC:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt&quot;</span> <span class="string">&quot;-imsvcC:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared&quot;</span> <span class="string">&quot;-imsvcC:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um&quot;</span> <span class="string">&quot;-imsvcC:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt&quot;</span> <span class="string">&quot;-imsvcC:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt&quot;</span> -DUSE_AURA=1 -D_HAS_NODISCARD -D_CRT_NONSTDC_NO_WARNINGS -D_WINSOCK_DEPRECATED_NO_WARNINGS <span class="string">&quot;-DCR_CLANG_REVISION=\&quot;llvmorg-15-init-9074-gc62b014d-1\&quot;&quot;</span> -DCOMPONENT_BUILD -D_LIBCPP_ABI_UNSTABLE -D_LIBCPP_ENABLE_NODISCARD -D_LIBCPP_NO_AUTO_LINK -D__STD_C -D_CRT_RAND_S -D_CRT_SECURE_NO_DEPRECATE -D_SCL_SECURE_NO_DEPRECATE -D_ATL_NO_OPENGL -D_WINDOWS -DCERT_CHAIN_PARA_HAS_EXTRA_FIELDS -DPSAPI_VERSION=2 -DWIN32 -D_SECURE_ATL -DWINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP -DWIN32_LEAN_AND_MEAN -DNOMINMAX -D_UNICODE -DUNICODE -DNTDDI_VERSION=NTDDI_WIN10_FE -D_WIN32_WINNT=0x0A00 -DWINVER=0x0A00 -D_DEBUG -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DANGLE_IS_WIN -DANGLE_USE_EGL_LOADER -DGL_GLES_PROTOTYPES=1 -DEGL_EGL_PROTOTYPES=1 -DGL_GLEXT_PROTOTYPES -DEGL_EGLEXT_PROTOTYPES -I../../buildtools/third_party/libc++ -I../../include -I../../src /W4 -Wimplicit-fallthrough -Wunreachable-code-aggressive -Wthread-safety /WX -Wno-missing-field-initializers -Wno-unused-parameter -Wloop-analysis -Wno-unneeded-internal-declaration -Wno-nonportable-include-path -Wno-null-pointer-subtraction -Wenum-compare-conditional -Wno-psabi -Wno-ignored-pragma-optimize -Wno-unqualified-std-cast-call -Xclang -no-opaque-pointers -Wmax-tokens -Wshadow -fno-delete-null-pointer-checks -fno-ident -fcolor-diagnostics -fmerge-all-constants -fcrash-diagnostics-dir=../../tools/clang/crashreports -mllvm -instcombine-lower-dbg-declare=0 /clang:-ffp-contract=off -fcomplete-member-pointers /Gy /FS /bigobj /utf-8 /Zc:twoPhase /Zc:sizedDealloc- /D__WRL_ENABLE_FUNCTION_STATICS__ -fmsc-version=1916 /Zc:dllexportInlines- -m64 -msse3 /Brepro -Wno-builtin-macro-redefined -D__DATE__= -D__TIME__= -D__TIMESTAMP__= -ffile-compilation-dir=. -no-canonical-prefixes -ftrivial-auto-var-init=pattern /Od /Ob0 /GF /Z7 -gcodeview-ghash -Xclang -fuse-ctor-homing /guard:cf,nochecks /MDd -Wheader-hygiene -Wstring-conversion -Wtautological-overlap-compare -Wexit-time-destructors -Wglobal-constructors /we4244 /we4312 /we4456 /we4458 /we4715 /we4800 /we4838 -Wbad-function-cast -Wconditional-uninitialized -Wextra-semi-stmt -Wfloat-conversion -Winconsistent-missing-destructor-override -Wmissing-field-initializers -Wnewline-eof -Wnon-virtual-dtor -Wredundant-parens -Wreturn-std-move -Wshadow -Wshadow-field -Wtautological-type-limit-compare -Wundefined-reinterpret-cast -Wunneeded-internal-declaration -Wunused-but-set-variable -Wsuggest-destructor-override -Wsuggest-override -Wparentheses -Wrange-loop-analysis -Wstrict-prototypes -Wunreachable-code-aggressive -Wshorten-64-to-32 -Wno-undefined-bool-conversion -Wno-tautological-undefined-compare /std:c++17 -Wno-trigraphs /Zc:alignedNew- /TP /GR- -I../../buildtools/third_party/libc++/trunk/include /Fd<span class="string">&quot;obj/libEGL_egl_loader_cc.pdb&quot;</span></span><br><span class="line"></span><br><span class="line">1&gt;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um\fileapi.h(1105,10): error : unknown <span class="built_in">type</span> name <span class="string">&#x27;FILE_INFO_BY_HANDLE_CLASS&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>稍微看了下<code>minwinbase.h</code>里<code>FILE_INFO_BY_HANDLE_CLASS</code>的定义，发现是编译参数里的<code>-DNTDDI_VERSION=NTDDI_WIN10_FE</code>这个宏不存在导致的…好吧好吧，那看来还真是不能用老版本的Windows SDK。</p>
+<p>在M$官网扒拉到了<a target="_blank" rel="noopener" href="https://developer.microsoft.com/en-us/windows/downloads/sdk-archive/">Windows SDK and emulator archive</a>，发现下下来已经是Windows SDK 10.0.20348.<strong>1</strong>了，不管了先装为敬——emmm为啥安装文件夹是对应到10.0.20348.0? 把前面修改的<code>setup_toolchain.py</code>回退之后重新生成工程，终于编译成功~</p>
+<h2 id="Compile-Option"><a href="#Compile-Option" class="headerlink" title="Compile Option"></a>Compile Option</h2><p>编译出来的<code>libGLESv2.dll</code>和<code>libEGL.dll</code>覆盖回去之后发现启动失败，<code>LoadLibrary</code>对应Error code 126，这种情况赌五毛肯定是有依赖库丢了…用Dependencies验证了下确实。那么用<code>gn args out/Debug</code>修改一下编译设置，第三方库强制static link就好了。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">is_component_build = false</span><br></pre></td></tr></table></figure>
+
+<p>ps. 最后打包应该使用Release版本，直接用<code>gn gen out/Release --sln=angle-release --ide=vs2019</code>配合<code>gn args out/Release</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">is_component_build = false</span><br><span class="line">is_debug = false</span><br><span class="line">angle_assert_always_on = false</span><br></pre></td></tr></table></figure>
+
+<h1 id="GLES-Runtime"><a href="#GLES-Runtime" class="headerlink" title="GLES Runtime"></a>GLES Runtime</h1><p>这里主要参考了<a target="_blank" rel="noopener" href="https://github.com/google/angle/blob/main/util/EGLWindow.cpp">EGLWindow.cpp</a>，主要涉及两个细节:</p>
+<ul>
+<li>强制打开ES 3.1，这里和PVR有所不同，如果不指定<code>EGL_CONTEXT_MINOR_VERSION_KHR</code>，那么默认是走的3.0<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">EGLint ContextAttributes[] =</span><br><span class="line">&#123;</span><br><span class="line">	EGL_CONTEXT_CLIENT_VERSION, <span class="number">3</span>,</span><br><span class="line">	EGL_CONTEXT_MAJOR_VERSION_KHR, <span class="number">3</span>,</span><br><span class="line">	EGL_CONTEXT_MINOR_VERSION_KHR, <span class="number">1</span>,</span><br><span class="line">	EGL_NONE</span><br><span class="line">&#125;</span><br><span class="line">EglContext = <span class="built_in">eglCreateContext</span>(EglDisplay, EglConfig, EGL_NO_CONTEXT, ContextAttributes);</span><br></pre></td></tr></table></figure></li>
+<li>使用Vulkan Backend<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">EGLAttrib DisplayAttributes[] =</span><br><span class="line">&#123;</span><br><span class="line">	EGL_PLATFORM_ANGLE_TYPE_ANGLE,</span><br><span class="line">	EGL_PLATFORM_ANGLE_TYPE_VULKAN_ANGLE,</span><br><span class="line">	EGL_NONE</span><br><span class="line">&#125;;</span><br><span class="line">EglDisplay = <span class="built_in">eglGetPlatformDisplay</span>(EGL_PLATFORM_ANGLE_ANGLE, hDC, DisplayAttributes);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>别的没啥要改的了，一把梭使用<code>glCopyImageSubDataEXT</code>就都没问题了。比较遗憾的是PC上依然只支持BC系列，不能使用ETC(完美模拟手机计划失败)。看了下代码，其实是这个条件还没实现完整导致的orz</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">angle::Result <span class="title">ImageHelper::CopyImageSubData</span><span class="params">(<span class="type">const</span> gl::Context *context,</span></span></span><br><span class="line"><span class="params"><span class="function">                                            ImageHelper *srcImage,</span></span></span><br><span class="line"><span class="params"><span class="function">                                            GLint srcLevel,</span></span></span><br><span class="line"><span class="params"><span class="function">                                            GLint srcX,</span></span></span><br><span class="line"><span class="params"><span class="function">                                            GLint srcY,</span></span></span><br><span class="line"><span class="params"><span class="function">                                            GLint srcZ,</span></span></span><br><span class="line"><span class="params"><span class="function">                                            ImageHelper *dstImage,</span></span></span><br><span class="line"><span class="params"><span class="function">                                            GLint dstLevel,</span></span></span><br><span class="line"><span class="params"><span class="function">                                            GLint dstX,</span></span></span><br><span class="line"><span class="params"><span class="function">                                            GLint dstY,</span></span></span><br><span class="line"><span class="params"><span class="function">                                            GLint dstZ,</span></span></span><br><span class="line"><span class="params"><span class="function">                                            GLsizei srcWidth,</span></span></span><br><span class="line"><span class="params"><span class="function">                                            GLsizei srcHeight,</span></span></span><br><span class="line"><span class="params"><span class="function">                                            GLsizei srcDepth)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">CanCopyWithTransferForCopyImage</span>(contextVk-&gt;<span class="built_in">getRenderer</span>(), srcImage, srcTilingMode, dstImage,</span><br><span class="line">                                        destTilingMode))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!srcImage-&gt;<span class="built_in">getIntendedFormat</span>().isBlock &amp;&amp; !dstImage-&gt;<span class="built_in">getIntendedFormat</span>().isBlock)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// The source and destination image formats may be using a fallback in the case of RGB</span></span><br><span class="line">        <span class="comment">// images.  A compute shader is used in such a case to perform the copy.</span></span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// No support for emulated compressed formats.</span></span><br><span class="line">        <span class="built_in">UNIMPLEMENTED</span>();</span><br><span class="line">        <span class="built_in">ANGLE_VK_CHECK</span>(contextVk, <span class="literal">false</span>, VK_ERROR_FEATURE_NOT_PRESENT);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> angle::Result::Continue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>后来顺手测试了下PVR版本的<code>libGLESv2.dll</code>，才发现其实也有<code>EXT_copy_image</code>支持，所以VT的效果也是对的。</p>
+<p>但是折腾了这么一大圈还是有价值的: 一方面使用起来的体验天差地别，angle vulkan backend能稳定跑到60fps，而angle dx11 backend只有50fps同时没有copy_image，pvr则只有可怜的10fps不到。另一个非常大的收益在于<strong>方便调试</strong>，毕竟有对应PDB和源代码之后，可以一路F11进去看各种<code>GL_ERROR</code>的原因，特别关注<code>ValidateXXX</code>函数里面的检查:</p>
+<p><img src="/images/angle_debug.jpg"></p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0;
+            display: none
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://qiankanglai.me/2022/05/07/notes-on-angle/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://qiankanglai.me/2022/05/07/notes-on-angle/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $.ajax({
+        url: 'https://disqus.com/next/config.json',
+        timeout: 4000,
+        type: 'GET',
+        success: (function() {
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+            $('.disqus_click_btn').css('display','none');
+        })(),
+        error: function() {
+          $('.disqus_click_btn').css('display','block');
+        }
+    });
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.disqus_click_btn').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2023/02/12/renderdoc-android-inject/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2022/05/01/unity-srpbatcher-on-dx/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Kanglai Qian's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        qiankanglai@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签云">
+                
+                    <i class="material-icons sidebar-material-icons">label</i>
+                
+                标签云
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/timeline" title="时间轴">
+                
+                    <i class="material-icons sidebar-material-icons">timeline</i>
+                
+                时间轴
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about" title="关于我">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于我
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友情链接">
+                
+                    <i class="material-icons sidebar-material-icons">links</i>
+                
+                友情链接
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/qiankanglai" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+        <a href="https://www.zhihu.com/people/qian-kang-lai" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-zhihu">
+                <span class="visuallyhidden">Zhihu</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;Loading & Learning
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?wgjW/HuQG9JDgvPDPoRAng==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?LT4t6iE6m8TO1BLGGiNJqA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<!-- <script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('
+<link rel="stylesheet" href="/css/uc.css">
+');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script> -->
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","https://cdn.bootcss.com/prettify/r298/prettify.min.js", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 2012;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

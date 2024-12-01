@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://qiankanglai.disqus.com"/>
+
+
+
+    <link rel="dns-prefetch" href="https://www.google-analytics.com"/>
+
+
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            angle追加折腾笔记 | 
+        
+        Loading &amp; Learning
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" itemprop="description" content="之前在angle折腾笔记里提到恢复angle作为ES3模拟器，方便PC上查BUG。当时为了模拟EXT_copy_image使用了Vulkan Backend，别的用起来都挺好，但是很蛋疼的一点是RenderDoc抓帧的API其实都是vlk的… 这礼拜查别的BUG的时候，索性痛定思痛尝试使用GLES Backend。
+这里记录下补全功能以及修复了若干Angle&amp;#x2F;RenderDoc相关问题的笔记…">
+    <meta name="keywords" content=",C++,GLES">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?uVzgA6RLrOm13Ukw8Qgy+A==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/atelier-estuary-light.min.css?ZQObwZXHH6Mt8MNbyQJYfQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #EEEEEE !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #EEEEEE !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #EEEEEE !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","https://cdn.bootcss.com/jquery/2.2.0/jquery.min.js", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Loading &amp; Learning">
+    <meta name="msapplication-starturl" content="http://qiankanglai.me/2023/06/04/more-on-angle/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Loading &amp; Learning">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://qiankanglai.me/2023/06/04/more-on-angle/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="angle追加折腾笔记 | Loading &amp; Learning">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="之前在angle折腾笔记里提到恢复angle作为ES3模拟器，方便PC上查BUG。当时为了模拟EXT_copy_image使用了Vulkan Backend，别的用起来都挺好，但是很蛋疼的一点是RenderDoc抓帧的API其实都是vlk的… 这礼拜查别的BUG的时候，索性痛定思痛尝试使用GLES Backend。
+这里记录下补全功能以及修复了若干Angle&amp;#x2F;RenderDoc相关问题的笔记…">
+    <meta property="og:article:tag" content="C++"> <meta property="og:article:tag" content="GLES"> 
+
+    
+        <meta property="article:published_time" content="Sun Jun 04 2023 17:35:48 GMT+0800">
+        <meta property="article:modified_time" content="Sat Nov 30 2024 00:07:22 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://qiankanglai.me/2023/06/04/more-on-angle/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://qiankanglai.me/2023/06/04/more-on-angle/index.html",
+    "headline": "angle追加折腾笔记",
+    "datePublished": "Sun Jun 04 2023 17:35:48 GMT+0800",
+    "dateModified": "Sat Nov 30 2024 00:07:22 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Kanglai Qian",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Game developer working with rendering/physics/animation/assets :D"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Loading &amp; Learning",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",C++,GLES",
+    "description": "之前在angle折腾笔记里提到恢复angle作为ES3模拟器，方便PC上查BUG。当时为了模拟EXT_copy_image使用了Vulkan Backend，别的用起来都挺好，但是很蛋疼的一点是RenderDoc抓帧的API其实都是vlk的… 这礼拜查别的BUG的时候，索性痛定思痛尝试使用GLES Backend。
+这里记录下补全功能以及修复了若干Angle&amp;#x2F;RenderDoc相关问题的笔记…",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VF30YBX9Q5"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VF30YBX9Q5');
+</script>
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#depot-tools%E6%9B%B4%E6%96%B0"><span class="post-toc-text">depot_tools更新</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Angle%E9%83%A8%E5%88%86%E4%BF%AE%E6%94%B9"><span class="post-toc-text">Angle部分修改</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#glCopySubImage%E8%A1%A5%E5%85%A8"><span class="post-toc-text">glCopySubImage补全</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Extensions"><span class="post-toc-text">Extensions</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#EXT-or-not"><span class="post-toc-text">EXT or not?</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#glProgramBinary%E9%97%AA%E9%80%80"><span class="post-toc-text">glProgramBinary闪退</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Fix-Attemp-1"><span class="post-toc-text">Fix Attemp 1</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Fix-Attemp-2"><span class="post-toc-text">Fix Attemp 2</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#RenderDoc-Replay"><span class="post-toc-text">RenderDoc Replay</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E8%B4%B4%E5%9B%BE%E9%94%99%E4%B9%B1"><span class="post-toc-text">贴图错乱</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Debug-Attemp-1"><span class="post-toc-text">Debug Attemp 1</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Debug-Attemp-2s"><span class="post-toc-text">Debug Attemp 2s</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Debug-Attemp-3"><span class="post-toc-text">Debug Attemp 3</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Fix"><span class="post-toc-text">Fix</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#glCopyImageSubData%E6%95%88%E6%9E%9C%E9%94%99%E8%AF%AF"><span class="post-toc-text">glCopyImageSubData效果错误</span></a></li></ol></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 15 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.jpg');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                angle追加折腾笔记
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Kanglai Qian</strong>
+        <span>6月 04, 2023</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-none-link" href="/tags/C/" rel="tag">C++</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/GLES/" rel="tag">GLES</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=angle追加折腾笔记&url=http://qiankanglai.me/2023/06/04/more-on-angle/index.html&pic=http://qiankanglai.me/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=angle追加折腾笔记&url=http://qiankanglai.me/2023/06/04/more-on-angle/index.html&via=Kanglai Qian" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://qiankanglai.me/2023/06/04/more-on-angle/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://qiankanglai.me/2023/06/04/more-on-angle/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>之前在<a href="/2022/05/07/notes-on-angle/" title="angle折腾笔记">angle折腾笔记</a>里提到恢复angle作为ES3模拟器，方便PC上查BUG。当时为了模拟<code>EXT_copy_image</code>使用了Vulkan Backend，别的用起来都挺好，但是很蛋疼的一点是RenderDoc抓帧的API其实都是vlk的… 这礼拜查别的BUG的时候，索性痛定思痛尝试使用GLES Backend。</p>
+<p>这里记录下补全功能以及修复了若干Angle&#x2F;RenderDoc相关问题的笔记…</p>
+<span id="more"></span>
+
+<h1 id="depot-tools更新"><a href="#depot-tools更新" class="headerlink" title="depot_tools更新"></a>depot_tools更新</h1><p>无脑先拉了最新的Angle代码，结果老方法遭遇开幕雷击orz…看了下log是因为新版本的depot_tools不在自带ninja二进制文件了，所以编译一堆失败。<br>这个很好处理，去<a target="_blank" rel="noopener" href="https://github.com/ninja-build/ninja/releases">ninja</a>拉一份最新的exe，然后设置进系统路径就行。</p>
+<h1 id="Angle部分修改"><a href="#Angle部分修改" class="headerlink" title="Angle部分修改"></a>Angle部分修改</h1><p>按照之前经验，编译出libEGL.dll和libGLESv2.dll两个文件，测了下打开GLES Backend可以直接运行起来，但也发现了效果错误+闪退问题。</p>
+<h2 id="glCopySubImage补全"><a href="#glCopySubImage补全" class="headerlink" title="glCopySubImage补全"></a><code>glCopySubImage</code>补全</h2><p>之前在<a href="/2022/05/07/notes-on-angle/" title="angle折腾笔记">angle折腾笔记</a>里也提到，暂时只有Vulkan这个Backend支持了跨格式拷贝贴图的功能(虽然这块其实也有点小瑕疵，见<a target="_blank" rel="noopener" href="https://bugs.chromium.org/p/angleproject/issues/detail?id=7289">CopyImageSubData in Vulkan Backend</a>，但本地改改、糊弄一个可以用的版本很快)。</p>
+<p>调试了下ES Backend下的调用堆栈(pdb在手真香)，确实是没有实现对应逻辑:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">angle::Result <span class="title">TextureImpl::copyTextureSubData</span><span class="params">(<span class="type">const</span> gl::Context *context,</span></span></span><br><span class="line"><span class="params"><span class="function">                                              <span class="type">const</span> gl::Texture *srcTexture,</span></span></span><br><span class="line"><span class="params"><span class="function">                                              GLint srcLevel,</span></span></span><br><span class="line"><span class="params"><span class="function">                                              GLint srcX,</span></span></span><br><span class="line"><span class="params"><span class="function">                                              GLint srcY,</span></span></span><br><span class="line"><span class="params"><span class="function">                                              GLint srcZ,</span></span></span><br><span class="line"><span class="params"><span class="function">                                              GLint dstLevel,</span></span></span><br><span class="line"><span class="params"><span class="function">                                              GLint dstX,</span></span></span><br><span class="line"><span class="params"><span class="function">                                              GLint dstY,</span></span></span><br><span class="line"><span class="params"><span class="function">                                              GLint dstZ,</span></span></span><br><span class="line"><span class="params"><span class="function">                                              GLsizei srcWidth,</span></span></span><br><span class="line"><span class="params"><span class="function">                                              GLsizei srcHeight,</span></span></span><br><span class="line"><span class="params"><span class="function">                                              GLsizei srcDepth)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">UNREACHABLE</span>();</span><br><span class="line">    <span class="keyword">return</span> angle::Result::Stop;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时候先用<a target="_blank" rel="noopener" href="https://www.saschawillems.de/creations/opengl-hardware-capability-viewer/">OpenGL hardware capability viewer</a>确认了下这个扩展其实是存在的。 </p>
+<p><img src="/images/gl_ext_copy_image.jpg"></p>
+<p>这样就好办了——索性自己实现一发<code>TextureGL::copyTextureSubData</code>，对应调用的函数塞在<code>BlitGL::copyImageSubData</code>里面即可，加起来差不多也就十多行。</p>
+<h3 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h3><p>补完逻辑之后发现游戏运行起来，还是自动禁用了这块功能。继续调试下，发现原因是GLES 3.1 Context下的Extension列表中压根没有<code>GL_EXT_copy_image</code>，所以引擎认为当前RHI下这个功能是不可用的。</p>
+<p>翻了翻ANGLE生成扩展列表相关逻辑，它其实是通过检查当前Backend Device情况，来决定可以支持多少GLES Extensions的。所以在renderergl_utils.cpp里补一行:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">extensions-&gt;copyImageEXT = functions-&gt;<span class="built_in">hasGLESExtension</span>(<span class="string">&quot;GL_EXT_copy_image&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>从而告诉ANGLE此时是可以支持<code>copyImageEXT</code>，自此引擎对应功能就正常了。</p>
+<h3 id="EXT-or-not"><a href="#EXT-or-not" class="headerlink" title="EXT or not?"></a>EXT or not?</h3><p>这个也是之前用Vulkan Backend就发现的问题: 打开RenderDoc后会优先使用非EXT版本的API，导致<code>glCopyImageSubDataEXT</code>调用被劫持成<code>glCopyImageSubData</code>。</p>
+<p>我之前给RenderDoc提过<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/pull/2578">split code path for glCopyImageSubDataEXT&amp;glCopyImageSubData</a>，但是作者的回复还是比较有道理的——在GLES 3.1 Context的情况下，ANGLE其实就不应该返回<code>glCopyImageSubData</code>这个接口(虽然里面是空实现)。</p>
+<p><del>临时解决方案是ANGLE里<code>ValidateCopyImageSubData</code>里的ES 3.2限制降到3.1。</del>后面会提到更加釜底抽薪的解决方案。</p>
+<h2 id="glProgramBinary闪退"><a href="#glProgramBinary闪退" class="headerlink" title="glProgramBinary闪退"></a><code>glProgramBinary</code>闪退</h2><p>关掉RenderDoc之后发现启动时有一定概率闪退，看了下堆栈是崩在了<code>glProgramBinary</code>中(其实开了RenderDoc就没问题也很有意思，回头有机会展开)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">libGLESv2.dll!rx::ProgramGL::uniLoc(int glLocation) Line 148	C++</span><br><span class="line">libGLESv2.dll!rx::ProgramGL::setUniform1iv(int location, int count, const int * v) Line 555	C++</span><br><span class="line">libGLESv2.dll!gl::Program::setUniform1iv(gl::Context * context, gl::UniformLocation location, int count, const int * v) Line 2267	C++</span><br><span class="line">libGLESv2.dll!gl::Program::setUniformValuesFromBindingQualifiers() Line 3278	C++</span><br><span class="line">libGLESv2.dll!gl::Program::postResolveLink(const gl::Context * context) Line 3723	C++</span><br><span class="line">libGLESv2.dll!gl::Program::deserialize(const gl::Context * context, gl::BinaryInputStream &amp; stream, gl::InfoLog &amp; infoLog) Line 3691	C++</span><br><span class="line">libGLESv2.dll!gl::Program::loadBinary(const gl::Context * context, unsigned int binaryFormat, const void * binary, int length) Line 1474	C++</span><br><span class="line">libGLESv2.dll!gl::Context::programBinary(gl::ShaderProgramID program, unsigned int binaryFormat, const void * binary, int length) Line 8006	C++</span><br><span class="line">libGLESv2.dll!GL_ProgramBinary(unsigned int program, unsigned int binaryFormat, const void * binary, int length) Line 2135	C++</span><br></pre></td></tr></table></figure>
+
+<p>看了下这块代码，然后在ANGLE的test case里用现有的<code>ProgramBinaryUniformResetCase</code>改了改，发现能稳定复现了这个问题: 加载shader binary cache时，压根没考虑es 3.1下的uniform sampler binding point…<br>给官方提了<a target="_blank" rel="noopener" href="https://bugs.chromium.org/p/angleproject/issues/detail?id=8183">glProgramBinary crash with unifor binding point</a>，回复的非常快但是吐槽无力…两年前就有人提过这个事情还没修(难怪我搜<code>glProgramBinary</code>没找到这个issue…)</p>
+<p>本来想直接禁用shader binary cache绕开，后来发现<code>glLinkProgram</code>的时候ANGLE内部也会尝试复用Program，导致一样的闪退。</p>
+<h3 id="Fix-Attemp-1"><a href="#Fix-Attemp-1" class="headerlink" title="Fix Attemp 1"></a>Fix Attemp 1</h3><p>一开始非常临时的方案糊弄了下:在<code>setUniformValuesFromBindingQualifiers</code>调用时候检查<code>mUniformRealLocationMap</code>为空就跳过，至少不会闪退了。</p>
+<p>但是跑测时候发现有概率导致加载的shader的uniform sampler信息丢失(毕竟被跳过了orz) ，渲染效果出错。</p>
+<h3 id="Fix-Attemp-2"><a href="#Fix-Attemp-2" class="headerlink" title="Fix Attemp 2"></a>Fix Attemp 2</h3><p>索性重新梳理了下这块逻辑，特别是对比了下正常创建Shader的行为: 本质问题其实是<code>postResolveLink</code>必须保证在<code>link</code>之后调用。<br>定位到这点之后就好改了，索性把<code>postResolveLink</code>从<code>deserialize</code>里挪出，放到后面合适的位置调用即可。</p>
+<p>更新: 官方repo上也有人处理掉了<a target="_blank" rel="noopener" href="https://github.com/google/angle/commit/6e40ce0071228c189506b986b6702b95ef0c2ac0">Do not call postResolveLink in Program::deserialize.</a>，倒是和我前面的方案一致。</p>
+<h1 id="RenderDoc-Replay"><a href="#RenderDoc-Replay" class="headerlink" title="RenderDoc Replay"></a>RenderDoc Replay</h1><p>Runtime部分到目前已经比较稳定了，接下来要处理的是配合RenderDoc使用时发现的两个问题。</p>
+<h2 id="贴图错乱"><a href="#贴图错乱" class="headerlink" title="贴图错乱"></a>贴图错乱</h2><p>使用RenderDoc Capture&amp;Replay会发现，有些贴图的数据完全错乱了，然而在运行时是完全正常的。临时用PVR对比了下(右)倒是一切正常的。</p>
+<p><img src="/images/pvr_vs_angle.jpg"></p>
+<p>具体分析了下，发现内容错误的贴图都是非压缩格式，而压缩贴图则全员良好，于是构造了一个极简例子来分析。</p>
+<h3 id="Debug-Attemp-1"><a href="#Debug-Attemp-1" class="headerlink" title="Debug Attemp 1"></a>Debug Attemp 1</h3><p>首先需要确认下是Capture过程中出的问题还是Replay的问题。</p>
+<p>一开始我想的突破口是找到Replay阶段是如何从rdc中读取数据并创建贴图的。翻了下<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/blob/v1.x/renderdoc/driver/gl/wrappers/gl_texture_funcs.cpp">gl_texture_funcs.cpp</a>里的<code>WrappedOpenGL::Serialise_glTextureImage2DEXT</code>实现，打断点确实能命中同时包括width&#x2F;height&#x2F;format等参数都对的上。<br>于是我尝试把这块数据直接dump下来看看内容</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (width == <span class="number">1024</span> &amp;&amp; height == <span class="number">128</span>)</span><br><span class="line">&#123;</span><br><span class="line">    FILE *fp = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">fopen_s</span>(&amp;fp, <span class="string">&quot;test.raw&quot;</span>, <span class="string">&quot;wb&quot;</span>);</span><br><span class="line">    <span class="built_in">fwrite</span>(pixels, <span class="number">1</span>, subimageSize, fp);</span><br><span class="line">    <span class="built_in">fclose</span>(fp);</span><br><span class="line">&#125;</span><br><span class="line">GL.<span class="built_in">glTextureImage2DEXT</span>(texture.name, target, level, internalformat, width, height, border,</span><br><span class="line">                     format, type, pixels);</span><br></pre></td></tr></table></figure>
+
+<p>发现不管是pvr还是angle的rdc，对应的数据居然是分毫不差的…</p>
+<p>为了从别的角度证明或者证伪，我还掏出<a target="_blank" rel="noopener" href="https://github.com/apitrace/apitrace">apitrace</a>直接去抓RenderDoc的Replay过程中GL API，发现调用的参数和二进制数据确实分毫不差…</p>
+<p><img src="/images/renderdoc_apitrace.jpg"></p>
+<p>场面非常尴尬: 明明这里调用的参数和数据一模一样，为什么结果会不一样？</p>
+<p>ps. <strong>当时为了验证没找错地方</strong>(这里要加粗的原因是当时的我有多么自信，后来就有多么哭笑不得orz)</p>
+<ul>
+<li>断点确实命中且只命中一次，因为构造的test case里只有一张未压缩纹理</li>
+<li>如果注释掉这行、确实Replay里看不到对应这张纹理了。</li>
+</ul>
+<h3 id="Debug-Attemp-2s"><a href="#Debug-Attemp-2s" class="headerlink" title="Debug Attemp 2s"></a>Debug Attemp 2s</h3><p>陷入僵局之后，果断找朋友进行小黄鸭调试…在此感谢阿兰和群主的各种协助和讨论:</p>
+<ul>
+<li>确认<code>glBindTexture</code>和<code>glActiveTexture</code></li>
+<li>确认<code>GL_PIXEL_UNPACK_BUFFER=0</code>及<code>GL_UNPACK_ALIGNMENT=1</code></li>
+<li>确认slot是对的情况下进行的各种设置</li>
+</ul>
+<p>而且Replay过程已经和Angle&#x2F;PVR无关了，是RenderDoc直接调用的Desktop OpenGL。</p>
+<p>这时候突然阿兰提到: 如果故意在前面的<code>GL.glTextureImage2DEXT</code>中传入空指针作为数据会怎么样? 试了下发现居然对应纹理的内容没变。<br>这就得到一个结论: <strong>我前面找到的那个接口不是真正起决定性的地方，肯定还有别的接口在填充数据orz</strong>。</p>
+<h3 id="Debug-Attemp-3"><a href="#Debug-Attemp-3" class="headerlink" title="Debug Attemp 3"></a>Debug Attemp 3</h3><p>确认自己前面走进误区之后反而好办，重新定位了下相关函数，找到了真·填充数据的口子在<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/blob/v1.x/renderdoc/driver/gl/gl_initstate.cpp">gl_initstate.cpp</a>的<code>GLResourceManager::Apply_InitialState</code>里。<br>老样子在<code>GL.glTextureSubImage2DEXT</code>调用前把<code>scratchBuf</code>保存到文件，对比确实数据不一致——而且用IrfanView直接打开RAW，确实就是那张错误贴图。</p>
+<p><strong>至此明确了Replay部分其实是没问题的，问题转化到Capture时是如何获取<code>scratchBuf</code>数据的。</strong></p>
+<p>在Capture过程挂断点跑进<code>GL.glGetTexImage(targets[trg], i, fmt, type, scratchBuf);</code>，立刻发现问题所在: <a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/blob/v1.x/renderdoc/driver/gl/wrappers/gl_emulated.cpp">gl_emulated.cpp</a>的<code>_glGetTexImage</code>实现需要获取贴图的大小</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">GLint width = <span class="number">0</span>, height = <span class="number">0</span>, depth = <span class="number">0</span>;</span><br><span class="line">GL.<span class="built_in">glGetTexLevelParameteriv</span>(target, level, eGL_TEXTURE_WIDTH, &amp;width);</span><br><span class="line">GL.<span class="built_in">glGetTexLevelParameteriv</span>(target, level, eGL_TEXTURE_HEIGHT, &amp;height);</span><br><span class="line">GL.<span class="built_in">glGetTexLevelParameteriv</span>(target, level, eGL_TEXTURE_DEPTH, &amp;depth);</span><br></pre></td></tr></table></figure>
+
+<p>但是Angle认为这个调用是不合法的，所以导致后面RenderDoc压根没有真正去<code>glReadPixels</code>获取数据，<code>scratchBuf</code>就是纯纯脏数据。</p>
+<p><img src="/images/angle_getTexLevelParam.jpg"></p>
+<h3 id="Fix"><a href="#Fix" class="headerlink" title="Fix"></a>Fix</h3><p>定位到这里之后可以说是老眼熟了…不就和前面提到的<code>ValidateCopyImageSubData</code>一回事么…<br>这次想着全局禁用检查得了，看了下<a target="_blank" rel="noopener" href="https://github.com/google/angle/blob/main/src/libANGLE/Context.cpp">Context.cpp</a>实现，应该只需要创建的时候带上<code>EGL_CONTEXT_OPENGL_NO_ERROR_KHR</code>属性。</p>
+<p>然而试了下是无效的…怒而下断点，结果发现这次是<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/blob/v1.x/renderdoc/driver/gl/egl_hooks.cpp">egl_hooks.cpp</a>在使坏</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(name == EGL_CONTEXT_OPENGL_NO_ERROR_KHR)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// remove this attribute so that we can be more stable</span></span><br><span class="line">  <span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个注释好有道理导致我无言以对emmm<br>算了算了，那我就在Angle代码里<code>mSkipValidation(true)</code>写死，反正也没法直接用官方版本dll。</p>
+<h2 id="glCopyImageSubData效果错误"><a href="#glCopyImageSubData效果错误" class="headerlink" title="glCopyImageSubData效果错误"></a><code>glCopyImageSubData</code>效果错误</h2><p>这个问题我其实当年提交<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/pull/2129">supporting full glCopyImageSubData</a>的时候就已知，只不过后面一直没空去填坑…这次准备一起搞一下orz </p>
+<p>问题本质是分帧、分块调用<code>glCopyImageSubDataEXT</code>时，RenderDoc需要一个机制来获取对应的数据。如果数据来源是某张压缩纹理，那么RD本身就其保存在了<code>compressedData</code>里面，直接读取即可；对于非压缩的情况，就暂时没有机制解决(这个对应的就是RGBA32UI-&gt;ETC&#x2F;BC3这种GPU Compress的情况)。</p>
+<p>后来抽空把这块补全了下，结果提交<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/pull/2955">complete <code>glCopyImageSubData</code></a>时候反而断断续续根据review修改花了一周，总算也填了一个两年前的坑orz</p>
+<p><img src="/images/renderdoc_glCopyImageSubData.jpg"></p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0;
+            display: none
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://qiankanglai.me/2023/06/04/more-on-angle/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://qiankanglai.me/2023/06/04/more-on-angle/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $.ajax({
+        url: 'https://disqus.com/next/config.json',
+        timeout: 4000,
+        type: 'GET',
+        success: (function() {
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+            $('.disqus_click_btn').css('display','none');
+        })(),
+        error: function() {
+          $('.disqus_click_btn').css('display','block');
+        }
+    });
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//qiankanglai.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.disqus_click_btn').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2023/06/30/wired-tlog/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2023/04/03/memory-issue-in-bss/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Kanglai Qian's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        qiankanglai@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签云">
+                
+                    <i class="material-icons sidebar-material-icons">label</i>
+                
+                标签云
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/timeline" title="时间轴">
+                
+                    <i class="material-icons sidebar-material-icons">timeline</i>
+                
+                时间轴
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about" title="关于我">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于我
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友情链接">
+                
+                    <i class="material-icons sidebar-material-icons">links</i>
+                
+                友情链接
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/qiankanglai" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+        <a href="https://www.zhihu.com/people/qian-kang-lai" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-zhihu">
+                <span class="visuallyhidden">Zhihu</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;Loading & Learning
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?wgjW/HuQG9JDgvPDPoRAng==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?LT4t6iE6m8TO1BLGGiNJqA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<!-- <script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('
+<link rel="stylesheet" href="/css/uc.css">
+');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script> -->
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","https://cdn.bootcss.com/prettify/r298/prettify.min.js", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 2012;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
