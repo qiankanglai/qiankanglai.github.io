@@ -60,7 +60,7 @@
     <link rel="icon" href="/img/favicon.png">
 
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="Profiler是3D引擎中一个非常重要的工具之前为了测试Unity在手机上的性能，做了一系列测试，然后发现了一个有点奇怪的现象：同样是若干旋转模型+一个光源，在Nexus 5运行到30fps时，有俩Test Case面片数相差的非常多(都故意没开Dynamic/Static Batch DrawCall)。">
+    <meta name="description" itemprop="description" content="Profiler是3D引擎中一个非常重要的工具之前为了测试Unity在手机上的性能，做了一系列测试，然后发现了一个有点奇怪的现象：同样是若干旋转模型+一个光源，在Nexus 5运行到30fps时，有俩Test Case面片数相差的非常多(都故意没开Dynamic&amp;#x2F;Static Batch DrawCall)。">
     <meta name="keywords" content=",Unity">
     <meta name="theme-color" content="#0097A7">
 
@@ -246,7 +246,7 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Unity Profiler介绍 | Loading &amp; Learning">
     <meta property="og:image" content="/img/favicon.png">
-    <meta property="og:description" content="Profiler是3D引擎中一个非常重要的工具之前为了测试Unity在手机上的性能，做了一系列测试，然后发现了一个有点奇怪的现象：同样是若干旋转模型+一个光源，在Nexus 5运行到30fps时，有俩Test Case面片数相差的非常多(都故意没开Dynamic/Static Batch DrawCall)。">
+    <meta property="og:description" content="Profiler是3D引擎中一个非常重要的工具之前为了测试Unity在手机上的性能，做了一系列测试，然后发现了一个有点奇怪的现象：同样是若干旋转模型+一个光源，在Nexus 5运行到30fps时，有俩Test Case面片数相差的非常多(都故意没开Dynamic&amp;#x2F;Static Batch DrawCall)。">
     <meta property="og:article:tag" content="Unity"> 
 
     
@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -293,7 +293,7 @@
         }
     },
     "keywords": ",Unity",
-    "description": "Profiler是3D引擎中一个非常重要的工具之前为了测试Unity在手机上的性能，做了一系列测试，然后发现了一个有点奇怪的现象：同样是若干旋转模型+一个光源，在Nexus 5运行到30fps时，有俩Test Case面片数相差的非常多(都故意没开Dynamic/Static Batch DrawCall)。",
+    "description": "Profiler是3D引擎中一个非常重要的工具之前为了测试Unity在手机上的性能，做了一系列测试，然后发现了一个有点奇怪的现象：同样是若干旋转模型+一个光源，在Nexus 5运行到30fps时，有俩Test Case面片数相差的非常多(都故意没开Dynamic&amp;#x2F;Static Batch DrawCall)。",
 }
 </script>
 
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -477,7 +477,7 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>Profiler是3D引擎中一个非常重要的工具<del>之前为了测试Unity在手机上的性能，做了一系列测试，然后发现了一个有点奇怪的现象：同样是若干旋转模型+一个光源，在Nexus 5运行到30fps时，有俩Test Case面片数相差的非常多</del>(都故意没开Dynamic/Static Batch DrawCall)。</p>
+        <p>Profiler是3D引擎中一个非常重要的工具<del>之前为了测试Unity在手机上的性能，做了一系列测试，然后发现了一个有点奇怪的现象：同样是若干旋转模型+一个光源，在Nexus 5运行到30fps时，有俩Test Case面片数相差的非常多</del>(都故意没开Dynamic&#x2F;Static Batch DrawCall)。</p>
 <span id="more"></span>
 
 <table>
@@ -502,7 +502,7 @@
 <ul>
 <li>移动平台上还是尽量不要动态光源了，最多有个平行光，其他全用Lightmap或者Shader假光源算了；</li>
 <li>Shader的切换果然是一个很费的事情啊啊啊；</li>
-<li>在同一场景、使用不同的光源会导致面片数变化，这个应该是因为在管线里要渲染多次造成的(ForwardBase/ForwardAdd例如)，不过这个需要进一步研究…</li>
+<li>在同一场景、使用不同的光源会导致面片数变化，这个应该是因为在管线里要渲染多次造成的(ForwardBase&#x2F;ForwardAdd例如)，不过这个需要进一步研究…</li>
 </ul>
 <p>题外话：对于Android来说，其实还可以用芯片厂商的Profiler工具，也挺有意思; iOS直接用Xcode就行了~</p>
 <p><img src="/images/adreno_profiler.jpg"></p>

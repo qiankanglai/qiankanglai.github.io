@@ -280,7 +280,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -704,6 +704,79 @@
    	   		
 			<div class="md-timeline-block">
                 		<div class="md-timeline-date blue">
+                   			<div class="md-date">6月 21 2025</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2025/06/21/unstable-csb/">不稳定的csb</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							昨天帮春哥看了个奇怪的问题: UI工程在没有发生修改的情况下，输出的二进制csb文件发生了变化。先用之前写的csb2json工具处理了下变化前后的csb，发现dump出来的数据是一模一样的。
+这块逻辑最早来自cocos2dx, csb本质其实是flatbuffers序列化。春哥说最近确实有更新导出工具，但只是fbs里新增加了一个类型，老工程不该受到影响才对。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">12月 01 2024</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2024/12/01/crash-with-intel-14900k/">Intel 14代罪大恶极</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							前两天有台新打包机cook的时候疯狂闪退: 一开始以为是并行跑的job负载太高了，就去掉了并行job的部分; 改完发现负载跑不满了，依然高频闪退、且每次对应的资产还不一致，就重拉了一份SVN确认环境干净; 依然是2min左右闪退…和鸟哥查到一两点，整的怀疑人生了orz
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
+                   			<div class="md-date">11月 30 2024</div>
+                		</div>
+
+                		<div class="md-timeline-content">
+                    			<div class="md-timeline-title"><a href="/2024/11/30/fix-pvd-with-large-scene/">修复PhysX Visual Debugger复杂场景闪退</a></div>
+					<div class="md-timeline-info">
+						<span class="md-timeline-info-span">Categories:
+							
+						</span>
+						<span class="md-timeline-info-span">Tags:
+							<a class="tag-none-link" href="/tags/C/" rel="tag">C++</a>
+						</span>
+						
+					</div>
+					<p class="md-timeline-excerpt">
+						
+							最近忙于各种优化，有遇到PxScene::simulate()耗时很长的情况——这时的第一反应就是掏出PVD，想看下是不是场景里是不是又被摆了一堆奇怪的玩意儿。结果在游戏里Connect Debugger后、PVD直接原地crash，令人尴尬。尝试了下直接在游戏里保存出pvd文件倒是没问题，只不过打开时依然闪退。感觉就像某些场景里有脏东西，一碰就炸；而另一些场景则是可以正常使用PVD查看。
+						...
+					</p>
+                    		</div>
+			</div>	
+   		
+			<div class="md-timeline-block">
+                		<div class="md-timeline-date blue">
                    			<div class="md-date">5月 25 2024</div>
                 		</div>
 
@@ -819,7 +892,7 @@
 					<p class="md-timeline-excerpt">
 						
 							之前在angle折腾笔记里提到恢复angle作为ES3模拟器，方便PC上查BUG。当时为了模拟EXT_copy_image使用了Vulkan Backend，别的用起来都挺好，但是很蛋疼的一点是RenderDoc抓帧的API其实都是vlk的… 这礼拜查别的BUG的时候，索性痛定思痛尝试使用GLES Backend。
-这里记录下补全功能以及修复了若干Angle/RenderDoc相关问题的笔记…
+这里记录下补全功能以及修复了若干Angle&#x2F;RenderDoc相关问题的笔记…
 						...
 					</p>
                     		</div>
@@ -893,7 +966,7 @@
 					</div>
 					<p class="md-timeline-excerpt">
 						
-							时隔多年重新编译angle，主要是为了PC上能模拟ES3.1，特别是最好能支持VT相关操作。本来不抱希望，毕竟angle文档上写的很清楚，目前GL/GLES/Vulkan Backend都只支持到ES 3.1，ES 3.2还处于in progress。
+							时隔多年重新编译angle，主要是为了PC上能模拟ES3.1，特别是最好能支持VT相关操作。本来不抱希望，毕竟angle文档上写的很清楚，目前GL&#x2F;GLES&#x2F;Vulkan Backend都只支持到ES 3.1，ES 3.2还处于in progress。
 但是突然发现EXT_copy_image这个扩展在Vulkan Backend上已经被支持Vulkan: Add support for EXT_copy_image，瞬间觉得有戏就折腾了下。
 						...
 					</p>
@@ -1046,7 +1119,7 @@
 						
 							最近尝试利用UE4自带的功能生成物理简模，参考Setting Up Collisions With Static Meshes有几种模式:
 
-直接生成简单的包围盒/球/胶囊体;
+直接生成简单的包围盒&#x2F;球&#x2F;胶囊体;
 利用DOP(discrete oriented polytopy)即若干对齐轴平面向内挤压;
 Auto Convex自动生成。
 
@@ -1076,7 +1149,7 @@ Auto Convex自动生成。
 						
 							这次是有几个同事遇到的一个问题: release版本编译引擎没问题，但是debug下会在链接步骤挂掉:
 
-[arm64-v8a] SharedLibrary  : libGame.soD:\SDK\android-ndk-r21\toolchains\llvm\prebuilt\windows-x86_64\bin/../lib/gcc/aarch64-linux-android/4.9.x/../../../../aarch64-linux-android/bin\ld: final link failed: File truncatedclang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[arm64-v8a] SharedLibrary  : libGame.soD:\SDK\android-ndk-r21\toolchains\llvm\prebuilt\windows-x86_64\bin&#x2F;..&#x2F;lib&#x2F;gcc&#x2F;aarch64-linux-android&#x2F;4.9.x&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;aarch64-linux-android&#x2F;bin\ld: final link failed: File truncatedclang++: error: linker command failed with exit code 1 (use -v to see invocation)
 
 						...
 					</p>
@@ -1563,7 +1636,7 @@ Auto Convex自动生成。
 					</div>
 					<p class="md-timeline-excerpt">
 						
-							又忙的好久没打理博客了…最近来回使用Unity/UE两个引擎，发现有个可视化UV/Normal的小功能不错，花了一晚上在Unity 5.6里面山寨了下:
+							又忙的好久没打理博客了…最近来回使用Unity&#x2F;UE两个引擎，发现有个可视化UV&#x2F;Normal的小功能不错，花了一晚上在Unity 5.6里面山寨了下:
 						...
 					</p>
                     		</div>
@@ -1637,7 +1710,7 @@ ps. 本来我想直接用gulu大大的PA_ResourceTracker，不过仔细研究了
 					</div>
 					<p class="md-timeline-excerpt">
 						
-							今天正好和朋友聊到嵌套Prefab这个话题，发现这个其实是一个很多项目都需要但是Unity并没有提供内置支持的功能。在过去的项目中我们也实践过不同的解决方案，也了解过其他团队的一些做法，在这里正好整理一下，供大家参考/吐槽。
+							今天正好和朋友聊到嵌套Prefab这个话题，发现这个其实是一个很多项目都需要但是Unity并没有提供内置支持的功能。在过去的项目中我们也实践过不同的解决方案，也了解过其他团队的一些做法，在这里正好整理一下，供大家参考&#x2F;吐槽。
 其实还有一个原因是又好久没更新博客了…
 						...
 					</p>
@@ -1687,7 +1760,7 @@ ps. 后面的代码都以Unity 5.x为例分析。
 					</div>
 					<p class="md-timeline-excerpt">
 						
-							最近读了利用GPU实现大规模动画角色的渲染有感，终于想起来把一个两年前的坑FFT Ocean Part 1给填啦(我又一次战胜了拖延症)。之前做的时候思路有点问题，只考虑了用Scale/Offset来序列帧的情况，搞的自己很繁琐；现在开阔脑洞直接用vertex ID就方便多了。
+							最近读了利用GPU实现大规模动画角色的渲染有感，终于想起来把一个两年前的坑FFT Ocean Part 1给填啦(我又一次战胜了拖延症)。之前做的时候思路有点问题，只考虑了用Scale&#x2F;Offset来序列帧的情况，搞的自己很繁琐；现在开阔脑洞直接用vertex ID就方便多了。
 						...
 					</p>
                     		</div>
@@ -1711,7 +1784,7 @@ ps. 后面的代码都以Unity 5.x为例分析。
 					</div>
 					<p class="md-timeline-excerpt">
 						
-							这其实是一个常见的问题：Unity中使用P/Invoke调用原生代码的时候如何更高效的传参数和获取返回值的问题。一般来说简单的直接写在函数声明里，遇到复杂的情况譬如变长、数组等情况我基本都是直接上JSON的。但是最近性能测试的时候发现这么写也是一个非常可观的消耗：
+							这其实是一个常见的问题：Unity中使用P&#x2F;Invoke调用原生代码的时候如何更高效的传参数和获取返回值的问题。一般来说简单的直接写在函数声明里，遇到复杂的情况譬如变长、数组等情况我基本都是直接上JSON的。但是最近性能测试的时候发现这么写也是一个非常可观的消耗：
 						...
 					</p>
                     		</div>
@@ -2000,7 +2073,7 @@ ps. 后面的代码都以Unity 5.x为例分析。
 					</div>
 					<p class="md-timeline-excerpt">
 						
-							最近的一个项目用了云风的skynet，之前是只有linux/osx版本，非官方版本有一个mingw。
+							最近的一个项目用了云风的skynet，之前是只有linux&#x2F;osx版本，非官方版本有一个mingw。
 						...
 					</p>
                     		</div>
@@ -2122,7 +2195,7 @@ ps. 后面的代码都以Unity 5.x为例分析。
 					</div>
 					<p class="md-timeline-excerpt">
 						
-							上周有半天在调整shader fallback，主要测试了下texCUBElod和tex2Dlod在GLES 2/3下是否能正常表现。
+							上周有半天在调整shader fallback，主要测试了下texCUBElod和tex2Dlod在GLES 2&#x2F;3下是否能正常表现。
 						...
 					</p>
                     		</div>
@@ -2266,7 +2339,7 @@ ps. 后面的代码都以Unity 5.x为例分析。
 					</div>
 					<p class="md-timeline-excerpt">
 						
-							RectMask2D在Unity 5.1/5.2里有个BUG(现在已修复)，今天又有朋友在群里提到了：ScrollRect里的元素有时候不显示，需要拖动一下才好
+							RectMask2D在Unity 5.1&#x2F;5.2里有个BUG(现在已修复)，今天又有朋友在群里提到了：ScrollRect里的元素有时候不显示，需要拖动一下才好
 						...
 					</p>
                     		</div>
@@ -2698,7 +2771,7 @@ ps. 后面的代码都以Unity 5.x为例分析。
 					</div>
 					<p class="md-timeline-excerpt">
 						
-							本文是Assembly Manipulation and C# / VB.NET Code Injection的翻译，已得到作者授权。该教程作者(亦工具作者)现在在微软开发UnityVS…
+							本文是Assembly Manipulation and C# &#x2F; VB.NET Code Injection的翻译，已得到作者授权。该教程作者(亦工具作者)现在在微软开发UnityVS…
 						...
 					</p>
                     		</div>
@@ -2722,7 +2795,7 @@ ps. 后面的代码都以Unity 5.x为例分析。
 					</div>
 					<p class="md-timeline-excerpt">
 						
-							突然发现这个主题已经用了快两年了，又手痒了，所以换一个主题=w=
+							突然发现这个主题已经用了快两年了，又手痒了，所以换一个主题&#x3D;w&#x3D;
 						...
 					</p>
                     		</div>
@@ -2746,7 +2819,7 @@ ps. 后面的代码都以Unity 5.x为例分析。
 					</div>
 					<p class="md-timeline-excerpt">
 						
-							压缩纹理能够节约不少内存空间，因此目前项目中UI全都是用Texture Packer打包出大图之后压缩。Unity导入纹理的默认设置是compress，在符合条件的情况下会优先使用PVR或ETC、否则会降为RGBA4444。从程序的角度来说，当然是1/4大小的压缩纹理更好啦~但是，毕竟是有损压缩，会带来一定的损失，有时候还是挺郁闷的。
+							压缩纹理能够节约不少内存空间，因此目前项目中UI全都是用Texture Packer打包出大图之后压缩。Unity导入纹理的默认设置是compress，在符合条件的情况下会优先使用PVR或ETC、否则会降为RGBA4444。从程序的角度来说，当然是1&#x2F;4大小的压缩纹理更好啦~但是，毕竟是有损压缩，会带来一定的损失，有时候还是挺郁闷的。
 						...
 					</p>
                     		</div>
@@ -2866,7 +2939,7 @@ ps. 后面的代码都以Unity 5.x为例分析。
 					</div>
 					<p class="md-timeline-excerpt">
 						
-							昨天和美术折腾了一天，好好的理解了一下Unity里UV/2UV的设置，主要是理解很多程序的概念在美术上的理解是怎么一回事儿…
+							昨天和美术折腾了一天，好好的理解了一下Unity里UV&#x2F;2UV的设置，主要是理解很多程序的概念在美术上的理解是怎么一回事儿…
 						...
 					</p>
                     		</div>
@@ -3370,7 +3443,7 @@ ps. 后面的代码都以Unity 5.x为例分析。
 					</div>
 					<p class="md-timeline-excerpt">
 						
-							Profiler是3D引擎中一个非常重要的工具之前为了测试Unity在手机上的性能，做了一系列测试，然后发现了一个有点奇怪的现象：同样是若干旋转模型+一个光源，在Nexus 5运行到30fps时，有俩Test Case面片数相差的非常多(都故意没开Dynamic/Static Batch DrawCall)。
+							Profiler是3D引擎中一个非常重要的工具之前为了测试Unity在手机上的性能，做了一系列测试，然后发现了一个有点奇怪的现象：同样是若干旋转模型+一个光源，在Nexus 5运行到30fps时，有俩Test Case面片数相差的非常多(都故意没开Dynamic&#x2F;Static Batch DrawCall)。
 						...
 					</p>
                     		</div>
@@ -3418,7 +3491,7 @@ ps. 后面的代码都以Unity 5.x为例分析。
 					</div>
 					<p class="md-timeline-excerpt">
 						
-							之前桌子跟我讲了一个很冷的小知识：对于3D美术来说，做贴图的时候如果想要做50%灰，应该用186/255而不是127/255。这个很有意思，稍微想了下应该是和Gamma校正有关，然后算了下确实是这样的。后来我分别在Unreal里和Unity里试了下，谨以此文记录。
+							之前桌子跟我讲了一个很冷的小知识：对于3D美术来说，做贴图的时候如果想要做50%灰，应该用186&#x2F;255而不是127&#x2F;255。这个很有意思，稍微想了下应该是和Gamma校正有关，然后算了下确实是这样的。后来我分别在Unreal里和Unity里试了下，谨以此文记录。
 						...
 					</p>
                     		</div>
@@ -4237,7 +4310,7 @@ a setiface error has occurred: 2
 					</div>
 					<p class="md-timeline-excerpt">
 						
-							去年做软工课的时候，实现了完整的OAuth验证和javascript/Android两种客户端，既然有人已经发过安卓的SDK了，那就做个pure JS的DEMO版本吧(话说万恶的调休害的我没啥空都=。=)
+							去年做软工课的时候，实现了完整的OAuth验证和javascript&#x2F;Android两种客户端，既然有人已经发过安卓的SDK了，那就做个pure JS的DEMO版本吧(话说万恶的调休害的我没啥空都&#x3D;。&#x3D;)
 						...
 					</p>
                     		</div>

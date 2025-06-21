@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -487,8 +487,8 @@
 <p>我是用VertexInterpolator来实现(其实意思一样)，这样能得到正确结果的原因是：<strong>：对于Instance物体 在VS里计算世界坐标是对的，而PS里是错的</strong>。</p>
 <p><img src="/images/unreal_foliage_instance.jpg"></p>
 <p>下面来看下具体的原因：对于非Instance的物体，两者除了经过一次v2f插值之外没什么区别；但是对于Instance的物体，那么PS里计算的时候数据是不够的(没有InstanceLocalToWorld)。当PS里世界空间坐标是错误的情况下，肯定就不能指望了。</p>
-<p>ps. 仔细观察可以发现UE4内置的不少节点其实都是实现了两个版本(Vertex/Pixel)，区分的地方其实就是第一个参数是<code>FMaterialVertexParameters</code>还是<code>FMaterialPixelParameters</code>。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;** Transforms a vector from local space to world space (VS version) *&#x2F;</span><br><span class="line">MaterialFloat3 TransformLocalVectorToWorld(FMaterialVertexParameters Parameters,MaterialFloat3 InLocalVector)</span><br><span class="line">&#123;</span><br><span class="line">    #if USE_INSTANCING || IS_MESHPARTICLE_FACTORY</span><br><span class="line">        return mul(InLocalVector, (MaterialFloat3x3)Parameters.InstanceLocalToWorld);</span><br><span class="line">    #else</span><br><span class="line">        return mul(InLocalVector, GetLocalToWorld3x3());</span><br><span class="line">    #endif</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;** Transforms a vector from local space to world space (PS version) *&#x2F;</span><br><span class="line">MaterialFloat3 TransformLocalVectorToWorld(FMaterialPixelParameters Parameters,MaterialFloat3 InLocalVector)</span><br><span class="line">&#123;</span><br><span class="line">    return mul(InLocalVector, GetLocalToWorld3x3());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MaterialFloat3 Local0 &#x3D; mul(MaterialFloat4(GetWorldPosition(Parameters),1.00000000), (Primitive.WorldToLocal)).xyz;</span><br></pre></td></tr></table></figure>
+<p>ps. 仔细观察可以发现UE4内置的不少节点其实都是实现了两个版本(Vertex&#x2F;Pixel)，区分的地方其实就是第一个参数是<code>FMaterialVertexParameters</code>还是<code>FMaterialPixelParameters</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/** Transforms a vector from local space to world space (VS version) */</span><br><span class="line">MaterialFloat3 TransformLocalVectorToWorld(FMaterialVertexParameters Parameters,MaterialFloat3 InLocalVector)</span><br><span class="line">&#123;</span><br><span class="line">    #if USE_INSTANCING || IS_MESHPARTICLE_FACTORY</span><br><span class="line">        return mul(InLocalVector, (MaterialFloat3x3)Parameters.InstanceLocalToWorld);</span><br><span class="line">    #else</span><br><span class="line">        return mul(InLocalVector, GetLocalToWorld3x3());</span><br><span class="line">    #endif</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/** Transforms a vector from local space to world space (PS version) */</span><br><span class="line">MaterialFloat3 TransformLocalVectorToWorld(FMaterialPixelParameters Parameters,MaterialFloat3 InLocalVector)</span><br><span class="line">&#123;</span><br><span class="line">    return mul(InLocalVector, GetLocalToWorld3x3());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MaterialFloat3 Local0 = mul(MaterialFloat4(GetWorldPosition(Parameters),1.00000000), (Primitive.WorldToLocal)).xyz;</span><br></pre></td></tr></table></figure>
 
 <p>顺便提一句常见的几个位置区别<a target="_blank" rel="noopener" href="https://docs.unrealengine.com/en-us/Engine/Rendering/Materials/ExpressionReference/Coordinates">Coordinates Expressions</a>:</p>
 <ul>
@@ -499,7 +499,7 @@
 <p>如果一定要获取准确Instance物体的LocalPosition，可以参考TransformLocalVectorToWorld来个CustomExpression自定义一发</p>
 <p><img src="/images/unreal_foliage_instance2.jpg"></p>
 <p>这里我自定义扩展了一个材质节点，把Pixel和Vertex分开输入(防止编译错误)。最后生成的代码就是</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MaterialFloat3 CustomExpression0(FMaterialPixelParameters Parameters)</span><br><span class="line">&#123;</span><br><span class="line">    return mul(float4(GetWorldPosition(Parameters), 1), Primitive.WorldToLocal).xyz;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MaterialFloat3 CustomExpression1(FMaterialVertexParameters Parameters)</span><br><span class="line">&#123;</span><br><span class="line">#if USE_INSTANCING</span><br><span class="line">    return Parameters.InstanceLocalPosition;</span><br><span class="line">#else</span><br><span class="line">    return mul(float4(GetWorldPosition(Parameters), 1), Primitive.WorldToLocal).xyz;</span><br><span class="line">#endif</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MaterialFloat3 CustomExpression0(FMaterialPixelParameters Parameters)</span><br><span class="line">&#123;</span><br><span class="line">    return mul(float4(GetWorldPosition(Parameters), 1), Primitive.WorldToLocal).xyz;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MaterialFloat3 CustomExpression1(FMaterialVertexParameters Parameters)</span><br><span class="line">&#123;</span><br><span class="line">#if USE_INSTANCING</span><br><span class="line">    return Parameters.InstanceLocalPosition;</span><br><span class="line">#else</span><br><span class="line">    return mul(float4(GetWorldPosition(Parameters), 1), Primitive.WorldToLocal).xyz;</span><br><span class="line">#endif</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>ps. UE4里扩展材质球节点比我想象中简单很多，直接在插件里实现一个<code>UMaterialExpression</code>的子类，核心代码是<code>virtual int32 Compile(class FMaterialCompiler* Compiler, int32 OutputIndex)</code>函数生成最后的HLSL。具体生成逻辑参考<code>HLSLMaterialTranslator.h</code>里的<code>FHLSLMaterialTranslator</code>实现即可</p>
 

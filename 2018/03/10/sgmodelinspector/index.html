@@ -60,7 +60,7 @@
     <link rel="icon" href="/img/favicon.png">
 
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="又忙的好久没打理博客了…最近来回使用Unity/UE两个引擎，发现有个可视化UV/Normal的小功能不错，花了一晚上在Unity 5.6里面山寨了下:">
+    <meta name="description" itemprop="description" content="又忙的好久没打理博客了…最近来回使用Unity&amp;#x2F;UE两个引擎，发现有个可视化UV&amp;#x2F;Normal的小功能不错，花了一晚上在Unity 5.6里面山寨了下:">
     <meta name="keywords" content=",Unity">
     <meta name="theme-color" content="#0097A7">
 
@@ -246,7 +246,7 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="扩展Unity模型编辑器 | Loading &amp; Learning">
     <meta property="og:image" content="/img/favicon.png">
-    <meta property="og:description" content="又忙的好久没打理博客了…最近来回使用Unity/UE两个引擎，发现有个可视化UV/Normal的小功能不错，花了一晚上在Unity 5.6里面山寨了下:">
+    <meta property="og:description" content="又忙的好久没打理博客了…最近来回使用Unity&amp;#x2F;UE两个引擎，发现有个可视化UV&amp;#x2F;Normal的小功能不错，花了一晚上在Unity 5.6里面山寨了下:">
     <meta property="og:article:tag" content="Unity"> 
 
     
@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -293,7 +293,7 @@
         }
     },
     "keywords": ",Unity",
-    "description": "又忙的好久没打理博客了…最近来回使用Unity/UE两个引擎，发现有个可视化UV/Normal的小功能不错，花了一晚上在Unity 5.6里面山寨了下:",
+    "description": "又忙的好久没打理博客了…最近来回使用Unity&amp;#x2F;UE两个引擎，发现有个可视化UV&amp;#x2F;Normal的小功能不错，花了一晚上在Unity 5.6里面山寨了下:",
 }
 </script>
 
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -501,19 +501,19 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>又忙的好久没打理博客了…最近来回使用Unity/UE两个引擎，发现有个可视化UV/Normal的小功能不错，花了一晚上在Unity 5.6里面山寨了下:</p>
+        <p>又忙的好久没打理博客了…最近来回使用Unity&#x2F;UE两个引擎，发现有个可视化UV&#x2F;Normal的小功能不错，花了一晚上在Unity 5.6里面山寨了下:</p>
 <span id="more"></span>
 
 <p><img src="/images/uemesheditor.jpg"></p>
 <p><img src="/images/sgmodelinspector.jpg"></p>
 <h1 id="DecoratorEditor"><a href="#DecoratorEditor" class="headerlink" title="DecoratorEditor"></a>DecoratorEditor</h1><p>要实现这个功能，首先需要自定义Mesh的Inspector。这里我参考了<a target="_blank" rel="noopener" href="http://www.xuanyusong.com/archives/3931">Unity3D研究院编辑器之不影响原有布局拓展Inspector（二十四）</a>，在引擎原有ModelInspector基础上进行扩展:</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">SGModelInspector</span> : <span class="title">DecoratorEditor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SGModelInspector</span>(<span class="params"></span>): <span class="title">base</span>(<span class="params"><span class="string">&quot;ModelInspector&quot;</span></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnInspectorGUI</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> Draw Buttons</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnPreviewGUI</span> (<span class="params">Rect r, GUIStyle background</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> Draw Mesh</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">SGModelInspector</span> : <span class="title">DecoratorEditor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SGModelInspector</span>(): <span class="title">base</span>(<span class="params"><span class="string">&quot;ModelInspector&quot;</span></span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnInspectorGUI</span> ()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> Draw Buttons</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnPreviewGUI</span> (<span class="params">Rect r, GUIStyle background</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> Draw Mesh</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这儿使用DecoratorEditor的思路很简单: 利用反射新建一个ModelInspector的实例，然后所有方法实现是调用这个instance对应接口。不过原版代码有点问题——OnInspectorGUI确实能被调用到，而OnPreviewGUI始终不会被调用到。这时候只能掏出Decompiled Unity查一下Editor.cs里是怎么做的:</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">DrawPreview</span>(<span class="params">Rect previewArea</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ObjectPreview.DrawPreview(<span class="keyword">this</span>, previewArea, <span class="keyword">this</span>.targets);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInteractivePreviewGUI</span>(<span class="params">Rect r, GUIStyle background</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.OnPreviewGUI(r, background);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">DrawPreview</span>(<span class="params">Rect previewArea</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    ObjectPreview.DrawPreview(<span class="keyword">this</span>, previewArea, <span class="keyword">this</span>.targets);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInteractivePreviewGUI</span>(<span class="params">Rect r, GUIStyle background</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">this</span>.OnPreviewGUI(r, background);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>也就是说在绘制预览的时候，ModelInspector实例是直接调用了自己的方法，那么就在对应的地方调用SGModelInspector就行了。</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> MethodInfo ObjectPreviewDrawPreview = <span class="keyword">typeof</span>(ObjectPreview).GetMethod(<span class="string">&quot;DrawPreview&quot;</span>, BindingFlags.Static | BindingFlags.NonPublic);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">sealed</span> <span class="keyword">void</span> <span class="title">DrawPreview</span> (<span class="params">Rect previewArea</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ObjectPreviewDrawPreview.Invoke(<span class="literal">null</span>, <span class="keyword">new</span> <span class="built_in">object</span>[]&#123;<span class="keyword">this</span>, previewArea, <span class="keyword">this</span>.targets&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">sealed</span> <span class="keyword">void</span> <span class="title">OnInteractivePreviewGUI</span> (<span class="params">Rect r, GUIStyle background</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.OnPreviewGUI(r, background);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> MethodInfo ObjectPreviewDrawPreview = <span class="keyword">typeof</span>(ObjectPreview).GetMethod(<span class="string">&quot;DrawPreview&quot;</span>, BindingFlags.Static | BindingFlags.NonPublic);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">sealed</span> <span class="keyword">void</span> <span class="title">DrawPreview</span> (<span class="params">Rect previewArea</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    ObjectPreviewDrawPreview.Invoke(<span class="literal">null</span>, <span class="keyword">new</span> <span class="built_in">object</span>[]&#123;<span class="keyword">this</span>, previewArea, <span class="keyword">this</span>.targets&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">sealed</span> <span class="keyword">void</span> <span class="title">OnInteractivePreviewGUI</span> (<span class="params">Rect r, GUIStyle background</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">this</span>.OnPreviewGUI(r, background);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>搞定这个之后就可以开始动手折腾显示。</p>
 <h1 id="ModelInspector"><a href="#ModelInspector" class="headerlink" title="ModelInspector"></a>ModelInspector</h1><p>接下来要解决的是模型究竟是怎么绘制的…看了下ModelInspector的核心函数，发现其实最后是调用的<code>PreviewRenderUtility.DrawMesh</code>，还能带材质球来着。</p>

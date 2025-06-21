@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -484,13 +484,13 @@
 <p><img src="/images/memory_layout_osx.jpg"></p>
 <p><img src="/images/memory_layout_win.jpg"></p>
 <p>直观的看就是<code>mNbVertices</code>和<code>mNbTriangles</code>错位了，同时后面的<code>mVertices</code>开始又没问题。接下来找下这块数据是哪里赋值的：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">RTreeTriangleMesh* obj = <span class="keyword">new</span> (address) RTreeTriangleMesh(PxBaseFlag::eIS_RELEASABLE);</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">RTreeTriangleMesh* obj = <span class="built_in">new</span> (address) <span class="built_in">RTreeTriangleMesh</span>(PxBaseFlag::eIS_RELEASABLE);</span><br></pre></td></tr></table></figure>
 
-<p>这里使用了in placement new，先排查下<code>address</code>部分的数据，对比了下OSX/Win下没区别。然后看下具体出问题的父类定义：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TriangleMesh</span> :</span> <span class="keyword">public</span> PxTriangleMesh, <span class="keyword">public</span> Ps::UserAllocated, <span class="keyword">public</span> Cm::RefCountable</span><br></pre></td></tr></table></figure>
+<p>这里使用了in placement new，先排查下<code>address</code>部分的数据，对比了下OSX&#x2F;Win下没区别。然后看下具体出问题的父类定义：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TriangleMesh</span> : <span class="keyword">public</span> PxTriangleMesh, <span class="keyword">public</span> Ps::UserAllocated, <span class="keyword">public</span> Cm::RefCountable</span><br></pre></td></tr></table></figure>
 
 <p>以及打印下这些基类的大小和成员变量地址</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d %d %d %d %d\n&quot;</span>, <span class="keyword">sizeof</span>(RTreeTriangleMesh), <span class="keyword">sizeof</span>(TriangleMesh), <span class="keyword">sizeof</span>(PxTriangleMesh), <span class="keyword">sizeof</span>(PxBase), <span class="keyword">sizeof</span>(RefCountable));</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d %d %d %d %d\n&quot;</span>, (<span class="keyword">void</span>*)obj, (<span class="keyword">void</span>*)&amp;(obj-&gt;mNbVertices), (<span class="keyword">void</span>*)&amp;(obj-&gt;mNbTriangles), (<span class="keyword">void</span>*)&amp;(obj-&gt;mVertices), (<span class="keyword">void</span>*)&amp;(obj-&gt;mRefCount));</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d %d %d %d %d\n&quot;</span>, <span class="built_in">sizeof</span>(RTreeTriangleMesh), <span class="built_in">sizeof</span>(TriangleMesh), <span class="built_in">sizeof</span>(PxTriangleMesh), <span class="built_in">sizeof</span>(PxBase), <span class="built_in">sizeof</span>(RefCountable));</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d %d %d %d %d\n&quot;</span>, (<span class="type">void</span>*)obj, (<span class="type">void</span>*)&amp;(obj-&gt;mNbVertices), (<span class="type">void</span>*)&amp;(obj-&gt;mNbTriangles), (<span class="type">void</span>*)&amp;(obj-&gt;mVertices), (<span class="type">void</span>*)&amp;(obj-&gt;mRefCount));</span><br></pre></td></tr></table></figure>
 
 <p>数据结果表明<code>sizeof</code>的结果两个平台一致</p>
 <blockquote>

@@ -60,7 +60,7 @@
     <link rel="icon" href="/img/favicon.png">
 
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="这其实是一个常见的问题：Unity中使用P/Invoke调用原生代码的时候如何更高效的传参数和获取返回值的问题。一般来说简单的直接写在函数声明里，遇到复杂的情况譬如变长、数组等情况我基本都是直接上JSON的。但是最近性能测试的时候发现这么写也是一个非常可观的消耗：">
+    <meta name="description" itemprop="description" content="这其实是一个常见的问题：Unity中使用P&amp;#x2F;Invoke调用原生代码的时候如何更高效的传参数和获取返回值的问题。一般来说简单的直接写在函数声明里，遇到复杂的情况譬如变长、数组等情况我基本都是直接上JSON的。但是最近性能测试的时候发现这么写也是一个非常可观的消耗：">
     <meta name="keywords" content=",Android,Unity,C++,iOS">
     <meta name="theme-color" content="#0097A7">
 
@@ -246,7 +246,7 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="P/Invoke调用优化 | Loading &amp; Learning">
     <meta property="og:image" content="/img/favicon.png">
-    <meta property="og:description" content="这其实是一个常见的问题：Unity中使用P/Invoke调用原生代码的时候如何更高效的传参数和获取返回值的问题。一般来说简单的直接写在函数声明里，遇到复杂的情况譬如变长、数组等情况我基本都是直接上JSON的。但是最近性能测试的时候发现这么写也是一个非常可观的消耗：">
+    <meta property="og:description" content="这其实是一个常见的问题：Unity中使用P&amp;#x2F;Invoke调用原生代码的时候如何更高效的传参数和获取返回值的问题。一般来说简单的直接写在函数声明里，遇到复杂的情况譬如变长、数组等情况我基本都是直接上JSON的。但是最近性能测试的时候发现这么写也是一个非常可观的消耗：">
     <meta property="og:article:tag" content="Android"> <meta property="og:article:tag" content="Unity"> <meta property="og:article:tag" content="C++"> <meta property="og:article:tag" content="iOS"> 
 
     
@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -293,7 +293,7 @@
         }
     },
     "keywords": ",Android,Unity,C++,iOS",
-    "description": "这其实是一个常见的问题：Unity中使用P/Invoke调用原生代码的时候如何更高效的传参数和获取返回值的问题。一般来说简单的直接写在函数声明里，遇到复杂的情况譬如变长、数组等情况我基本都是直接上JSON的。但是最近性能测试的时候发现这么写也是一个非常可观的消耗：",
+    "description": "这其实是一个常见的问题：Unity中使用P&amp;#x2F;Invoke调用原生代码的时候如何更高效的传参数和获取返回值的问题。一般来说简单的直接写在函数声明里，遇到复杂的情况譬如变长、数组等情况我基本都是直接上JSON的。但是最近性能测试的时候发现这么写也是一个非常可观的消耗：",
 }
 </script>
 
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -477,15 +477,15 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>这其实是一个常见的问题：Unity中使用P/Invoke调用原生代码的时候如何更高效的传参数和获取返回值的问题。一般来说简单的直接写在函数声明里，遇到复杂的情况譬如变长、数组等情况我基本都是直接上JSON的。但是最近性能测试的时候发现这么写也是一个非常可观的消耗：</p>
+        <p>这其实是一个常见的问题：Unity中使用P&#x2F;Invoke调用原生代码的时候如何更高效的传参数和获取返回值的问题。一般来说简单的直接写在函数声明里，遇到复杂的情况譬如变长、数组等情况我基本都是直接上JSON的。但是最近性能测试的时候发现这么写也是一个非常可观的消耗：</p>
 <span id="more"></span>
 
 <p><img src="/images/agoramanager_profiler.jpg"></p>
 <p>这个应用场景其实是在处理消息队列，每一帧可能从C++层返回不少消息体回来，不同类型的消息体格式有所区别。</p>
-<p>于是就纠结如何进一步优化：本来我都在纠结要不要上protobuf之类的，后来正好翻<a target="_blank" rel="noopener" href="https://www.agora.io/cn/">声网</a>AMG SDK的时候想到了一个不错的平衡点——直接定长序列化，每个API写死得了。搜了下<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/289076/how-can-i-pass-a-pointer-to-an-array-using-p-invoke-in-c">How can I pass a pointer to an array using p/invoke in C#?</a>确实可以直接传数组。那么动手开整，第一步是测试了c++层编码+c#层解码(实在是被little/big endian坑怕了)：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">AddInt32</span><span class="params">(<span class="keyword">char</span>* buffer, <span class="keyword">int</span>&amp; startIdx, <span class="keyword">int</span> value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span>* p = <span class="keyword">static_cast</span>&lt;<span class="keyword">char</span>*&gt;(<span class="keyword">static_cast</span>&lt;<span class="keyword">void</span>*&gt;(&amp;value));</span><br><span class="line">    buffer[startIdx+<span class="number">0</span>] = p[<span class="number">0</span>];</span><br><span class="line">    buffer[startIdx+<span class="number">1</span>] = p[<span class="number">1</span>];</span><br><span class="line">    buffer[startIdx+<span class="number">2</span>] = p[<span class="number">2</span>];</span><br><span class="line">    buffer[startIdx+<span class="number">3</span>] = p[<span class="number">3</span>];</span><br><span class="line">    startIdx += <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>于是就纠结如何进一步优化：本来我都在纠结要不要上protobuf之类的，后来正好翻<a target="_blank" rel="noopener" href="https://www.agora.io/cn/">声网</a>AMG SDK的时候想到了一个不错的平衡点——直接定长序列化，每个API写死得了。搜了下<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/289076/how-can-i-pass-a-pointer-to-an-array-using-p-invoke-in-c">How can I pass a pointer to an array using p&#x2F;invoke in C#?</a>确实可以直接传数组。那么动手开整，第一步是测试了c++层编码+c#层解码(实在是被little&#x2F;big endian坑怕了)：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">AddInt32</span><span class="params">(<span class="type">char</span>* buffer, <span class="type">int</span>&amp; startIdx, <span class="type">int</span> value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">char</span>* p = <span class="built_in">static_cast</span>&lt;<span class="type">char</span>*&gt;(<span class="built_in">static_cast</span>&lt;<span class="type">void</span>*&gt;(&amp;value));</span><br><span class="line">    buffer[startIdx<span class="number">+0</span>] = p[<span class="number">0</span>];</span><br><span class="line">    buffer[startIdx<span class="number">+1</span>] = p[<span class="number">1</span>];</span><br><span class="line">    buffer[startIdx<span class="number">+2</span>] = p[<span class="number">2</span>];</span><br><span class="line">    buffer[startIdx<span class="number">+3</span>] = p[<span class="number">3</span>];</span><br><span class="line">    startIdx += <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="built_in">int</span> <span class="title">GetInt32</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> startIdx</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">int</span> v = BitConverter.ToInt32 (buffer, startIdx);</span><br><span class="line">    startIdx += <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="built_in">int</span> <span class="title">GetInt32</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> startIdx</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">int</span> v = BitConverter.ToInt32 (buffer, startIdx);</span><br><span class="line">    startIdx += <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>相比于每次获取一个消息并检查有没有消息未处理，更加划算的策略是一口气传一个buffer到C++，然后填充之后返回再解析。</p>
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">extern</span> <span class="keyword">static</span> <span class="built_in">bool</span> <span class="title">PollMessage</span>(<span class="params"><span class="built_in">byte</span>[] buffer, <span class="built_in">int</span> bufferLen</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> bufferLen = <span class="number">1024</span>;</span><br><span class="line"><span class="built_in">byte</span>[] buffer = <span class="keyword">new</span> <span class="built_in">byte</span>[bufferLen];</span><br><span class="line"><span class="keyword">if</span>(PollMessage(buffer, bufferLen))</span><br><span class="line">	ParseMessages(buffer);</span><br></pre></td></tr></table></figure>

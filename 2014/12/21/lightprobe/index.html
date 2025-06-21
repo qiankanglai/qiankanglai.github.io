@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -516,19 +516,19 @@
 <p><img src="/images/lightprobe_compare.jpg"></p>
 <p>ps. 最近真是发现要用点啥都找不到靠谱的资料，莫非最近使用google搜索的能力变差了，真是心塞-.- 不过搞懂之后发现这俩工具还是很灵的~</p>
 <h1 id="扒取UE4贴图"><a href="#扒取UE4贴图" class="headerlink" title="扒取UE4贴图"></a>扒取UE4贴图</h1><p>这个比较简单，直接搜了下UE4的MaterialEditor部分代码，就找到了</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">FConstructorStatics</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  ConstructorHelpers::FObjectFinder&lt;UStaticMesh&gt; EditorCubeMesh;</span><br><span class="line">  ConstructorHelpers::FObjectFinder&lt;UStaticMesh&gt; EditorSphereMesh;</span><br><span class="line">  ConstructorHelpers::FObjectFinder&lt;UStaticMesh&gt; EditorCylinderMesh;</span><br><span class="line">  ConstructorHelpers::FObjectFinder&lt;UStaticMesh&gt; EditorPlaneMesh;</span><br><span class="line">  ConstructorHelpers::FObjectFinder&lt;UStaticMesh&gt; EditorSkySphereMesh;</span><br><span class="line">  ConstructorHelpers::FObjectFinder&lt;UMaterial&gt; FloorPlaneMaterial;</span><br><span class="line">  ConstructorHelpers::FObjectFinder&lt;UTextureCube&gt; DaylightAmbientCubemap;</span><br><span class="line">  FConstructorStatics()</span><br><span class="line">    : EditorCubeMesh(TEXT(<span class="string">&quot;/Engine/EditorMeshes/EditorCube&quot;</span>))</span><br><span class="line">    , EditorSphereMesh(TEXT(<span class="string">&quot;/Engine/EditorMeshes/EditorSphere&quot;</span>))</span><br><span class="line">    , EditorCylinderMesh(TEXT(<span class="string">&quot;/Engine/EditorMeshes/EditorCylinder&quot;</span>))</span><br><span class="line">    , EditorPlaneMesh(TEXT(<span class="string">&quot;/Engine/EditorMeshes/EditorPlane&quot;</span>))</span><br><span class="line">    , EditorSkySphereMesh(TEXT(<span class="string">&quot;/Engine/EditorMeshes/EditorSkySphere&quot;</span>))</span><br><span class="line">    , FloorPlaneMaterial(TEXT(<span class="string">&quot;/Engine/EditorMaterials/Thumbnails/FloorPlaneMaterial&quot;</span>))</span><br><span class="line">    , DaylightAmbientCubemap(TEXT(<span class="string">&quot;/Engine/MapTemplates/Sky/DaylightAmbientCubemap&quot;</span>))</span><br><span class="line">  &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">FConstructorStatics</span></span><br><span class="line">&#123;</span><br><span class="line">  ConstructorHelpers::FObjectFinder&lt;UStaticMesh&gt; EditorCubeMesh;</span><br><span class="line">  ConstructorHelpers::FObjectFinder&lt;UStaticMesh&gt; EditorSphereMesh;</span><br><span class="line">  ConstructorHelpers::FObjectFinder&lt;UStaticMesh&gt; EditorCylinderMesh;</span><br><span class="line">  ConstructorHelpers::FObjectFinder&lt;UStaticMesh&gt; EditorPlaneMesh;</span><br><span class="line">  ConstructorHelpers::FObjectFinder&lt;UStaticMesh&gt; EditorSkySphereMesh;</span><br><span class="line">  ConstructorHelpers::FObjectFinder&lt;UMaterial&gt; FloorPlaneMaterial;</span><br><span class="line">  ConstructorHelpers::FObjectFinder&lt;UTextureCube&gt; DaylightAmbientCubemap;</span><br><span class="line">  <span class="built_in">FConstructorStatics</span>()</span><br><span class="line">    : <span class="built_in">EditorCubeMesh</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;/Engine/EditorMeshes/EditorCube&quot;</span>))</span><br><span class="line">    , <span class="built_in">EditorSphereMesh</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;/Engine/EditorMeshes/EditorSphere&quot;</span>))</span><br><span class="line">    , <span class="built_in">EditorCylinderMesh</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;/Engine/EditorMeshes/EditorCylinder&quot;</span>))</span><br><span class="line">    , <span class="built_in">EditorPlaneMesh</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;/Engine/EditorMeshes/EditorPlane&quot;</span>))</span><br><span class="line">    , <span class="built_in">EditorSkySphereMesh</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;/Engine/EditorMeshes/EditorSkySphere&quot;</span>))</span><br><span class="line">    , <span class="built_in">FloorPlaneMaterial</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;/Engine/EditorMaterials/Thumbnails/FloorPlaneMaterial&quot;</span>))</span><br><span class="line">    , <span class="built_in">DaylightAmbientCubemap</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;/Engine/MapTemplates/Sky/DaylightAmbientCubemap&quot;</span>))</span><br><span class="line">  &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>对应即<code>Engine\Content\MapTemplates\Sky\DaylightAmbientCubemap.uasset</code>，这种蛋疼的uasset在之前的日志<a href="/2014/11/07/unreal-resources/" title="拆解Unreal资源">拆解Unreal资源</a>中已简单分析过。这次的比较简单，随便拷贝到一个Unreal项目文件夹下，然后引擎会自动读取，右键Export就可以得到一个HDR格式的资源文件。</p>
 <p>这一步导出的文件可以直接用Photoshop打开，但还不是常见的六个面cube texture，需要再次转换。之前搜了一通都是语焉不详的零散介绍，英文资料里就一个CryEngine的文档比较靠谱，但也就提到了CubeMapGen和HDRShop，没具体看懂怎么用。于是一通摸索……</p>
-<h1 id="HDRShop"><a href="#HDRShop" class="headerlink" title="HDRShop"></a>HDRShop</h1><p>这个工具目前是收费的(而且还挺贵-v-)，不过网上有V1版本的免费版、虽然官网上的已经没对应下载链接了。这个工具主要是将各种形式的图片相互转换。打开Image-Panorama-Panoramic Transformations，输入图片设为Latitude/Longitude, 输出图片设为Cubic Environment。将Wrap过的图片保存即可。</p>
+<h1 id="HDRShop"><a href="#HDRShop" class="headerlink" title="HDRShop"></a>HDRShop</h1><p>这个工具目前是收费的(而且还挺贵-v-)，不过网上有V1版本的免费版、虽然官网上的已经没对应下载链接了。这个工具主要是将各种形式的图片相互转换。打开Image-Panorama-Panoramic Transformations，输入图片设为Latitude&#x2F;Longitude, 输出图片设为Cubic Environment。将Wrap过的图片保存即可。</p>
 <p><img src="/images/lightprobe_hdrshop.jpg"></p>
-<p>需要注意的是修改Width/Height, 保证生成的每个小贴图的长宽相同、都是4的倍数，不然在最后倒入的时候可能遇到麻烦。下图为生成的结果，每个小的正方形是256x256，所以变换的时候是3*256x4*256即768x1024。</p>
+<p>需要注意的是修改Width&#x2F;Height, 保证生成的每个小贴图的长宽相同、都是4的倍数，不然在最后倒入的时候可能遇到麻烦。下图为生成的结果，每个小的正方形是256x256，所以变换的时候是3*256x4*256即768x1024。</p>
 <p>此外，经过桌子提醒这个贴图的顶部出现了菊花，我查了下UE4里自己就有嘿嘿~其实最简单的办法是抹掉原图最上面一条，这样变换之后顶部中心没内容就好。</p>
 <p><img src="/images/lightprobe_ue4.jpg"></p>
 <p><img src="/images/lightprobe_hdrshop_cubecross.jpg"></p>
 <p>顺便解释一下这几种可以相互转换的格式，部分参考<a target="_blank" rel="noopener" href="http://www.cicw.org/bbs/read.php?tid=333&page=2">这个教程</a>：</p>
 <ul>
-<li>Latitude/Longitude: 就是从UE4扒拉出来的输入图，横纵坐标对应的经纬度，再举个栗子就是<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Geographic_coordinate_system">世界地图</a>；<br><img src="/images/lightprobe_Earthmap720x360_grid.jpg"></li>
+<li>Latitude&#x2F;Longitude: 就是从UE4扒拉出来的输入图，横纵坐标对应的经纬度，再举个栗子就是<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Geographic_coordinate_system">世界地图</a>；<br><img src="/images/lightprobe_Earthmap720x360_grid.jpg"></li>
 <li>Cubic Environment: 使用六张图组成的环境贴图，参考刚才的输出图，不过和我们平常用的一横条六个图不一样，这里是组成了一个Vertical Cross(竖十字架)；</li>
 <li>Mirrored Ball: 反光球<br><img src="/images/lightprobe_hdrshop_mirrorball.jpg"></li>
 <li>Light Probe: 光探针<br><img src="/images/lightprobe_hdrshop_lightprobe.jpg"></li>

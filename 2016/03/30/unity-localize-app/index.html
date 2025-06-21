@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -517,14 +517,14 @@
 <h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><p>安卓部分比较简单，在AndroidManifest.xml(不管是Unity自动生成的或者是项目里手写的)中：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">application</span> <span class="attr">android:icon</span>=<span class="string">&quot;@drawable/app_icon&quot;</span> <span class="attr">android:label</span>=<span class="string">&quot;@string/app_name&quot;</span> <span class="attr">android:theme</span>=<span class="string">&quot;@android:style/Theme.NoTitleBar.Fullscreen&quot;</span> <span class="attr">android:debuggable</span>=<span class="string">&quot;false&quot;</span> <span class="attr">android:isGame</span>=<span class="string">&quot;true&quot;</span> <span class="attr">android:banner</span>=<span class="string">&quot;@drawable/app_banner&quot;</span> <span class="attr">android:name</span>=<span class="string">&quot;com.soomla.SoomlaApp&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>通过指定**@string/app_name**作为应用名。所以只要在多语言版本的资源中指定对应名字即可。</p>
+<p>通过指定**@string&#x2F;app_name**作为应用名。所以只要在多语言版本的资源中指定对应名字即可。</p>
 <p>需要注意的一点是，默认的名字会以Player Setting里的Product Name为准</p>
 <p><img src="/images/unity_localize_default.jpg"></p>
 <p>对于其他语言，譬如简体中文，就在如下目录建立对应的strings.xml，内容为</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">&quot;app_name&quot;</span>&gt;</span>无尽的守护<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">&quot;app_name&quot;</span>&gt;</span>无尽的守护<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>放在Assets/Plugins/Android/res/values-zh-rCN/strings.xml中。对于其他语言类似处理，如台湾Assets/Plugins/Android/res/values-zh-rTW/strings.xml、香港Assets/Plugins/Android/res/values-zh-rHK/strings.xml。</p>
-<p>注：直接在Assets/Plugins里放Android res的方法在Unity 5里已被标注为废弃，官方建议用aar的形式，不过我就先偷懒了…</p>
+<p>放在Assets&#x2F;Plugins&#x2F;Android&#x2F;res&#x2F;values-zh-rCN&#x2F;strings.xml中。对于其他语言类似处理，如台湾Assets&#x2F;Plugins&#x2F;Android&#x2F;res&#x2F;values-zh-rTW&#x2F;strings.xml、香港Assets&#x2F;Plugins&#x2F;Android&#x2F;res&#x2F;values-zh-rHK&#x2F;strings.xml。</p>
+<p>注：直接在Assets&#x2F;Plugins里放Android res的方法在Unity 5里已被标注为废弃，官方建议用aar的形式，不过我就先偷懒了…</p>
 <h2 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h2><p>苹果会麻烦一些，如果要做本地化的话需要修改两个地方</p>
 <ul>
 <li>修改Info.plist，标准存在本地化的应用名</li>
@@ -533,7 +533,7 @@
 <p>我是基于喵神的<a target="_blank" rel="noopener" href="https://github.com/onevcat/XUPorter">XUPorter</a>自己实现的：</p>
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">object</span>&gt; dict = (Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">object</span>&gt;)PlistCS.Plist.readPlist(plistPath);</span><br><span class="line"><span class="keyword">if</span>(dict.ContainsKey(<span class="string">&quot;CFBundleDisplayName&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    dict.Remove(<span class="string">&quot;CFBundleDisplayName&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">dict[<span class="string">&quot;LSHasLocalizedDisplayName&quot;</span>] = <span class="literal">true</span>;</span><br><span class="line">PlistCS.Plist.writeXml(dict, plistPath);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> variant = <span class="keyword">new</span> PBXVariantGroup(<span class="string">&quot;InfoPlist.strings&quot;</span>, <span class="literal">null</span>, <span class="string">&quot;GROUP&quot;</span>);</span><br><span class="line"><span class="comment">// mark variants</span></span><br><span class="line">variantGroups.Add(variant);</span><br><span class="line"><span class="comment">// add variant to project</span></span><br><span class="line">_rootGroup.AddChild(variant);</span><br><span class="line"><span class="comment">// add variant in build process</span></span><br><span class="line">PBXBuildFile buildFile = <span class="keyword">new</span> PBXBuildFile(variant);</span><br><span class="line">buildFiles.Add(buildFile);</span><br><span class="line"><span class="keyword">foreach</span> (KeyValuePair&lt;<span class="built_in">string</span>, PBXResourcesBuildPhase&gt; currentObject <span class="keyword">in</span> resourcesBuildPhases)</span><br><span class="line">&#123;</span><br><span class="line">    currentObject.Value.AddBuildFile(buildFile);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (DictionaryEntry entry <span class="keyword">in</span> mod.names)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> folder = <span class="keyword">this</span>.projectRootPath + <span class="string">&quot;/&quot;</span> + entry.Key + <span class="string">&quot;.lproj&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (!Directory.Exists(folder))</span><br><span class="line">    &#123;</span><br><span class="line">        Directory.CreateDirectory(folder);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">string</span> filePath = folder + <span class="string">&quot;/InfoPlist.strings&quot;</span>;</span><br><span class="line">    <span class="built_in">string</span> content = <span class="string">&quot;\&quot;CFBundleDisplayName\&quot; = \&quot;&quot;</span> + entry.Value + <span class="string">&quot;\&quot;;\n&quot;</span>;</span><br><span class="line">    content += <span class="string">&quot;\&quot;CFBundleName\&quot; = \&quot;&quot;</span> + entry.Value + <span class="string">&quot;\&quot;;\n&quot;</span>;</span><br><span class="line">    File.WriteAllText(filePath, content);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> result = AddFile(filePath, variant, createBuildFiles: <span class="literal">false</span>, ignoreSameFilename: <span class="literal">false</span>);</span><br><span class="line">    PBXFileReference fileReference = (PBXFileReference)result.Values.First();</span><br><span class="line">    fileReference.Remove(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">    fileReference.Add(<span class="string">&quot;name&quot;</span>, entry.Key);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>大体思路就是为了解决上面提到的两个地方：修改Info.plist；直接将名字写入不同语言的翻译文件中，如zh-Hans.lproj/InfoPlist.strings的内容就是：</p>
+<p>大体思路就是为了解决上面提到的两个地方：修改Info.plist；直接将名字写入不同语言的翻译文件中，如zh-Hans.lproj&#x2F;InfoPlist.strings的内容就是：</p>
 <figure class="highlight plist"><table><tr><td class="code"><pre><span class="line">&quot;CFBundleDisplayName&quot; = &quot;无尽的守护&quot;;</span><br><span class="line">&quot;CFBundleName&quot; = &quot;无尽的守护&quot;;</span><br></pre></td></tr></table></figure>
 
 <p>最麻烦的地方在于将这些InfoPlist.strings加入到工程中去，为此还好好研究了下xcodeproj的文件结构：首先将不同版本的翻译文件加入到一个PBXVariant，其次将这个PBXVariant加入到工程目录，最后在build target的PBXResourcesBuildPhase里挂上…</p>

@@ -60,7 +60,7 @@
     <link rel="icon" href="/img/favicon.png">
 
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="昨天和美术折腾了一天，好好的理解了一下Unity里UV/2UV的设置，主要是理解很多程序的概念在美术上的理解是怎么一回事儿…">
+    <meta name="description" itemprop="description" content="昨天和美术折腾了一天，好好的理解了一下Unity里UV&amp;#x2F;2UV的设置，主要是理解很多程序的概念在美术上的理解是怎么一回事儿…">
     <meta name="keywords" content=",Unity">
     <meta name="theme-color" content="#0097A7">
 
@@ -246,7 +246,7 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Unity UV/2UV相关的一系列坑 | Loading &amp; Learning">
     <meta property="og:image" content="/img/favicon.png">
-    <meta property="og:description" content="昨天和美术折腾了一天，好好的理解了一下Unity里UV/2UV的设置，主要是理解很多程序的概念在美术上的理解是怎么一回事儿…">
+    <meta property="og:description" content="昨天和美术折腾了一天，好好的理解了一下Unity里UV&amp;#x2F;2UV的设置，主要是理解很多程序的概念在美术上的理解是怎么一回事儿…">
     <meta property="og:article:tag" content="Unity"> 
 
     
@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -293,7 +293,7 @@
         }
     },
     "keywords": ",Unity",
-    "description": "昨天和美术折腾了一天，好好的理解了一下Unity里UV/2UV的设置，主要是理解很多程序的概念在美术上的理解是怎么一回事儿…",
+    "description": "昨天和美术折腾了一天，好好的理解了一下Unity里UV&amp;#x2F;2UV的设置，主要是理解很多程序的概念在美术上的理解是怎么一回事儿…",
 }
 </script>
 
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -510,7 +510,7 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>昨天和美术折腾了一天，好好的理解了一下Unity里UV/2UV的设置，主要是理解很多程序的概念在美术上的理解是怎么一回事儿…</p>
+        <p>昨天和美术折腾了一天，好好的理解了一下Unity里UV&#x2F;2UV的设置，主要是理解很多程序的概念在美术上的理解是怎么一回事儿…</p>
 <span id="more"></span>
 
 <h1 id="1UV：光滑组"><a href="#1UV：光滑组" class="headerlink" title="1UV：光滑组"></a>1UV：光滑组</h1><p>之前和美术交流的时候，所说的MAX光滑组我一直不能很好的理解。后来某一天自己在翻MAX教程的时候，突然想通了：在MAX这种工具里，除非手动炸开顶点，不然始终应该是同一个顶点数据；当导出模型的时候，如果是保持一个光滑组，那么顶点数据就保持一份；如果是多个光滑组，那么这个顶点就会被复制多份，不同的面使用了不同的顶点。</p>

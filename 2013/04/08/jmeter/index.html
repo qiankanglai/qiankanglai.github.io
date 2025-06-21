@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -519,10 +519,10 @@
 <li>设定JMeter进行测试</li>
 </ul>
 <p>下面就这两块一一介绍。</p>
-<h1 id="通过Java代码实现Sampler"><a href="#通过Java代码实现Sampler" class="headerlink" title="通过Java代码实现Sampler"></a>通过Java代码实现Sampler</h1><p>下载JMeter并解压。在eclipse中新建项目，将lib/ext中的<strong>ApacheJMeter_core.jar</strong>和<strong>ApacheJMeter_java.jar</strong>拷贝到项目中并添加到build path。</p>
+<h1 id="通过Java代码实现Sampler"><a href="#通过Java代码实现Sampler" class="headerlink" title="通过Java代码实现Sampler"></a>通过Java代码实现Sampler</h1><p>下载JMeter并解压。在eclipse中新建项目，将lib&#x2F;ext中的<strong>ApacheJMeter_core.jar</strong>和<strong>ApacheJMeter_java.jar</strong>拷贝到项目中并添加到build path。</p>
 <p>新建一个class，继承<strong>AbstractJavaSamplerClient</strong>，接下来就是重点了</p>
 <p><img src="/images/jmeter1.jpg"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FriendCodeSampler</span> <span class="keyword">extends</span> <span class="title">AbstractJavaSamplerClient</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Arguments <span class="title">getDefaultParameters</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Arguments params = <span class="keyword">new</span> Arguments();</span><br><span class="line">	    params.addArgument(<span class="string">&quot;server&quot;</span>, <span class="string">&quot;127.0.0.1&quot;</span>);</span><br><span class="line">	    params.addArgument(<span class="string">&quot;port&quot;</span>, <span class="string">&quot;3010&quot;</span>);</span><br><span class="line">	    <span class="keyword">return</span> params;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setupTest</span><span class="params">(JavaSamplerContext s)</span> </span>&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">teardownTest</span><span class="params">(JavaSamplerContext s)</span> </span>&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> SampleResult <span class="title">runTest</span><span class="params">(JavaSamplerContext s)</span> </span>&#123;</span><br><span class="line">		SampleResult results = <span class="keyword">new</span> SampleResult();</span><br><span class="line">		results.sampleStart();</span><br><span class="line">		<span class="comment">//Do Staff here</span></span><br><span class="line">		results.sampleEnd();</span><br><span class="line">		results.setSuccessful(<span class="keyword">true</span>);</span><br><span class="line">		<span class="keyword">return</span> results;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FriendCodeSampler</span> <span class="keyword">extends</span> <span class="title class_">AbstractJavaSamplerClient</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> Arguments <span class="title function_">getDefaultParameters</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="type">Arguments</span> <span class="variable">params</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Arguments</span>();</span><br><span class="line">	    params.addArgument(<span class="string">&quot;server&quot;</span>, <span class="string">&quot;127.0.0.1&quot;</span>);</span><br><span class="line">	    params.addArgument(<span class="string">&quot;port&quot;</span>, <span class="string">&quot;3010&quot;</span>);</span><br><span class="line">	    <span class="keyword">return</span> params;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setupTest</span><span class="params">(JavaSamplerContext s)</span> &#123;&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">teardownTest</span><span class="params">(JavaSamplerContext s)</span> &#123;&#125;</span><br><span class="line">	<span class="keyword">public</span> SampleResult <span class="title function_">runTest</span><span class="params">(JavaSamplerContext s)</span> &#123;</span><br><span class="line">		<span class="type">SampleResult</span> <span class="variable">results</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SampleResult</span>();</span><br><span class="line">		results.sampleStart();</span><br><span class="line">		<span class="comment">//Do Staff here</span></span><br><span class="line">		results.sampleEnd();</span><br><span class="line">		results.setSuccessful(<span class="literal">true</span>);</span><br><span class="line">		<span class="keyword">return</span> results;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>上面的代码简单的实现了几个重要的接口，下面一一解释</p>
 <ul>
@@ -534,7 +534,7 @@
 <blockquote>
 <p>尽量在runTest中使用单线程，否则可能与JMeter自己的Timer产生冲突</p>
 </blockquote>
-<p>最后将代码导出为jar，放到lib/ext文件夹下</p>
+<p>最后将代码导出为jar，放到lib&#x2F;ext文件夹下</p>
 <h1 id="设定JMeter进行测试"><a href="#设定JMeter进行测试" class="headerlink" title="设定JMeter进行测试"></a>设定JMeter进行测试</h1><p>在JMeter中建立如图测试方案</p>
 <p><img src="/images/jmeter2.jpg"></p>
 <p>JMeter的测试方案是一个树状结构，很好理解。下面具体解释我用到的几个节点。</p>
@@ -542,7 +542,7 @@
 <ul>
 <li>Number of threads表示总共有多少个用户</li>
 <li>Ramp-Up Period表示这些用户在多少s内均匀上线(防止一下同时出现导致堵塞)</li>
-<li>Loop Count表示每个用户/thread需要执行多少次runTest</li>
+<li>Loop Count表示每个用户&#x2F;thread需要执行多少次runTest</li>
 <li>当一个thread在执行时发生错误时（如抛出异常），我选择的是终止这个thread</li>
 </ul>
 <h2 id="User-Defined-Variables"><a href="#User-Defined-Variables" class="headerlink" title="User Defined Variables"></a>User Defined Variables</h2><p>我们可以在这里设置一些具体的参数，使得每个thread运行时的参数有所不同。具体就不细说了，参考<a target="_blank" rel="noopener" href="http://jmeter.apache.org/usermanual/component_reference.html#User_Defined_Variables">文档</a>即可。</p>

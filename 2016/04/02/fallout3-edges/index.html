@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -498,7 +498,7 @@
 <p><strong>最后补充：我问了如何在贴花之间混合，辐射只是删除了LoD上的贴花面。机智！</strong>(译注：其实就是不管地形本身用的细节多少，最后都混合上同一层细节最多的贴花即可…)</p>
 <h1 id="原文作者-更新1"><a href="#原文作者-更新1" class="headerlink" title="(原文作者)更新1"></a>(原文作者)更新1</h1><p>我问了下同事Markus有没有工具能够拿来分析，他向我推荐了Intel GPA。下图是我用这个工具的截图：</p>
 <p><img src="https://data.simonschreibt.de/gat001/fallout3_noalphatest.jpg"></p>
-<p>需要注意的是我并没有画贴图上的黑色部分。我只是关闭了Alphatest/Alpha1，这也许是因为辐射利用了额外模型才导致的。(译注：这时候贴花就无法和石头进行透明混合，而是全部盖住了)</p>
+<p>需要注意的是我并没有画贴图上的黑色部分。我只是关闭了Alphatest&#x2F;Alpha1，这也许是因为辐射利用了额外模型才导致的。(译注：这时候贴花就无法和石头进行透明混合，而是全部盖住了)</p>
 <h1 id="Parallax-Mapped-Bullet-Holes"><a href="#Parallax-Mapped-Bullet-Holes" class="headerlink" title="Parallax Mapped Bullet Holes"></a>Parallax Mapped Bullet Holes</h1><p>贴花是直接将一张二维图片贴到三维模型上，如果需要表现孔这样的形状就很容易穿帮。为了解决这个问题，一方面需要法线贴图，在光照上产生3D感；另一方面需要一张额外的<strong>深度图</strong>，这样在贴上贴花的时候能有一些扰动，更加真实。</p>
 <p>举个简单栗子，一张桌布平铺在桌面上的效果，和铺在有孔的桌面上的效果肯定是不同的；在孔的范围内，桌布会有一定的“延展拉伸”，相当于贴图产生了一定的形变。如果依然是和原来一样平铺开来，就算有法线贴图产生的光照变化，依然会让人觉得有瑕疵。</p>
 <h1 id="Using-Decals-for-Destroyed-Structures"><a href="#Using-Decals-for-Destroyed-Structures" class="headerlink" title="Using Decals for Destroyed Structures"></a>Using Decals for Destroyed Structures</h1><p>原文作者的链接需要登录才能打开，我找了个<a target="_blank" rel="noopener" href="http://docs.cryengine.com/display/SDKDOC2/Using+Decals+for+Destroyed+Structures">还是中文版本的</a>…</p>

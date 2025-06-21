@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -532,16 +532,16 @@
 <p>pps. 这么看来Unity原生shadowmap的做法其实硬件特性利用的会比Projector好一些，咳咳，等他什么时候能让我更方便的控制模糊程度和范围我立刻<del>弃暗投明</del>转变立场，嗯嗯</p>
 <h1 id="辉光"><a href="#辉光" class="headerlink" title="辉光"></a>辉光</h1><p>这个是我比较感兴趣的部分，因为UE4的后处理一条处理下来非常流畅，见Teaser部分对比。我之前抄了下它的Bloom还～</p>
 <p>网上能找到一份资料<a target="_blank" rel="noopener" href="https://cdn2.unrealengine.com/Resources/files/GDC2014_Next_Generation_Mobile_Rendering-2033767592.pdf">Next-gen Mobile Rendering</a>里Mobile Post Processing Pipeline介绍了整体的流程，主要看Bloom Filter Tree部分。</p>
-<p>我对照的看了下，它首先做了一次clamp+downsample(原图分辨率1280x720)到1/4大小，然后连着四次downsample分别是1/8，1/16，1/32，1/64；然后开始upsample，每次利用两个RT的内容混合回来。shader部分大概看了下确实是圆形的采样，和PPT里所说的正好对应：</p>
+<p>我对照的看了下，它首先做了一次clamp+downsample(原图分辨率1280x720)到1&#x2F;4大小，然后连着四次downsample分别是1&#x2F;8，1&#x2F;16，1&#x2F;32，1&#x2F;64；然后开始upsample，每次利用两个RT的内容混合回来。shader部分大概看了下确实是圆形的采样，和PPT里所说的正好对应：</p>
 <ul>
-<li>Standard hierarchical algorithm with some optimizations<br>– Down-sample from 1:1/4 res first (shared with light shaft)<br>– Then down-sample in 1:1/2 resolution passes<br>– Single pass circle based filter (instead of 2 pass Gaussian)<ul>
+<li>Standard hierarchical algorithm with some optimizations<br>– Down-sample from 1:1&#x2F;4 res first (shared with light shaft)<br>– Then down-sample in 1:1&#x2F;2 resolution passes<br>– Single pass circle based filter (instead of 2 pass Gaussian)<ul>
 <li>15 taps on circle during down-sampling</li>
 <li>7 taps for both circles during up-sample+merge pass</li>
 </ul>
 </li>
 </ul>
 <p>顺便它原始的RenderTexture是RGBA16F格式，渲染的时候就考虑了HDR。usf里面的注释里是提到了64bpp HDR、32bpp HDR using Mosaic encoding和32bpp HDR using RGBA encoding三种，其中mosaic我一直没找到具体资料，希望懂的朋友不吝赐教。</p>
-<p>这样Bloom的好处在于不需要像Gaussian Blur或者SGX Blur需要每次横竖两个方向，而是每次都可以1/2分辨率往下降。正如PPT里所说的“Limited effect radius and less passes”。</p>
+<p>这样Bloom的好处在于不需要像Gaussian Blur或者SGX Blur需要每次横竖两个方向，而是每次都可以1&#x2F;2分辨率往下降。正如PPT里所说的“Limited effect radius and less passes”。</p>
 
         
     

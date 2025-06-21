@@ -284,7 +284,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -319,7 +319,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -510,30 +510,30 @@
 
 <p>先放一个修复后的正确效果</p>
 <p><img src="/images/textfield_right.jpg"></p>
-<p>简单定位了下是文字高度计算出来有问题：同样是height=22的情况下，正确字体的fontHeight=23，错误字体的fontHeight=39。具体看下计算文字高度的地方</p>
+<p>简单定位了下是文字高度计算出来有问题：同样是height&#x3D;22的情况下，正确字体的fontHeight&#x3D;23，错误字体的fontHeight&#x3D;39。具体看下计算文字高度的地方</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">fontHeight = ((face-&gt;size-&gt;metrics.ascender - face-&gt;size-&gt;metrics.descender)) &gt;&gt; <span class="number">6UL</span>;</span><br></pre></td></tr></table></figure>
 
 <p>网上找了下相关的资料<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/50373457/how-to-get-height-of-font-in-freetype2">How to get height of font in Freetype2</a></p>
 <blockquote>
 <p>Below is the method used in cocos2d-x:</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">_lineHeight = <span class="keyword">static_cast</span>((face-&gt;size-&gt;metrics.ascender - face-&gt;size-&gt;metrics.descender) &gt;&gt; <span class="number">6</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">_lineHeight = <span class="built_in">static_cast</span>((face-&gt;size-&gt;metrics.ascender - face-&gt;size-&gt;metrics.descender) &gt;&gt; <span class="number">6</span>);</span><br></pre></td></tr></table></figure>
 <p>Most fonts are ok. For the not-ok case, I calibrate the value after get GlyphBitmap’s height, and then use the larger one as the max line height.</p>
 </blockquote>
-<p>被这句<strong>Most fonts are ok</strong>给雷到了<span class="github-emoji" alias="sweat" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f613.png?v8">&#x1f613;</span> 不过无意间看懂<code>&gt;&gt; 6</code>操作是因为freetype就是定义<code>ascender</code>和<code>descender</code>单位是26.6 pixel format(i.e. 1/64th of pixels)，挺有意思。</p>
+<p>被这句<strong>Most fonts are ok</strong>给雷到了<span class="github-emoji" alias="sweat" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f613.png?v8">&#x1f613;</span> 不过无意间看懂<code>&gt;&gt; 6</code>操作是因为freetype就是定义<code>ascender</code>和<code>descender</code>单位是26.6 pixel format(i.e. 1&#x2F;64th of pixels)，挺有意思。</p>
 <p>咱继续看看能不能找到别的引擎是怎么处理的，参考了下<a target="_blank" rel="noopener" href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Editor/UnrealEd/Private/Factories/TTFontImport.cpp">UE4的TTFontImporter</a>里两种实现方法</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">float</span> EmScale = <span class="number">1024.f</span>/-nHeight;</span><br><span class="line">Font-&gt;EmScale = EmScale;</span><br><span class="line"><span class="keyword">if</span> (ImportOptions-&gt;Data.bUseDistanceFieldAlpha)</span><br><span class="line">&#123;</span><br><span class="line">	Font-&gt;EmScale *= ImportOptions-&gt;Data.DistanceFieldScaleFactor;</span><br><span class="line">&#125;</span><br><span class="line">Font-&gt;Ascent = WinTextMetrics.tmAscent * EmScale;</span><br><span class="line">Font-&gt;Descent = WinTextMetrics.tmDescent * EmScale;</span><br><span class="line">Font-&gt;Leading = WinTextMetrics.tmExternalLeading * EmScale;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">float</span> EmScale = <span class="number">1024.f</span>/-nHeight;</span><br><span class="line">Font-&gt;EmScale = EmScale;</span><br><span class="line"><span class="keyword">if</span> (ImportOptions-&gt;Data.bUseDistanceFieldAlpha)</span><br><span class="line">&#123;</span><br><span class="line">	Font-&gt;EmScale *= ImportOptions-&gt;Data.DistanceFieldScaleFactor;</span><br><span class="line">&#125;</span><br><span class="line">Font-&gt;Ascent = WinTextMetrics.tmAscent * EmScale;</span><br><span class="line">Font-&gt;Descent = WinTextMetrics.tmDescent * EmScale;</span><br><span class="line">Font-&gt;Leading = WinTextMetrics.tmExternalLeading * EmScale;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">float</span> EmScale = <span class="number">1024.f</span>/Height;</span><br><span class="line">Font-&gt;EmScale = EmScale;</span><br><span class="line"><span class="keyword">if</span> (ImportOptions-&gt;Data.bUseDistanceFieldAlpha)</span><br><span class="line">	Font-&gt;EmScale *= ImportOptions-&gt;Data.DistanceFieldScaleFactor;</span><br><span class="line"><span class="keyword">const</span> int32 AscenderPixels = ( FT_MulFix( Face-&gt;ascender, Face-&gt;size-&gt;metrics.y_scale ) &gt;&gt; <span class="number">6</span> );</span><br><span class="line">Font-&gt;Ascent = AscenderPixels * EmScale;</span><br><span class="line">Font-&gt;Descent = ( FT_MulFix( Face-&gt;descender, Face-&gt;size-&gt;metrics.y_scale ) &gt;&gt; <span class="number">6</span> ) * -EmScale;</span><br><span class="line">Font-&gt;Leading = ( FT_MulFix( Face-&gt;height, Face-&gt;size-&gt;metrics.y_scale ) &gt;&gt; <span class="number">6</span> ) * EmScale  - Font-&gt;Ascent - Font-&gt;Descent;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">float</span> EmScale = <span class="number">1024.f</span>/Height;</span><br><span class="line">Font-&gt;EmScale = EmScale;</span><br><span class="line"><span class="keyword">if</span> (ImportOptions-&gt;Data.bUseDistanceFieldAlpha)</span><br><span class="line">	Font-&gt;EmScale *= ImportOptions-&gt;Data.DistanceFieldScaleFactor;</span><br><span class="line"><span class="type">const</span> int32 AscenderPixels = ( <span class="built_in">FT_MulFix</span>( Face-&gt;ascender, Face-&gt;size-&gt;metrics.y_scale ) &gt;&gt; <span class="number">6</span> );</span><br><span class="line">Font-&gt;Ascent = AscenderPixels * EmScale;</span><br><span class="line">Font-&gt;Descent = ( <span class="built_in">FT_MulFix</span>( Face-&gt;descender, Face-&gt;size-&gt;metrics.y_scale ) &gt;&gt; <span class="number">6</span> ) * -EmScale;</span><br><span class="line">Font-&gt;Leading = ( <span class="built_in">FT_MulFix</span>( Face-&gt;height, Face-&gt;size-&gt;metrics.y_scale ) &gt;&gt; <span class="number">6</span> ) * EmScale  - Font-&gt;Ascent - Font-&gt;Descent;</span><br></pre></td></tr></table></figure>
 
 <p>其中第二种方法和cocos2d-x版本比较接近，我导入了下错误显示的ttf也是有问题的。</p>
-<p>不过这里引发了我的一个疑问：<strong>WinTextMetrics</strong>和<strong>Face-&gt;size-&gt;metrics</strong>是啥区别？继续Google一发，找到了<a target="_blank" rel="noopener" href="http://benwhitmore.altervista.org/line-spacing-getting-right/">Line-spacing: getting it right</a>和<a target="_blank" rel="noopener" href="https://silnrsi.github.io/FDBP/en-US/Line_Metrics.html">Line Metrics</a>，描述比较清楚。这些值其实是存在<em>hhea</em>和<em>OS/2</em>两个不同的地方，然后作者是这么说的</p>
+<p>不过这里引发了我的一个疑问：<strong>WinTextMetrics</strong>和<strong>Face-&gt;size-&gt;metrics</strong>是啥区别？继续Google一发，找到了<a target="_blank" rel="noopener" href="http://benwhitmore.altervista.org/line-spacing-getting-right/">Line-spacing: getting it right</a>和<a target="_blank" rel="noopener" href="https://silnrsi.github.io/FDBP/en-US/Line_Metrics.html">Line Metrics</a>，描述比较清楚。这些值其实是存在<em>hhea</em>和<em>OS&#x2F;2</em>两个不同的地方，然后作者是这么说的</p>
 <blockquote>
-<p>We recommend that all Ascender/Ascent values be set to be equal, Descender/Descent value be set to be equal, and LineGap be set to zero.</p>
+<p>We recommend that all Ascender&#x2F;Ascent values be set to be equal, Descender&#x2F;Descent value be set to be equal, and LineGap be set to zero.</p>
 </blockquote>
 <blockquote>
 <p>For example, in UFO3 format font sources (fontinfo.plist) this would mean:</p>
 <blockquote>
-<p>openTypeHheaAscender = openTypeOS2TypoAscender = openTypeOS2WinAscent = ascender<br>openTypeHheaDescender = openTypeOS2TypoDescender = descender<br>openTypeOS2WinDescent = -descender<br>openTypeHheaLineGap = openTypeOS2TypoLineGap = 0</p>
+<p>openTypeHheaAscender &#x3D; openTypeOS2TypoAscender &#x3D; openTypeOS2WinAscent &#x3D; ascender<br>openTypeHheaDescender &#x3D; openTypeOS2TypoDescender &#x3D; descender<br>openTypeOS2WinDescent &#x3D; -descender<br>openTypeHheaLineGap &#x3D; openTypeOS2TypoLineGap &#x3D; 0</p>
 </blockquote>
 </blockquote>
 <p>然后我掏出FontForge，回过头去检查下这块信息：对于光标位置计算正确的字体，确实满足上面的建议</p>
@@ -543,8 +543,8 @@
 <p>出于好奇，我反查了第二个字体的信息，重新去网上随便下了一份替换进来，居然是一切正常的——那也就是说svn上这份祖传字体<del>被人动过手脚</del>有毒<span class="github-emoji" alias="skull" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f480.png?v8">&#x1f480;</span></p>
 <p>继续折腾下，看看能不能通过修改信息让这个字体显示正确呢:</p>
 <ul>
-<li>尝试在General面板里直接修改Ascent和Descent为WinAscent和WinDescent的值，结果会触发字体整体的缩放(因为EmSize=Ascent+Descent)，放弃</li>
-<li>倒过来尝试WinAscent/WinDescent改成TypoAscent/TypoDescent, HHeadAscent/HHeadDescent也改成TypoAscent/TypoDescent，测试了下没什么问题</li>
+<li>尝试在General面板里直接修改Ascent和Descent为WinAscent和WinDescent的值，结果会触发字体整体的缩放(因为EmSize&#x3D;Ascent+Descent)，放弃</li>
+<li>倒过来尝试WinAscent&#x2F;WinDescent改成TypoAscent&#x2F;TypoDescent, HHeadAscent&#x2F;HHeadDescent也改成TypoAscent&#x2F;TypoDescent，测试了下没什么问题</li>
 </ul>
 <p><strong>Disclamer</strong> 这个操作属于我瞎尝试，不确定有没有什么隐患，准备明天再去找UX同学问问看有没有懂字体的…</p>
 <p>至此问题看似解决，记录下来比较有意思的还是查到最后是ttf这种一般认为不会出问题的资源有<span class="github-emoji" alias="ghost" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f47b.png?v8">&#x1f47b;</span>…</p>

@@ -284,7 +284,7 @@ ps. 本来我想直接用gulu大大的PA_ResourceTracker，不过仔细研究了
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -319,7 +319,7 @@ ps. 本来我想直接用gulu大大的PA_ResourceTracker，不过仔细研究了
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -519,7 +519,7 @@ ps. 本来我想直接用gulu大大的PA_ResourceTracker，不过仔细研究了
 <li>剩下的按照名字排序，然后按照大小排序：如果有大小相同的同名项继续『抵销』(这一步其实是有点问题的，不过为了专注于差值就先这么干了)</li>
 <li>最后剩下的就是新增的或者释放的</li>
 </ul>
-<p>最后将生成的数据塞回去显示，红绿分别代表new/delete就非常显眼了(见teaser)。由于相关代码都是开源的，所以改起来特别方便，不用像之前反射扩展Profiler那么麻烦。</p>
+<p>最后将生成的数据塞回去显示，红绿分别代表new&#x2F;delete就非常显眼了(见teaser)。由于相关代码都是开源的，所以改起来特别方便，不用像之前反射扩展Profiler那么麻烦。</p>
 <p>不过这里有一个缺陷我没有完全解决干净：同一个资源的<code>instanceID</code>是会变的，也就是说重启Unity Editor之后就不好做diff了…后面我在想要不要直接参考名字算了，不过这也是有风险的(譬如同名同大小但是实际上是不同的两个资源会被误判)。</p>
 <h1 id="优化序列化速度"><a href="#优化序列化速度" class="headerlink" title="优化序列化速度"></a>优化序列化速度</h1><p>MemoryProfiler内部其实已经实现了三套序列化机制</p>
 <ul>

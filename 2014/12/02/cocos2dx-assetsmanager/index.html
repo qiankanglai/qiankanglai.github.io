@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -480,10 +480,10 @@
         <p>基于cocos2d-x 3.x版本修改的Assets Manager，加几行代码就能实现断线续传功能…so easy</p>
 <span id="more"></span>
 
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">AssetsManager::downLoad</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// Create a file to save package.</span></span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">string</span> outFileName = _storagePath + TEMP_PACKAGE_FILE_NAME;</span><br><span class="line">-   FILE *fp = fopen(outFileName.c_str(), <span class="string">&quot;wb&quot;</span>);</span><br><span class="line">+   <span class="keyword">ssize_t</span> outFileLength = <span class="number">0</span>;</span><br><span class="line">+   FILE *fp = fopen(outFileName.c_str(), <span class="string">&quot;rb&quot;</span>);</span><br><span class="line">+   <span class="keyword">if</span>(fp)</span><br><span class="line">+   &#123;</span><br><span class="line">+       fseek(fp, <span class="number">0</span>, SEEK_END);</span><br><span class="line">+       outFileLength = ftell(fp);</span><br><span class="line">+       fclose(fp);</span><br><span class="line">+   &#125;</span><br><span class="line">+    </span><br><span class="line">+   fp = fopen(outFileName.c_str(), <span class="string">&quot;ab&quot;</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">AssetsManager::downLoad</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// Create a file to save package.</span></span><br><span class="line">    <span class="type">const</span> string outFileName = _storagePath + TEMP_PACKAGE_FILE_NAME;</span><br><span class="line">-   FILE *fp = <span class="built_in">fopen</span>(outFileName.<span class="built_in">c_str</span>(), <span class="string">&quot;wb&quot;</span>);</span><br><span class="line">+   <span class="type">ssize_t</span> outFileLength = <span class="number">0</span>;</span><br><span class="line">+   FILE *fp = <span class="built_in">fopen</span>(outFileName.<span class="built_in">c_str</span>(), <span class="string">&quot;rb&quot;</span>);</span><br><span class="line">+   <span class="keyword">if</span>(fp)</span><br><span class="line">+   &#123;</span><br><span class="line">+       <span class="built_in">fseek</span>(fp, <span class="number">0</span>, SEEK_END);</span><br><span class="line">+       outFileLength = <span class="built_in">ftell</span>(fp);</span><br><span class="line">+       <span class="built_in">fclose</span>(fp);</span><br><span class="line">+   &#125;</span><br><span class="line">+    </span><br><span class="line">+   fp = <span class="built_in">fopen</span>(outFileName.<span class="built_in">c_str</span>(), <span class="string">&quot;ab&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>然后在下面设置curl的地方</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">    curl_easy_setopt(_curl, CURLOPT_FOLLOWLOCATION, <span class="number">1</span> );</span><br><span class="line">+   <span class="keyword">if</span>(outFileLength &gt; <span class="number">0</span>)</span><br><span class="line">+       curl_easy_setopt(_curl, CURLOPT_RESUME_FROM, outFileLength);</span><br><span class="line"> </span><br><span class="line">    res = curl_easy_perform(_curl);</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">    <span class="built_in">curl_easy_setopt</span>(_curl, CURLOPT_FOLLOWLOCATION, <span class="number">1</span> );</span><br><span class="line">+   <span class="keyword">if</span>(outFileLength &gt; <span class="number">0</span>)</span><br><span class="line">+       <span class="built_in">curl_easy_setopt</span>(_curl, CURLOPT_RESUME_FROM, outFileLength);</span><br><span class="line"> </span><br><span class="line">    res = <span class="built_in">curl_easy_perform</span>(_curl);</span><br></pre></td></tr></table></figure>
         
     
 

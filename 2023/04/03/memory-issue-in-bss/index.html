@@ -284,7 +284,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -319,7 +319,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -513,20 +513,20 @@
 <p>由于对XCode相关功能不太熟悉，我索性换到PC平台来查这个问题: 先掏出<a target="_blank" rel="noopener" href="http://technet.microsoft.com/en-us/sysinternals/dd535533">VMMap</a>看下登录界面的内存情况，发现Heap部分只有75M左右，大头反而是Image部分的.data段——说明被下毒的地方是.data里面!</p>
 <p><img src="/images/vmmap.jpg"></p>
 <p>接下来试图继续排查这个dll里的.data里有啥。一开始是熟练的启动了IDA，结果加载PDB的时候非常卡——处理debug symbols耗费差不多半小时，而且随便jump address就卡哭。 </p>
-<p>索性换个思路，研究下有没有别的方法可以导出.data段的内容: 毕竟是我本地编译的dll+pdb，所有信息其实都是全的。在等IDA的时候，从M$文档里翻到了<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/cpp/build/reference/map-generate-mapfile">/MAP (Generate Mapfile)</a>，试着生成了下果然定位到同样的问题：.bss字段的长度过于鹤立鸡群了…</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Timestamp is 64283074 (Sat Apr  1 21:24:04 2023)</span><br><span class="line"></span><br><span class="line">Preferred load address is 0000000180000000</span><br><span class="line"></span><br><span class="line">Start         Length     Name                   Class</span><br><span class="line">0003:00000000 001a9a90H .data                   DATA</span><br><span class="line">0003:001a9a90 000975c0H .data$r                 DATA</span><br><span class="line">0003:00241050 0017fcb0H .data$rs                DATA</span><br><span class="line">0003:003c0d00 39376098H .bss                    DATA</span><br><span class="line">0004:00000000 00278a6cH .pdata                  DATA</span><br></pre></td></tr></table></figure>
+<p>索性换个思路，研究下有没有别的方法可以导出.data段的内容: 毕竟是我本地编译的dll+pdb，所有信息其实都是全的。在等IDA的时候，从M$文档里翻到了<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/cpp/build/reference/map-generate-mapfile">&#x2F;MAP (Generate Mapfile)</a>，试着生成了下果然定位到同样的问题：.bss字段的长度过于鹤立鸡群了…</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Timestamp is 64283074 (Sat Apr  1 21:24:04 2023)</span><br><span class="line"></span><br><span class="line">Preferred load address is 0000000180000000</span><br><span class="line"></span><br><span class="line">Start         Length     Name                   Class</span><br><span class="line">0003:00000000 001a9a90H .data                   DATA</span><br><span class="line">0003:001a9a90 000975c0H .data$r                 DATA</span><br><span class="line">0003:00241050 0017fcb0H .data$rs                DATA</span><br><span class="line">0003:003c0d00 39376098H .bss                    DATA</span><br><span class="line">0004:00000000 00278a6cH .pdata                  DATA</span><br></pre></td></tr></table></figure>
 
 <p>然后下面有具体的列表，索性在sublime里排序之后，肉眼跳着看找到了地址跳变的两条记录</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0003:006cf170       ?sHPFM@MMM@@3VHPFManager@HP@1@A 000000018556a170     AAA.obj</span><br><span class="line">0003:37ee4b78       ?thousand_separator_locale@MMM@@3Vlocale@std@@A 00000001bcd7fb78     AAA.obj</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">0003:006cf170       ?sHPFM@MMM@@3VHPFManager@HP@1@A 000000018556a170     AAA.obj</span><br><span class="line">0003:37ee4b78       ?thousand_separator_locale@MMM@@3Vlocale@std@@A 00000001bcd7fb78     AAA.obj</span><br></pre></td></tr></table></figure>
 
 <p>对着这条记录去翻对应的C++实现，然后暴力编译输出了一发大小:</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> HP::HPFManager sHPFM;</span><br><span class="line"><span class="keyword">char</span>(*test)[<span class="keyword">sizeof</span>(HP::HPFManager)] = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">static</span> HP::HPFManager sHPFM;</span><br><span class="line"><span class="built_in">char</span>(*test)[<span class="built_in">sizeof</span>(HP::HPFManager)] = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
 
 <p>结论就是这个manager占用了931M的内存…</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AAA.cpp(31,56): error C2440: &#39;initializing&#39;: cannot convert from &#39;int&#39; to &#39;char (*)[931224072]&#39;</span><br><span class="line">AAA.cpp(31,56): error C2440: 	char(*test)[sizeof(HP::HPFManager)] &#x3D; 1;</span><br><span class="line">AAA.cpp(31,56): error C2440: 	        </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">AAA.cpp(31,56): error C2440: &#x27;initializing&#x27;: cannot convert from &#x27;int&#x27; to &#x27;char (*)[931224072]&#x27;</span><br><span class="line">AAA.cpp(31,56): error C2440: 	char(*test)[sizeof(HP::HPFManager)] = 1;</span><br><span class="line">AAA.cpp(31,56): error C2440: 	        </span><br></pre></td></tr></table></figure>
 
 <p>至此问题就比较清晰了，是因为这个Manager类实现的不合理导致的~ 回头准备再写个Python脚本分析下.data段其它变量占用情况，有没有不合理的。 </p>
-<p>说实话这个问题有趣之处在于内存占用出现在.bss而不是heap上，导致习惯性查new/malloc的手段就完全定位不到问题。奇怪的经验又增加了呢orz</p>
+<p>说实话这个问题有趣之处在于内存占用出现在.bss而不是heap上，导致习惯性查new&#x2F;malloc的手段就完全定位不到问题。奇怪的经验又增加了呢orz</p>
 
         
     

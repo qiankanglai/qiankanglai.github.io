@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -481,7 +481,7 @@
 <span id="more"></span>
 
 <p>Here is an example for fast Bloom:</p>
-<p>W/O Stencil: </p>
+<p>W&#x2F;O Stencil: </p>
 <p><img src="/images/unity_pp_stencil_off.jpg"></p>
 <p>With Stencil(Ocean Only): </p>
 <p><img src="/images/unity_pp_stencil_on.jpg"></p>
@@ -489,7 +489,7 @@
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">RenderTextureFormat format = RenderTextureFormat.Default;</span><br><span class="line"><span class="keyword">if</span>(SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.ARGBHalf))&#123;</span><br><span class="line">	format = RenderTextureFormat.ARGBHalf;</span><br><span class="line">&#125;</span><br><span class="line">RenderTexture renderTexture = <span class="keyword">new</span> RenderTexture(Screen.width, Screen.height, <span class="number">24</span>, format);</span><br><span class="line">renderTexture.Create();</span><br><span class="line">camera.targetTexture = renderTexture;</span><br><span class="line"></span><br><span class="line">RenderTexture bloomRT0  = <span class="keyword">new</span> RenderTexture(renderTexture.width, renderTexture.height, <span class="number">0</span>, format);</span><br><span class="line">bloomRT0.Create();	<span class="comment">//Ensure these two RT have the same size</span></span><br></pre></td></tr></table></figure>
 
 <p>Instead of downsample in <code>OnRenderImage</code>, we have to <code>Blit</code> in <code>OnPostRender</code></p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnPostRender</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	postProcessingMaterial.SetPass(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	bloomRT0.DiscardContents();</span><br><span class="line">	Graphics.SetRenderTarget(bloomRT0);</span><br><span class="line">	GL.Clear(<span class="literal">true</span>, <span class="literal">true</span>, <span class="keyword">new</span> Color(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>));	<span class="comment">// clear the full RT</span></span><br><span class="line">	<span class="comment">// *KEY POINT*: Draw with the camera&#x27;s depth buffer</span></span><br><span class="line">	Graphics.SetRenderTarget(bloomRT0.colorBuffer, renderTexture.depthBuffer);</span><br><span class="line">	Graphics.Blit(renderTexture, postProcessingMaterial, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnPostRender</span>()</span>&#123;</span><br><span class="line">	postProcessingMaterial.SetPass(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	bloomRT0.DiscardContents();</span><br><span class="line">	Graphics.SetRenderTarget(bloomRT0);</span><br><span class="line">	GL.Clear(<span class="literal">true</span>, <span class="literal">true</span>, <span class="keyword">new</span> Color(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>));	<span class="comment">// clear the full RT</span></span><br><span class="line">	<span class="comment">// *KEY POINT*: Draw with the camera&#x27;s depth buffer</span></span><br><span class="line">	Graphics.SetRenderTarget(bloomRT0.colorBuffer, renderTexture.depthBuffer);</span><br><span class="line">	Graphics.Blit(renderTexture, postProcessingMaterial, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>The shaderlab side is quite simple, and you can find many resources online. Here are two code snippets:</p>
 <p>Ocean Shader</p>

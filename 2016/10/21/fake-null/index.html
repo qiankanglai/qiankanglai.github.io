@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -513,10 +513,10 @@
         <p>今天大黄在群里提出了一个非常奇怪的问题:</p>
 <span id="more"></span>
 
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> Transform Parent = <span class="literal">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//Transform Parent = null;</span></span><br><span class="line">    Transform SelfTransform = GetComponent&lt;Transform&gt;();</span><br><span class="line">    Transform a = Parent ?? SelfTransform;</span><br><span class="line">    Transform b = Parent != <span class="literal">null</span> ? Parent : SelfTransform;</span><br><span class="line">    Debug.Log(a == b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> Transform Parent = <span class="literal">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span> ()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//Transform Parent = null;</span></span><br><span class="line">    Transform SelfTransform = GetComponent&lt;Transform&gt;();</span><br><span class="line">    Transform a = Parent ?? SelfTransform;</span><br><span class="line">    Transform b = Parent != <span class="literal">null</span> ? Parent : SelfTransform;</span><br><span class="line">    Debug.Log(a == b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>竟然返回了<code>False</code>！难道是null coalescing operator挂了？</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//public Transform Parent = null;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Transform Parent = <span class="literal">null</span>;</span><br><span class="line">    Transform SelfTransform = GetComponent&lt;Transform&gt;();</span><br><span class="line">    Transform a = Parent ?? SelfTransform;</span><br><span class="line">    Transform b = Parent != <span class="literal">null</span> ? Parent : SelfTransform;</span><br><span class="line">    Debug.Log(a == b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//public Transform Parent = null;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span> ()</span></span><br><span class="line">&#123;</span><br><span class="line">    Transform Parent = <span class="literal">null</span>;</span><br><span class="line">    Transform SelfTransform = GetComponent&lt;Transform&gt;();</span><br><span class="line">    Transform a = Parent ?? SelfTransform;</span><br><span class="line">    Transform b = Parent != <span class="literal">null</span> ? Parent : SelfTransform;</span><br><span class="line">    Debug.Log(a == b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这样的代码倒是没问题的，结果为<code>True</code>。这个确实有种日了狗的感觉…</p>
 <h1 id="初步解释"><a href="#初步解释" class="headerlink" title="初步解释"></a>初步解释</h1><p>另一个群里有个朋友@Yaukey表示之前在AstarPathfindingProject这个插件遇到过这个问题，结论是<code>??</code>不能正确重载UnityEngine.Object的。猜测是序列化的对象被赋值过了(所以第一段代码错误，第二段正确)；<code>==</code>重载过了，因此没问题。</p>
@@ -526,14 +526,14 @@
 <p>That specific operator only takes the usual ‘null’ into account, whereas Unity also offers a pseudo-null object to present more information to the programmers in the editor (that’s what happens in the second example, it’ll set such a mysterious object to that non-assigned, serialized field).</p>
 </blockquote>
 <blockquote>
-<p>Usual comparisons like ==, != and some boolean comparisons will check whether the variable references ‘null’ or that pseudo-null.</p>
+<p>Usual comparisons like &#x3D;&#x3D;, !&#x3D; and some boolean comparisons will check whether the variable references ‘null’ or that pseudo-null.</p>
 </blockquote>
 <p>简单来说，Unity在Editor里实现了一个pseudo-null的类(我估计这样顺便实现了Inspector里区分missing和none的状态)，但是只重载了<code>==</code> <code>!=</code>等部分操作…</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> Transform Parent;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// overriden operator compares to null and fake-null, result is true</span></span><br><span class="line">    Debug.Log(Parent == <span class="literal">null</span>);</span><br><span class="line">    <span class="comment">// casting to a System.Object reveals that there&#x27;s actually something assigned to it, result is false</span></span><br><span class="line">    Debug.Log((System.Object)Parent == <span class="literal">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> Transform Parent;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// overriden operator compares to null and fake-null, result is true</span></span><br><span class="line">    Debug.Log(Parent == <span class="literal">null</span>);</span><br><span class="line">    <span class="comment">// casting to a System.Object reveals that there&#x27;s actually something assigned to it, result is false</span></span><br><span class="line">    Debug.Log((System.Object)Parent == <span class="literal">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>可以看到虽然在Inspector里Parent是none，但是其实它是指向了某个pseudo-null的实例对象…<strong>也就是说编辑器里看到的空并不是真正的null</strong></p>
 <p>后面@Suddoha还贴了一段泛型的坑，这里就懒得转了-。-强烈建议看原帖解释</p>
-<h1 id="博客版本解释"><a href="#博客版本解释" class="headerlink" title="博客版本解释"></a>博客版本解释</h1><p>论坛上@BoredMormon贴了一个官方博客的帖子<a target="_blank" rel="noopener" href="https://blogs.unity3d.com/2014/05/16/custom-operator-should-we-keep-it/">CUSTOM == OPERATOR, SHOULD WE KEEP IT?</a>，然后他整理的几个DONT很有用：</p>
+<h1 id="博客版本解释"><a href="#博客版本解释" class="headerlink" title="博客版本解释"></a>博客版本解释</h1><p>论坛上@BoredMormon贴了一个官方博客的帖子<a target="_blank" rel="noopener" href="https://blogs.unity3d.com/2014/05/16/custom-operator-should-we-keep-it/">CUSTOM &#x3D;&#x3D; OPERATOR, SHOULD WE KEEP IT?</a>，然后他整理的几个DONT很有用：</p>
 <ul>
 <li>Never check if a UnityEngine.Object is null directly, always use the bool operator</li>
 <li>Never cast a UnityEngine.Object to a System.Object</li>

@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -498,7 +498,7 @@
 <p>从<a target="_blank" rel="noopener" href="https://facepunch.com/showthread.php?t=1541193">Call of Duty Modern Warfare Remastered Models Release Thread</a>下了几个模型练手，了解了下具体的格式，很多细节都可以从<a target="_blank" rel="noopener" href="https://developer.valvesoftware.com/wiki/Main_Page">Valve Developer Community</a>里找到。</p>
 <h1 id="模型文件"><a href="#模型文件" class="headerlink" title="模型文件"></a>模型文件</h1><p><a target="_blank" rel="noopener" href="https://developer.valvesoftware.com/wiki/Studiomodel">Studiomodel</a>是Source引擎能直接加载的<strong>处理过的</strong>模型，包含以下信息</p>
 <ul>
-<li>mdl 模型信息的总和，譬如文件名、路径、骨骼、动画及对应的vvd/phy/ani等文件</li>
+<li>mdl 模型信息的总和，譬如文件名、路径、骨骼、动画及对应的vvd&#x2F;phy&#x2F;ani等文件</li>
 <li>vmt 材质信息</li>
 <li>vvd 顶点信息</li>
 <li>phy 物理信息</li>
@@ -511,7 +511,7 @@
 <p><img src="/images/blender_source_import.jpg"></p>
 <p>这是使用QC是因为可以一次性把相关的模型部分都导入，如果使用SMD就需要一个个分别导入人肉组合。</p>
 <p><img src="/images/blender_source_import_qc.jpg"></p>
-<p>然后导出FBX之前，建议删掉Camera/Cube/Lamp/VTA vertices/<strong>UnknownModelName/phymodel</strong>等信息</p>
+<p>然后导出FBX之前，建议删掉Camera&#x2F;Cube&#x2F;Lamp&#x2F;VTA vertices&#x2F;<strong>UnknownModelName&#x2F;phymodel</strong>等信息</p>
 <p><img src="/images/blender_source_useless_parts.jpg"></p>
 <h1 id="贴图处理"><a href="#贴图处理" class="headerlink" title="贴图处理"></a>贴图处理</h1><p>Source使用了vtf格式来存储贴图，直接使用<a target="_blank" rel="noopener" href="https://developer.valvesoftware.com/wiki/VTFEdit">VTFEdit</a>批量倒tga出来就行了</p>
 <h1 id="材质处理"><a href="#材质处理" class="headerlink" title="材质处理"></a>材质处理</h1><p>前面在处理mdl的时候会生成vmt文件</p>

@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -487,7 +487,7 @@
 <p>** DllLoader ** 跨平台载入动态链接库的封装，反正就是<code>LoadLibrary</code>和<code>dlopen</code>呗。</p>
 <p>** Thread ** <code>join_now_</code>表示这个运行结束，<code>can_recycle_thread_</code>表示可以复用了；然后在循环里面检查+运行，逻辑利用了<code>std::function</code>包了下。说实话这块没完全看懂，封装的有点迷糊了…</p>
 <p>不过学习了一下新的模板知识~我对这货的印象还停留在展开上，现在11出来以后编译阶段已经可以做很多计算(编译阶段计算字符串Hash已被龚大玩出花)和检查操作(<code>static_assert</code>)。譬如根据模板类型，生成一个<code>optional</code>，需要注意的是对于<code>void</code>、需要使用<code>void_t</code>，从而保证有有<code>::type</code>。</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> void_t</span><br><span class="line">&#123;</span><br><span class="line">	typedef void_t type;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">typedef std::experimental::optional&lt;</span><br><span class="line">	typename std::conditional&lt;std::is_same&lt;result_type, void&gt;::value,</span><br><span class="line">	void_t, result_type&gt;::type</span><br><span class="line">&gt;  result_opt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> void_t</span><br><span class="line">&#123;</span><br><span class="line">	typedef void_t type;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">typedef std::experimental::optional&lt;</span><br><span class="line">	typename std::conditional&lt;std::is_same&lt;result_type, <span class="keyword">void</span>&gt;::<span class="keyword">value</span>,</span><br><span class="line">	void_t, result_type&gt;::type</span><br><span class="line">&gt;  result_opt;</span><br></pre></td></tr></table></figure>
 
 <p>大概看了下头文件，对于这种编译期判断的，是通过模板顺序来实现返回<code>true_type</code>或<code>false_type</code>，挺好玩…</p>
 <p>** Util ** <code>MakeFourCC</code>直接利用模板和枚举，在编译期计算；<code>std::forward</code>传递参数真是强大，搜了下<a target="_blank" rel="noopener" href="http://www.cnblogs.com/harrywong/p/perfect-forwarding-the-solution.html">Perfect forwarding</a>…还有就是<a target="_blank" rel="noopener" href="http://www.klayge.org/2015/07/13/%E4%B8%89%E6%8E%A2%E7%BC%96%E8%AF%91%E6%9C%9F%E5%AD%97%E7%AC%A6%E4%B8%B2hash/">字符串编译器Hash</a>了</p>

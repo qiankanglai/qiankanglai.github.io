@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -556,7 +556,7 @@
 <li>是否有无效Render Call，我曾经见过一个全屏绘制“无效果”，也就是屏幕内容在绘制前后结果完全一致，不知道到底干啥了…</li>
 <li>是否有绘制到屏幕外的Render Call，也就是模型在屏幕外的情况；这个其实应该是引擎自动优化掉相机范围外的物体，不过有的引擎不具有这个能力_(:з」∠)_</li>
 <li>是否有被完全挡住的Render Call，这时候需要完全干掉，不然也是会造成性能损失的；话说这个其实也应该引擎自动优化Occlusion来着(╯‵□′)╯︵┻━┻</li>
-<li>是否有能够合并的Draw Call，像Unity里有Dynamic/Static Batching技术。</li>
+<li>是否有能够合并的Draw Call，像Unity里有Dynamic&#x2F;Static Batching技术。</li>
 <li>是否有负担比较重的API调用，譬如每帧都修改顶点数据，是否能避免或绕开。</li>
 </ul>
 <p>然后需要看一下显存中的纹理数量和大小，这个肯定也是越小越好~</p>
@@ -581,7 +581,7 @@
 <p>Adreno Profiler提供了一些很方便的可视化功能，譬如选中一个纹理或者Shader，可以标记出所有使用该资源的Render Call；选中Render Call的时候会在屏幕上标记其绘制效果~</p>
 <p><strong>总结</strong> 嘛，总之很方便的工具一只~<del>我现在就等着泰坦黎明的安卓版，好好分析下它咋做的啦o(╯□╰)o</del> <a href="/2015/09/04/dawn-of-titans/" title="泰坦黎明效果分析一二">泰坦黎明效果分析一二</a></p>
 <h2 id="简单的Python处理脚本"><a href="#简单的Python处理脚本" class="headerlink" title="简单的Python处理脚本"></a>简单的Python处理脚本</h2><p>评论区有几个需要的，就贴一下~其实特别简单粗暴，只是文本替换而已</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">replaceAll</span>(<span class="params">filename</span>):</span></span><br><span class="line">	f = <span class="built_in">open</span>(filename,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">	filedata = f.read()</span><br><span class="line">	f.close()</span><br><span class="line"></span><br><span class="line">	newdata = filedata.replace(<span class="string">&quot;#position&quot;</span>, <span class="string">&quot;v&quot;</span>).replace(<span class="string">&quot;#normal&quot;</span>, <span class="string">&quot;vn&quot;</span>).replace(<span class="string">&quot;#texcoord0&quot;</span>, <span class="string">&quot;vt&quot;</span>)</span><br><span class="line"></span><br><span class="line">	f = <span class="built_in">open</span>(filename,<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">	f.write(newdata)</span><br><span class="line">	f.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(sys.argv) == <span class="number">1</span>:</span><br><span class="line">		print(<span class="string">&quot;Please provide filename&quot;</span>)</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		files = sys.argv[<span class="number">1</span>:]</span><br><span class="line">		<span class="keyword">for</span> x <span class="keyword">in</span> files:</span><br><span class="line">			replaceAll(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">replaceAll</span>(<span class="params">filename</span>):</span><br><span class="line">	f = <span class="built_in">open</span>(filename,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">	filedata = f.read()</span><br><span class="line">	f.close()</span><br><span class="line"></span><br><span class="line">	newdata = filedata.replace(<span class="string">&quot;#position&quot;</span>, <span class="string">&quot;v&quot;</span>).replace(<span class="string">&quot;#normal&quot;</span>, <span class="string">&quot;vn&quot;</span>).replace(<span class="string">&quot;#texcoord0&quot;</span>, <span class="string">&quot;vt&quot;</span>)</span><br><span class="line"></span><br><span class="line">	f = <span class="built_in">open</span>(filename,<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">	f.write(newdata)</span><br><span class="line">	f.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(sys.argv) == <span class="number">1</span>:</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">&quot;Please provide filename&quot;</span>)</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		files = sys.argv[<span class="number">1</span>:]</span><br><span class="line">		<span class="keyword">for</span> x <span class="keyword">in</span> files:</span><br><span class="line">			replaceAll(x)</span><br></pre></td></tr></table></figure>
 
 <p>使用方法是<code>python OBJ.py kongfu_01.obj kongfu_02.obj kongfu_03.obj</code>这样直接传入文件名。至于为什么这么做，其实打开下obj文件看下最上面的注释就懂了…</p>
 

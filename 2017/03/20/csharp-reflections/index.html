@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -478,7 +478,7 @@
 <li>Private API 无法在代码里直接调用，一般是internal class或者private作用域</li>
 </ul>
 <p>但是谁让这些代码是人见人爱的C#代码呢！在编辑器下完全可以使用反射来绕开这个限制。具体来说举个例子，如果我们希望访问到<a target="_blank" rel="noopener" href="https://github.com/MattRix/UnityDecompiled/blob/master/UnityEditor/UnityEditor/ProfilerWindow.cs#L138">ProfilerWindow</a>里的某个私有变量<code>m_ProfilerWindow</code></p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="title">List</span>&lt;<span class="title">ProfilerWindow</span>&gt; m_ProfilerWindows</span> = <span class="keyword">new</span> List&lt;ProfilerWindow&gt;();</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> List&lt;ProfilerWindow&gt; m_ProfilerWindows = <span class="keyword">new</span> List&lt;ProfilerWindow&gt;();</span><br></pre></td></tr></table></figure>
 
 <p>完全可以这么写</p>
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">m_ProfilerWindows = tProfilerWindow.GetField(<span class="string">&quot;m_ProfilerWindows&quot;</span>, BindingFlags.NonPublic | BindingFlags.Static);</span><br><span class="line">IList windows = m_ProfilerWindows.GetValue(<span class="literal">null</span>) <span class="keyword">as</span> IList;</span><br></pre></td></tr></table></figure>
@@ -490,7 +490,7 @@
 <li>反射在性能上还是有不少损失的</li>
 <li>如果Unity升级导致变量名变动等，就会代码出错需要人肉维护…</li>
 </ul>
-<p>不过总得来说，作为编辑器扩展非常靠谱，最近用这个思路还折腾了不少事情，譬如设置Material Inspector面板的Reflection Probe/完美抓取shader keyword等。这酸爽感觉就是打开了一个新世界的大门(逃 </p>
+<p>不过总得来说，作为编辑器扩展非常靠谱，最近用这个思路还折腾了不少事情，譬如设置Material Inspector面板的Reflection Probe&#x2F;完美抓取shader keyword等。这酸爽感觉就是打开了一个新世界的大门(逃 </p>
 
         
     

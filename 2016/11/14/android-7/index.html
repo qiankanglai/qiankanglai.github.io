@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -504,7 +504,7 @@
         <p>最近守护要上GP，G家要求最好支持Android 24的targetSDK。然后硬生生周末被坑了两天…主要有两个问题需要强烈注意！</p>
 <span id="more"></span>
 
-<h1 id="NDK限制"><a href="#NDK限制" class="headerlink" title="NDK限制"></a>NDK限制</h1><p>这个在<a href="/2016/11/12/android-hook/" title="Android下利用Hook实现mono dll加密">Android下利用Hook实现mono dll加密</a>里提到了，新版本系统上如果targetSDK&gt;23，在动态载入其他库时会直接崩溃；如果targetSDK&lt;=23，目前是会报错但是暂时能使用。再之后的Android版本也是直接崩溃的。</p>
+<h1 id="NDK限制"><a href="#NDK限制" class="headerlink" title="NDK限制"></a>NDK限制</h1><p>这个在<a href="/2016/11/12/android-hook/" title="Android下利用Hook实现mono dll加密">Android下利用Hook实现mono dll加密</a>里提到了，新版本系统上如果targetSDK&gt;23，在动态载入其他库时会直接崩溃；如果targetSDK&lt;&#x3D;23，目前是会报错但是暂时能使用。再之后的Android版本也是直接崩溃的。</p>
 <p>不使用Hook之后，目前我还遇到的一个问题是亲加聊天SDK崩溃，尚未完全解决…</p>
 <blockquote>
 <p>Caused by: java.lang.UnsatisfiedLinkError: dlopen failed: library “libsqlite.so” not found<br>  at java.lang.Runtime.loadLibrary0(Runtime.java:977)<br>  at java.lang.System.loadLibrary(System.java:1530)<br>  at com.gotye.api.GotyeAPI.loadLibrary(GotyeAPI.java:54)</p>

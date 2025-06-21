@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -516,11 +516,11 @@
 <p>核心的算法是赵老湿和程老湿弄的，一开始我是想人肉翻译成Javascript代码，后来发现了一个神器<a target="_blank" rel="noopener" href="https://github.com/kripken/emscripten">emscripten</a>，就从此走入了<del>轻松愉快</del>坑爹无数之路…</p>
 <h1 id="初体验"><a href="#初体验" class="headerlink" title="初体验"></a>初体验</h1><p>配置环境什么还是比较简单的，跟着wiki上的教程走就行了，不管是ubuntu还是osx下都很简单就跑起来了。唯一比较麻烦的是ubuntu下clang 3.2没有找到好的源，就自己svn co了代码编译了一份，花了将近一小时。</p>
 <h1 id="开始坑阶段"><a href="#开始坑阶段" class="headerlink" title="开始坑阶段"></a>开始坑阶段</h1><p>最开始的代码是MFC的，但是我嫌麻烦没有在windows下配置emscripten，因此是要拿到linux环境下编译~单独将核心算法涉及到的文件抽出到一个控制台项目，然后写了一堆宏来判断头文件的引入和代码的流程，例如将绘制渲染的地方就通过这种宏来选择</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _CONSOLE</span></span><br><span class="line">glVertex3dv(v-&gt;position.data)</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> _CONSOLE</span></span><br><span class="line"><span class="built_in">glVertex3dv</span>(v-&gt;position.data)</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 
 <p>最后写一个包装的接口文件，确保这个控制台能编译运行起来就行了-v-虽然麻烦点好歹只是小体力活</p>
 <h1 id="继续坑"><a href="#继续坑" class="headerlink" title="继续坑"></a>继续坑</h1><p>在使用emscripten编译之前，先手写了一份Makefile用clang++编译一遍，结果发现第一个大坑——<strong>赵老湿用了好多MSVC特有的语法</strong>，在clang下都编译不过T_T</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> readwrite</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> readwrite(var) __declspec(property(get=Get##var, put=Set##var)) var</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> readwrite</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> readwrite(var) __declspec(property(get=Get##var, put=Set##var)) var</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">for</span> <span class="title">each</span><span class="params">(ref&lt;CCoedge&gt; coedge in coface-&gt;coedges)</span></span></span><br></pre></td></tr></table></figure>
 
@@ -529,22 +529,22 @@
 <p>参考HTML5的材料，我还自己做了一个obj模型上传加解析的功能~直接拖到网页里就行了，Blob真心方便。</p>
 <p>至于在Javascript里调用C++暴露出来的接口，参考项目的wiki页面和<a target="_blank" rel="noopener" href="http://comments.gmane.org/gmane.comp.compilers.emscripten/302">别人的帖子</a>，也很轻松的实现了。唯一猎奇的就是我一开始想用<code>int *&amp;faces</code>来保存返回的数组的，但始终搞不定；研究了5min之后决定无节操的用一个很大的int数组将所有的返回值(什么<code>int</code>啊，<code>int*</code>啊，<code>float*</code>啊)全塞一起返回了oy</p>
 <p>在做的时候还顺便发现了竟然已经有人干过<a target="_blank" rel="noopener" href="http://learningthreejs.com/blog/2011/12/10/constructive-solid-geometry-with-csg-js/">这个事情</a>了，虽然跑的很慢但是代码很简单，思路也很清晰，我就顺手给挂上去了也。</p>
-<h1 id="最后一个炒炒鸡大坑"><a href="#最后一个炒炒鸡大坑" class="headerlink" title="最后一个炒炒鸡大坑"></a>最后一个炒炒鸡大坑</h1><p>前天晚上在编译赵老湿最新代码的时候，开始发现总出一些猎奇的结果。仔细一看发现此奥！！！clang++编译出的程序的运行结果和emscripten编译的js文件通过nodejs运行的结果竟然是<strong>不！一！样！的！</strong>这是闹哪样啊=。=说好的翻译llvm运行呢……心都碎了啊思密达</p>
+<h1 id="最后一个炒炒鸡大坑"><a href="#最后一个炒炒鸡大坑" class="headerlink" title="最后一个炒炒鸡大坑"></a>最后一个炒炒鸡大坑</h1><p>前天晚上在编译赵老湿最新代码的时候，开始发现总出一些猎奇的结果。仔细一看发现此奥！！！clang++编译出的程序的运行结果和emscripten编译的js文件通过nodejs运行的结果竟然是<strong>不！一！样！的！</strong>这是闹哪样啊&#x3D;。&#x3D;说好的翻译llvm运行呢……心都碎了啊思密达</p>
 <p>各种定位之后(拿出写python的调试精神——log大法)，发现了神奇的错误</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Setx</span><span class="params">(<span class="keyword">double</span> value)</span></span>&#123;data[<span class="number">0</span>]=value;<span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;data[<span class="number">0</span>]&lt;&lt;<span class="string">&#x27;\t&#x27;</span>&lt;&lt;value&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">Setx</span><span class="params">(<span class="type">double</span> value)</span></span>&#123;data[<span class="number">0</span>]=value;std::cout&lt;&lt;data[<span class="number">0</span>]&lt;&lt;<span class="string">&#x27;\t&#x27;</span>&lt;&lt;value&lt;&lt;std::endl;&#125;</span><br></pre></td></tr></table></figure>
 
-<p>这样一句赋值语句最后输出的结果竟然是<code>-1.5e-315 -11</code>…闹太套啊魂淡！内存访问有问题吧摔=口=好歹人家unreal那么复杂一个引擎转出来都没问题，凭啥我这么小一个工程就挂呢=。=接下来进行了一下坑爹尝试（模仿慎重）</p>
+<p>这样一句赋值语句最后输出的结果竟然是<code>-1.5e-315 -11</code>…闹太套啊魂淡！内存访问有问题吧摔&#x3D;口&#x3D;好歹人家unreal那么复杂一个引擎转出来都没问题，凭啥我这么小一个工程就挂呢&#x3D;。&#x3D;接下来进行了一下坑爹尝试（模仿慎重）</p>
 <ul>
 <li>第一反应是关掉所有编译优化，关掉type array、asm.js等，毫无作用</li>
-<li>会不会是osx的内存问题，毕竟官方说linux版本最稳定=&gt;装linux虚拟机去</li>
-<li>装完发现表现一样，那会不会是64bit问题，毕竟内存模型是默认32的=&gt;装32bit虚拟机去</li>
+<li>会不会是osx的内存问题，毕竟官方说linux版本最稳定&#x3D;&gt;装linux虚拟机去</li>
+<li>装完发现表现一样，那会不会是64bit问题，毕竟内存模型是默认32的&#x3D;&gt;装32bit虚拟机去</li>
 <li>结果发现还是一个德行！</li>
 </ul>
 <p>总之各种装环境就花了大半天，但表现形式一摸一样……毫无人性（幸好没尝试windows版本的安装）</p>
 <p>最后灵机一动……突然想到赵老湿用了很多C++0x的特性，特别是自己写的一个类似智能指针的类用了<code>nullptr</code>啥的，所以我在编译的时候打开了<code>-std=c++11</code>才能编译过。。。最后蛋疼之下删掉了这个东西+关掉编译开关，全改成指针<del>不管内存泄露的请不要在意</del>，竟然好了T T</p>
 <p>整了半天真是标准的错！虽然在github上<a target="_blank" rel="noopener" href="https://github.com/kripken/emscripten/issues/1279">提问</a>了但最后发现完全不是我想的一回事……</p>
-<h1 id="所谓的demo"><a href="#所谓的demo" class="headerlink" title="所谓的demo"></a>所谓的demo</h1><p>先挂上<a href="/boolean/index.html">DEMO链接</a>，chrome/firefox都应该无压力，IE也需要新一点才行，因为用了type array来加速</p>
-<p><del>用户手册等有空吧=。=</del></p>
+<h1 id="所谓的demo"><a href="#所谓的demo" class="headerlink" title="所谓的demo"></a>所谓的demo</h1><p>先挂上<a href="/boolean/index.html">DEMO链接</a>，chrome&#x2F;firefox都应该无压力，IE也需要新一点才行，因为用了type array来加速</p>
+<p><del>用户手册等有空吧&#x3D;。&#x3D;</del></p>
 <a href="/2013/06/15/threejs_mannual/" title="Javascript三维布尔模型运算用户手册">Javascript三维布尔模型运算用户手册</a>
         
     

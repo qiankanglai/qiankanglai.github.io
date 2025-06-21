@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -472,12 +472,12 @@
 <span id="more"></span>
 
 <p>后来Unite 2016的时候和朋友聊天，学到了一个新思路——直接用Hook的方式来解密，这样就可以直接使用Unity自带的libmono.so解决问题～具体一点，使用了<a target="_blank" rel="noopener" href="http://www.cydiasubstrate.com/">Cydia Substrate</a>的API来劫持mono API</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">MSImageRef image = MSGetImageByName(<span class="comment">/* libmono.so */</span>);</span><br><span class="line"><span class="keyword">if</span>(image == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">void</span> *ptr = MSFindSymbol(image, <span class="comment">/* mono function */</span>);</span><br><span class="line"><span class="keyword">if</span>(ptr == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">MSHookFunction(ptr, (<span class="keyword">void</span>*)&amp;oldPtr, (<span class="keyword">void</span>**)&amp;newPtr);</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">MSImageRef image = <span class="built_in">MSGetImageByName</span>(<span class="comment">/* libmono.so */</span>);</span><br><span class="line"><span class="keyword">if</span>(image == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">void</span> *ptr = <span class="built_in">MSFindSymbol</span>(image, <span class="comment">/* mono function */</span>);</span><br><span class="line"><span class="keyword">if</span>(ptr == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line"><span class="built_in">MSHookFunction</span>(ptr, (<span class="type">void</span>*)&amp;oldPtr, (<span class="type">void</span>**)&amp;newPtr);</span><br></pre></td></tr></table></figure>
 
 <p>由于非常简单就不展开解释了…反正就三个函数<a target="_blank" rel="noopener" href="http://www.cydiasubstrate.com/api/c/MSGetImageByName/">MSGetImageByName</a>, <a target="_blank" rel="noopener" href="http://www.cydiasubstrate.com/api/c/MSFindSymbol/">MSFindSymbol</a>, <a target="_blank" rel="noopener" href="http://www.cydiasubstrate.com/api/c/MSHookFunction/">MSHookFunction</a>的事儿</p>
 <p>至于怎么接入，网上也有不少资料，我主要参考的是<a target="_blank" rel="noopener" href="https://koz.io/android-substrate-c-hooking/">Substrate - hooking C on Android</a>。需要注意的是很多教程是介绍如何劫持别的App，需要root；但是我们劫持的是自己，所以不用那么麻烦。</p>
 <p>最后再给个踩坑经验提示：Java那边必须<strong>显示、按顺序</strong>加载库，不然的话其实在绝大多数机型上依然能正常工作、但有些手机会crash。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Misc</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.loadLibrary(<span class="string">&quot;mono&quot;</span>);</span><br><span class="line">        System.loadLibrary(<span class="string">&quot;substrate&quot;</span>);</span><br><span class="line">        System.loadLibrary(<span class="string">&quot;soulgame&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="keyword">int</span> <span class="title">decrypt</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Misc</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.loadLibrary(<span class="string">&quot;mono&quot;</span>);</span><br><span class="line">        System.loadLibrary(<span class="string">&quot;substrate&quot;</span>);</span><br><span class="line">        System.loadLibrary(<span class="string">&quot;soulgame&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="type">int</span> <span class="title function_">decrypt</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>咳咳，最后的最后是必须注意的点：<strong>Android 7.0开始Hook方式将直接导致App崩溃</strong> <a target="_blank" rel="noopener" href="https://developer.android.com/about/versions/nougat/android-7.0-changes.html#ndk">NDK Apps Linking to Platform Libraries</a></p>
 <blockquote>

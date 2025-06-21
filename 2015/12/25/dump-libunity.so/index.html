@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -518,13 +518,13 @@
 <p><img src="/images/bugly_libunity.jpg"></p>
 <h1 id="objdump-导出"><a href="#objdump-导出" class="headerlink" title="objdump 导出"></a>objdump 导出</h1><p>在<a target="_blank" rel="noopener" href="http://forum.unity3d.com/threads/android-crash.86682/">官方论坛某个帖子</a>里找到了答案：利用<code>binutils</code>工具包里的<code>arm-eabi-objdump</code>。</p>
 <p>帖子里是说从NDK里找，但是我找了半天都没发现，最后机智的直接用万能的brew搞定…</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew tap qiankanglai/embedded</span><br><span class="line">brew install arm-none-eabi-binutils</span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/Cellar/arm-none-eabi-binutils/2.23.2/bin</span><br><span class="line"> ./arm-none-eabi-objdump -d /Applications/Unity/Unity.app/Contents/PlaybackEngines/AndroidPlayer/Variations/mono/Release/Libs/armeabi-v7a/libunity.so &gt; libunity.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew tap qiankanglai/embedded</span><br><span class="line">brew install arm-none-eabi-binutils</span><br><span class="line"><span class="built_in">cd</span> /usr/local/Cellar/arm-none-eabi-binutils/2.23.2/bin</span><br><span class="line"> ./arm-none-eabi-objdump -d /Applications/Unity/Unity.app/Contents/PlaybackEngines/AndroidPlayer/Variations/mono/Release/Libs/armeabi-v7a/libunity.so &gt; libunity.txt</span><br></pre></td></tr></table></figure>
 
 <p>最后根据崩溃日志里的<code>pc xxxx</code>去搜索导出的符号信息即可…反正这种崩溃大多数时候都是Unity的锅，只能自己想办法规避了……</p>
 <p>ps. 原来的<code>thomaseichinger/embedded</code>里面用的sha1已经被brew废弃了，我fork了一个出来并且改成了清华的源，不过只改了<code>arm-none-eabi-binutils</code>一个。</p>
 <h1 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h1><p>今天wxp和我聊了下，发现新版本竟然Release直接带符号表了，就不用这么麻烦了…<a target="_blank" rel="noopener" href="https://unity3d.com/unity/whats-new/unity-5.3.6">5.3.6 Release Notes</a>里第一条是</p>
 <blockquote>
-<p>Android: Symbols for release libraries are now available in PlaybackEngines/AndroidPlayer/Variantions/*/Release/Symbols.</p>
+<p>Android: Symbols for release libraries are now available in PlaybackEngines&#x2F;AndroidPlayer&#x2F;Variantions&#x2F;*&#x2F;Release&#x2F;Symbols.</p>
 </blockquote>
 
         

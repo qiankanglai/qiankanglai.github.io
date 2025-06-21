@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -516,10 +516,10 @@
 <li>可以控制增量更新，譬如产生影子的物体没有变化的时候，影子就完全不需要重绘</li>
 <li><strong>可以很方便的控制投影的范围</strong>，这是我觉得最重要的一点</li>
 </ul>
-<p>当然它们也有一些共通的地方，可以很方便的控制Cast Shadow/Receive Shadow的部分。</p>
+<p>当然它们也有一些共通的地方，可以很方便的控制Cast Shadow&#x2F;Receive Shadow的部分。</p>
 <h1 id="需要注意的坑"><a href="#需要注意的坑" class="headerlink" title="需要注意的坑"></a>需要注意的坑</h1><p>主要是使用的时候需要注意(对ShadowMap的使用来说也是类似的)：</p>
 <ul>
-<li><p>务必控制Cast Shadow/Receive Shadow的物体个数，保证不需要的物体不会参与绘制！以守护为例，只有几个模型参与了绘制，而且<strong>当模型超出范围之后立刻挪出渲染队列</strong>；<strong>接受影子的只有一个大平面</strong>，周围复杂的场景部分压根不参与Receive。</p>
+<li><p>务必控制Cast Shadow&#x2F;Receive Shadow的物体个数，保证不需要的物体不会参与绘制！以守护为例，只有几个模型参与了绘制，而且<strong>当模型超出范围之后立刻挪出渲染队列</strong>；<strong>接受影子的只有一个大平面</strong>，周围复杂的场景部分压根不参与Receive。</p>
 </li>
 <li><p>某些机器的显卡对于<code>tex2DProj</code>支持的有问题，不过目前只看到一个红米有…在这个设备上ShadowMap也是有问题的，所以目前还是处于没辙的状态。</p>
 </li>

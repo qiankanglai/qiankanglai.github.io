@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -508,12 +508,12 @@
 <p>继续用<a target="_blank" rel="noopener" href="https://renderdoc.org/docs/how/how_debug_shader.html">Debug Shader</a>功能分别调试了下两个Pass里的，发现最后的结果始终是<code>1600.09778</code>，这个就有点尴尬了…陷入僵局后了，索性尝试了下Edit Shader功能——如果把Shading Pass里的VS简化到类似PreZ的版本，发现确实能得到得到正确的深度。</p>
 <p>后来Google下找到了<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/issues/1604">Discrepancy between Mesh Viewer VS Output and corresponding Vertex Shader debug output</a> 感觉和现在这个情况很像:</p>
 <blockquote>
-<p>If the vertex shaders aren’t identical then the calculation for TEXCOORD1 might be slightly different between the two. This would not necessarily reproduce in RenderDoc’s shader debugger since only texture sampling and transcendental functions are run on the GPU, all other operations are run on the CPU at full precision. I’m not clear on whether or not the intermittent appearance was for a precisely identical scene or if you meant it varied while things were moving/animating. If they were, and you’re only out by 1 ULP, it could be the rounding was going in and out of sync between the two shaders.</p>
+<p>If the vertex shaders aren’t identical then the calculation for TEXCOORD1 might be slightly different between the two. This would not necessarily reproduce in RenderDoc’s shader debugger since only texture sampling and transcendental functions are run on the GPU, all other operations are run on the CPU at full precision. I’m not clear on whether or not the intermittent appearance was for a precisely identical scene or if you meant it varied while things were moving&#x2F;animating. If they were, and you’re only out by 1 ULP, it could be the rounding was going in and out of sync between the two shaders.</p>
 </blockquote>
 <p>对比了下我们遇到的情况，确实蛮像的</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; binascii.hexlify(struct.pack(<span class="string">&#x27;&gt;f&#x27;</span>, 1600.09802))</span><br><span class="line"><span class="string">&#x27;44c80323&#x27;</span></span><br><span class="line">&gt;&gt;&gt; binascii.hexlify(struct.pack(<span class="string">&#x27;&gt;f&#x27;</span>, 1600.09778))</span><br><span class="line"><span class="string">&#x27;44c80321&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<p>然后突然被<code>all other operations are run on the CPU at full precision</code>这句话惊醒——RenderDoc的调试功能真的”可靠”么? 往常用的时候从没质疑过这个事情，但是目前确实出现了调试结果和VS Output不一致的情况… 稍微翻了下这部分的实现<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/blob/v1.x/renderdoc/driver/shaders/dxbc/dxbc_debug.cpp">driver/shaders/dxbc/dxbc_debug.cpp</a>，正如issue里作者所说：只有采样及超越函数是运行在GPU上，其它的本质是跑的CPU版本实现。</p>
+<p>然后突然被<code>all other operations are run on the CPU at full precision</code>这句话惊醒——RenderDoc的调试功能真的”可靠”么? 往常用的时候从没质疑过这个事情，但是目前确实出现了调试结果和VS Output不一致的情况… 稍微翻了下这部分的实现<a target="_blank" rel="noopener" href="https://github.com/baldurk/renderdoc/blob/v1.x/renderdoc/driver/shaders/dxbc/dxbc_debug.cpp">driver&#x2F;shaders&#x2F;dxbc&#x2F;dxbc_debug.cpp</a>，正如issue里作者所说：只有采样及超越函数是运行在GPU上，其它的本质是跑的CPU版本实现。</p>
 <p>进一步翻阅了微软的<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/direct3d11/floating-point-rules">Floating-point rules (Direct3D 11)</a></p>
 <blockquote>
 <p>32-bit floating-point operations produce a result that is within 0.5 unit-last-place (ULP) of the infinitely-precise result.</p>

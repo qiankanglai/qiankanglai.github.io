@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -513,10 +513,10 @@
         <p>这个帖子估计持续更新时间会很长…记录移植KlayGE到iOS中的坑ing~不少坑之前在<a href="/2014/12/20/port-klayge/" title="KlayGE移植到OSX的尝试">KlayGE移植到OSX的尝试</a>的时候已经踩过了，这里就不再赘述。</p>
 <span id="more"></span>
 
-<h1 id="CMake-XCode"><a href="#CMake-XCode" class="headerlink" title="CMake/XCode"></a>CMake/XCode</h1><p>不得不说CMake是个好东西，但细微的地方坑也不少啊啊啊。。。XCode就是大坑货了……</p>
+<h1 id="CMake-XCode"><a href="#CMake-XCode" class="headerlink" title="CMake&#x2F;XCode"></a>CMake&#x2F;XCode</h1><p>不得不说CMake是个好东西，但细微的地方坑也不少啊啊啊。。。XCode就是大坑货了……</p>
 <h2 id="iOS-Cross-Compile"><a href="#iOS-Cross-Compile" class="headerlink" title="iOS Cross Compile"></a>iOS Cross Compile</h2><p>这部分学习了Android部分的处理，使用了<a target="_blank" rel="noopener" href="https://code.google.com/p/ios-cmake/">ios-cmake</a>作为CMAKE_TOOLCHAIN_FILE参数传进去；这个文件里主要进行了以下设置</p>
 <ul>
-<li>强行设置编译器为/usr/bin/clang，不然直接使用Xcode.app里的Clang会提示: The C compiler “/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang” is not able to compile a simple test program.；</li>
+<li>强行设置编译器为&#x2F;usr&#x2F;bin&#x2F;clang，不然直接使用Xcode.app里的Clang会提示: The C compiler “&#x2F;Applications&#x2F;Xcode.app&#x2F;Contents&#x2F;Developer&#x2F;Toolchains&#x2F;XcodeDefault.xctoolchain&#x2F;usr&#x2F;bin&#x2F;clang” is not able to compile a simple test program.；</li>
 <li>强行跳过编译器检查；</li>
 <li>设置若干的宏，譬如<code>set (IOS True)</code>；</li>
 <li>自动搜索并设置CMAKE_OSX_SYSROOT，这个是区分编译出OSX或iOS App的关键；</li>
@@ -524,7 +524,7 @@
 </ul>
 <p>总的来说是挺简单易懂的一小段代码~另外可以参考StackOverflow上的<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/822404/how-to-set-up-cmake-to-build-an-app-for-the-iphone">How to set up CMake to build an app for the iPhone</a>，因为在ios-cmake里提供的例子只有lib工程没有app工程。</p>
 <p>这里我选择注释掉强行设置编译器部分，打开跳过编译器检查的代码；不然的话生成的文件名是gcc42而非clang60~</p>
-<h2 id="Code-Sign"><a href="#Code-Sign" class="headerlink" title="Code Sign"></a>Code Sign</h2><p>在编译Python的时候，发现try_compile部分全挂，提示”target specifies product type ‘com.apple.product-type.tool’, but there’s no such product type for the ‘iphoneos’ platform”。网上搜到了一个2011年就有一个CMake Bug Issue <a target="_blank" rel="noopener" href="http://public.kitware.com/Bug/view.php?id=12288">0012288: project/try_compile fails for XCode when CMAKE_OSX_SYSROOT is set to iPhone</a>，大体意思就是说cmTryCompileExec的时候对于iOS要出包而不能是库；<a target="_blank" rel="noopener" href="https://code.google.com/p/ios-cmake/issues/detail?id=1">ios-cmake issue 1</a>也提到了这个问题。Bug Reporter提供了两个patch，不过都需要重新编译CMake，略微麻烦。后来我在StackOverflow上找到了一个<a target="_blank" rel="noopener" href="http://stackoverflow.com/a/24380608/1033338">0票答案</a>亲测有效，现在被我upvote到1了嘿嘿_(:з」∠)_</p>
+<h2 id="Code-Sign"><a href="#Code-Sign" class="headerlink" title="Code Sign"></a>Code Sign</h2><p>在编译Python的时候，发现try_compile部分全挂，提示”target specifies product type ‘com.apple.product-type.tool’, but there’s no such product type for the ‘iphoneos’ platform”。网上搜到了一个2011年就有一个CMake Bug Issue <a target="_blank" rel="noopener" href="http://public.kitware.com/Bug/view.php?id=12288">0012288: project&#x2F;try_compile fails for XCode when CMAKE_OSX_SYSROOT is set to iPhone</a>，大体意思就是说cmTryCompileExec的时候对于iOS要出包而不能是库；<a target="_blank" rel="noopener" href="https://code.google.com/p/ios-cmake/issues/detail?id=1">ios-cmake issue 1</a>也提到了这个问题。Bug Reporter提供了两个patch，不过都需要重新编译CMake，略微麻烦。后来我在StackOverflow上找到了一个<a target="_blank" rel="noopener" href="http://stackoverflow.com/a/24380608/1033338">0票答案</a>亲测有效，现在被我upvote到1了嘿嘿_(:з」∠)_</p>
 <p>题外话：之前我每次使用Xcode签名的时候都要蹦出来输入账户密码，后来根据<a target="_blank" rel="noopener" href="http://www.cocoachina.com/bbs/read.php?tid=256725">每次真机调试都要求输入用户名和密码，不知道什么原因</a>里的说法，在Keychain里把开发者证书转义到Login里就好了。</p>
 <p><img src="/images/klayge_ios_codesign.jpg"></p>
 <h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><p>对于iOS App，需要将资源目录复制过去。之前在<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/822404/how-to-set-up-cmake-to-build-an-app-for-the-iphone">How to set up CMake to build an app for the iPhone</a>提到使用pbxcp命令来实现，不过新版本的XCode里已经干掉了这个东西；最后暴力使用CMake的copy-directory搞定了~</p>
@@ -532,11 +532,11 @@
 <p>后来通过对比darwin环境二分查找，干掉了ios.toolchain.cmake里这三行就好了~啊啊啊不过<a target="_blank" rel="noopener" href="http://www.cmake.org/cmake/help/v3.0/command/find_path.html">find_path文档</a>里没提到啊……</p>
 <figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">set</span> (CMAKE_FIND_ROOT_PATH_MODE_PROGRAM ONLY)</span><br><span class="line"><span class="keyword">set</span> (CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)</span><br><span class="line"><span class="keyword">set</span> (CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)</span><br></pre></td></tr></table></figure>
 
-<p>接下来发现能找到头文件(其实就是boost/version.hpp)，但是找不到对应的库文件。继续打开Boost_DEBUG，找到原因是生成的库文件名有问题，挂在了Searching for Library上；对比FindBOOST.cmake注释里给出的<a target="_blank" rel="noopener" href="http://www.boost.org/doc/libs/1_41_0/more/getting_started/windows.html#library-naming">Library Naming</a>最终改好了。</p>
+<p>接下来发现能找到头文件(其实就是boost&#x2F;version.hpp)，但是找不到对应的库文件。继续打开Boost_DEBUG，找到原因是生成的库文件名有问题，挂在了Searching for Library上；对比FindBOOST.cmake注释里给出的<a target="_blank" rel="noopener" href="http://www.boost.org/doc/libs/1_41_0/more/getting_started/windows.html#library-naming">Library Naming</a>最终改好了。</p>
 <h2 id="Error-creating-LLDB-target"><a href="#Error-creating-LLDB-target" class="headerlink" title="Error creating LLDB target"></a>Error creating LLDB target</h2><p>使用i386(模拟器)会遇到这个问题，<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/25088252/xcode-error-creating-lldb-target">据说</a>用真机+64bit就好了~待验证</p>
-<h1 id="wine"><a href="#wine" class="headerlink" title="wine"></a>wine</h1><p>在OSX/Linux下，D3DCompilerWrapper必须通过wine来编译~因此在CMake里利用add_custom_target，直接调用winegcc输出即可。但是这里涉及到XCode里的一个特别扯淡的坑:</p>
-<h2 id="XCode-PATH"><a href="#XCode-PATH" class="headerlink" title="XCode PATH"></a>XCode PATH</h2><p>如果直接使用XCode的Post Build来编译D3DCompilerWrapper，但是会提示winegcc command not found；类似的在代码里用<code>system(&quot;wine D3DCompilerWrapper.exe.so&quot;)</code>也是找不到。这个东西我是用homebrew安装到默认的/usr/local/bin下，在控制台下确实能正常运行；CMake的find_path也能找到。</p>
-<p>最后发现是XCode的坑：<a target="_blank" rel="noopener" href="http://blog.manbolo.com/2012/04/25/xcode-4-vs-me-running-custom-scripts-after-build">Running Custom Scripts after Build</a>提到XCode里运行的时候默认PATH是写死的，不会从配置里读取…如果要修改的话得改<a target="_blank" rel="noopener" href="http://developer.apple.com/library/mac/#qa/qa1067/_index.html">~/.MacOSX/environment.plist</a>文件。</p>
+<h1 id="wine"><a href="#wine" class="headerlink" title="wine"></a>wine</h1><p>在OSX&#x2F;Linux下，D3DCompilerWrapper必须通过wine来编译~因此在CMake里利用add_custom_target，直接调用winegcc输出即可。但是这里涉及到XCode里的一个特别扯淡的坑:</p>
+<h2 id="XCode-PATH"><a href="#XCode-PATH" class="headerlink" title="XCode PATH"></a>XCode PATH</h2><p>如果直接使用XCode的Post Build来编译D3DCompilerWrapper，但是会提示winegcc command not found；类似的在代码里用<code>system(&quot;wine D3DCompilerWrapper.exe.so&quot;)</code>也是找不到。这个东西我是用homebrew安装到默认的&#x2F;usr&#x2F;local&#x2F;bin下，在控制台下确实能正常运行；CMake的find_path也能找到。</p>
+<p>最后发现是XCode的坑：<a target="_blank" rel="noopener" href="http://blog.manbolo.com/2012/04/25/xcode-4-vs-me-running-custom-scripts-after-build">Running Custom Scripts after Build</a>提到XCode里运行的时候默认PATH是写死的，不会从配置里读取…如果要修改的话得改<a target="_blank" rel="noopener" href="http://developer.apple.com/library/mac/#qa/qa1067/_index.html">~&#x2F;.MacOSX&#x2F;environment.plist</a>文件。</p>
 <p>我尝试在Post Build Script里调用export PATH等方式，都搞不定；如果直接写死winegcc的绝对路径，又会遇上winebuild command not found了。最后没办法，写了一个Python脚本来搞定了。</p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>顺便需要注意的是，wine是编译32bit程序，写入二进制格式输出的时候、HRESULT(long)可能会导致长度不一样。</p>
 <p>使用脚本调用xcodebuild的时候，有一定概率出现wine: cannot find L”C:\windows\system32\D3DCompilerWrapper.exe.so” 具体原因未知~</p>
@@ -545,11 +545,11 @@
 <h1 id="OpenGLES"><a href="#OpenGLES" class="headerlink" title="OpenGLES"></a>OpenGLES</h1><p>由于编译shader需要在OSX上搞定，所以需要在OSX上运行OpenGLES环境。默认系统是不支持的，所以参考龚大的<a target="_blank" rel="noopener" href="http://www.klayge.org/2011/04/20/opengl-es-emulator%E6%A8%AA%E5%90%91%E6%AF%94%E8%BE%83/">opengl-es-emulator横向比较</a>，先试了下高通的SDK完全不给力(尼玛dylib里的路径还是特别奇怪的)，后来改用了PowerVR的SDK。</p>
 <p>使用过程中发现2个特别奇怪的现象：</p>
 <ul>
-<li>时不时出现/Users/autobuild/buildxl/buildroot/sdk/branch/UtilitiesSrc/Common/PVRPreferences/PVRPreferences.cpp WARNING: No declaration found at the start. The declaration will be recreated.的错误提示，会崩溃；</li>
+<li>时不时出现&#x2F;Users&#x2F;autobuild&#x2F;buildxl&#x2F;buildroot&#x2F;sdk&#x2F;branch&#x2F;UtilitiesSrc&#x2F;Common&#x2F;PVRPreferences&#x2F;PVRPreferences.cpp WARNING: No declaration found at the start. The declaration will be recreated.的错误提示，会崩溃；</li>
 <li><code>glGetString(GL_VENDOR)</code>返回的是NVIDIA而不是Imagination</li>
 </ul>
 <p>经过一番探索，最后定位出来是<a target="_blank" rel="noopener" href="http://forum.imgtec.com/discussion/comment/18323#Comment_18323">delay load</a>问题，修改了glloader里的载入顺序、保证libGLESv2.dylib比libEGL.dylib先载入就好了~</p>
-<h1 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h1><h2 id="main"><a href="#main" class="headerlink" title="main()"></a>main()</h2><p>OSX/iOS与其他平台不一样，一般是在main()入口里使用Apple的API接管，然后直接去写delegate。之前费了很大劲把OSX改成和windows平台一样，不过现在看来要改回去跟iOS统一一下。总之就是保证KlayGE和系统API的初始化顺序没问题……好处就是这两块的代码很像了~</p>
+<h1 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h1><h2 id="main"><a href="#main" class="headerlink" title="main()"></a>main()</h2><p>OSX&#x2F;iOS与其他平台不一样，一般是在main()入口里使用Apple的API接管，然后直接去写delegate。之前费了很大劲把OSX改成和windows平台一样，不过现在看来要改回去跟iOS统一一下。总之就是保证KlayGE和系统API的初始化顺序没问题……好处就是这两块的代码很像了~</p>
 <h2 id="OpenGLES-View"><a href="#OpenGLES-View" class="headerlink" title="OpenGLES View"></a>OpenGLES View</h2><p><a target="_blank" rel="noopener" href="https://developer.apple.com/library/ios/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/OpenGLESontheiPhone/OpenGLESontheiPhone.html">OpenGL ES Programming Guide for iOS</a>里面提到两种方式</p>
 <ul>
 <li>GLKit framework</li>

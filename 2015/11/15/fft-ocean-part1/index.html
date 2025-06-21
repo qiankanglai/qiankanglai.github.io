@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -484,7 +484,7 @@
 <p>主要参考了Jerry Tessendorf的<a target="_blank" rel="noopener" href="http://graphics.ucsd.edu/courses/rendering/2005/jdewall/tessendorf.pdf">Simulating Ocean Water</a>这篇论文，实现上还参考了<a target="_blank" rel="noopener" href="https://developer.nvidia.com/sites/default/files/akamai/gamedev/files/sdk/11/OceanCS_Slides.pdf">NVidia的Ocean Surface Simulation</a>, <a target="_blank" rel="noopener" href="http://www.keithlantz.net/2011/10/ocean-simulation-part-one-using-the-discrete-fourier-transform/">OCEAN SIMULATION</a>等资料。</p>
 <p>首先遇到的问题就是NVidia实现魔改了不少地方…</p>
 <ul>
-<li>文档里第七页给出的频域图像是不对称的，但是按照公式$\mathbf{P}_{h}(\mathbf{k})=\frac{A}{k^{4}}|\hat{\mathbf{k}}\cdot\hat{\mathbf{\omega}}|^{2}e^{-\frac{1}{k^{2}L^{2}}}$来说，应该完美对称才对~</li>
+<li>文档里第七页给出的频域图像是不对称的，但是按照公式$\mathbf{P}_{h}(\mathbf{k})&#x3D;\frac{A}{k^{4}}|\hat{\mathbf{k}}\cdot\hat{\mathbf{\omega}}|^{2}e^{-\frac{1}{k^{2}L^{2}}}$来说，应该完美对称才对~</li>
 <li>Gaussian那张图我用QQ截图取色看了下，也肯定不是标准的分布，而是用了奇怪的均值和方差。</li>
 </ul>
 <p>后来群里@恶魔笑了说是其代码里乘上了一个系数来减少逆波，另外在NV的代码里，分母上用了$k^6$而不是$k^4$。(黑科技一如既往的多啊…)</p>

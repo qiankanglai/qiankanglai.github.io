@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -518,7 +518,7 @@
 
 <p>这里其实是假设cubemap是记录了无穷远的内容，反射的时候直接根据世界坐标系中反射方向直接采样即可。<br>ps. 这个其实就是skybox~</p>
 <h1 id="Image-Based-Lighting"><a href="#Image-Based-Lighting" class="headerlink" title="Image Based Lighting"></a>Image Based Lighting</h1><p>如果我们只考虑采集一个小范围的环境贴图，例如一个屋子里，那么用前面所提到的方法就会有瑕疵：参考GPU Gems Chap.19 <a target="_blank" rel="noopener" href="http://http.developer.nvidia.com/GPUGems/gpugems_ch19.html">Image-Based Lighting</a>的例子，当物体移动但法向不变时，其实我们是希望看到反射部分产生变化，这样才能更加真实。</p>
-<p>具体实现也不难，求解一个一元二次方程就行了。参考链接里提供了对应的vertex/fragment shader，不过我做的比它简化一些：只考虑cubemap的center和radius，不考虑旋转、缩放等，因此不需要生成Lighting这个坐标系、直接在世界坐标系计算就行了。需要注意以下两点：</p>
+<p>具体实现也不难，求解一个一元二次方程就行了。参考链接里提供了对应的vertex&#x2F;fragment shader，不过我做的比它简化一些：只考虑cubemap的center和radius，不考虑旋转、缩放等，因此不需要生成Lighting这个坐标系、直接在世界坐标系计算就行了。需要注意以下两点：</p>
 <ul>
 <li>shader里<code>texCUBE</code>函数不要写在if内</li>
 <li>当一元二次方程无解的时候处理一下</li>

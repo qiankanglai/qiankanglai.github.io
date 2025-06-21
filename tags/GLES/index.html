@@ -280,7 +280,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -331,7 +331,7 @@
     <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
         
             之前在angle折腾笔记里提到恢复angle作为ES3模拟器，方便PC上查BUG。当时为了模拟EXT_copy_image使用了Vulkan Backend，别的用起来都挺好，但是很蛋疼的一点是RenderDoc抓帧的API其实都是vlk的… 这礼拜查别的BUG的时候，索性痛定思痛尝试使用GLES Backend。
-这里记录下补全功能以及修复了若干Angle/RenderDoc相关问题的笔记…
+这里记录下补全功能以及修复了若干Angle&#x2F;RenderDoc相关问题的笔记…
         
         &nbsp;&nbsp;&nbsp;
         <span>
@@ -387,7 +387,7 @@
     <!-- Post Excerpt -->
     <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
         
-            时隔多年重新编译angle，主要是为了PC上能模拟ES3.1，特别是最好能支持VT相关操作。本来不抱希望，毕竟angle文档上写的很清楚，目前GL/GLES/Vulkan Backend都只支持到ES 3.1，ES 3.2还处于in progress。
+            时隔多年重新编译angle，主要是为了PC上能模拟ES3.1，特别是最好能支持VT相关操作。本来不抱希望，毕竟angle文档上写的很清楚，目前GL&#x2F;GLES&#x2F;Vulkan Backend都只支持到ES 3.1，ES 3.2还处于in progress。
 但是突然发现EXT_copy_image这个扩展在Vulkan Backend上已经被支持Vulkan: Add support for EXT_copy_image，瞬间觉得有戏就折腾了下。
         
         &nbsp;&nbsp;&nbsp;

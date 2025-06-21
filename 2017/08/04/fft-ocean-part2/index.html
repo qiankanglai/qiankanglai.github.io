@@ -60,7 +60,7 @@
     <link rel="icon" href="/img/favicon.png">
 
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="最近读了利用GPU实现大规模动画角色的渲染有感，终于想起来把一个两年前的坑FFT Ocean Part 1给填啦(我又一次战胜了拖延症)。之前做的时候思路有点问题，只考虑了用Scale/Offset来序列帧的情况，搞的自己很繁琐；现在开阔脑洞直接用vertex ID就方便多了。">
+    <meta name="description" itemprop="description" content="最近读了利用GPU实现大规模动画角色的渲染有感，终于想起来把一个两年前的坑FFT Ocean Part 1给填啦(我又一次战胜了拖延症)。之前做的时候思路有点问题，只考虑了用Scale&amp;#x2F;Offset来序列帧的情况，搞的自己很繁琐；现在开阔脑洞直接用vertex ID就方便多了。">
     <meta name="keywords" content=",Unity">
     <meta name="theme-color" content="#0097A7">
 
@@ -246,7 +246,7 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="FFT Ocean Part 2 | Loading &amp; Learning">
     <meta property="og:image" content="/img/favicon.png">
-    <meta property="og:description" content="最近读了利用GPU实现大规模动画角色的渲染有感，终于想起来把一个两年前的坑FFT Ocean Part 1给填啦(我又一次战胜了拖延症)。之前做的时候思路有点问题，只考虑了用Scale/Offset来序列帧的情况，搞的自己很繁琐；现在开阔脑洞直接用vertex ID就方便多了。">
+    <meta property="og:description" content="最近读了利用GPU实现大规模动画角色的渲染有感，终于想起来把一个两年前的坑FFT Ocean Part 1给填啦(我又一次战胜了拖延症)。之前做的时候思路有点问题，只考虑了用Scale&amp;#x2F;Offset来序列帧的情况，搞的自己很繁琐；现在开阔脑洞直接用vertex ID就方便多了。">
     <meta property="og:article:tag" content="Unity"> 
 
     
@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -293,7 +293,7 @@
         }
     },
     "keywords": ",Unity",
-    "description": "最近读了利用GPU实现大规模动画角色的渲染有感，终于想起来把一个两年前的坑FFT Ocean Part 1给填啦(我又一次战胜了拖延症)。之前做的时候思路有点问题，只考虑了用Scale/Offset来序列帧的情况，搞的自己很繁琐；现在开阔脑洞直接用vertex ID就方便多了。",
+    "description": "最近读了利用GPU实现大规模动画角色的渲染有感，终于想起来把一个两年前的坑FFT Ocean Part 1给填啦(我又一次战胜了拖延症)。之前做的时候思路有点问题，只考虑了用Scale&amp;#x2F;Offset来序列帧的情况，搞的自己很繁琐；现在开阔脑洞直接用vertex ID就方便多了。",
 }
 </script>
 
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -477,7 +477,7 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>最近读了<a target="_blank" rel="noopener" href="http://www.cnblogs.com/murongxiaopifu/p/7250772.html">利用GPU实现大规模动画角色的渲染</a>有感，终于想起来把一个两年前的坑<a href="/2015/11/15/fft-ocean-part1/" title="FFT Ocean Part 1">FFT Ocean Part 1</a>给填啦(<del>我又一次战胜了拖延症</del>)。之前做的时候思路有点问题，只考虑了用Scale/Offset来序列帧的情况，搞的自己很繁琐；现在开阔脑洞直接用vertex ID就方便多了。</p>
+        <p>最近读了<a target="_blank" rel="noopener" href="http://www.cnblogs.com/murongxiaopifu/p/7250772.html">利用GPU实现大规模动画角色的渲染</a>有感，终于想起来把一个两年前的坑<a href="/2015/11/15/fft-ocean-part1/" title="FFT Ocean Part 1">FFT Ocean Part 1</a>给填啦(<del>我又一次战胜了拖延症</del>)。之前做的时候思路有点问题，只考虑了用Scale&#x2F;Offset来序列帧的情况，搞的自己很繁琐；现在开阔脑洞直接用vertex ID就方便多了。</p>
 <span id="more"></span>
 
 <p><img src="/images/fft_part2.gif"></p>
@@ -488,7 +488,7 @@
 <figure class="highlight glsl"><table><tr><td class="code"><pre><span class="line"><span class="type">float</span> x = (vid + <span class="number">0.5</span>) * _PosTex_TexelSize.x;</span><br><span class="line"><span class="type">float</span> y = (_Time.y + <span class="number">0.5</span>) * _PosTex_TexelSize.y;</span><br><span class="line">float4 uv = float4(x, y, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">v.vertex = float4(tex2Dlod(_PosTex, uv).xyz, <span class="number">1</span>);</span><br><span class="line">v.normal = tex2Dlod(_NmlTex, uv).xyz;</span><br></pre></td></tr></table></figure>
 
 <p>具体实现的时候也遇到了不少的坑。</p>
-<h1 id="周期性"><a href="#周期性" class="headerlink" title="周期性"></a>周期性</h1><p>从最原始的公式上来说，这玩意儿其实是不好做序列帧的因为没有准确的周期。但实际实现的时候$\tilde{w(k)}=[[\frac{w(k)}{w_0}]]w_0$也就是说$\frac{2\pi}{w_0}$一定是一个周期。</p>
+<h1 id="周期性"><a href="#周期性" class="headerlink" title="周期性"></a>周期性</h1><p>从最原始的公式上来说，这玩意儿其实是不好做序列帧的因为没有准确的周期。但实际实现的时候$\tilde{w(k)}&#x3D;[[\frac{w(k)}{w_0}]]w_0$也就是说$\frac{2\pi}{w_0}$一定是一个周期。</p>
 <p>这里还可以进一步优化，譬如找到这些角速度的最大公约数，来获得一个更小的周期。</p>
 <h1 id="精度"><a href="#精度" class="headerlink" title="精度"></a>精度</h1><p>有了周期大小之后，只要划分若干段采样就行了。相邻两段之间是使用的线性插值，然而FFT计算并不是线性的，所以如果每段步进过大，那么插值出来的结果就会和正确值差很多…我第一次做的时候发现采样出来的非常『丑』，后来调整参数就好了多了。</p>
 <h1 id="FOAM"><a href="#FOAM" class="headerlink" title="FOAM"></a>FOAM</h1><p>这是从Crest里学到的一个小技巧，通过计算det来得到浪花的强度。我之前只知道利用这货来判断是否出现overlap…</p>
@@ -500,7 +500,7 @@
 <li>折射，水下部分</li>
 <li>浪花，基本都是一个uv动画的贴图</li>
 <li>法线贴图，我发现光FFT生成的Geometry Normal还是不够用，贴上两张Bump作为细节纹理效果会好很多</li>
-<li>SSS/太阳平行光等加分项</li>
+<li>SSS&#x2F;太阳平行光等加分项</li>
 </ul>
 <h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1><p>目前实现的这个版本只能作为原型，如果以后实用化的话还有很多工程细节要完成。</p>
 <ul>

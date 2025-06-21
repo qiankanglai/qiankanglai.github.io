@@ -292,7 +292,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -331,7 +331,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -542,7 +542,7 @@
 <p><img src="/images/painting_rasterization.jpg"></p>
 <p>可以看到原来只是很淡黑色区域变得清晰起来(ps. 这里其实出现黑色的地方都是2uv突变的地方)，然后让我们进入下一个环节。</p>
 <h2 id="Round-2-1-Texture-Coordinate-Precision"><a href="#Round-2-1-Texture-Coordinate-Precision" class="headerlink" title="Round 2.1 Texture Coordinate Precision?"></a>Round 2.1 Texture Coordinate Precision?</h2><p>这里我的思路拐入坑中，第一反应是类似<a target="_blank" rel="noopener" href="https://www.reedbeta.com/blog/texture-gathers-and-coordinate-precision/">Texture Gathers and Coordinate Precision</a>中提到的问题: 光栅化的规则和Sample的规则可能有所不同(脑海中飘过<strong>A Pixel Is Not a Little Square, a Pixel Is Not a Little Square, a Pixel Is Not a Little Square!</strong>)。手动试了下如果采样的地方全部偏移一下效果如何:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fixed4 mask &#x3D; tex2D(_MaskTex, i.uv.zw + float2(1&#x2F;1024.0, 1&#x2F;1024.0));</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fixed4 mask = tex2D(_MaskTex, i.uv.zw + float2(1/1024.0, 1/1024.0));</span><br></pre></td></tr></table></figure>
 
 <p>发现有点意思蛤~效果确实提升了不少!</p>
 <p><img src="/images/painting_rasterization_offset.jpg"></p>

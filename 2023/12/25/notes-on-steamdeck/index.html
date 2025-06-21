@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -504,12 +504,12 @@
         <p>前段时间摸鱼的时候把自研在Steam Deck上跑起来了，发现网上相关资料比较少，记录下过程中一些好玩的坑。<br>ps. 花时间搞这个一方面是接入手柄之后，实体操作感逼格瞬间上来了 <del>还有一个原因是我有这个设备</del>。</p>
 <span id="more"></span>
 
-<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>首先强烈推荐过一遍<a target="_blank" rel="noopener" href="https://partner.steamgames.com/doc/steamdeck">官方文档</a>，还是挺全面的~而且直接使用手头设备就可以了，不需要像PS5/NS 还要搞专门开发机和环境。</p>
+<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>首先强烈推荐过一遍<a target="_blank" rel="noopener" href="https://partner.steamgames.com/doc/steamdeck">官方文档</a>，还是挺全面的~而且直接使用手头设备就可以了，不需要像PS5&#x2F;NS 还要搞专门开发机和环境。</p>
 <p>主要参考<a target="_blank" rel="noopener" href="https://partner.steamgames.com/doc/steamdeck/loadgames">How to load and run games on Steam Deck</a>打开Deck系统里的Developer Mode，然后PC上装一个Devkit配对好就行。</p>
 <p>简单介绍下SteamDeck的运行环境，其实有两个路子</p>
 <ul>
 <li>本身其实是一个定制的Linux系统，可以运行Vulkan(更多细节可以参考<a target="_blank" rel="noopener" href="https://partner.steamgames.com/doc/steamdeck/recommendations">Getting your game ready for Steam Deck</a>介绍)</li>
-<li>还提供了Wine+Proton这套机制，所以可以运行Windows可执行程序+DX11/12</li>
+<li>还提供了Wine+Proton这套机制，所以可以运行Windows可执行程序+DX11&#x2F;12</li>
 </ul>
 <p>下面将依次展开</p>
 <h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><p>Windows其实是用下来这个是比较简单的…首先打一个Windows包(最简单的譬如说Unity里Build一个PC包)，然后按照<a target="_blank" rel="noopener" href="https://partner.steamgames.com/doc/steamdeck/debugging">How to debug Windows games on Steam Deck</a>，通过Devkit上传到真机即可，唯一需要注意的是<strong>确保勾上Steam Play</strong>(也就是启用Wine+Proton这套机制)——当然这点其实也可以在Deck上直接调出对应设置。</p>
@@ -529,7 +529,7 @@
 <p><img src="/images/steamdeck_power.jpg"></p>
 <p>可以得到两个初步结论</p>
 <ul>
-<li>-O0/-O2居然对CPU功耗影响这么大其实是超出我的预料，回头有空可以继续分析下原因</li>
+<li>-O0&#x2F;-O2居然对CPU功耗影响这么大其实是超出我的预料，回头有空可以继续分析下原因</li>
 <li>Wine+Proton还是挺猛的…真的牛皮</li>
 </ul>
 

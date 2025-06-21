@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -514,17 +514,17 @@
 <span id="more"></span>
 
 <p>这个算法其实论文作者提供了源代码实现<a target="_blank" rel="noopener" href="http://coewww.rutgers.edu/riul/research/code/EDISON/">EDISON</a>，但主要是这段时间我的工作都在OpenCV上面，因此另外实现了一遍，顺便也是加深理解。</p>
-<h1 id="MeanShift-Filter"><a href="#MeanShift-Filter" class="headerlink" title="MeanShift Filter"></a>MeanShift Filter</h1><p>第一步主要是去掉一些细节，论文中使用的是通过kernel函数进行函数计算，让每个窗格都挪到局部极值处，这样就相当于“抹平”图像。稍微具体点说，就是将图片上每个点视为五维点Z=(X^s,X^y)：X^s表示空间变量(x,y)；X^r表示频域变量(r,g,b)，当然也可以是别的颜色空间。然后开始迭代这个五维点Z，直到稳定；最后将稳定的频域变量即颜色复制到初始点上。迭代的时候是考虑这个点周围的窗格内的点影响。</p>
+<h1 id="MeanShift-Filter"><a href="#MeanShift-Filter" class="headerlink" title="MeanShift Filter"></a>MeanShift Filter</h1><p>第一步主要是去掉一些细节，论文中使用的是通过kernel函数进行函数计算，让每个窗格都挪到局部极值处，这样就相当于“抹平”图像。稍微具体点说，就是将图片上每个点视为五维点Z&#x3D;(X^s,X^y)：X^s表示空间变量(x,y)；X^r表示频域变量(r,g,b)，当然也可以是别的颜色空间。然后开始迭代这个五维点Z，直到稳定；最后将稳定的频域变量即颜色复制到初始点上。迭代的时候是考虑这个点周围的窗格内的点影响。</p>
 <p>但是！有<strong>两个问题</strong></p>
 <h2 id="OpenCV自带函数效果不好"><a href="#OpenCV自带函数效果不好" class="headerlink" title="OpenCV自带函数效果不好"></a>OpenCV自带函数效果不好</h2><p>我一开始用的是<a target="_blank" rel="noopener" href="http://www.seas.upenn.edu/~bensapp/opencvdocs/ref/opencvref_cv.htm">openCV API</a></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cvPyrMeanShiftFiltering</span><span class="params">( <span class="keyword">const</span> CvArr* src, CvArr* dst, <span class="keyword">double</span> sp, <span class="keyword">double</span> sr, <span class="keyword">int</span> max_level=<span class="number">1</span>, CvTermCriteria termcrit=cvTermCriteria(CV_TERMCRIT_ITER+CV_TERMCRIT_EPS,<span class="number">5</span>,<span class="number">1</span>))</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">cvPyrMeanShiftFiltering</span><span class="params">( <span class="type">const</span> CvArr* src, CvArr* dst, <span class="type">double</span> sp, <span class="type">double</span> sr, <span class="type">int</span> max_level=<span class="number">1</span>, CvTermCriteria termcrit=cvTermCriteria(CV_TERMCRIT_ITER+CV_TERMCRIT_EPS,<span class="number">5</span>,<span class="number">1</span>))</span></span>;</span><br></pre></td></tr></table></figure>
 
 <p>速度倒是很快，但是边缘很粗糙(<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/9645713/whats-the-difference-between-edison-and-cvpyrmeanshiftfiltering">stackoverflow</a>)。可以看到和论文作者提供的代码相比，滤波效果很糟糕(左侧图明显好于右侧图)。</p>
 <p><img src="/images/meanshift1.jpg"></p>
 <p>后来网上找了下，看到<a target="_blank" rel="noopener" href="http://rsbweb.nih.gov/ij/plugins/download/Mean_Shift.java">Java代码</a>，将颜色空间转换之后效果好多了。</p>
 <p><img src="/images/meanshift2.jpg"></p>
 <h2 id="OpenCV自带颜色变换"><a href="#OpenCV自带颜色变换" class="headerlink" title="OpenCV自带颜色变换"></a>OpenCV自带颜色变换</h2><p>由于为了适应数据结构，使用RGB2LUV时候，会自动将最后结果再次映射到0-255范围，也就是说</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cvCvtColor</span><span class="params">(<span class="keyword">const</span> CvArr* src, CvArr* dst, <span class="keyword">int</span> code)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">cvCvtColor</span><span class="params">(<span class="type">const</span> CvArr* src, CvArr* dst, <span class="type">int</span> code)</span></span></span><br></pre></td></tr></table></figure>
 
 <p>的结果不是一开始想要的结果，其实。具体可以参考<a target="_blank" rel="noopener" href="http://opencv.willowgarage.com/documentation/c/miscellaneous_image_transformations.html">opencv颜色空间变换</a>。再加上一个映射就好了。</p>
 <h2 id="eanShift-Segmentation"><a href="#eanShift-Segmentation" class="headerlink" title="eanShift Segmentation"></a>eanShift Segmentation</h2><p>本质是一个聚类。这个主要是参考了EDISON的实现。简单说下步骤</p>

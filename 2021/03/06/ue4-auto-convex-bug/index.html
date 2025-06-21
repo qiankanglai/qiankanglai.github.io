@@ -62,7 +62,7 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="最近尝试利用UE4自带的功能生成物理简模，参考Setting Up Collisions With Static Meshes有几种模式:
 
-直接生成简单的包围盒/球/胶囊体;
+直接生成简单的包围盒&amp;#x2F;球&amp;#x2F;胶囊体;
 利用DOP(discrete oriented polytopy)即若干对齐轴平面向内挤压;
 Auto Convex自动生成。
 
@@ -254,7 +254,7 @@ Auto Convex自动生成。
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="最近尝试利用UE4自带的功能生成物理简模，参考Setting Up Collisions With Static Meshes有几种模式:
 
-直接生成简单的包围盒/球/胶囊体;
+直接生成简单的包围盒&amp;#x2F;球&amp;#x2F;胶囊体;
 利用DOP(discrete oriented polytopy)即若干对齐轴平面向内挤压;
 Auto Convex自动生成。
 
@@ -294,7 +294,7 @@ Auto Convex自动生成。
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -307,7 +307,7 @@ Auto Convex自动生成。
     "keywords": ",UE4",
     "description": "最近尝试利用UE4自带的功能生成物理简模，参考Setting Up Collisions With Static Meshes有几种模式:
 
-直接生成简单的包围盒/球/胶囊体;
+直接生成简单的包围盒&amp;#x2F;球&amp;#x2F;胶囊体;
 利用DOP(discrete oriented polytopy)即若干对齐轴平面向内挤压;
 Auto Convex自动生成。
 
@@ -334,7 +334,7 @@ Auto Convex自动生成。
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -521,7 +521,7 @@ Auto Convex自动生成。
     
         <p>最近尝试利用UE4自带的功能生成物理简模，参考<a target="_blank" rel="noopener" href="https://docs.unrealengine.com/en-US/WorkingWithContent/Types/StaticMeshes/HowTo/SettingCollision/index.html">Setting Up Collisions With Static Meshes</a>有几种模式:</p>
 <ul>
-<li>直接生成简单的包围盒/球/胶囊体;</li>
+<li>直接生成简单的包围盒&#x2F;球&#x2F;胶囊体;</li>
 <li>利用DOP(discrete oriented polytopy)即若干对齐轴平面向内挤压;</li>
 <li>Auto Convex自动生成。</li>
 </ul>
@@ -530,12 +530,12 @@ Auto Convex自动生成。
 
 <p>趁着手头有空就跟了下这个问题，因为觉得这种“低级BUG”不太可能会出现，所以看看究竟是使用问题还是另有玄机。</p>
 <h2 id="Auto-Convex实现"><a href="#Auto-Convex实现" class="headerlink" title="Auto Convex实现"></a>Auto Convex实现</h2><p>对应代码是在<code>ConvexDecompTool.cpp</code>里调用的</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Start the V-HACD operation</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">StartJob</span><span class="params">(IVHACD *InVHACD,IVHACD::IUserCallback *InCallback)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	IVHACD::Parameters VHACD_Params;</span><br><span class="line">	InitParameters(VHACD_Params, HullCount, MaxHullVerts, Resolution);</span><br><span class="line">	VHACD_Params.m_callback = InCallback;</span><br><span class="line">	<span class="keyword">bool</span> ret = InVHACD-&gt;Compute(Vertices, VertCount, Triangles, TriCount, VHACD_Params);</span><br><span class="line">	ReleaseMesh();</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Start the V-HACD operation</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">StartJob</span><span class="params">(IVHACD *InVHACD,IVHACD::IUserCallback *InCallback)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	IVHACD::Parameters VHACD_Params;</span><br><span class="line">	<span class="built_in">InitParameters</span>(VHACD_Params, HullCount, MaxHullVerts, Resolution);</span><br><span class="line">	VHACD_Params.m_callback = InCallback;</span><br><span class="line">	<span class="type">bool</span> ret = InVHACD-&gt;<span class="built_in">Compute</span>(Vertices, VertCount, Triangles, TriCount, VHACD_Params);</span><br><span class="line">	<span class="built_in">ReleaseMesh</span>();</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>发现是调用的第三方库<a target="_blank" rel="noopener" href="https://github.com/kmammou/v-hacd">VHACD</a>。</p>
 <h2 id="尝试官方版本"><a href="#尝试官方版本" class="headerlink" title="尝试官方版本"></a>尝试官方版本</h2><p>既然有论文作者提供的代码，那就先试试导出这个模型的fbx跑跑看。正好github上也有对应Blender插件，直接导入使用即可。</p>
 <h3 id="Blender-2-9-fix"><a href="#Blender-2-9-fix" class="headerlink" title="Blender 2.9 fix"></a>Blender 2.9 fix</h3><p>按照文档导入之后F3无法呼出对应的菜单，囧。搜了下发现是因为我的Blender比较新，所以参考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/63863764/unable-to-find-custom-blender-operator-in-f3-operator-search-blender-2-9">Unable to find custom Blender operator in F3 operator search (Blender 2.9)</a>补一下插件实现</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">menu_func</span>(<span class="params">self, context</span>):</span></span><br><span class="line">    self.layout.operator(VHACD_OT_VHACD.bl_idname)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">register</span>():</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> classes:</span><br><span class="line">    	bpy.utils.register_class(c)</span><br><span class="line">    bpy.types.VIEW3D_MT_object.append(menu_func)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">menu_func</span>(<span class="params">self, context</span>):</span><br><span class="line">    <span class="variable language_">self</span>.layout.operator(VHACD_OT_VHACD.bl_idname)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">register</span>():</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> classes:</span><br><span class="line">    	bpy.utils.register_class(c)</span><br><span class="line">    bpy.types.VIEW3D_MT_object.append(menu_func)</span><br></pre></td></tr></table></figure>
 
 <p>使用Blender插件+预编译的VHACD二进制跑了下居然结果是没问题的，看来事情变得有趣起来。</p>
 <h3 id="对比参数"><a href="#对比参数" class="headerlink" title="对比参数"></a>对比参数</h3><p>为了进一步比较UE4和Blender版本的差异，我仔细对照了下输入的参数:</p>
@@ -609,7 +609,7 @@ Auto Convex自动生成。
 </tr>
 </tbody></table>
 <p>其中UE4中有几个参数是直接代码里写死的</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InitParameters</span><span class="params">(IVHACD::Parameters &amp;VHACD_Params, uint32 InHullCount, uint32 InMaxHullVerts,uint32 InResolution)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	VHACD_Params.m_resolution = InResolution; <span class="comment">// Maximum number of voxels generated during the voxelization stage (default=100,000, range=10,000-16,000,000)</span></span><br><span class="line">	VHACD_Params.m_maxNumVerticesPerCH = InMaxHullVerts; <span class="comment">// Controls the maximum number of triangles per convex-hull (default=64, range=4-1024)</span></span><br><span class="line">	VHACD_Params.m_concavity = <span class="number">0</span>;		<span class="comment">// Concavity is set to zero so that we consider any concave shape as a potential hull. The number of output hulls is better controlled by recursion depth and the max convex hulls parameter</span></span><br><span class="line">	VHACD_Params.m_maxConvexHulls = InHullCount;	<span class="comment">// The number of convex hulls requested by the artists/designer</span></span><br><span class="line">	VHACD_Params.m_oclAcceleration = <span class="literal">false</span>;</span><br><span class="line">	VHACD_Params.m_minVolumePerCH = <span class="number">0.003f</span>; <span class="comment">// this should be around 1 / (3 * m_resolution ^ (1/3))</span></span><br><span class="line">	VHACD_Params.m_projectHullVertices = <span class="literal">true</span>; <span class="comment">// Project the approximate hull vertices onto the original source mesh and use highest precision results opssible.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">InitParameters</span><span class="params">(IVHACD::Parameters &amp;VHACD_Params, uint32 InHullCount, uint32 InMaxHullVerts,uint32 InResolution)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	VHACD_Params.m_resolution = InResolution; <span class="comment">// Maximum number of voxels generated during the voxelization stage (default=100,000, range=10,000-16,000,000)</span></span><br><span class="line">	VHACD_Params.m_maxNumVerticesPerCH = InMaxHullVerts; <span class="comment">// Controls the maximum number of triangles per convex-hull (default=64, range=4-1024)</span></span><br><span class="line">	VHACD_Params.m_concavity = <span class="number">0</span>;		<span class="comment">// Concavity is set to zero so that we consider any concave shape as a potential hull. The number of output hulls is better controlled by recursion depth and the max convex hulls parameter</span></span><br><span class="line">	VHACD_Params.m_maxConvexHulls = InHullCount;	<span class="comment">// The number of convex hulls requested by the artists/designer</span></span><br><span class="line">	VHACD_Params.m_oclAcceleration = <span class="literal">false</span>;</span><br><span class="line">	VHACD_Params.m_minVolumePerCH = <span class="number">0.003f</span>; <span class="comment">// this should be around 1 / (3 * m_resolution ^ (1/3))</span></span><br><span class="line">	VHACD_Params.m_projectHullVertices = <span class="literal">true</span>; <span class="comment">// Project the approximate hull vertices onto the original source mesh and use highest precision results opssible.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="意外发现盲点"><a href="#意外发现盲点" class="headerlink" title="意外发现盲点"></a>意外发现盲点</h3><p>突然找到一个奇怪地方: Blender插件里有一个参数叫gamma，但是对应cpp实现里没有——看了下git log才发现这货其实应该是<code>maxhulls</code>，从而发现<strong>预编译exe版本已经非常老</strong>了，和github上最新的代码对不上。于是自己编译了一份，发现能够在Blender中也复现出一模一样的情况了:</p>
 <p><img src="/images/blender_vhacd_new.jpg"></p>

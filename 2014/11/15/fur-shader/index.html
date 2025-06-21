@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -486,7 +486,7 @@
 <li>第一遍绘制的时候<code>Blend Off</code>不知道为何，在Nexus 5上起不了作用，我就单独重写了第一遍Pass、保证底图能画上去；</li>
 <li><code>Alphatest Greater [_Cutoff]</code>据说性能比alpha blend还糟，而且效果不明显就被我直接注释了；</li>
 <li>把第二个文件用<code>CGINCLUDE ENDCG</code>合并进来；</li>
-<li>把VertexProgram改成了vert/frag形式。</li>
+<li>把VertexProgram改成了vert&#x2F;frag形式。</li>
 </ul>
 <p>这段代码为了利用光源，还单独写了一个Script将两个平行光的方向和颜色传进来~偷懒起见也被我干掉了。</p>
 <p>简单解释一下原理：这个说穿了，就是画多个Pass，然后每个Pass中将顶点沿着法向方向挪动出来一部分，同时控制顶点的alpha：</p>

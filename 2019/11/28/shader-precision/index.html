@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -517,7 +517,7 @@
 </ul>
 <p>我特意把<code>SV_POSITION</code>和<code>LocalPosition</code>代入计算了一下，确保这个像素确实是在三角形的内部(而且还不是边或者点这种corner case)。然后就陷入僵局…</p>
 <p>我查了下网上关于float precision的资料，首先这个值还没落到denorm里去，其次不管是Round To Zero还是Round To Nearest应该最多误差UNP也不会反转符号位才对.. 有了解或遇到这个情况的朋友还请分享一下-。-</p>
-<p>ps. 网上找资料的时候发现了一个非常好的系列博客 ，强烈推荐<a target="_blank" rel="noopener" href="https://community.arm.com/developer/tools-software/graphics/b/blog/posts/benchmarking-floating-point-precision-in-mobile-gpus---part-iii">Benchmarking floating point precision in mobile GPUs</a>: 利用shader在不同设备上测试了float精度问题、探讨了denorm实现以及分析了RTZ/RTN。顺便也就解释了为什么normalize/exp这种高危操作一定要保护的原因</p>
+<p>ps. 网上找资料的时候发现了一个非常好的系列博客 ，强烈推荐<a target="_blank" rel="noopener" href="https://community.arm.com/developer/tools-software/graphics/b/blog/posts/benchmarking-floating-point-precision-in-mobile-gpus---part-iii">Benchmarking floating point precision in mobile GPUs</a>: 利用shader在不同设备上测试了float精度问题、探讨了denorm实现以及分析了RTZ&#x2F;RTN。顺便也就解释了为什么normalize&#x2F;exp这种高危操作一定要保护的原因</p>
 <p>pps. 有同事发了GLES的Spec，里面对float precision也有提及，不过没前面的那个博客看的过瘾</p>
 
         

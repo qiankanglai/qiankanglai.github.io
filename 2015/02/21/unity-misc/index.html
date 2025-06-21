@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -513,7 +513,7 @@
         <p>在移植UE4的Temporal AA到Unity过程中，计算Camera Motion、Jitter等遇到了若干坑，记录一下。其实这些问题其实主要是……文档不全造成的</p>
 <span id="more"></span>
 
-<h1 id="矩阵变换"><a href="#矩阵变换" class="headerlink" title="矩阵变换"></a>矩阵变换</h1><p>在Unity里有Model/World/View/Projection Space，需要将模型的坐标一步步转化最终得到投影坐标；这个在DirectX/OpenGL里也大同小异，就不具体解释。对应Shader代码：</p>
+<h1 id="矩阵变换"><a href="#矩阵变换" class="headerlink" title="矩阵变换"></a>矩阵变换</h1><p>在Unity里有Model&#x2F;World&#x2F;View&#x2F;Projection Space，需要将模型的坐标一步步转化最终得到投影坐标；这个在DirectX&#x2F;OpenGL里也大同小异，就不具体解释。对应Shader代码：</p>
 <figure class="highlight glsl"><table><tr><td class="code"><pre><span class="line">mul(UNITY_MATRIX_MVP, v.vertex);</span><br></pre></td></tr></table></figure>
 
 <p>如果说要拆开来写，就是先从Model到World，然后World到View，最后到Project(具体变量参考文档<a target="_blank" rel="noopener" href="http://docs.unity3d.com/Manual/SL-BuiltinValues.html">ShaderLab built-in values</a>):</p>

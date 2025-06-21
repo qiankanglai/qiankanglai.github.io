@@ -60,7 +60,7 @@
     <link rel="icon" href="/img/favicon.png">
 
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="本文是Assembly Manipulation and C# / VB.NET Code Injection的翻译，已得到作者授权。该教程作者(亦工具作者)现在在微软开发UnityVS…">
+    <meta name="description" itemprop="description" content="本文是Assembly Manipulation and C# &amp;#x2F; VB.NET Code Injection的翻译，已得到作者授权。该教程作者(亦工具作者)现在在微软开发UnityVS…">
     <meta name="keywords" content=",Unity,Translation,C#">
     <meta name="theme-color" content="#0097A7">
 
@@ -246,7 +246,7 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Reflexi简明教程 | Loading &amp; Learning">
     <meta property="og:image" content="/img/favicon.png">
-    <meta property="og:description" content="本文是Assembly Manipulation and C# / VB.NET Code Injection的翻译，已得到作者授权。该教程作者(亦工具作者)现在在微软开发UnityVS…">
+    <meta property="og:description" content="本文是Assembly Manipulation and C# &amp;#x2F; VB.NET Code Injection的翻译，已得到作者授权。该教程作者(亦工具作者)现在在微软开发UnityVS…">
     <meta property="og:article:tag" content="Unity"> <meta property="og:article:tag" content="Translation"> <meta property="og:article:tag" content="C#"> 
 
     
@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -293,7 +293,7 @@
         }
     },
     "keywords": ",Unity,Translation,C#",
-    "description": "本文是Assembly Manipulation and C# / VB.NET Code Injection的翻译，已得到作者授权。该教程作者(亦工具作者)现在在微软开发UnityVS…",
+    "description": "本文是Assembly Manipulation and C# &amp;#x2F; VB.NET Code Injection的翻译，已得到作者授权。该教程作者(亦工具作者)现在在微软开发UnityVS…",
 }
 </script>
 
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -510,15 +510,15 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>本文是<a target="_blank" rel="noopener" href="http://www.codeproject.com/Articles/20565/Assembly-Manipulation-and-C-VB-NET-Code-Injection">Assembly Manipulation and C# / VB.NET Code Injection</a>的翻译，已得到作者授权。该教程作者(亦工具作者)现在在微软开发UnityVS…</p>
+        <p>本文是<a target="_blank" rel="noopener" href="http://www.codeproject.com/Articles/20565/Assembly-Manipulation-and-C-VB-NET-Code-Injection">Assembly Manipulation and C# &#x2F; VB.NET Code Injection</a>的翻译，已得到作者授权。该教程作者(亦工具作者)现在在微软开发UnityVS…</p>
 <span id="more"></span>
 
-<p>本文使用的老版本界面与最新版本有所不同，而且内容覆盖的功能比较全，但介绍的比较笼统；之后我会结合Unity写一些具体的例子。<br>就我的使用经验来说，直接操作IL code还是比较丧心病狂的，利用后面的C#/VB.NET注入功能会方便很多，而且修改作用域、属性等功能其实用的不多。</p>
+<p>本文使用的老版本界面与最新版本有所不同，而且内容覆盖的功能比较全，但介绍的比较笼统；之后我会结合Unity写一些具体的例子。<br>就我的使用经验来说，直接操作IL code还是比较丧心病狂的，利用后面的C#&#x2F;VB.NET注入功能会方便很多，而且修改作用域、属性等功能其实用的不多。</p>
 <p>ps. 图片来自codeproject，可能载入速度较慢，见谅</p>
 <h1 id="最新版本下载"><a href="#最新版本下载" class="headerlink" title="最新版本下载"></a>最新版本下载</h1><p>最新版本的Reflexi可以在<a target="_blank" rel="noopener" href="http://reflexil.net/">官网</a>下载。</p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a target="_blank" rel="noopener" href="http://reflector.net/">Reflector</a>和<a target="_blank" rel="noopener" href="http://www.telerik.com/products/decompiler">JustDecompile</a>都是能用来对各类程序集进行深度检查的工具，他们同时也都能对.NET的IL code进行反汇编。但是这两个工具都无法修改对应程序集的结构或IL code。在<a target="_blank" rel="noopener" href="http://evain.net/blog/">Jb EVAIN</a>实现的强大**<a target="_blank" rel="noopener" href="http://www.mono-project.com/Cecil">Mono.Cecil</a>**帮助下，Reflexil达到了这个目标。作为一个专门用来处理IL code的插件，Reflexil实现了一个完整的指令编辑器，并允许直接注入C#/VB.NET代码。下面将用两个例子具体说明。</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a target="_blank" rel="noopener" href="http://reflector.net/">Reflector</a>和<a target="_blank" rel="noopener" href="http://www.telerik.com/products/decompiler">JustDecompile</a>都是能用来对各类程序集进行深度检查的工具，他们同时也都能对.NET的IL code进行反汇编。但是这两个工具都无法修改对应程序集的结构或IL code。在<a target="_blank" rel="noopener" href="http://evain.net/blog/">Jb EVAIN</a>实现的强大**<a target="_blank" rel="noopener" href="http://www.mono-project.com/Cecil">Mono.Cecil</a>**帮助下，Reflexil达到了这个目标。作为一个专门用来处理IL code的插件，Reflexil实现了一个完整的指令编辑器，并允许直接注入C#&#x2F;VB.NET代码。下面将用两个例子具体说明。</p>
 <h1 id="Demo应用"><a href="#Demo应用" class="headerlink" title="Demo应用"></a>Demo应用</h1><p>让我们先实现一个简单的求和应用。</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Windows.Forms;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">ReflexilDemo</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">DemoForm</span> : <span class="title">Form</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">DemoForm</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ComputeAndDisplay</span>(<span class="params"><span class="built_in">decimal</span> x, <span class="built_in">decimal</span> y</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            MessageBox.Show(String.Format(<span class="string">&quot;&#123;0&#125;+&#123;1&#125;=&#123;2&#125;&quot;</span>, x, y, x + y));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">DisplayResultButton_Click</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            ComputeAndDisplay(LeftOperand.Value, RightOperand.Value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Windows.Forms;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">ReflexilDemo</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">DemoForm</span> : <span class="title">Form</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">DemoForm</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ComputeAndDisplay</span>(<span class="params"><span class="built_in">decimal</span> x, <span class="built_in">decimal</span> y</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            MessageBox.Show(String.Format(<span class="string">&quot;&#123;0&#125;+&#123;1&#125;=&#123;2&#125;&quot;</span>, x, y, x + y));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">DisplayResultButton_Click</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            ComputeAndDisplay(LeftOperand.Value, RightOperand.Value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://www.codeproject.com/KB/msil/reflexil/demoapp.jpg"><br><img src="https://www.codeproject.com/KB/msil/reflexil/demores.jpg"></p>
 <h2 id="使用指令编辑器"><a href="#使用指令编辑器" class="headerlink" title="使用指令编辑器"></a>使用指令编辑器</h2><p>通过指令编辑器，我们可以在<code>ComputeAndDisplay</code>方法内修改对<code>MessageBox.Show</code>方法的调用，增加一个调用参数title(因为这个函数有多个重载形式)，从而在显示结果的窗口上添加标题。</p>
@@ -541,7 +541,7 @@
 <li>类型、属性或方法引用(Reflector实现了一个浏览器，从中选择合适的即可)</li>
 </ul>
 <p>需要注意的是，<strong>Reflector</strong>和<strong>Reflexil</strong>的对象更新不是同步的：对IL code进行的修改并不会影响<strong>Reflector</strong>的反汇编窗口，同时<strong>Mono.Cecil</strong>不会对生成的代码进行检查。在两者之间唯一的保证是对于程序集中同一个操作码(opcode)，其对应的操作符(operand type)是一致的。如果你觉得直接修改IL比较麻烦的话，下面将展示如何直接更新一个函数本身的方法。</p>
-<h1 id="使用C-VB-NET代码注入"><a href="#使用C-VB-NET代码注入" class="headerlink" title="使用C#/VB.NET代码注入"></a>使用C#/VB.NET代码注入</h1><p>通过下图所示配置表，你可以选择适合的诸如语言以及输入、显示的进制设置：</p>
+<h1 id="使用C-VB-NET代码注入"><a href="#使用C-VB-NET代码注入" class="headerlink" title="使用C#&#x2F;VB.NET代码注入"></a>使用C#&#x2F;VB.NET代码注入</h1><p>通过下图所示配置表，你可以选择适合的诸如语言以及输入、显示的进制设置：</p>
 <p><img src="https://www.codeproject.com/KB/msil/reflexil/configuration.jpg"></p>
 <p>下面使用”替换所有代码”来修改<code>ComputeAndDisplay</code>函数主体：</p>
 <p><img src="https://www.codeproject.com/KB/msil/reflexil/methedt-inject.jpg"></p>
@@ -551,7 +551,7 @@
 <p><img src="https://www.codeproject.com/KB/msil/reflexil/inject-vb.jpg"></p>
 <p>最后我们保存、测试一下修改结果：</p>
 <p><img src="https://www.codeproject.com/KB/msil/reflexil/demoresult-inject.jpg"></p>
-<h2 id="C-VB-NET代码注入功能特性"><a href="#C-VB-NET代码注入功能特性" class="headerlink" title="C#/VB.NET代码注入功能特性"></a>C#/VB.NET代码注入功能特性</h2><p>修改的代码是使用<code>System.CodeDom</code>在一个单独的<code>AppDomain</code>下编译。一旦编译成功，生成的指令被剥离出来，然后塞入原来的函数体中。参数、变量、方法、作用域等被调整适应于原作用方法中。当然代码注入也有一定的限制：无法引用到其定义在父类中的属性或方法。此外可以指定编译进程中的目标框架。</p>
+<h2 id="C-VB-NET代码注入功能特性"><a href="#C-VB-NET代码注入功能特性" class="headerlink" title="C#&#x2F;VB.NET代码注入功能特性"></a>C#&#x2F;VB.NET代码注入功能特性</h2><p>修改的代码是使用<code>System.CodeDom</code>在一个单独的<code>AppDomain</code>下编译。一旦编译成功，生成的指令被剥离出来，然后塞入原来的函数体中。参数、变量、方法、作用域等被调整适应于原作用方法中。当然代码注入也有一定的限制：无法引用到其定义在父类中的属性或方法。此外可以指定编译进程中的目标框架。</p>
 <h2 id="方法属性编辑器"><a href="#方法属性编辑器" class="headerlink" title="方法属性编辑器"></a>方法属性编辑器</h2><p>通过这个编辑器能够很轻松的修改方法签名或可见范围，也可以修改返回类型：</p>
 <p><img src="https://www.codeproject.com/KB/msil/reflexil/methattr.jpg"></p>
 <p>方法参数及变量也是可编辑的。Reflexil能够载入(MDB、PDB等文件提供的)符号信息，来显示原始变量名：</p>
@@ -568,7 +568,7 @@
 <p><img src="https://www.codeproject.com/KB/msil/reflexil/typeedt.jpg"></p>
 <h2 id="操作成员"><a href="#操作成员" class="headerlink" title="操作成员"></a>操作成员</h2><p><strong>Reflexil</strong>能够对类、接口、结构体、枚举、事件、方法、构造函数、属性或引用进行重命名、删除或插入操作。</p>
 <p><img src="https://www.codeproject.com/KB/msil/reflexil/injmenu.jpg"></p>
-<p>智能插入：插入一个属性(property)会生成一个字段(field)及对应的getter/setter方法。</p>
+<p>智能插入：插入一个属性(property)会生成一个字段(field)及对应的getter&#x2F;setter方法。</p>
 <p><img src="https://www.codeproject.com/KB/msil/reflexil/injprop.jpg"></p>
 <h2 id="资源编辑器"><a href="#资源编辑器" class="headerlink" title="资源编辑器"></a>资源编辑器</h2><p>可以修改或插入内嵌资源、链接资源和程序集链接资源，并提供了一个完整的十六进制编辑器来更新、导入或导出文件。</p>
 <p><img src="https://www.codeproject.com/KB/msil/reflexil/resources.jpg"></p>

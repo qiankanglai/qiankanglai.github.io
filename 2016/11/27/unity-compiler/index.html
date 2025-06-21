@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -505,7 +505,7 @@
 <span id="more"></span>
 
 <h1 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h1><p>我使用的是之前比较lua解决方案里的slua工程，引擎版本Unity 5.3.6f1(其他设备信息跳过因为都是在同一台电脑上…)。在测试之前还需要写一个脚本来统计编译时间，这里简单粗暴的写了一个小脚本去不断刷新<code>EditorApplication.isCompiling</code>即可；顺便因为每次编译完成之后重新加载dll会导致<code>static bool compiling</code>丢失，因此保存一下。</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">InitializeOnLoad</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FinishCompiling</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">string</span> compilingKey = <span class="string">&quot;Compiling&quot;</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">bool</span> compiling;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="title">FinishCompiling</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        compiling = EditorPrefs.GetBool(compilingKey, <span class="literal">false</span>);</span><br><span class="line">        EditorApplication.update += Update;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span>(compiling &amp;&amp; !EditorApplication.isCompiling)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="built_in">string</span>.Format(<span class="string">&quot;Compiling DONE &#123;0&#125;&quot;</span>, DateTime.Now));</span><br><span class="line">            compiling = <span class="literal">false</span>;</span><br><span class="line">            EditorPrefs.SetBool(compilingKey, <span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (!compiling &amp;&amp; EditorApplication.isCompiling)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="built_in">string</span>.Format(<span class="string">&quot;Compiling START &#123;0&#125;&quot;</span>, DateTime.Now));</span><br><span class="line">            compiling = <span class="literal">true</span>;</span><br><span class="line">            EditorPrefs.SetBool(compilingKey, <span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">InitializeOnLoad</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FinishCompiling</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">string</span> compilingKey = <span class="string">&quot;Compiling&quot;</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">bool</span> compiling;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="title">FinishCompiling</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        compiling = EditorPrefs.GetBool(compilingKey, <span class="literal">false</span>);</span><br><span class="line">        EditorApplication.update += Update;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Update</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(compiling &amp;&amp; !EditorApplication.isCompiling)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="built_in">string</span>.Format(<span class="string">&quot;Compiling DONE &#123;0&#125;&quot;</span>, DateTime.Now));</span><br><span class="line">            compiling = <span class="literal">false</span>;</span><br><span class="line">            EditorPrefs.SetBool(compilingKey, <span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (!compiling &amp;&amp; EditorApplication.isCompiling)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="built_in">string</span>.Format(<span class="string">&quot;Compiling START &#123;0&#125;&quot;</span>, DateTime.Now));</span><br><span class="line">            compiling = <span class="literal">true</span>;</span><br><span class="line">            EditorPrefs.SetBool(compilingKey, <span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><img src="/images/unitycompile_timeanalyze.jpg"></p>
 <p>测试的时候随便右键一个脚本-Reimport即可，这里我们要记下第一条数据：<strong>原始版本slua 编译时间大概在20s左右</strong>。</p>
@@ -522,7 +522,7 @@
 
 <p>这里必须使用文件来传递参数而不是直接在控制台传递过去的原因是Windows有一个奇葩限制 <a target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/kb/830473">Command prompt (Cmd. exe) command-line string limitation</a></p>
 <p><img src="/images/unitycompile_compile2dll.jpg"></p>
-<p>编译的时候我是根据文件夹去分Player/Editor两个版本的dll，搭配不同的宏和DLL引用。这里比较麻烦的是DLL部分，一方面要引入引擎相关的，此外还要引入项目里的<code>Library/ScriptAssemblies/Assembly-CSharp.dll</code>及其他非native的Plugin。编译完成之后删掉原来的cs文件导入新的dll就行了。</p>
+<p>编译的时候我是根据文件夹去分Player&#x2F;Editor两个版本的dll，搭配不同的宏和DLL引用。这里比较麻烦的是DLL部分，一方面要引入引擎相关的，此外还要引入项目里的<code>Library/ScriptAssemblies/Assembly-CSharp.dll</code>及其他非native的Plugin。编译完成之后删掉原来的cs文件导入新的dll就行了。</p>
 <p>在这里还需要稍微修改下Slua的注入部分</p>
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (System.IO.File.Exists(<span class="string">&quot;Assets/Slua/LuaObject/LuaObject-Player.dll&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    assembly = Assembly.Load(<span class="string">&quot;LuaObject-Player&quot;</span>);</span><br><span class="line">    list.AddRange(getBindList(assembly, <span class="string">&quot;SLua.BindUnity&quot;</span>));</span><br><span class="line">    list.AddRange(getBindList(assembly, <span class="string">&quot;SLua.BindUnityUI&quot;</span>));</span><br><span class="line">    list.AddRange(getBindList(assembly, <span class="string">&quot;SLua.BindDll&quot;</span>));</span><br><span class="line">    list.AddRange(getBindList(assembly, <span class="string">&quot;SLua.BindCustom&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -532,7 +532,7 @@
 <li>无法处理代码里有<code>UNITY_ANDROID</code> <code>UNITY_EDITOR</code>等宏</li>
 <li>无法处理<code>MonoBehaivor</code></li>
 </ul>
-<p>前面一种其实硬要做也是可以的：针对每个平台及是否是编辑器编译一份dll进行使用。但是第二个问题非常难搞不定。根据我的分析，Unity在序列化prefab/scene的时候：</p>
+<p>前面一种其实硬要做也是可以的：针对每个平台及是否是编辑器编译一份dll进行使用。但是第二个问题非常难搞不定。根据我的分析，Unity在序列化prefab&#x2F;scene的时候：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">m_Script:</span> &#123;<span class="attr">fileID:</span> <span class="number">1362688015</span>, <span class="attr">guid:</span> <span class="string">1587d74042d69a744a8765d5984d126d</span>, <span class="attr">type:</span> <span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
 
 <p><code>guid</code>是对应的DLL文件，<code>fileID</code>是里面的C#脚本，如果要在用不同版本DLL的时候自己根据映射去切换太尴尬了。</p>
@@ -544,7 +544,7 @@
 
 <p>然后把Slua拖到Standard Assets下，一运行就报错了…蜜汁尴尬</p>
 <blockquote>
-<p>UNetWeaver error: Exception :System.ArgumentException: An element with the same key already exists in the dictionary.<br>  at System.Collections.Generic.Dictionary`2[System.UInt32,System.UInt32].Add (UInt32 key, UInt32 value) [0x0007e] in /Users/builduser/buildslave/mono/build/mcs/class/corlib/System.Collections.Generic/Dictionary.cs:404<br>  at Mono.Cecil.MetadataSystem.SetReverseNestedTypeMapping (UInt32 nested, UInt32 declaring) [0x00000] in <filename unknown>:0<br>  at Mono.Cecil.MetadataReader.AddNestedMapping (UInt32 declaring, UInt32 nested) [0x00000] in <filename unknown>:0 </p>
+<p>UNetWeaver error: Exception :System.ArgumentException: An element with the same key already exists in the dictionary.<br>  at System.Collections.Generic.Dictionary&#96;2[System.UInt32,System.UInt32].Add (UInt32 key, UInt32 value) [0x0007e] in &#x2F;Users&#x2F;builduser&#x2F;buildslave&#x2F;mono&#x2F;build&#x2F;mcs&#x2F;class&#x2F;corlib&#x2F;System.Collections.Generic&#x2F;Dictionary.cs:404<br>  at Mono.Cecil.MetadataSystem.SetReverseNestedTypeMapping (UInt32 nested, UInt32 declaring) [0x00000] in <filename unknown>:0<br>  at Mono.Cecil.MetadataReader.AddNestedMapping (UInt32 declaring, UInt32 nested) [0x00000] in <filename unknown>:0 </p>
 </blockquote>
 <p>在<a target="_blank" rel="noopener" href="https://issuetracker.unity3d.com/issues/project-doesnt-play-with-unetweaver-error">Unity Issue Tracker</a>和<a target="_blank" rel="noopener" href="https://github.com/pangweiwei/slua/issues/73">slua issues</a>上搜到了相关信息，偷懒起见直接用了<a target="_blank" rel="noopener" href="https://bitbucket.org/alexzzzz/unity-c-5.0-and-6.0-integration/overview">Unity C# 5.0 and 6.0 Integration</a>。这下第三条数据到手：<strong>Plugin版本的slua 编译时间大概在5s左右</strong>。</p>
 <p>ps. 这里由于引入了CSharp 6.0 Support，多了脚本+换了个编译器，因此我重测了下原始版本slua+这个的编译时间大概15s左右<del>这只能说明老mono早该换了</del></p>

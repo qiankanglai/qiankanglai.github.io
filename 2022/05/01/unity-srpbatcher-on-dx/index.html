@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -538,8 +538,8 @@
 <p><img src="/images/srpbatcher_on.jpg" alt="srpbatcher_on"></p>
 <p>可以得到一些进一步的结论:</p>
 <ul>
-<li>对于不变的Texture/Sampler, 在关闭SRPBatcher下是每个Draw都暴力设置的(相当于大量的重复调用)，在打开SRPBatacher时就不需要了</li>
-<li>在关闭SRPBatcher时情况下，cbuffer0/1/2每次都设置，<strong>同时cbuffer1/2每次都Map/Unmap更新数据</strong>; 在打开SRPBatcher时情况下，cbuffer0始终不变，cbuffer2一般不变，cbuffer1只变Range<ul>
+<li>对于不变的Texture&#x2F;Sampler, 在关闭SRPBatcher下是每个Draw都暴力设置的(相当于大量的重复调用)，在打开SRPBatacher时就不需要了</li>
+<li>在关闭SRPBatcher时情况下，cbuffer0&#x2F;1&#x2F;2每次都设置，<strong>同时cbuffer1&#x2F;2每次都Map&#x2F;Unmap更新数据</strong>; 在打开SRPBatcher时情况下，cbuffer0始终不变，cbuffer2一般不变，cbuffer1只变Range<ul>
 <li>我后来打开shader debug信息看了下，cbuffer0对应<code>ShaderVariablesGlobal</code>，cbuffer1对应<code>UnityPerDraw</code>，cbuffer2对应<code>UnityPerMaterial</code></li>
 </ul>
 </li>

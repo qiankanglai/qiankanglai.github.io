@@ -286,7 +286,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -322,7 +322,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -527,7 +527,7 @@
 <p><img src="/images/bentnormal_lights.jpg"></p>
 <ul>
 <li>每次从不同角度渲染物体，利用Shadow Map可以得到每个像素可见性。有几个需要注意的地方：<ul>
-<li>输出到2UV(这个技巧可以参考之前博客 <a href="/2018/03/10/sgmodelinspector/" title="扩展Unity模型编辑器">扩展Unity模型编辑器</a>)，记得关掉Cull/ZTest等；</li>
+<li>输出到2UV(这个技巧可以参考之前博客 <a href="/2018/03/10/sgmodelinspector/" title="扩展Unity模型编辑器">扩展Unity模型编辑器</a>)，记得关掉Cull&#x2F;ZTest等；</li>
 <li>Light上用Hard Shadow，需要的话调整下Bias等参数；</li>
 <li>不要用Screen Space Shadow；</li>
 <li>注意相机位置、模型大小，让Shadow Map利用率最高；</li>
@@ -537,7 +537,7 @@
 <p><img src="/images/bentnormal_uv2.jpg"></p>
 <p>ps. 我一开始是使用<code>Graphics.DrawMeshNow</code>直接绘制到RenderTexture的，后来发现很多变量引擎不会自动传过去特别闹心… 最后换了个路子，直接设置<code>Camera.targetTexture</code>然后<code>Camera.Render</code>省心多了。</p>
 <ul>
-<li><p>新建一张float的RenderTexture，然后Blend One One情况下各个角度渲染一遍叠加：如果没有影子，RGB输出光源方向，A输出1计数；最后RGB/A保存下来即可。</p>
+<li><p>新建一张float的RenderTexture，然后Blend One One情况下各个角度渲染一遍叠加：如果没有影子，RGB输出光源方向，A输出1计数；最后RGB&#x2F;A保存下来即可。</p>
 </li>
 <li><p>最后生成的结果需要做几遍Dilation 解决边缘采样问题</p>
 </li>
@@ -553,8 +553,8 @@
 <p><img src="/images/bentnormal_result.jpg"></p>
 <h1 id="未来工作"><a href="#未来工作" class="headerlink" title="未来工作"></a>未来工作</h1><p>目前的结论是在手游上可以尝试使用一下的，反正低配一个keyword关掉就行了。</p>
 <p>接下来有精力的话还要好好迭代下预处理烘焙这块。 Unity这套Baker方案扩展一下其实有非常多二次开发的空间，譬如AO、Normal等完全可以实现自定义的烘焙(当然另外一条路就是写C++的Ray Tracing来搞Baker)。 </p>
-<p>SD/SP/Max等美术DCC工具最大问题是public API不是很多，如果想定制输出不是很方便；若只是最终结果的encode还好办，如果想拿中间结果就很费劲。在Unity里搞Baker的最大意义即在于此。</p>
-<p>顺便po一张图：三个面光源下，Max里Vray烘焙到贴图和Unity里Enlighten烘焙到贴图的对比，看上去还是比较有搞头的(左边模型鞋子/腰带上的问题其实是Max里哪里出错了，然而我对这货不熟-.-)</p>
+<p>SD&#x2F;SP&#x2F;Max等美术DCC工具最大问题是public API不是很多，如果想定制输出不是很方便；若只是最终结果的encode还好办，如果想拿中间结果就很费劲。在Unity里搞Baker的最大意义即在于此。</p>
+<p>顺便po一张图：三个面光源下，Max里Vray烘焙到贴图和Unity里Enlighten烘焙到贴图的对比，看上去还是比较有搞头的(左边模型鞋子&#x2F;腰带上的问题其实是Max里哪里出错了，然而我对这货不熟-.-)</p>
 <p><img src="/images/vray_enlighten.jpg"></p>
 <p>这样最大的好处是提高定制性和整合工作流顺畅度(虽然目前来看鸽的概率太大了)。 </p>
 <p>不说了继续写Lua去了，不YY了(逃</p>

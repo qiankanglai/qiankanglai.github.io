@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -568,20 +568,20 @@
 <h3 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h3><ul>
 <li>疯狂的纹理尺寸</li>
 <li>资源压缩</li>
-<li>错误的Avatar/Rig设置</li>
+<li>错误的Avatar&#x2F;Rig设置</li>
 </ul>
 <p>当然，就算在同一个项目里，不同部分的资源的标准要求是不一样的~</p>
 <h3 id="HOWTO-如何实现"><a href="#HOWTO-如何实现" class="headerlink" title="HOWTO(如何实现)"></a>HOWTO(如何实现)</h3><p>参考<a target="_blank" rel="noopener" href="http://docs.unity3d.com/ScriptReference/AssetPostprocessor.html">AssetPostprocessor</a>，根据项目需要修改<code>assetImporter</code>实例</p>
 <h3 id="常见规则"><a href="#常见规则" class="headerlink" title="常见规则"></a>常见规则</h3><ul>
 <li>纹理<ul>
-<li>确认关闭Read/Write</li>
+<li>确认关闭Read&#x2F;Write</li>
 <li>尽可能禁用mipmap</li>
 <li>尽可能使用压缩纹理</li>
 <li>确保纹理不要过大：UI来说用2048或者1024；模型纹理不超过512</li>
 </ul>
 </li>
 <li>模型<ul>
-<li>确认关闭Read/Write</li>
+<li>确认关闭Read&#x2F;Write</li>
 <li>非玩家模型就关掉rig</li>
 <li>共用rig的模型就直接复制avatar</li>
 <li>打开模型压缩</li>
@@ -654,7 +654,7 @@
 </ol>
 <h3 id="Resources文件夹"><a href="#Resources文件夹" class="headerlink" title="Resources文件夹"></a>Resources文件夹</h3><p>在游戏启动的时候会载入Resources文件夹的目录结构，这个是无法避免或者延后的~</p>
 <p>解决方案：将Resources下的资源打包到Asset Bundle</p>
-<h3 id="Material-Animator-Shader属性访问"><a href="#Material-Animator-Shader属性访问" class="headerlink" title="Material/Animator/Shader属性访问"></a>Material/Animator/Shader属性访问</h3><p>永远不要直接通过名字去访问，因为在引擎内部需要对字符串名字计算哈希得到一个整数id~</p>
+<h3 id="Material-Animator-Shader属性访问"><a href="#Material-Animator-Shader属性访问" class="headerlink" title="Material&#x2F;Animator&#x2F;Shader属性访问"></a>Material&#x2F;Animator&#x2F;Shader属性访问</h3><p>永远不要直接通过名字去访问，因为在引擎内部需要对字符串名字计算哈希得到一个整数id~</p>
 <p>错误做法</p>
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">material.SetColor(<span class="string">&quot;_Color&quot;</span>, Color.white);</span><br><span class="line">animator.SetTrigger(<span class="string">&quot;attack&quot;</span>);</span><br></pre></td></tr></table></figure>
 

@@ -284,7 +284,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -319,7 +319,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -505,7 +505,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>今天在等编译过程中，抽空了解了下一直出现的MSB8028(这个警告其实出现了应该有几年了orz)，有点意思…<br>从表现上来说非常简单，就是编译项目的时候有几个工程(后来发现其实是名字要长…)很容易报这个warning</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">4&gt;C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (xxx\Engine\Intermediate\Build\Obj\x64\Hybrid\NvBlastExtSerialization\) contains files shared from another project (NvBlastExtSerialization.vcxproj).  This can lead to incorrect clean and rebuild behavior.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">4&gt;C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (xxx\Engine\Intermediate\Build\Obj\x64\Hybrid\NvBlastExtSerialization\) contains files shared from another project (NvBlastExtSerialization.vcxproj).  This can lead to incorrect clean and rebuild behavior.</span><br></pre></td></tr></table></figure>
 
 <span id="more"></span>
 
@@ -515,7 +515,7 @@
 <blockquote>
 <p>LastBuildState is written to TLogLocation, which is defined in <code>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.BuildSteps.Targets</code>:</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- TLogLocation requires trailing slash. --&gt;</span><br><span class="line">&lt;TLogLocation Condition&#x3D;&quot;&#39;$(TLogLocation)&#39; &#x3D;&#x3D; &#39;&#39; and &#39;$(ProjectName)&#39; !&#x3D; &#39;&#39; and &#39;$(ProjectGuid)&#39; !&#x3D; &#39;&#39; and &#39;$(ProjectName.Length)&#39; &gt; &#39;16&#39;&quot;&gt;$(IntDir)$(ProjectName.Substring(0,8)).$(ProjectGuid.Substring(1,8)).tlog\&lt;&#x2F;TLogLocation&gt;</span><br><span class="line">&lt;TLogLocation Condition&#x3D;&quot;&#39;$(TLogLocation)&#39; &#x3D;&#x3D; &#39;&#39;&quot;&gt;$(IntDir)$(ProjectName).tlog\&lt;&#x2F;TLogLocation&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- TLogLocation requires trailing slash. --&gt;</span><br><span class="line">&lt;TLogLocation Condition=&quot;&#x27;$(TLogLocation)&#x27; == &#x27;&#x27; and &#x27;$(ProjectName)&#x27; != &#x27;&#x27; and &#x27;$(ProjectGuid)&#x27; != &#x27;&#x27; and &#x27;$(ProjectName.Length)&#x27; &amp;gt; &#x27;16&#x27;&quot;&gt;$(IntDir)$(ProjectName.Substring(0,8)).$(ProjectGuid.Substring(1,8)).tlog\&lt;/TLogLocation&gt;</span><br><span class="line">&lt;TLogLocation Condition=&quot;&#x27;$(TLogLocation)&#x27; == &#x27;&#x27;&quot;&gt;$(IntDir)$(ProjectName).tlog\&lt;/TLogLocation&gt;</span><br></pre></td></tr></table></figure>
 
 <p>原来这是MSBuild默认的行为: 当项目名字长度超过16位的时候就自动阶段并拼接上GUID。<br>而在生成项目VS工程的时候虽然会尽可能保证GUID不变，但是并不是打包票的。当触发GUID变化时，tlog输出路径就会产生变化，导致增量编译的时候触发MSB8028…</p>
 <p>ps. 这个其实也解释了为什么网上很多博客说的是修改工程名字之后，不clean build会出这个问题…</p>

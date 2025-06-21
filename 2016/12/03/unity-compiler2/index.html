@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -505,14 +505,14 @@
 
 <span id="more"></span>
 
-<h1 id="测试脚本"><a href="#测试脚本" class="headerlink" title="测试脚本"></a>测试脚本</h1><p>很简单，就是在屏幕上写一个字符串，根据对应版本分别是editor/android/windows。编译出3个dll之后放到不同文件夹，设置对应Platform分别为Editor/Standalone/Android。</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">NewBehaviourScript</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">    <span class="comment">//&quot;C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.5\mcs&quot; -sdk:2 /target:library /out:NewBehaviourScript.dll /r:&quot;C:\Program Files\Unity\Editor\Data\Managed\UnityEngine.dll&quot; NewBehaviourScript.txt</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnGUI</span> (<span class="params"></span>)</span> &#123;</span><br><span class="line">        GUI.Label(<span class="keyword">new</span> Rect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">200</span>, <span class="number">200</span>), <span class="string">&quot;android&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="测试脚本"><a href="#测试脚本" class="headerlink" title="测试脚本"></a>测试脚本</h1><p>很简单，就是在屏幕上写一个字符串，根据对应版本分别是editor&#x2F;android&#x2F;windows。编译出3个dll之后放到不同文件夹，设置对应Platform分别为Editor&#x2F;Standalone&#x2F;Android。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">NewBehaviourScript</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">    <span class="comment">//&quot;C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.5\mcs&quot; -sdk:2 /target:library /out:NewBehaviourScript.dll /r:&quot;C:\Program Files\Unity\Editor\Data\Managed\UnityEngine.dll&quot; NewBehaviourScript.txt</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnGUI</span> ()</span> &#123;</span><br><span class="line">        GUI.Label(<span class="keyword">new</span> Rect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">200</span>, <span class="number">200</span>), <span class="string">&quot;android&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>测试结果如下：</p>
 <ul>
 <li>在场景里直接添加任意一个dll里的MonoBehavior之后，运行显示editor，PC出包显示windows，安卓出包显示android都没问题</li>
 <li><strong>很诡异但是是最重要的一个现象</strong>: 如果把3个dll里的脚本拖到同一个GameObject上，运行发现是显示了三层editor叠加</li>
-<li>如果只把Editor版本的dll拖到GameObject上，然后删掉这个dll，对应的Standalone/Android的dll就算还在，出包的时候也是missing</li>
+<li>如果只把Editor版本的dll拖到GameObject上，然后删掉这个dll，对应的Standalone&#x2F;Android的dll就算还在，出包的时候也是missing</li>
 </ul>
 <p>所以我只能猜测Unity内部对Managed DLL做了映射，这样就直接解决了…<strong>我以为存在的一个大坑</strong>其实压根不存在…</p>
 <h1 id="目前的解决方案"><a href="#目前的解决方案" class="headerlink" title="目前的解决方案"></a>目前的解决方案</h1><p>目前我们项目是将插件移动到Standard Assets下来加快编译速度的。SLua部分进行了dll化，在这里修改了两个小地方：</p>

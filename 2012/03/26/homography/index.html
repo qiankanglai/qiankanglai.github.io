@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -518,14 +518,14 @@
 <p>上面的Img1 Img2分别为相邻两帧，下图的Result是将Img1映射到Img2的方位——可以看到左上角的文字O开始，位置已经开始对应了。</p>
 <h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><h2 id="抽取特征值"><a href="#抽取特征值" class="headerlink" title="抽取特征值"></a>抽取特征值</h2><p>由于两个frame里面人在动，所以不能直接对图片进行处理。因此需要抽特征值，这里我用的是<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/SURF">SURF</a>~在效果图上那个白色的圆圈就是了</p>
 <h2 id="计算Homography"><a href="#计算Homography" class="headerlink" title="计算Homography"></a>计算Homography</h2><p>这里参考了部分OpenCV sample代码find_obj.cpp。主要是进行配对：相邻两个frame之间哪些特征点是一一对应的。最后使用</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cvFindHomography( points1, points2, homography,CV_FM_RANSAC,<span class="number">1.0</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cvFindHomography</span>( points1, points2, homography,CV_FM_RANSAC,<span class="number">1.0</span>);</span><br></pre></td></tr></table></figure>
 
 <p>因为可能还有outliers，所以使用的是<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/RANSAC">RANSAC方法</a>.</p>
 <h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><p>具体的我已经封装在Homography.cpp里面了，真正使用的话只要载入图片之后计算即可。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">IplImage *img = cvLoadImage(<span class="string">&quot;input1.jpg&quot;</span>);</span><br><span class="line">IplImage *img2 = cvLoadImage(<span class="string">&quot;input2.jpg&quot;</span>);</span><br><span class="line"></span><br><span class="line">CvMat *homography= cvCreateMat(<span class="number">3</span>,<span class="number">3</span>,CV_32F);</span><br><span class="line">Homography(img,img2,homography);</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">IplImage *img = <span class="built_in">cvLoadImage</span>(<span class="string">&quot;input1.jpg&quot;</span>);</span><br><span class="line">IplImage *img2 = <span class="built_in">cvLoadImage</span>(<span class="string">&quot;input2.jpg&quot;</span>);</span><br><span class="line"></span><br><span class="line">CvMat *homography= <span class="built_in">cvCreateMat</span>(<span class="number">3</span>,<span class="number">3</span>,CV_32F);</span><br><span class="line"><span class="built_in">Homography</span>(img,img2,homography);</span><br></pre></td></tr></table></figure>
 
 <p>直接使用OpenCV提供的函数，可以使用矩阵进行图片的变形</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cvWarpPerspective(img, img2, homography, CV_INTER_NN+CV_WARP_FILL_OUTLIERS, cvScalar(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cvWarpPerspective</span>(img, img2, homography, CV_INTER_NN+CV_WARP_FILL_OUTLIERS, <span class="built_in">cvScalar</span>(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
 
 <p>这样也可以实现图片的拼接，如果是一堆“静态”图片的话。OpenCV也是有android版本的，你可以考虑移植一下代码的说。</p>
 

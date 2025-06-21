@@ -286,7 +286,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -322,7 +322,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -536,18 +536,18 @@
 <p>第二个条件相当于是一个自定义的阈值，因为如果本身面法线差别很大就说明光照本来就可能有较大差别。</p>
 <h3 id="“粘合”Lightmap-Seam"><a href="#“粘合”Lightmap-Seam" class="headerlink" title="“粘合”Lightmap Seam"></a>“粘合”Lightmap Seam</h3><p>这一步其实就是stitching了。其实公式在前面PPT里已经列出：我们需要构造Ci使得两侧颜色误差尽量小，同时本身颜色变化尽量小。这个其实就转化为一个过拟合的最小二乘法，直接套用现成Solver即可。</p>
 <p>ps. 这里有个小技巧就是不同通道颜色完全可以分别计算，每次相当于计算一个灰度图结果。</p>
-<h2 id="参考项目"><a href="#参考项目" class="headerlink" title="参考项目"></a>参考项目</h2><p>我参考<a target="_blank" rel="noopener" href="https://github.com/ands/seamoptimizer">ands/seamoptimizer</a>移植了一个Unity版本实现<a target="_blank" rel="noopener" href="https://github.com/qiankanglai/seamoptimizer">qiankanglai/seamoptimizer</a>。</p>
+<h2 id="参考项目"><a href="#参考项目" class="headerlink" title="参考项目"></a>参考项目</h2><p>我参考<a target="_blank" rel="noopener" href="https://github.com/ands/seamoptimizer">ands&#x2F;seamoptimizer</a>移植了一个Unity版本实现<a target="_blank" rel="noopener" href="https://github.com/qiankanglai/seamoptimizer">qiankanglai&#x2F;seamoptimizer</a>。</p>
 <p>下图是测试结果：首先故意烘焙一个三方向硬边的结果</p>
 <p><img src="/images/lightmap_seam_unoptimized.jpg"></p>
 <p>使用Lightmap Seam Stitching之后可以看到相邻边出现了一个过度</p>
 <p><img src="/images/lightmap_seam_optimized.jpg"></p>
 <p>对比起见，将Lightmap改成Point Filter看的更加清楚</p>
 <p><img src="/images/lightmap_seam_optimized_point.jpg"></p>
-<h3 id="数学推导"><a href="#数学推导" class="headerlink" title="数学推导"></a>数学推导</h3><p>这里稍微展开讲下数学部分，我们是如何去建模、求解这个能量方程的: 首先Lightmap Seam上采样若干对点，每对点(上图的$C_{0i}$和$C_{1i}$)又对应到光照贴图里的8个像素$C_{i0}=\sum^{4}_{j} w_{0ij} t_{0ij}$。这里考虑了bilinear采样，$w_{0ij}$表达权重(也就是$C_{i0}$距离四个点的距离)，$t_{0ij}$表达光照贴图上这个像素的颜色。</p>
-<p>然后我们来构造一个矩阵$AT=B$，其中T就是每个像素对应的值，$A$里面每一行对应一个约束，分为两类</p>
+<h3 id="数学推导"><a href="#数学推导" class="headerlink" title="数学推导"></a>数学推导</h3><p>这里稍微展开讲下数学部分，我们是如何去建模、求解这个能量方程的: 首先Lightmap Seam上采样若干对点，每对点(上图的$C_{0i}$和$C_{1i}$)又对应到光照贴图里的8个像素$C_{i0}&#x3D;\sum^{4}_{j} w_{0ij} t_{0ij}$。这里考虑了bilinear采样，$w_{0ij}$表达权重(也就是$C_{i0}$距离四个点的距离)，$t_{0ij}$表达光照贴图上这个像素的颜色。</p>
+<p>然后我们来构造一个矩阵$AT&#x3D;B$，其中T就是每个像素对应的值，$A$里面每一行对应一个约束，分为两类</p>
 <ul>
-<li>$A[k] = [… w_{0i1} … w_{0i2} … w_{0i3} … w_{0i4} … -w_{1i1} … -w_{1i2} … -w_{1i3} … -w_{1i4} …], B[k] = 0$ 这里A的其余项都是0，利用矩阵乘法的性质就是构造出$\sum^{4}_{j} w_{0ij} t_{0ij} - \sum^{4}_{j} w_{1ij} t_{1ij} = 0$即接缝两侧值要相同；</li>
-<li>$A[k] = [… \lambda …], B[k] = \lambda * c$这里c为光照贴图原始像素的值，对应就是$t_{i} = c_{i}$即每个像素的值和原始值相比，不能变化过大。</li>
+<li>$A[k] &#x3D; [… w_{0i1} … w_{0i2} … w_{0i3} … w_{0i4} … -w_{1i1} … -w_{1i2} … -w_{1i3} … -w_{1i4} …], B[k] &#x3D; 0$ 这里A的其余项都是0，利用矩阵乘法的性质就是构造出$\sum^{4}_{j} w_{0ij} t_{0ij} - \sum^{4}_{j} w_{1ij} t_{1ij} &#x3D; 0$即接缝两侧值要相同；</li>
+<li>$A[k] &#x3D; [… \lambda …], B[k] &#x3D; \lambda * c$这里c为光照贴图原始像素的值，对应就是$t_{i} &#x3D; c_{i}$即每个像素的值和原始值相比，不能变化过大。</li>
 </ul>
 <p>这样就构造了一个过拟合的公式，利用最小二乘法求解即可。$lambda$是权重，控制最后的结果是更倾向于接缝消失还是更倾向于颜色变化小。</p>
 <p>更具体的实现可以参考<a target="_blank" rel="noopener" href="http://www.programmersought.com/article/3597186469/">Algorithm Analysis: Linear Least Squares Problem</a>，提到了Chomsky decomposition method。</p>
@@ -560,7 +560,7 @@
 <li>Optimize Lightmaps: 一键优化接缝，其实是在Unity自带的光照贴图旁边生成一堆优化过的版本</li>
 <li>Apply Optimized Lightmaps: 将处理过的光照贴图应用到场景</li>
 <li>Apply NonOptimized Lightmaps: 将原版光照贴图应用到场景</li>
-<li>Visualize Mesh 2UV/Seams: 调试功能，无视</li>
+<li>Visualize Mesh 2UV&#x2F;Seams: 调试功能，无视</li>
 </ul>
 <p>代码里有两个参数<code>cosNormalThreshold</code>控制那些面需要平滑接缝，<code>lambda</code>控制能量函数权重。</p>
 

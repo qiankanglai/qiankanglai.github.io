@@ -282,7 +282,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "A game developer interested in rendering, with focus on Unity now."
+        "description": "Game developer working with rendering/physics/animation/assets :D"
     },
     "publisher": {
         "@type": "Organization",
@@ -316,7 +316,7 @@
     <!-- Custom Head -->
     
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
     
@@ -512,7 +512,7 @@
 <blockquote>
 <p>用了Shader feature的shader，跟用到它的material文件放在不同的bundle里打包，由material里的keyword决定的shader变种会丢失。</p>
 </blockquote>
-<p>关于这个现象，我的测试结果是Asset Bundle里正常，但是编辑器下模拟Asset Bundle功能的时候因为要使用Windows/OSX版本的Shader，反而出现了<code>shader_feature</code>丢失的现象… 目前安全起见我也从<code>shader_feature</code>转到了<code>multi_compile</code>上，不过根据贴图情况去控制Keyword的思路没变</p>
+<p>关于这个现象，我的测试结果是Asset Bundle里正常，但是编辑器下模拟Asset Bundle功能的时候因为要使用Windows&#x2F;OSX版本的Shader，反而出现了<code>shader_feature</code>丢失的现象… 目前安全起见我也从<code>shader_feature</code>转到了<code>multi_compile</code>上，不过根据贴图情况去控制Keyword的思路没变</p>
 <p><strong>更新2</strong>: 这个问题在新版本Unity已解决，见<a href="/2018/08/06/shadervariantcollection/" title="ShaderVariantCollection解决shader_feature丢失">ShaderVariantCollection解决shader_feature丢失</a></p>
 <h1 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h1><p>在官方文档里找到了答案：<a target="_blank" rel="noopener" href="https://docs.unity3d.com/Manual/SL-MultipleProgramVariants.html">Making multiple shader program variants</a>。之前我主要使用的是<code>multi_compile</code>在运行时切换，现在发现<code>shader_feature</code>对应自定义的<code>CustomEditor</code>能很好的完成这个需求。下表为同一个材质球配合不同贴图的参数，以及对应GLES版本的Compiled Code的指令数:</p>
 <table>
@@ -544,7 +544,7 @@
 <p>这里比较好理解，相当于自发光相关的代码都利用<code>_EMISSIONMAP</code>这个宏包起来了。</p>
 <p>ps.记得在最后加上<code>CustomEditor &quot;SGPBRInspector&quot;</code>…</p>
 <h2 id="C-部分"><a href="#C-部分" class="headerlink" title="C#部分"></a>C#部分</h2><p>这里参考了官方的Standard的编辑器代码S tandardShaderGUI.cs。其实和其他inspector一样，最核心的几行就是根据某个属性是否贴了贴图，打开或关闭对应的宏…</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">override</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params">MaterialEditor materialEditor, MaterialProperty[] properties</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  MaterialProperty emissionMap = ShaderGUI.FindProperty(<span class="string">&quot;_EmissionMap&quot;</span>, props);</span><br><span class="line">  <span class="built_in">bool</span> emissionEnabled = emissionMap.textureValue != <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  Material material = materialEditor.target <span class="keyword">as</span> Material;</span><br><span class="line">  <span class="keyword">if</span> (emissionEnabled)</span><br><span class="line">      material.EnableKeyword(<span class="string">&quot;_EMISSIONMAP&quot;</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">      material.DisableKeyword(<span class="string">&quot;_EMISSIONMAP&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">override</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params">MaterialEditor materialEditor, MaterialProperty[] properties</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  MaterialProperty emissionMap = ShaderGUI.FindProperty(<span class="string">&quot;_EmissionMap&quot;</span>, props);</span><br><span class="line">  <span class="built_in">bool</span> emissionEnabled = emissionMap.textureValue != <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  Material material = materialEditor.target <span class="keyword">as</span> Material;</span><br><span class="line">  <span class="keyword">if</span> (emissionEnabled)</span><br><span class="line">      material.EnableKeyword(<span class="string">&quot;_EMISSIONMAP&quot;</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">      material.DisableKeyword(<span class="string">&quot;_EMISSIONMAP&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>简单粗暴，完成～</p>
 
